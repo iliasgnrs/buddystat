@@ -11,11 +11,11 @@ docker run --rm \
 
 # 2. Copy to your local machine or transfer directly to new server
 
-scp /tmp/clickhouse-data.tar.gz user@new-server:/tmp/
+scp /tmp/clickhouse-data.tar.gz root@clickhouse:/tmp/
 
 On New Server:
 
-# 1. Upload the docker-compose file and create .env
+# 1. Upload the docker compose file and create .env
 
 # Create .env file with your settings:
 
@@ -36,7 +36,7 @@ docker run --rm \
 
 # 3. Start ClickHouse
 
-docker-compose -f docker-compose.clickhouse.yml up -d
+docker compose -f docker compose.clickhouse.yml up -d
 
 # 4. Verify data
 
@@ -47,13 +47,12 @@ docker exec clickhouse clickhouse-client --password=frog --query="SELECT count()
 
 1. ClickHouse stores everything in /var/lib/clickhouse
 
-
-    - Table definitions
-    - Data files (compressed)
-    - Metadata
+   - Table definitions
+   - Data files (compressed)
+   - Metadata
 
 2. Same ClickHouse version (25.4.2) - compatible format
-3. Same configurations - copied from your cloud docker-compose
+3. Same configurations - copied from your cloud docker compose
 
 Quick Test Locally First:
 
@@ -63,7 +62,7 @@ cd /Users/bill/Desktop/rybbit/server/src/db/clickhouse
 
 # Start the standalone ClickHouse
 
-docker-compose -f docker-compose.clickhouse.yml up -d
+docker compose -f docker compose.clickhouse.yml up -d
 
 # Test connection
 
