@@ -22,6 +22,14 @@ const getImportDataHeaders = (platform: string) => {
   }
 };
 
+const safeUpdateStatusToFailed = async (importId: string, errorMessage: string) => {
+  try {
+    await updateImportStatus(importId, "failed", errorMessage);
+  } catch (updateError) {
+    logger.error({ importId, error: updateError }, "Could not update status to failed");
+  }
+};
+
 const createR2FileStream = async (storageLocation: string, platform: string) => {
   logger.info({ storageLocation }, "Reading from R2");
   const fileStream = await r2Storage.getImportFileStream(storageLocation);
@@ -89,7 +97,7 @@ export async function createCsvParseWorker(jobQueue: IJobQueue) {
       const quotaTracker = await ImportQuotaTracker.create(organization);
 
       const chunkSize = 5000;
-      const INACTIVITY_TIMEOUT_MS = 90 * 1000; // 90 seconds of inactivity
+      const INACTIVITY_TIMEOUT_MS = 90 * 1000;
 
       let chunk: UmamiEvent[] = [];
       let totalSkippedQuota = 0;
@@ -99,16 +107,13 @@ export async function createCsvParseWorker(jobQueue: IJobQueue) {
         ? await createR2FileStream(storageLocation, platform)
         : await createLocalFileStream(storageLocation, platform);
 
-      // Add explicit error handler before starting to consume the stream
       stream.on("error", error => {
         logger.error({ importId, error }, "Stream error");
-        // Error will be caught by the outer try/catch
       });
 
       await updateImportStatus(importId, "processing");
       logger.info({ importId, platform, organization }, "Started processing CSV import");
 
-      // Helper to reset inactivity timeout - resets whenever progress is made
       const resetTimeout = () => {
         if (processingTimeout) {
           clearTimeout(processingTimeout);
@@ -142,7 +147,6 @@ export async function createCsvParseWorker(jobQueue: IJobQueue) {
           continue;
         }
 
-        // Event passed all filters - add to chunk
         chunk.push(data);
         totalProcessed++;
 
@@ -155,12 +159,10 @@ export async function createCsvParseWorker(jobQueue: IJobQueue) {
             allChunksSent: false,
           });
           chunk = [];
-          // Reset timeout after successful chunk send
           resetTimeout();
         }
       }
 
-      // Send final chunk if any data remains
       if (chunk.length > 0) {
         await jobQueue.send<DataInsertJob>(DATA_INSERT_QUEUE, {
           site,
@@ -169,11 +171,9 @@ export async function createCsvParseWorker(jobQueue: IJobQueue) {
           chunk,
           allChunksSent: false,
         });
-        // Reset timeout after final chunk send
         resetTimeout();
       }
 
-      // Check if some events couldn't be imported due to quotas
       if (totalSkippedQuota > 0) {
         const quotaSummary = quotaTracker.getSummary();
         const errorMessage =
@@ -188,7 +188,6 @@ export async function createCsvParseWorker(jobQueue: IJobQueue) {
         return;
       }
 
-      // Send finalization signal with total chunk count
       logger.info({ importId, totalProcessed, totalSkippedQuota }, "CSV parsing completed successfully");
       await jobQueue.send<DataInsertJob>(DATA_INSERT_QUEUE, {
         site,
@@ -199,18 +198,13 @@ export async function createCsvParseWorker(jobQueue: IJobQueue) {
       });
     } catch (error) {
       logger.error({ importId, error }, "Error in CSV parse worker");
-
-      await updateImportStatus(importId, "failed", "An unexpected error occurred during import processing");
-
-      // Don't re-throw - worker should continue processing other jobs
+      await safeUpdateStatusToFailed(importId, "An unexpected error occurred during import processing");
       logger.error({ importId }, "Import failed, worker continuing");
     } finally {
-      // Clean up timeout
       if (processingTimeout) {
         clearTimeout(processingTimeout);
       }
 
-      // Ensure stream is destroyed to prevent memory leaks
       if (stream) {
         try {
           stream.destroy();
@@ -219,12 +213,16 @@ export async function createCsvParseWorker(jobQueue: IJobQueue) {
         }
       }
 
-      // Clean up file - don't throw on failure to prevent worker crashes
-      const deleteResult = await deleteImportFile(storageLocation, isR2Storage);
-      if (!deleteResult.success) {
-        logger.warn({ importId, error: deleteResult.error }, "File cleanup failed, will remain in storage");
-        // File will be orphaned but import status is already recorded
-        // importCleanupService.ts handles orphans
+      // Clean up file - log errors but don't throw to prevent worker crashes
+      try {
+        const deleteResult = await deleteImportFile(storageLocation, isR2Storage);
+        if (!deleteResult.success) {
+          logger.warn({ importId, error: deleteResult.error }, "File cleanup failed, will remain in storage");
+          // File will be orphaned but import status is already recorded
+          // importCleanupService.ts handles orphans
+        }
+      } catch (deleteError) {
+        logger.error({ importId, error: deleteError }, "Critical error during file cleanup");
       }
     }
   });

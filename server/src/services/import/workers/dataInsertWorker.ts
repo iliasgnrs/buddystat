@@ -16,33 +16,28 @@ const getImportDataMapping = (platform: string) => {
   }
 };
 
+const safeUpdateStatusToFailed = async (importId: string, errorMessage: string) => {
+  try {
+    await updateImportStatus(importId, "failed", errorMessage);
+  } catch (updateError) {
+    logger.error({ importId, error: updateError }, "Could not update status to failed");
+  }
+};
+
 export async function createDataInsertWorker(jobQueue: IJobQueue) {
   await jobQueue.work<DataInsertJob>(DATA_INSERT_QUEUE, async job => {
     const { site, importId, platform, chunk, allChunksSent } = job;
 
-    if (allChunksSent) {
-      try {
+    try {
+      if (allChunksSent) {
         await updateImportStatus(importId, "completed");
         logger.info({ importId }, "Import completed successfully");
         return;
-      } catch (error) {
-        logger.error({ importId, error }, "Failed to mark as completed");
-        // Try to update to failed status, but don't crash worker
-        try {
-          await updateImportStatus(importId, "failed", "Failed to complete import");
-        } catch (updateError) {
-          logger.error({ importId, error: updateError }, "Could not update status to failed");
-        }
-        // Don't re-throw - worker should continue
-        return;
       }
-    }
 
-    try {
       const dataMapper = getImportDataMapping(platform);
       const transformedRecords = dataMapper.transform(chunk, site, importId);
 
-      // Insert to ClickHouse (critical - must succeed)
       await clickhouse.insert({
         table: "events",
         values: transformedRecords,
@@ -62,16 +57,12 @@ export async function createDataInsertWorker(jobQueue: IJobQueue) {
         // Don't throw - data is safely in ClickHouse, progress can be off slightly
       }
     } catch (error) {
-      logger.error({ importId, error }, "ClickHouse insert failed");
+      logger.error({ importId, error }, "Worker processing failed");
 
-      try {
-        await updateImportStatus(importId, "failed", "Data insertion failed due to unknown error");
-      } catch (updateError) {
-        logger.error({ importId, error: updateError }, "Could not update status to failed");
-      }
+      const errorMessage = allChunksSent ? "Failed to complete import" : "Data insertion failed due to unknown error";
+      await safeUpdateStatusToFailed(importId, errorMessage);
 
-      // Don't re-throw - worker should continue processing other jobs
-      logger.error({ importId }, "Import chunk failed, worker continuing");
+      logger.error({ importId }, "Import operation failed, worker continuing");
     }
   });
 }
