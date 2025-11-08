@@ -77,37 +77,9 @@ const isDev = process.env.NODE_ENV === "development";
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
-      <Script
-        src="https://demo.rybbit.com/api/script.js"
-        data-site-id="21"
-        strategy="afterInteractive"
-        data-session-replay="true"
-        data-web-vitals="true"
-        data-track-errors="true"
-        data-track-outbound="true"
-        {...(isDev && {
-          "data-api-key": process.env.NEXT_PUBLIC_RYBBIT_API_KEY,
-        })}
-      />
-      <Script id="matomo" strategy="afterInteractive">
-        {`
-        var _paq = window._paq = window._paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-          var u = "https://rybbit.matomo.cloud/";
-          _paq.push(['setTrackerUrl', u + 'matomo.php']);
-          _paq.push(['setSiteId', '1']);
-          var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-          g.async = true;
-          g.src = 'https://cdn.matomo.cloud/rybbit.matomo.cloud/matomo.js';
-          s.parentNode.insertBefore(g, s);
-        })();
-      `}
-      </Script>
-      <Script type="text/javascript" id="mixpanel" strategy="afterInteractive">
-        {`(function (e, c) {
+      <head>
+        <Script type="text/javascript" id="mixpanel" strategy="afterInteractive">
+          {`(function (e, c) {
           if (!c.__SV) {
             var l, h;
             window.mixpanel = c;
@@ -163,6 +135,36 @@ export default function Layout({ children }: { children: ReactNode }) {
           autocapture: true,
           record_sessions_percent: 0,
         })`}
+        </Script>
+      </head>
+      <Script
+        src="https://demo.rybbit.com/api/script.js"
+        data-site-id="21"
+        strategy="afterInteractive"
+        data-session-replay="true"
+        data-web-vitals="true"
+        data-track-errors="true"
+        data-track-outbound="true"
+        {...(isDev && {
+          "data-api-key": process.env.NEXT_PUBLIC_RYBBIT_API_KEY,
+        })}
+      />
+      <Script id="matomo" strategy="afterInteractive">
+        {`
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u = "https://rybbit.matomo.cloud/";
+          _paq.push(['setTrackerUrl', u + 'matomo.php']);
+          _paq.push(['setSiteId', '1']);
+          var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+          g.async = true;
+          g.src = 'https://cdn.matomo.cloud/rybbit.matomo.cloud/matomo.js';
+          s.parentNode.insertBefore(g, s);
+        })();
+      `}
       </Script>
       <body className={`flex flex-col min-h-screen ${inter.variable} font-sans`}>
         <RootProvider
