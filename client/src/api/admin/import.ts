@@ -12,17 +12,6 @@ interface GetSiteImportsResponse {
   fileName: string;
 }
 
-interface ImportSiteDataParams {
-  file: File;
-  platform: string;
-  startDate?: string;
-  endDate?: string;
-}
-
-interface ImportSiteDataResponse {
-  message: string;
-}
-
 interface DeleteImportResponse {
   message: string;
 }
@@ -39,36 +28,6 @@ export function useGetSiteImports(site: number) {
     },
     placeholderData: { data: [] },
     staleTime: 30000,
-  });
-}
-
-export function useImportSiteData(site: number) {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (params: ImportSiteDataParams) => {
-      const formData = new FormData();
-
-      formData.append("platform", params.platform);
-      if (params.startDate) {
-        formData.append("startDate", params.startDate);
-      }
-      if (params.endDate) {
-        formData.append("endDate", params.endDate);
-      }
-      formData.append("file", params.file);
-
-      return await authedFetch<APIResponse<ImportSiteDataResponse>>(`/import-site-data/${site}`, undefined, {
-        method: "POST",
-        data: formData,
-      });
-    },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ["get-site-imports", site],
-      });
-    },
-    retry: false,
   });
 }
 

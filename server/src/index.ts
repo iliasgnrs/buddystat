@@ -1,6 +1,5 @@
 import cors from "@fastify/cors";
 import fastifyStatic from "@fastify/static";
-import multipart from "@fastify/multipart";
 import { toNodeHandler } from "better-auth/node";
 import Fastify from "fastify";
 import { dirname, join } from "path";
@@ -87,10 +86,8 @@ import { disconnectGSC } from "./api/gsc/disconnect.js";
 import { getGSCData } from "./api/gsc/getData.js";
 import { selectGSCProperty } from "./api/gsc/selectProperty.js";
 import { getSiteImports } from "./api/sites/getSiteImports.js";
-import { importSiteData } from "./api/sites/importSiteData.js";
 import { deleteSiteImport } from "./api/sites/deleteSiteImport.js";
 import { batchImportEvents } from "./api/sites/batchImportEvents.js";
-import { getJobQueue } from "./services/import/queues/jobQueueFactory.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -166,13 +163,6 @@ server.register(cors, {
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "x-captcha-response", "x-private-key"],
   credentials: true,
-});
-
-server.register(multipart, {
-  limits: {
-    fileSize: IS_CLOUD ? 500 * 1024 * 1024 : 50 * 1024 * 1024 * 1024, // 500 MB for cloud, 50 GB for self-hosted
-    files: 1, // only allow 1 file
-  },
 });
 
 // Serve static files
@@ -360,13 +350,9 @@ server.get("/api/session-replay/list/:site", getSessionReplays);
 server.get("/api/session-replay/:sessionId/:site", getSessionReplayEvents);
 
 // Imports
-server.post("/api/import-site-data/:site", {
-  bodyLimit: IS_CLOUD ? 500 * 1024 * 1024 : 50 * 1024 * 1024 * 1024, // 500 MB for cloud, 50 GB for self-hosted (matches multipart fileSize)
-}, importSiteData);
+server.post("/api/batch-import-events/:site", batchImportEvents);
 server.get("/api/get-site-imports/:site", getSiteImports);
 server.delete("/api/delete-site-import/:site/:importId", deleteSiteImport);
-// Client-side import endpoint (parses CSV, server transforms)
-server.post("/api/batch-import-events/:site", batchImportEvents);
 
 // Administrative
 server.get("/api/config", getConfig);
@@ -472,17 +458,7 @@ const start = async () => {
       weeklyReportService.startWeeklyReportCron();
     }
 
-    // Initialize and start import job queue system
-    const jobQueue = getJobQueue();
-    try {
-      await jobQueue.start();
-    } catch (queueError) {
-      server.log.error("Failed to initialize import job queue system:", queueError);
-      server.log.warn("Server will continue without import functionality");
-      // Don't exit - allow server to run without import features
-    }
-
-    // Start the server first
+    // Start the server
     await server.listen({ port: 3001, host: "0.0.0.0" });
     server.log.info("Server is listening on http://0.0.0.0:3001");
 
@@ -504,8 +480,6 @@ const start = async () => {
     //     });
     // }
   } catch (err) {
-    const jobQueue = getJobQueue();
-    await jobQueue.stop();
     server.log.error(err);
     process.exit(1);
   }
@@ -535,11 +509,6 @@ const shutdown = async (signal: string) => {
     // Stop accepting new connections
     await server.close();
     server.log.info("Server closed");
-
-    // Shutdown job queue system
-    const jobQueue = getJobQueue();
-    await jobQueue.stop();
-    server.log.info("Job queue shut down");
 
     // Shutdown uptime service
     // await uptimeService.shutdown();

@@ -3,9 +3,7 @@ import {
   PutObjectCommand,
   GetObjectCommand,
   DeleteObjectCommand,
-  ListObjectsV2Command,
 } from "@aws-sdk/client-s3";
-import { Upload } from "@aws-sdk/lib-storage";
 import { NodeHttpHandler } from "@smithy/node-http-handler";
 import { Readable } from "stream";
 import { gunzipSync } from "zlib";
@@ -14,11 +12,10 @@ import { IS_CLOUD } from "../../lib/const.js";
 import { createServiceLogger } from "../../lib/logger/logger.js";
 
 class R2StorageService {
-  private readonly client: S3Client | null = null;
-  private readonly bucketName: string = "";
-  private readonly enabled: boolean = false;
+  private client: S3Client | null = null;
+  private bucketName: string = "";
+  private enabled: boolean = false;
   private logger = createServiceLogger("r2-storage");
-  private readonly IMPORT_FILES_PREFIX = "imports/";
 
   constructor() {
     // Only initialize R2 in cloud environment
@@ -201,193 +198,6 @@ class R2StorageService {
     } catch (error) {
       console.error("[R2Storage] Failed to delete batch:", error);
       // Non-critical error, log but don't throw
-    }
-  }
-
-  /**
-   * Store an import CSV file in R2 using streaming upload
-   */
-  async storeImportFile(key: string, fileStream: Readable): Promise<void> {
-    if (!this.enabled || !this.client) {
-      throw new Error("R2 storage is not enabled");
-    }
-
-    if (key.trim().length === 0) {
-      throw new Error("Invalid storage key: key cannot be empty");
-    }
-
-    if (key.includes("..")) {
-      throw new Error("Invalid storage key: path traversal not allowed");
-    }
-
-    try {
-      const upload = new Upload({
-        client: this.client,
-        params: {
-          Bucket: this.bucketName,
-          Key: key,
-          Body: fileStream,
-          ContentType: "text/csv",
-        },
-        queueSize: 4,
-        partSize: 5 * 1024 * 1024,
-        leavePartsOnError: false,
-      });
-
-      await upload.done();
-      this.logger.info({ key }, "Successfully stored import file");
-    } catch (error) {
-      this.logger.error({ error, key }, "Failed to store import file");
-      throw error;
-    }
-  }
-
-  /**
-   * Retrieve an import CSV file from R2 as a stream
-   */
-  async getImportFileStream(key: string): Promise<Readable> {
-    if (!this.enabled || !this.client) {
-      throw new Error("R2 storage is not enabled");
-    }
-
-    if (key.trim().length === 0) {
-      throw new Error("Invalid storage key: key cannot be empty");
-    }
-
-    if (key.includes("..")) {
-      throw new Error("Invalid storage key: path traversal not allowed");
-    }
-
-    try {
-      const response = await this.client.send(
-        new GetObjectCommand({
-          Bucket: this.bucketName,
-          Key: key,
-        })
-      );
-
-      if (!response.Body) {
-        throw new Error("Empty response body");
-      }
-
-      this.logger.info({ key }, "Successfully retrieved import file stream");
-      return response.Body as Readable;
-    } catch (error) {
-      this.logger.error({ error, key }, "Failed to retrieve import file stream");
-      throw error;
-    }
-  }
-
-  /**
-   * Delete an import file from R2 (for cleanup after processing)
-   */
-  async deleteImportFile(key: string): Promise<void> {
-    if (!this.enabled || !this.client) {
-      return;
-    }
-
-    if (key.trim().length === 0) {
-      throw new Error("Invalid storage key: key cannot be empty");
-    }
-
-    if (key.includes("..")) {
-      throw new Error("Invalid storage key: path traversal not allowed");
-    }
-
-    try {
-      await this.client.send(
-        new DeleteObjectCommand({
-          Bucket: this.bucketName,
-          Key: key,
-        })
-      );
-      this.logger.info({ key }, "Successfully deleted import file");
-    } catch (error) {
-      this.logger.error({ error, key }, "Failed to delete import file");
-      // Non-critical error, log but don't throw
-    }
-  }
-
-  /**
-   * List all import files in R2
-   * Returns array of objects with key and lastModified date
-   */
-  async listImportFiles(): Promise<Array<{ key: string; lastModified: Date }>> {
-    if (!this.enabled || !this.client) {
-      return [];
-    }
-
-    try {
-      const allFiles: Array<{ key: string; lastModified: Date }> = [];
-      let continuationToken: string | undefined;
-
-      do {
-        const response = await this.client.send(
-          new ListObjectsV2Command({
-            Bucket: this.bucketName,
-            Prefix: this.IMPORT_FILES_PREFIX,
-            ContinuationToken: continuationToken,
-          })
-        );
-
-        if (response.Contents) {
-          for (const obj of response.Contents) {
-            if (obj.Key && obj.LastModified) {
-              allFiles.push({
-                key: obj.Key,
-                lastModified: obj.LastModified,
-              });
-            }
-          }
-        }
-
-        continuationToken = response.NextContinuationToken;
-      } while (continuationToken);
-
-      this.logger.info({ count: allFiles.length }, "Listed import files");
-      return allFiles;
-    } catch (error) {
-      this.logger.error({ error }, "Failed to list import files");
-      throw error;
-    }
-  }
-
-  /**
-   * Delete all import files older than the specified number of days
-   * Returns count of deleted files
-   */
-  async deleteOldImportFiles(daysOld: number = 1): Promise<number> {
-    if (!this.enabled || !this.client) {
-      return 0;
-    }
-
-    try {
-      const files = await this.listImportFiles();
-      const cutoffDate = new Date(Date.now() - daysOld * 24 * 60 * 60 * 1000);
-
-      const filesToDelete = files.filter(file => file.lastModified < cutoffDate);
-
-      this.logger.info(
-        { total: files.length, toDelete: filesToDelete.length, cutoffDate },
-        "Deleting old import files"
-      );
-
-      let deletedCount = 0;
-      for (const file of filesToDelete) {
-        try {
-          await this.deleteImportFile(file.key);
-          deletedCount++;
-        } catch (error) {
-          this.logger.error({ error, key: file.key }, "Failed to delete old import file");
-          // Continue with other files even if one fails
-        }
-      }
-
-      this.logger.info({ deletedCount }, "Completed deleting old import files");
-      return deletedCount;
-    } catch (error) {
-      this.logger.error({ error }, "Failed to delete old import files");
-      throw error;
     }
   }
 }
