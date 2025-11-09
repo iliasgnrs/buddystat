@@ -9,7 +9,9 @@ export default function TermsAndConditions() {
       <h1 className="text-3xl md:text-4xl font-bold mb-8">Terms and Conditions</h1>
 
       <div className="prose prose-invert max-w-none">
-        <p className="text-lg">Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
+        <p className="text-lg">
+          Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+        </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">Acceptance of Terms</h2>
         <p>
@@ -121,8 +123,8 @@ export default function TermsAndConditions() {
         <h2 className="text-2xl font-semibold mt-8 mb-4">Data and Privacy</h2>
         <h3 className="text-xl font-semibold mt-6 mb-3">Your Data Ownership</h3>
         <p>
-          You retain all rights to your website analytics data. We will never sell or share your site data to any
-          third parties. Your data is yours, and we act only as a processor of that data on your behalf.
+          You retain all rights to your website analytics data. We will never sell or share your site data to any third
+          parties. Your data is yours, and we act only as a processor of that data on your behalf.
         </p>
 
         <h3 className="text-xl font-semibold mt-6 mb-3">Privacy Commitment</h3>
@@ -138,9 +140,8 @@ export default function TermsAndConditions() {
 
         <h3 className="text-xl font-semibold mt-6 mb-3">Your Compliance Obligations</h3>
         <p>
-          You are responsible for ensuring your use of Rybbit complies with all applicable privacy laws and
-          regulations in your jurisdiction. You must obtain any necessary consents from your website visitors as
-          required by law.
+          You are responsible for ensuring your use of Rybbit complies with all applicable privacy laws and regulations
+          in your jurisdiction. You must obtain any necessary consents from your website visitors as required by law.
         </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">Intellectual Property</h2>
@@ -215,7 +216,7 @@ export default function TermsAndConditions() {
         <p>
           If you have any questions about these Terms and Conditions, please contact us at:
           <a href="https://www.rybbit.io/contact" className="text-emerald-400 hover:text-emerald-300 ml-1">
-            hello@rybbit.io
+            hello@rybbit.com
           </a>
         </p>
       </div>

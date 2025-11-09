@@ -126,7 +126,7 @@ export default function PrivacyPolicy() {
         <p>
           If you have questions about this privacy policy or Rybbit&apos;s data practices, please contact us at:
           <a href="https://www.rybbit.io/contact" className="text-emerald-400 hover:text-emerald-300 ml-1">
-            hello@rybbit.io
+            hello@rybbit.com
           </a>
         </p>
       </div>

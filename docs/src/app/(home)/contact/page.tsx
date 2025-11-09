@@ -24,7 +24,7 @@ export default function Contact() {
             <div>
               <h2 className="text-xl font-medium mb-1">Email</h2>
               <a href="https://www.rybbit.io/contact" className="text-neutral-300 hover:text-white transition-colors">
-                hello@rybbit.io
+                hello@rybbit.com
               </a>
             </div>
           </div>
@@ -90,8 +90,8 @@ export default function Contact() {
         </p>
         <p className="mb-4">
           Contact us at{" "}
-          <a href="mailto:hello@rybbit.io" className="text-neutral-300 hover:text-white transition-colors underline">
-            hello@rybbit.io
+          <a href="mailto:hello@rybbit.com" className="text-neutral-300 hover:text-white transition-colors underline">
+            hello@rybbit.com
           </a>{" "}
           to discuss your needs.
         </p>

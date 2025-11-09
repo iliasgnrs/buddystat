@@ -123,8 +123,8 @@ export default function Security() {
           <ul className="list-disc pl-6 space-y-2">
             <li>
               Email us at{" "}
-              <a href="mailto:hello@rybbit.io" className="text-emerald-400 hover:text-emerald-300">
-                hello@rybbit.io
+              <a href="mailto:hello@rybbit.com" className="text-emerald-400 hover:text-emerald-300">
+                hello@rybbit.com
               </a>
             </li>
             <li>Provide detailed information about the vulnerability</li>
@@ -135,8 +135,8 @@ export default function Security() {
           <h2 className="text-2xl font-semibold mt-8 mb-4">Questions?</h2>
           <p>
             If you have any questions about our security practices, please contact us at{" "}
-            <a href="mailto:hello@rybbit.io" className="text-emerald-400 hover:text-emerald-300">
-              hello@rybbit.io
+            <a href="mailto:hello@rybbit.com" className="text-emerald-400 hover:text-emerald-300">
+              hello@rybbit.com
             </a>
             .
           </p>

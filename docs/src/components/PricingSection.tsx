@@ -277,7 +277,7 @@ export function PricingSection() {
 
                 <p className="text-center text-sm text-neutral-400 mt-4 flex items-center justify-center gap-2">
                   {standardPrices.custom ? (
-                    "Email us at hello@rybbit.io for custom pricing"
+                    "Email us at hello@rybbit.com for custom pricing"
                   ) : (
                     <>
                       <CheckCircle className="w-3 h-3" />
@@ -342,7 +342,7 @@ export function PricingSection() {
 
                 <p className="text-center text-sm text-neutral-400 mt-4 flex items-center justify-center gap-2">
                   {proPrices.custom ? (
-                    "Email us at hello@rybbit.io for custom pricing"
+                    "Email us at hello@rybbit.com for custom pricing"
                   ) : (
                     <>
                       <CheckCircle className="w-3 h-3" />

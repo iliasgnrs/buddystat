@@ -201,7 +201,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:hello@rybbit.io" className="text-neutral-400 hover:text-white transition-colors">
+                <a href="mailto:hello@rybbit.com" className="text-neutral-400 hover:text-white transition-colors">
                   Support
                 </a>
               </li>

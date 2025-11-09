@@ -290,7 +290,7 @@ export function PricingCard({ isLoggedIn }: { isLoggedIn: boolean }) {
 
       {/* Footer text */}
       <p className="text-center text-sm text-neutral-400 mt-6">
-        {isCustomTier ? "Email us at hello@rybbit.io for custom pricing" : "Secure checkout powered by Stripe."}
+        {isCustomTier ? "Email us at hello@rybbit.com for custom pricing" : "Secure checkout powered by Stripe."}
       </p>
     </div>
   );
