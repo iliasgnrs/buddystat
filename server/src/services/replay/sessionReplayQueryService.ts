@@ -15,12 +15,12 @@ import { r2Storage } from "../storage/r2StorageService.js";
 export class SessionReplayQueryService {
   async getSessionReplayList(
     siteId: number,
-    options: {
+    options: FilterParams<{
       limit?: number;
       offset?: number;
       userId?: string;
       minDuration?: number;
-    } & Pick<FilterParams, "startDate" | "endDate" | "timeZone" | "pastMinutesStart" | "pastMinutesEnd" | "filters">
+    }>
   ): Promise<SessionReplayListItem[]> {
     const { limit = 50, offset = 0, userId, minDuration } = options;
 

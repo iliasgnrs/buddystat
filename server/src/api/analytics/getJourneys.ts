@@ -17,7 +17,7 @@ export const getJourneys = async (
 ) => {
   try {
     const { site } = request.params;
-    const { steps = "3", startDate, endDate, timeZone = "UTC", limit = "100", filters, stepFilters } = request.query;
+    const { steps = "3", limit = "100", filters, stepFilters } = request.query;
 
     const maxSteps = parseInt(steps, 10);
     const journeyLimit = parseInt(limit, 10);

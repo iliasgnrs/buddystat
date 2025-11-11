@@ -1,3 +1,4 @@
+import { FilterParams } from "@rybbit/shared";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { clickhouse } from "../../db/clickhouse/clickhouse.js";
 import { getFilterStatement, getTimeStatement, processResults } from "./utils.js";
@@ -36,20 +37,16 @@ type GroupedSession = {
 };
 
 export interface GetUserSessionsRequest {
-  Querystring: {
-    startDate: string;
-    endDate: string;
-    timeZone: string;
+  Querystring: FilterParams<{
     site: string;
-    filters: string;
-  };
+  }>;
   Params: {
     userId: string;
   };
 }
 
 export async function getUserSessions(req: FastifyRequest<GetUserSessionsRequest>, res: FastifyReply) {
-  const { startDate, endDate, timeZone, site, filters } = req.query;
+  const { site, filters } = req.query;
   const userId = req.params.userId;
 
   const timeStatement = getTimeStatement(req.query);
