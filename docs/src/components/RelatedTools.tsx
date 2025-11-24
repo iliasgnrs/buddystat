@@ -357,6 +357,102 @@ const allTools: Tool[] = [
     href: "/tools/dribbble-comment-generator",
     category: "social-media",
   },
+  {
+    name: "LinkedIn Page Name Generator",
+    description: "Generate professional LinkedIn page names with AI",
+    href: "/tools/linkedin-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Discord Server Name Generator",
+    description: "Generate creative Discord server names with AI",
+    href: "/tools/discord-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "X (Twitter) Name Generator",
+    description: "Generate catchy X (Twitter) display names with AI",
+    href: "/tools/x-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Reddit Community Name Generator",
+    description: "Generate engaging Reddit subreddit names with AI",
+    href: "/tools/reddit-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Facebook Page Name Generator",
+    description: "Generate professional Facebook page names with AI",
+    href: "/tools/facebook-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Instagram Name Generator",
+    description: "Generate creative Instagram display names with AI",
+    href: "/tools/instagram-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "YouTube Channel Name Generator",
+    description: "Generate catchy YouTube channel names with AI",
+    href: "/tools/youtube-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "TikTok Name Generator",
+    description: "Generate trendy TikTok display names with AI",
+    href: "/tools/tiktok-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Pinterest Board Name Generator",
+    description: "Generate organized Pinterest board names with AI",
+    href: "/tools/pinterest-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Slack Channel Name Generator",
+    description: "Generate organized Slack channel names with AI",
+    href: "/tools/slack-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Telegram Group Name Generator",
+    description: "Generate engaging Telegram group names with AI",
+    href: "/tools/telegram-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Twitch Channel Name Generator",
+    description: "Generate catchy Twitch channel names with AI",
+    href: "/tools/twitch-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Spotify Playlist Name Generator",
+    description: "Generate creative Spotify playlist names with AI",
+    href: "/tools/spotify-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "GitHub Repository Name Generator",
+    description: "Generate clear GitHub repository names with AI",
+    href: "/tools/github-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Medium Publication Name Generator",
+    description: "Generate compelling Medium publication names with AI",
+    href: "/tools/medium-page-name-generator",
+    category: "social-media",
+  },
+  {
+    name: "Substack Newsletter Name Generator",
+    description: "Generate engaging Substack newsletter names with AI",
+    href: "/tools/substack-page-name-generator",
+    category: "social-media",
+  },
 ];
 
 interface RelatedToolsProps {

@@ -1,11 +1,16 @@
 import { ToolPageLayout } from "../../components/ToolPageLayout";
 import { FontGeneratorTool } from "../../components/FontGeneratorTool";
 import AICommentForm from "../../components/AICommentForm";
+import PageNameGenerator from "../../components/PageNameGenerator";
 import { platformConfigs, platformList } from "../../components/platform-configs";
 import {
   commentPlatformConfigs,
   commentPlatformList,
 } from "../../components/comment-platform-configs";
+import {
+  pageNamePlatformConfigs,
+  pageNamePlatformList,
+} from "../../components/page-name-platform-configs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -25,7 +30,11 @@ export async function generateStaticParams() {
     slug: `${platform.id}-comment-generator`,
   }));
 
-  return [...fontGenerators, ...commentGenerators];
+  const pageNameGenerators = pageNamePlatformList.map((platform) => ({
+    slug: `${platform.id}-page-name-generator`,
+  }));
+
+  return [...fontGenerators, ...commentGenerators, ...pageNameGenerators];
 }
 
 // Generate metadata dynamically based on slug
@@ -33,6 +42,36 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+
+  // Check if it's a page name generator
+  if (slug.endsWith("-page-name-generator")) {
+    const platformId = slug.replace("-page-name-generator", "");
+    const platform = pageNamePlatformConfigs[platformId];
+
+    if (!platform) {
+      return { title: "Page Name Generator Not Found" };
+    }
+
+    return {
+      title: `${platform.displayName} | AI-Powered ${platform.pageType} Names`,
+      description: platform.description,
+      openGraph: {
+        title: platform.displayName,
+        description: platform.description,
+        type: "website",
+        url: `https://rybbit.com/tools/${platform.id}-page-name-generator`,
+        siteName: "Rybbit Documentation",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: platform.displayName,
+        description: platform.description,
+      },
+      alternates: {
+        canonical: `https://rybbit.com/tools/${platform.id}-page-name-generator`,
+      },
+    };
+  }
 
   // Check if it's a comment generator
   if (slug.endsWith("-comment-generator")) {
@@ -97,6 +136,164 @@ export async function generateMetadata({
 
 export default async function PlatformToolPage({ params }: PageProps) {
   const { slug } = await params;
+
+  // Check if it's a page name generator
+  if (slug.endsWith("-page-name-generator")) {
+    const platformId = slug.replace("-page-name-generator", "");
+    const platform = pageNamePlatformConfigs[platformId];
+
+    // Handle invalid platform
+    if (!platform) {
+      notFound();
+    }
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: platform.displayName,
+      description: platform.description,
+      url: `https://rybbit.com/tools/${platform.id}-page-name-generator`,
+      applicationCategory: "Utility",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      author: {
+        "@type": "Organization",
+        name: "Rybbit",
+        url: "https://rybbit.com",
+      },
+    };
+
+    const educationalContent = (
+      <>
+        <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
+          About {platform.name} {platform.pageType} Names
+        </h2>
+        <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+          {platform.educationalContent}
+        </p>
+
+        <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
+          How to Use This Tool
+        </h3>
+        <ol className="space-y-2 text-neutral-700 dark:text-neutral-300 mb-6">
+          <li>
+            <strong>Describe your {platform.pageType.toLowerCase()}</strong> -
+            What's it about? What topics will you cover?
+          </li>
+          <li>
+            <strong>Add keywords (optional)</strong> - Include specific terms
+            you want in the name
+          </li>
+          <li>
+            <strong>Choose name length</strong> - Short, medium, or long
+          </li>
+          <li>
+            <strong>Click "Generate Names"</strong> to get 5 unique suggestions
+          </li>
+          <li>
+            <strong>Copy your favorite</strong> and use it for your{" "}
+            {platform.name} {platform.pageType.toLowerCase()}
+          </li>
+        </ol>
+
+        <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
+          Best Practices for {platform.name} {platform.pageType} Names
+        </h3>
+        <ul className="space-y-2 text-neutral-700 dark:text-neutral-300 mb-6">
+          <li>
+            <strong>Keep it memorable:</strong> Choose a name that's easy to
+            remember and spell
+          </li>
+          <li>
+            <strong>Make it relevant:</strong> The name should clearly reflect
+            your content or purpose
+          </li>
+          <li>
+            <strong>Consider SEO:</strong> Include keywords that people might
+            search for
+          </li>
+          <li>
+            <strong>Check availability:</strong> Make sure the name isn't
+            already taken on {platform.name}
+          </li>
+          <li>
+            <strong>Think long-term:</strong> Choose a name that will still work
+            as your {platform.pageType.toLowerCase()} grows
+          </li>
+        </ul>
+
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-6">
+          <strong>Note:</strong> Always check if your chosen name is available
+          on {platform.name} before committing to it. The best names are unique,
+          memorable, and accurately represent your content.
+        </p>
+      </>
+    );
+
+    const faqs = [
+      {
+        question: `How does the ${platform.name} ${platform.pageType} name generator work?`,
+        answer: `This tool uses AI to analyze your topic and keywords, then generates creative, memorable ${platform.pageType.toLowerCase()} names that are optimized for ${
+          platform.name
+        }. It considers platform-specific best practices and naming conventions.`,
+      },
+      {
+        question: "Can I customize the generated names?",
+        answer:
+          "Absolutely! The generated names are starting points. Feel free to modify them, combine elements from different suggestions, or use them as inspiration for your own variations.",
+      },
+      {
+        question: "What makes a good name?",
+        answer: `A good ${platform.pageType.toLowerCase()} name is memorable, easy to spell, relevant to your content, and unique. It should give potential members or followers a clear idea of what to expect while being catchy enough to remember.`,
+      },
+      {
+        question: "How many names can I generate?",
+        answer:
+          "The tool generates 5 unique name suggestions per request. You're limited to 5 requests per minute. If you need more options, try adjusting your topic description or keywords for different variations.",
+      },
+      {
+        question: "Are the names guaranteed to be available?",
+        answer: `No, the tool generates creative name suggestions but doesn't check availability on ${platform.name}. Always verify that your chosen name is available on the platform before using it.`,
+      },
+      {
+        question: "How can Rybbit help me grow my presence?",
+        answer: (
+          <>
+            Rybbit helps you track engagement, clicks, and traffic sources from
+            your {platform.name} presence. Understand what content resonates with
+            your audience and optimize your strategy.{" "}
+            <a
+              href="https://rybbit.com"
+              className="text-emerald-600 hover:text-emerald-500 underline"
+            >
+              Start tracking for free
+            </a>
+            .
+          </>
+        ),
+      },
+    ];
+
+    return (
+      <ToolPageLayout
+        toolSlug={`${platform.id}-page-name-generator`}
+        title={platform.displayName}
+        description={platform.description}
+        badge="AI-Powered Tool"
+        toolComponent={<PageNameGenerator platform={platform} />}
+        educationalContent={educationalContent}
+        faqs={faqs}
+        relatedToolsCategory="social-media"
+        ctaTitle={`Grow your ${platform.name} presence with Rybbit`}
+        ctaDescription={`Track performance and engagement from your ${platform.name} ${platform.pageType.toLowerCase()} to understand what works.`}
+        ctaEventLocation={`${platform.id}_page_name_generator_cta`}
+        structuredData={structuredData}
+      />
+    );
+  }
 
   // Check if it's a comment generator
   if (slug.endsWith("-comment-generator")) {

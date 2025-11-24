@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { platformList } from "./components/platform-configs";
 import { commentPlatformList } from "./components/comment-platform-configs";
+import { pageNamePlatformList } from "./components/page-name-platform-configs";
 import {
   SiDiscord,
   SiX,
@@ -42,6 +43,11 @@ import {
   SiFarcaster,
   SiTelegram,
   SiDribbble,
+  SiTwitch,
+  SiSpotify,
+  SiGithub,
+  SiMedium,
+  SiSubstack,
 } from "@icons-pack/react-simple-icons";
 
 export const metadata = {
@@ -220,6 +226,11 @@ const platformIconMap: Record<string, any> = {
   telegram: SiTelegram,
   nostr: Zap, // Nostr not available in simple-icons, using Lucide
   dribbble: SiDribbble,
+  twitch: SiTwitch,
+  spotify: SiSpotify,
+  github: SiGithub,
+  medium: SiMedium,
+  substack: SiSubstack,
 };
 
 const fontGeneratorTools = platformList.map(platform => ({
@@ -236,7 +247,14 @@ const commentGeneratorTools = commentPlatformList.map(platform => ({
   description: `Generate engaging AI-powered comments for ${platform.name}. Create authentic, contextual responses.`,
 }));
 
-const socialMediaTools = [...fontGeneratorTools, ...commentGeneratorTools];
+const pageNameGeneratorTools = pageNamePlatformList.map(platform => ({
+  href: `/tools/${platform.id}-page-name-generator`,
+  icon: platformIconMap[platform.id],
+  title: platform.displayName,
+  description: `Generate creative ${platform.pageType.toLowerCase()} names for ${platform.name} with AI.`,
+}));
+
+const socialMediaTools = [...fontGeneratorTools, ...commentGeneratorTools, ...pageNameGeneratorTools];
 
 function ToolCard({ tool }: { tool: { href: string; icon: any; title: string; description: string } }) {
   const Icon = tool.icon;
