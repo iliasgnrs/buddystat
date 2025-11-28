@@ -295,7 +295,7 @@ export default function GoalFormModal({ siteId, goal, trigger, isCloneMode = fal
                       />
                     </FormControl>
                     <FormMessage />
-                    <div className="text-xs text-gray-500 mt-1">
+                    <div className="text-xs text-neutral-500 mt-1">
                       Use * to match a single path segment. Use ** to match across segments.
                     </div>
                   </FormItem>

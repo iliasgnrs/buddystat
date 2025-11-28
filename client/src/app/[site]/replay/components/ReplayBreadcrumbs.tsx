@@ -151,7 +151,7 @@ export function ReplayBreadcrumbs() {
     const eventInfo = EVENT_TYPE_INFO[eventTypeStr as keyof typeof EVENT_TYPE_INFO] || {
       name: `Unknown (${eventTypeStr})`,
       icon: Globe,
-      color: "text-gray-400",
+      color: "text-neutral-400",
     };
 
     // For incremental snapshots, get more detail
@@ -224,7 +224,7 @@ export function ReplayBreadcrumbs() {
   const getEventColor = (event: any) => {
     const eventTypeStr = String(event.type);
     const eventInfo = EVENT_TYPE_INFO[eventTypeStr as keyof typeof EVENT_TYPE_INFO];
-    return eventInfo?.color || "text-gray-400";
+    return eventInfo?.color || "text-neutral-400";
   };
 
   if (isLoading || !data?.events) {
@@ -294,7 +294,9 @@ export function ReplayBreadcrumbs() {
                   </div>
                   <Icon className={cn("w-4 h-4 flex-shrink-0", color)} />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs text-neutral-900 dark:text-neutral-200 font-medium truncate">{description}</div>
+                    <div className="text-xs text-neutral-900 dark:text-neutral-200 font-medium truncate">
+                      {description}
+                    </div>
                     {group.count > 1 && durationMs > 0 && (
                       <div className="text-xs text-neutral-500 dark:text-neutral-500 mt-0.5">
                         {Duration.fromMillis(durationMs).toFormat("s.SSS")}s duration
@@ -302,7 +304,9 @@ export function ReplayBreadcrumbs() {
                     )}
                   </div>
                   {group.count > 5 && (
-                    <div className="text-xs text-neutral-700 dark:text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded">{group.count}</div>
+                    <div className="text-xs text-neutral-700 dark:text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded">
+                      {group.count}
+                    </div>
                   )}
                 </div>
               );

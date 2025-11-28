@@ -79,7 +79,7 @@ export default function AdminPage() {
             </TabsContent>
 
             <TabsContent value="settings">
-              <div className="p-4 border rounded-md">
+              <div className="p-4 border border-neutral-100 dark:border-neutral-800 rounded-md">
                 <h2 className="text-xl font-bold mb-4">Admin Settings</h2>
                 <p className="text-muted-foreground">Settings panel coming soon...</p>
               </div>

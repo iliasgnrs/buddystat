@@ -167,7 +167,7 @@ export default function HomePage() {
               Get started
             </TrackedButton>
             <TrackedButton
-              href="https://demo.rybbit.com/21"
+              href="https://demo.rybbit.com/1"
               eventName="demo"
               target="_blank"
               rel="noopener noreferrer"
@@ -203,8 +203,7 @@ export default function HomePage() {
           <div className="relative z-10 rounded-2xl overflow-hidden bg-neutral-400/10 dark:bg-neutral-100/5 border-8 shadow-2xl shadow-neutral-900/20 dark:shadow-emerald-900/10">
             {/* Remove mobile message and show iframe on all devices */}
             <iframe
-              src="https://demo.rybbit.com/21/main?timeMode=range&wellKnown=last-3-days&bucket=hour&stat=users"
-              // src="https://demo.rybbit.com/21/globe?timeMode=range&wellKnown=last-7-days&bucket=day&stat=users"
+              src="https://demo.rybbit.com/1/main"
               width="1300"
               height="750"
               className="w-full h-[600px] md:h-[700px] lg:h-[750px] rounded-xl"
@@ -411,7 +410,7 @@ export default function HomePage() {
                     <p>
                       You can see for yourself by checking out our{" "}
                       <Link
-                        href="https://demo.rybbit.com/21"
+                        href="https://demo.rybbit.com/1"
                         className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
                       >
                         demo site

@@ -200,7 +200,7 @@ export function UsersTable({
   });
 
   return (
-    <div className="rounded-md border border-neutral-700">
+    <div className="rounded-md border border-neutral-100 dark:border-neutral-800">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map(headerGroup => (

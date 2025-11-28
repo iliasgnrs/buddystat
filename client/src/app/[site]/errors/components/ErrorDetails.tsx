@@ -68,7 +68,9 @@ function ErrorEventItem({ errorEvent }: { errorEvent: ErrorEvent }) {
       {/* Header with timestamp and basic info */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
-          <span className="text-sm text-neutral-700 dark:text-neutral-200">{formatTimestamp(errorEvent.timestamp)}</span>
+          <span className="text-sm text-neutral-700 dark:text-neutral-200">
+            {formatTimestamp(errorEvent.timestamp)}
+          </span>
           <div className="flex items-center gap-2">
             {errorEvent.country && (
               <Tooltip>
@@ -161,7 +163,9 @@ function ErrorEventItem({ errorEvent }: { errorEvent: ErrorEvent }) {
           <TriangleAlert className="w-4 h-4 mt-0.5 flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium mb-1">Error</p>
-            <p className="text-sm text-neutral-600 dark:text-neutral-300 break-words">{errorEvent.message || "No message available"}</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-300 break-words">
+              {errorEvent.message || "No message available"}
+            </p>
           </div>
         </div>
       </div>
@@ -230,7 +234,10 @@ export function ErrorDetails({ errorMessage }: ErrorDetailsProps) {
       <div className="p-4 bg-white dark:bg-neutral-900 border-t border-neutral-100 dark:border-neutral-800">
         <div className="space-y-3">
           {Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="border border-neutral-100 dark:border-neutral-800 rounded-lg p-4 bg-neutral-50 dark:bg-neutral-900/50">
+            <div
+              key={index}
+              className="border border-neutral-100 dark:border-neutral-800 rounded-lg p-4 bg-neutral-50 dark:bg-neutral-900/50"
+            >
               {/* Header with timestamp and icons */}
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-4">
@@ -329,7 +336,7 @@ export function ErrorDetails({ errorMessage }: ErrorDetailsProps) {
       )}
 
       {totalCount > 0 && (
-        <div className="text-center text-xs text-neutral-500 dark:text-gray-500 mt-2">
+        <div className="text-center text-xs text-neutral-500 dark:text-neutral-500 mt-2">
           Showing {allErrorEvents.length} of {totalCount} error events
         </div>
       )}

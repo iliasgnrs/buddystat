@@ -48,11 +48,11 @@ export function GrowthChart({ data, color = "#3b82f6", title }: GrowthChartProps
   }, [data]);
 
   if (data === undefined) {
-    return <div className="h-64 flex items-center justify-center text-neutral-400 text-sm">Loading...</div>;
+    return <div className="h-64 flex items-center justify-center text-neutral-500 dark:text-neutral-400 text-sm">Loading...</div>;
   }
 
   if (!data || data.length === 0) {
-    return <div className="h-64 flex items-center justify-center text-neutral-400 text-sm">No data available</div>;
+    return <div className="h-64 flex items-center justify-center text-neutral-500 dark:text-neutral-400 text-sm">No data available</div>;
   }
 
   return (

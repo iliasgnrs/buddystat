@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, Minus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   DEFAULT_EVENT_LIMIT,
@@ -253,7 +253,7 @@ function FeatureCell({ value }: FeatureCellProps) {
     return value ? (
       <Check className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mx-auto" />
     ) : (
-      <X className="h-5 w-5 text-neutral-500 mx-auto" />
+      <Minus className="h-5 w-5 text-neutral-500 mx-auto" />
     );
   }
 
@@ -283,7 +283,8 @@ export function ComparisonSection() {
             </div>
             <div className="flex flex-col items-center justify-center px-6 border-r border-neutral-400/50 dark:border-neutral-700/50">
               <div className="font-semibold text-lg text-center mb-3">
-                Standard <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">From $19/month</span>
+                Standard{" "}
+                <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">From $19/month</span>
               </div>
               <a
                 href="https://app.rybbit.io/signup"
@@ -294,7 +295,8 @@ export function ComparisonSection() {
             </div>
             <div className="flex flex-col items-center justify-center px-6 border-r border-neutral-400/50 dark:border-neutral-700/50">
               <div className="font-semibold text-lg text-emerald-600 dark:text-emerald-400 text-center mb-3">
-                Pro <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">From $39/month</span>
+                Pro{" "}
+                <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">From $39/month</span>
               </div>
               <a
                 href="https://app.rybbit.io/signup"
@@ -305,13 +307,14 @@ export function ComparisonSection() {
             </div>
             <div className="flex flex-col items-center justify-center px-6">
               <div className="font-semibold text-lg text-center mb-3">
-                Enterprise <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">Custom</span>
+                Enterprise{" "}
+                <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">Custom</span>
               </div>
               <a
                 href="https://www.rybbit.com/contact"
                 className="inline-flex items-center justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
               >
-                Book a call
+                Contact us
               </a>
             </div>
           </div>
@@ -323,7 +326,9 @@ export function ComparisonSection() {
               {category.category !== "Usage" && (
                 <div className="grid grid-cols-5 gap-0 py-3 border-b border-neutral-400 dark:border-neutral-700 bg-neutral-100/30 dark:bg-neutral-800/10">
                   <div className="flex items-center px-6 border-r border-neutral-400/50 dark:border-neutral-700/50">
-                    <h3 className="font-semibold text-neutral-800 dark:text-neutral-100 text-base">{category.category}</h3>
+                    <h3 className="font-semibold text-neutral-800 dark:text-neutral-100 text-base">
+                      {category.category}
+                    </h3>
                   </div>
                   <div className="border-r border-neutral-400/50 dark:border-neutral-700/50"></div>
                   <div className="border-r border-neutral-400/50 dark:border-neutral-700/50"></div>

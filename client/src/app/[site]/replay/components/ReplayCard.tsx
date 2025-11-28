@@ -105,7 +105,7 @@ export function ReplayCard({ replay }: { replay: SessionReplayListItem }) {
               variant="ghost"
               size="sm"
               className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0 hover:bg-red-500/20 hover:text-red-400"
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 setIsDialogOpen(true);
               }}
@@ -113,7 +113,7 @@ export function ReplayCard({ replay }: { replay: SessionReplayListItem }) {
               <Trash2 className="w-3 h-3" />
             </Button>
           </AlertDialogTrigger>
-          <AlertDialogContent onClick={(e) => e.stopPropagation()}>
+          <AlertDialogContent onClick={e => e.stopPropagation()}>
             <AlertDialogHeader>
               <AlertDialogTitle>Delete Session Replay</AlertDialogTitle>
               <AlertDialogDescription>
@@ -122,10 +122,10 @@ export function ReplayCard({ replay }: { replay: SessionReplayListItem }) {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel onClick={(e) => e.stopPropagation()}>Cancel</AlertDialogCancel>
+              <AlertDialogCancel onClick={e => e.stopPropagation()}>Cancel</AlertDialogCancel>
               <AlertDialogAction
                 variant="destructive"
-                onClick={(e) => {
+                onClick={e => {
                   e.stopPropagation();
                   handleDelete();
                 }}
@@ -155,7 +155,10 @@ export function ReplayCard({ replay }: { replay: SessionReplayListItem }) {
           screen_height={replay.screen_height}
         />
 
-        <Badge variant="outline" className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-gray-300">
+        <Badge
+          variant="outline"
+          className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
+        >
           <MousePointerClick className="w-4 h-4 text-amber-500" />
           <span>{formatter(replay.event_count)}</span>
         </Badge>

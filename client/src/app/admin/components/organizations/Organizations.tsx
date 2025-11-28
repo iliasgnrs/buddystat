@@ -375,7 +375,7 @@ export function Organizations() {
           <GrowthChart data={organizations} color="#8b5cf6" title="Organizations" />
         </TabsContent>
         <TabsContent value="usage">
-          <div className="flex items-center gap-1 bg-neutral-800 p-1 rounded-lg">
+          <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-800 p-1 rounded-lg">
             <Button
               size="sm"
               variant={timePeriod === "30d" ? "default" : "ghost"}
@@ -425,7 +425,7 @@ export function Organizations() {
         />
       </div>
 
-      <div className="flex items-center gap-6 mb-4 p-4 bg-neutral-900 border border-neutral-700 rounded-lg">
+      <div className="flex items-center gap-6 mb-4 p-4 bg-neutral-50 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-lg">
         <div className="flex items-center gap-2">
           <Switch id="show-zero-events" checked={showZeroEvents} onCheckedChange={setShowZeroEvents} />
           <Label htmlFor="show-zero-events" className="text-sm cursor-pointer">
@@ -446,7 +446,7 @@ export function Organizations() {
         </div>
       </div>
 
-      <div className="rounded-md border border-neutral-700">
+      <div className="rounded-md border border-neutral-100 dark:border-neutral-800">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map(headerGroup => (
@@ -504,7 +504,7 @@ export function Organizations() {
                   </TableRow>
                   {expandedOrgs.has(row.original.id) && (
                     <TableRow>
-                      <TableCell colSpan={columns.length} className="bg-neutral-900 py-4 px-8">
+                      <TableCell colSpan={columns.length} className="bg-neutral-50 dark:bg-neutral-900 py-4 px-8">
                         <div className="space-y-6">
                           {/* Subscription Details */}
                           <CopyText text={row.original.id}></CopyText>
@@ -513,17 +513,17 @@ export function Organizations() {
                               <CreditCard className="h-4 w-4" />
                               Subscription Details
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 border border-neutral-700 rounded">
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 border border-neutral-100 dark:border-neutral-800 rounded">
                               <div>
-                                <div className="text-xs text-neutral-400 uppercase tracking-wide">Plan</div>
+                                <div className="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Plan</div>
                                 <div className="font-medium">{row.original.subscription.planName}</div>
                               </div>
                               <div>
-                                <div className="text-xs text-neutral-400 uppercase tracking-wide">Status</div>
+                                <div className="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Status</div>
                                 <div className="font-medium">{row.original.subscription.status}</div>
                               </div>
                               <div>
-                                <div className="text-xs text-neutral-400 uppercase tracking-wide">Event Limit</div>
+                                <div className="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Event Limit</div>
                                 <div className="font-medium">
                                   {row.original.subscription.eventLimit
                                     ? formatter(row.original.subscription.eventLimit)
@@ -532,7 +532,7 @@ export function Organizations() {
                               </div>
                               {row.original.subscription.currentPeriodEnd && (
                                 <div>
-                                  <div className="text-xs text-neutral-400 uppercase tracking-wide">Period End</div>
+                                  <div className="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Period End</div>
                                   <div className="font-medium">
                                     {formatDistanceToNow(new Date(row.original.subscription.currentPeriodEnd), {
                                       addSuffix: true,
@@ -542,7 +542,7 @@ export function Organizations() {
                               )}
                               {row.original.subscription.cancelAtPeriodEnd && (
                                 <div>
-                                  <div className="text-xs text-neutral-400 uppercase tracking-wide">Cancellation</div>
+                                  <div className="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Cancellation</div>
                                   <div className="font-medium text-orange-400">Cancels at period end</div>
                                 </div>
                               )}
@@ -562,11 +562,11 @@ export function Organizations() {
                                     key={site.siteId}
                                     href={`/${site.siteId}`}
                                     target="_blank"
-                                    className="inline-flex items-center gap-2 px-3 py-2 bg-neutral-800 hover:bg-neutral-700 border border-neutral-600 rounded-md text-sm transition-colors"
+                                    className="inline-flex items-center gap-2 px-3 py-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 border border-neutral-200 dark:border-neutral-700 rounded-md text-sm transition-colors"
                                   >
                                     <div className="flex flex-col">
                                       <span className="font-medium">{site.domain}</span>
-                                      <span className="text-xs text-neutral-400">
+                                      <span className="text-xs text-neutral-500 dark:text-neutral-400">
                                         {formatter(site.eventsLast24Hours)} events (24h) ·{" "}
                                         {formatter(site.eventsLast30Days)} (30d)
                                       </span>
@@ -576,7 +576,7 @@ export function Organizations() {
                                 ))}
                               </div>
                             ) : (
-                              <div className="text-neutral-400 p-4 border border-neutral-700 rounded">No sites</div>
+                              <div className="text-neutral-500 dark:text-neutral-400 p-4 border border-neutral-100 dark:border-neutral-800 rounded">No sites</div>
                             )}
                           </div>
 
@@ -591,7 +591,7 @@ export function Organizations() {
                                 {row.original.members.map(member => (
                                   <div
                                     key={member.userId}
-                                    className="p-3 border border-neutral-700 rounded flex items-center justify-between"
+                                    className="p-3 border border-neutral-100 dark:border-neutral-800 rounded flex items-center justify-between"
                                   >
                                     <div className="flex flex-col gap-1">
                                       <div className="font-medium flex items-center gap-2">
@@ -600,8 +600,8 @@ export function Organizations() {
                                           {member.role}
                                         </Badge>
                                       </div>
-                                      <div className="text-sm text-neutral-200">{member.email}</div>
-                                      <div className="text-xs text-neutral-400">
+                                      <div className="text-sm text-neutral-700 dark:text-neutral-200">{member.email}</div>
+                                      <div className="text-xs text-neutral-500 dark:text-neutral-400">
                                         <CopyText text={member.userId} className="text-xs"></CopyText>
                                       </div>
                                       <Button
@@ -619,7 +619,7 @@ export function Organizations() {
                                 ))}
                               </div>
                             ) : (
-                              <div className="text-neutral-400 p-4 border border-neutral-700 rounded">No members</div>
+                              <div className="text-neutral-500 dark:text-neutral-400 p-4 border border-neutral-100 dark:border-neutral-800 rounded">No members</div>
                             )}
                           </div>
                         </div>

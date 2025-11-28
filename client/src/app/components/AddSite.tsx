@@ -23,9 +23,17 @@ import { resetStore, useStore } from "../../lib/store";
 import { SubscriptionData, useStripeSubscription } from "../../lib/subscription/useStripeSubscription";
 import { isValidDomain, normalizeDomain } from "../../lib/utils";
 import { FREE_SITE_LIMIT, IS_CLOUD, PRO_SITE_LIMIT, STANDARD_SITE_LIMIT } from "../../lib/const";
+import { DateTime } from "luxon";
 
 const getSiteLimit = (subscription: SubscriptionData | undefined) => {
   if (subscription?.planName.includes("standard")) {
+    // grant unlimited sites to organizations created before June 27, 2025
+    if (
+      subscription?.createdAt &&
+      DateTime.fromISO(subscription.createdAt) < DateTime.fromFormat("2025-06-27", "yyyy-MM-dd")
+    ) {
+      return PRO_SITE_LIMIT;
+    }
     return STANDARD_SITE_LIMIT;
   }
   if (subscription?.planName.includes("pro")) {
@@ -50,6 +58,8 @@ export function AddSite({ trigger, disabled }: { trigger?: React.ReactNode; disa
   const { data: activeOrganization } = authClient.useActiveOrganization();
   const { data: sites, refetch } = useGetSitesFromOrg(activeOrganization?.id);
   const { data: subscription } = useStripeSubscription();
+
+  console.info(subscription);
 
   const isOverSiteLimit = getSiteLimit(subscription) <= (sites?.sites?.length || 0) && IS_CLOUD;
 
