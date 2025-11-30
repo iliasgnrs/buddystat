@@ -4,11 +4,12 @@ import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
 import { DateTime } from "luxon";
 import { memo, useState } from "react";
 import { GetSessionsResponse } from "../../api/analytics/useGetUserSessions";
-import { formatDuration, hour12, userLocale } from "../../lib/dateTimeUtils";
-import { cn, formatter } from "../../lib/utils";
-import { Avatar, generateName } from "../Avatar";
+import { formatShortDuration, hour12, userLocale } from "../../lib/dateTimeUtils";
+import { cn, formatter, getUserDisplayName } from "../../lib/utils";
+import { Avatar } from "../Avatar";
 import { Channel } from "../Channel";
 import { EventIcon, PageviewIcon } from "../EventIcons";
+import { IdentifiedBadge } from "../IdentifiedBadge";
 import {
   BrowserTooltipIcon,
   CountryFlagTooltipIcon,
@@ -40,7 +41,7 @@ export function SessionCard({ session, onClick, userId, expandedByDefault }: Ses
   const start = DateTime.fromSQL(session.session_start);
   const end = DateTime.fromSQL(session.session_end);
   const totalSeconds = Math.floor(end.diff(start).milliseconds / 1000);
-  const duration = formatDuration(totalSeconds);
+  const duration = formatShortDuration(totalSeconds);
 
   const handleCardClick = () => {
     if (onClick) {
@@ -50,16 +51,19 @@ export function SessionCard({ session, onClick, userId, expandedByDefault }: Ses
     }
   };
 
-  const name = generateName(session.user_id);
-
   return (
-    <div className="rounded-lg bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 overflow-hidden">
+    <div className="rounded-lg bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-850 overflow-hidden">
       <div className="p-3 cursor-pointer" onClick={handleCardClick}>
         <div className="flex items-center gap-2">
-          <div className="hidden md:flex items-center gap-2">
-            <Avatar size={24} id={session.user_id} />
-            <span className="text-xs text-neutral-600 dark:text-neutral-200 w-24 truncate">{name}</span>
-          </div>
+          {!userId && (
+            <div className="hidden md:flex items-center gap-2">
+              <Avatar size={24} id={session.user_id} />
+              <span className="text-xs text-neutral-600 dark:text-neutral-200 w-24 truncate">
+                {getUserDisplayName(session)}
+              </span>
+              {!!session.identified_user_id && <IdentifiedBadge traits={session.traits} />}
+            </div>
+          )}
 
           {/* Icons section */}
           <div className="flex space-x-2 items-center">
@@ -156,7 +160,7 @@ export function SessionCard({ session, onClick, userId, expandedByDefault }: Ses
   );
 }
 
-export const SessionCardSkeleton = memo(() => {
+export const SessionCardSkeleton = memo(({ userId }: { userId?: string }) => {
   // Function to get a random width class for skeletons
   const getRandomWidth = () => {
     const widths = ["w-16", "w-20", "w-24", "w-28", "w-32", "w-36", "w-40", "w-44", "w-48"];
@@ -178,16 +182,18 @@ export const SessionCardSkeleton = memo(() => {
   // Create multiple skeletons for a realistic loading state
   const skeletons = Array.from({ length: 25 }).map((_, index) => (
     <div
-      className="rounded-lg bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 overflow-hidden"
+      className="rounded-lg bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-850 overflow-hidden"
       key={index}
     >
       <div className="p-3">
         <div className="flex items-center gap-2">
           {/* Avatar and User ID */}
-          <div className="hidden md:flex items-center gap-2">
-            <Skeleton className="h-6 w-6 rounded-full" />
-            <Skeleton className="h-3 w-24" />
-          </div>
+          {!userId && (
+            <div className="hidden md:flex items-center gap-2">
+              <Skeleton className="h-6 w-6 rounded-full" />
+              <Skeleton className="h-3 w-24" />
+            </div>
+          )}
 
           {/* Icons section - matching actual component structure */}
           <div className="flex space-x-2 items-center">

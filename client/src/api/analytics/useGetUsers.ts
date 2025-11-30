@@ -7,7 +7,9 @@ import { APIResponse } from "../types";
 import { authedFetch, getQueryParams } from "../utils";
 
 export type UsersResponse = {
-  user_id: string;
+  user_id: string; // Device fingerprint
+  identified_user_id: string; // Custom user ID when identified, empty string otherwise
+  traits: Record<string, unknown> | null;
   country: string;
   region: string;
   city: string;
@@ -30,6 +32,7 @@ export interface GetUsersOptions {
   sortBy: string;
   sortOrder: string;
   filters?: Filter[];
+  identifiedOnly?: boolean;
 }
 
 export function useGetUsers(options: GetUsersOptions) {
@@ -37,7 +40,7 @@ export function useGetUsers(options: GetUsersOptions) {
   // Get the appropriate time parameters using getQueryParams
   const timeParams = getQueryParams(time);
 
-  const { page, pageSize, sortBy, sortOrder } = options;
+  const { page, pageSize, sortBy, sortOrder, identifiedOnly = false } = options;
   const filteredFilters = getFilteredFilters(USER_PAGE_FILTERS);
 
   return useQuery<
@@ -47,7 +50,7 @@ export function useGetUsers(options: GetUsersOptions) {
       pageSize: number;
     }
   >({
-    queryKey: ["users", site, time, page, pageSize, sortBy, sortOrder, filteredFilters],
+    queryKey: ["users", site, time, page, pageSize, sortBy, sortOrder, filteredFilters, identifiedOnly],
     queryFn: async () => {
       // Build request parameters
       const requestParams: Record<string, any> = {
@@ -57,6 +60,7 @@ export function useGetUsers(options: GetUsersOptions) {
         page_size: pageSize,
         sort_by: sortBy,
         sort_order: sortOrder,
+        identified_only: identifiedOnly,
       };
 
       // Add time parameters (getQueryParams handles both past-minutes and regular modes)

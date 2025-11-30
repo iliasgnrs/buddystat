@@ -1,6 +1,6 @@
 "use client";
 
-import { FilterParameter } from "@rybbit/shared";
+import { Filter, FilterParameter } from "@rybbit/shared";
 import { Info } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -12,6 +12,7 @@ import { IS_CLOUD } from "../../../../../lib/const";
 import { Row } from "./Row";
 import { StandardSkeleton } from "./Skeleton";
 import { StandardSectionDialog } from "./StandardSectionDialog";
+import { Time } from "../../../../../components/DateSelector/types";
 
 const MAX_ITEMS_TO_DISPLAY = 10;
 
@@ -28,6 +29,8 @@ export function StandardSection({
   close,
   hasSubrow,
   getSubrowLabel,
+  customFilters,
+  customTime,
 }: {
   title: string;
   getKey: (item: MetricResponse) => string;
@@ -41,11 +44,15 @@ export function StandardSection({
   close: () => void;
   hasSubrow?: boolean;
   getSubrowLabel?: (item: MetricResponse) => ReactNode;
+  customFilters?: Filter[];
+  customTime?: Time;
 }) {
   const { data, isLoading, isFetching, error, refetch } = usePaginatedMetric({
     parameter: filterParameter,
     limit: 100,
     page: 1,
+    customFilters,
+    customTime,
   });
 
   const itemsForDisplay = data?.data;

@@ -1,9 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { authedFetch } from "../utils";
 
+export type LinkedDevice = {
+  anonymous_id: string;
+  created_at: string;
+};
+
 export type UserInfo = {
   duration: number;
   sessions: number;
+  user_id: string; // Device fingerprint
+  identified_user_id: string; // Custom user ID when identified, empty string otherwise
   country: string;
   region: string;
   city: string;
@@ -20,6 +27,8 @@ export type UserInfo = {
   pageviews: number;
   events: number;
   ip?: string;
+  traits: Record<string, unknown> | null;
+  linked_devices: LinkedDevice[];
 };
 
 export function useUserInfo(siteId: number, userId: string) {
