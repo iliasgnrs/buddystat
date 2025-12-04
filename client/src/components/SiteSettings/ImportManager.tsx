@@ -427,8 +427,8 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
             <AlertDialogHeader>
               <AlertDialogTitle>Delete Import</AlertDialogTitle>
               <AlertDialogDescription>
-                Are you sure you want to delete this import? This action cannot be undone. The import data and
-                associated files will be permanently removed.
+                Are you sure you want to delete this import? This action cannot be undone. The imported data will be
+                permanently removed.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
