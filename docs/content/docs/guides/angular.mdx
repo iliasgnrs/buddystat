@@ -87,11 +87,11 @@ After building and deploying your application, open your Rybbit dashboard to che
 
   // this.router.events.pipe(
   //   filter(event => event instanceof NavigationEnd)
-  // ).subscribe(() => {{
-  //   if (window.rybbit) {{
+  // ).subscribe(() => {
+  //   if (window.rybbit) {
   //     window.rybbit.pageview();
-  //   }}
-  // }});
+  //   }
+  // });
   ```
   However, test the default behavior first, as manual tracking might not be necessary.
 </Callout>
@@ -115,18 +115,18 @@ declare global {
   }
 }
 
-@Component({{
+@Component({
   selector: 'app-my-feature',
   template: `<button (click)="onFeatureClick()">Use Feature</button>`,
-}})
-export class MyFeatureComponent {{
-  onFeatureClick(): void {{
-    if (window.rybbit && typeof window.rybbit.event === 'function') {{
-      window.rybbit.event('feature_used', {{ featureName: 'Amazing Feature' }});
-    }} else {{
+})
+export class MyFeatureComponent {
+  onFeatureClick(): void {
+    if (window.rybbit && typeof window.rybbit.event === 'function') {
+      window.rybbit.event('feature_used', { featureName: 'Amazing Feature' });
+    } else {
       console.warn('Rybbit tracking not available.');
-    }}
-  }}
-}}
+    }
+  }
+}
 ```
 Declaring `window.rybbit` helps with TypeScript type checking. Always ensure `window.rybbit` and its methods are available before calling them.
