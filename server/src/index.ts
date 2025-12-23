@@ -272,23 +272,21 @@ server.addHook("onRequest", async (request, reply) => {
     if (siteId) {
       // Convert string ID to numeric ID if needed
       let resolvedSiteId = siteId;
-      if (!/^\d+$/.test(siteId)) {
-        const numericSiteId = await resolveNumericSiteId(siteId);
-        if (numericSiteId) {
-          // Rewrite the URL with the numeric ID
-          const newUrl = replacePathSiteId(processedUrl, numericSiteId);
-          request.raw.url = newUrl;
-          processedUrl = newUrl;
-          resolvedSiteId = String(numericSiteId);
-          // Also update the parsed params since Fastify has already parsed them
-          const params = request.params as Record<string, string>;
-          if (params && "site" in params) {
-            params.site = resolvedSiteId;
-          }
-        } else {
-          // String ID not found in database
-          return reply.status(404).send({ error: "Site not found" });
+      const numericSiteId = await resolveNumericSiteId(siteId);
+      if (numericSiteId) {
+        // Rewrite the URL with the numeric ID
+        const newUrl = replacePathSiteId(processedUrl, numericSiteId);
+        request.raw.url = newUrl;
+        processedUrl = newUrl;
+        resolvedSiteId = String(numericSiteId);
+        // Also update the parsed params since Fastify has already parsed them
+        const params = request.params as Record<string, string>;
+        if (params && "site" in params) {
+          params.site = resolvedSiteId;
         }
+      } else {
+        // String ID not found in database
+        return reply.status(404).send({ error: "Site not found" });
       }
 
       // Check all access methods: direct access, public site, or valid private key
