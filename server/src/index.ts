@@ -71,7 +71,7 @@ import { createApiKey } from "./api/user/createApiKey.js";
 import { deleteApiKey } from "./api/user/deleteApiKey.js";
 import { initializeClickhouse } from "./db/clickhouse/clickhouse.js";
 import { initPostgres } from "./db/postgres/initPostgres.js";
-import { getSessionFromReq, getUserHasAccessToSitePublic, mapHeaders } from "./lib/auth-utils.js";
+import { mapHeaders } from "./lib/auth-utils.js";
 import { auth } from "./lib/auth.js";
 import { IS_CLOUD } from "./lib/const.js";
 import { siteConfig } from "./lib/siteConfig.js";
@@ -80,7 +80,6 @@ import { handleIdentify } from "./services/tracker/identifyService.js";
 // need to import telemetry service here to start it
 import { telemetryService } from "./services/telemetryService.js";
 import { weeklyReportService } from "./services/weekyReports/weeklyReportService.js";
-import { extractSiteId, replacePathSiteId, resolveNumericSiteId } from "./utils.js";
 import { getTrackingConfig } from "./api/sites/getTrackingConfig.js";
 import { updateSitePrivateLinkConfig } from "./api/sites/updateSitePrivateLinkConfig.js";
 import { getSitePrivateLinkConfig } from "./api/sites/getSitePrivateLinkConfig.js";
@@ -94,6 +93,26 @@ import { getSiteImports } from "./api/sites/getSiteImports.js";
 import { createSiteImport } from "./api/sites/createSiteImport.js";
 import { batchImportEvents } from "./api/sites/batchImportEvents.js";
 import { deleteSiteImport } from "./api/sites/deleteSiteImport.js";
+import {
+  requireAuth,
+  requireAdmin,
+  requireSiteAccess,
+  requireSiteAdminAccess,
+  allowPublicSiteAccess,
+  requireOrgMember,
+  requireOrgAdminFromParams,
+  resolveSiteId,
+} from "./lib/auth-middleware.js";
+
+// Pre-composed middleware chains for common auth patterns
+// Cast as any to work around Fastify's type inference limitations with preHandler
+const publicSite = { preHandler: [resolveSiteId, allowPublicSiteAccess] as any };
+const authSite = { preHandler: [resolveSiteId, requireSiteAccess] as any };
+const adminSite = { preHandler: [resolveSiteId, requireSiteAdminAccess] as any };
+const authOnly = { preHandler: [requireAuth] as any };
+const adminOnly = { preHandler: [requireAdmin] as any };
+const orgMember = { preHandler: [requireOrgMember] as any };
+const orgAdminParams = { preHandler: [requireOrgAdminFromParams] as any };
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -203,125 +222,6 @@ server.register(
   { auth: auth! }
 );
 
-const PUBLIC_ROUTES: string[] = [
-  "/api/health",
-  "/api/track",
-  "/api/identify",
-  "/api/script.js",
-  "/api/script-full.js",
-  "/api/replay.js",
-  "/api/metrics.js",
-  "/api/config",
-  "/api/auth",
-  "/api/auth/callback/google",
-  "/api/auth/callback/github",
-  "/api/gsc/callback",
-  "/api/stripe/webhook",
-  "/api/as/webhook",
-  "/api/session-replay/record",
-  "/api/admin/telemetry",
-  "/api/site/tracking-config",
-];
-
-// Define analytics routes that can be public
-const ANALYTICS_ROUTES = [
-  "/api/live-user-count/",
-  "/api/overview/",
-  "/api/overview-bucketed/",
-  "/api/error-bucketed/",
-  "/api/metric/",
-  "/api/page-titles/",
-  "/api/retention/",
-  "/api/sites/",
-  "/api/site-has-data/",
-  "/api/site-is-public/",
-  "/api/sessions/",
-  "/api/users/",
-  "/api/session-locations/",
-  "/api/funnels/",
-  "/api/journeys/",
-  "/api/goals/",
-  "/api/events/",
-  "/api/events/outbound/",
-  "/api/performance/overview/",
-  "/api/performance/time-series/",
-  "/api/performance/by-dimension/",
-  "/api/error-names/",
-  "/api/error-events/",
-  "/api/session-replay/",
-  "/api/gsc/data/",
-  "/api/gsc/status/",
-];
-
-server.addHook("onRequest", async (request, reply) => {
-  const { url } = request.raw;
-
-  if (!url) return;
-
-  let processedUrl = url;
-
-  // Bypass auth for public routes (now including the prepended /api)
-  if (PUBLIC_ROUTES.some(route => processedUrl.includes(route))) {
-    return;
-  }
-
-  // Skip analytics route processing for site management endpoints
-  // These routes use /api/sites/:id/... pattern but are NOT analytics routes
-  const isSiteManagementRoute =
-    /^\/api\/sites\/[^\/]+\/(config|private-link-config|excluded-ips|excluded-countries|imports)/.test(processedUrl);
-
-  // Check if it's an analytics route and get site ID (now including the prepended /api)
-  if (!isSiteManagementRoute && ANALYTICS_ROUTES.some(route => processedUrl.startsWith(route))) {
-    const siteId = extractSiteId(processedUrl);
-
-    if (siteId) {
-      // Convert string ID to numeric ID if needed
-      let resolvedSiteId = siteId;
-      if (String(siteId).length > 4) {
-        const numericSiteId = await resolveNumericSiteId(siteId);
-        if (numericSiteId) {
-          // Rewrite the URL with the numeric ID
-          const newUrl = replacePathSiteId(processedUrl, numericSiteId);
-          request.raw.url = newUrl;
-          processedUrl = newUrl;
-          resolvedSiteId = String(numericSiteId);
-          // Also update the parsed params since Fastify has already parsed them
-          const params = request.params as Record<string, string>;
-          if (params && "site" in params) {
-            params.site = resolvedSiteId;
-          }
-        } else {
-          // String ID not found in database
-          return reply.status(404).send({ error: "Site not found" });
-        }
-      }
-
-      // Check all access methods: direct access, public site, or valid private key
-      const hasAccess = await getUserHasAccessToSitePublic(request, resolvedSiteId);
-
-      if (hasAccess) {
-        // User has access via: direct access, public site, or valid private key
-        // Skip auth requirement and allow the request through
-        return;
-      }
-    }
-  }
-
-  try {
-    const session = await getSessionFromReq(request);
-
-    if (!session) {
-      return reply.status(401).send({ error: "Unauthorized" });
-    }
-
-    // Attach session user info to request
-    request.user = session.user;
-  } catch (err) {
-    console.error("Auth Error:", err);
-    return reply.status(500).send({ error: "Auth check failed" });
-  }
-});
-
 // Serve analytics scripts with generic names to avoid ad-blocker detection
 server.get("/api/script.js", async (_, reply) => reply.sendFile("script.js"));
 server.get("/api/replay.js", async (_, reply) => reply.sendFile("rrweb.min.js"));
@@ -330,88 +230,88 @@ server.get("/api/metrics.js", async (_, reply) => reply.sendFile("web-vitals.iif
 // WEB & PRODUCT ANALYTICS
 
 // This endpoint gets called a lot so we don't want to log it
-server.get("/api/live-user-count/:site", { logLevel: "silent" }, getLiveUsercount);
-server.get("/api/overview/:site", getOverview);
-server.get("/api/overview-bucketed/:site", getOverviewBucketed);
-server.get("/api/metric/:site", getMetric);
-server.get("/api/page-titles/:site", getPageTitles);
-server.get("/api/error-names/:site", getErrorNames);
-server.get("/api/error-events/:site", getErrorEvents);
-server.get("/api/error-bucketed/:site", getErrorBucketed);
-server.get("/api/retention/:site", getRetention);
-server.get("/api/site-has-data/:site", getSiteHasData);
-server.get("/api/site-is-public/:site", getSiteIsPublic);
-server.get("/api/sessions/:site", getSessions);
-server.get("/api/sessions/:sessionId/:site", getSession);
-server.get("/api/events/:site", getEvents);
-server.get("/api/users/:site", getUsers);
-server.get("/api/users/session-count/:site", getUserSessionCount);
-server.get("/api/users/:userId/:site", getUserInfo);
-server.get("/api/session-locations/:site", getSessionLocations);
-server.get("/api/funnels/:site", getFunnels);
-server.get("/api/journeys/:site", getJourneys);
-server.post("/api/funnels/analyze/:site", getFunnel);
-server.post("/api/funnels/:stepNumber/sessions/:site", getFunnelStepSessions);
-server.post("/api/funnels/:site", createFunnel);
-server.delete("/api/funnels/:funnelId/:site", deleteFunnel);
-server.get("/api/goals/:site", getGoals);
-server.get("/api/goals/:goalId/sessions/:site", getGoalSessions);
-server.post("/api/goals/:site", createGoal);
-server.delete("/api/goals/:goalId/:site", deleteGoal);
-server.put("/api/goals/:goalId/:site", updateGoal);
-server.get("/api/events/names/:site", getEventNames);
-server.get("/api/events/properties/:site", getEventProperties);
-server.get("/api/events/outbound/:site", getOutboundLinks);
-server.get("/api/org-event-count/:organizationId", getOrgEventCount);
+server.get("/api/live-user-count/:siteId", { logLevel: "silent", ...publicSite }, getLiveUsercount);
+server.get("/api/overview/:siteId", publicSite, getOverview);
+server.get("/api/overview-bucketed/:siteId", publicSite, getOverviewBucketed);
+server.get("/api/metric/:siteId", publicSite, getMetric);
+server.get("/api/page-titles/:siteId", publicSite, getPageTitles);
+server.get("/api/error-names/:siteId", publicSite, getErrorNames);
+server.get("/api/error-events/:siteId", publicSite, getErrorEvents);
+server.get("/api/error-bucketed/:siteId", publicSite, getErrorBucketed);
+server.get("/api/retention/:siteId", publicSite, getRetention);
+server.get("/api/site-has-data/:siteId", publicSite, getSiteHasData);
+server.get("/api/site-is-public/:siteId", publicSite, getSiteIsPublic);
+server.get("/api/sessions/:siteId", publicSite, getSessions);
+server.get("/api/sessions/:sessionId/:siteId", publicSite, getSession);
+server.get("/api/events/:siteId", publicSite, getEvents);
+server.get("/api/users/:siteId", publicSite, getUsers);
+server.get("/api/users/session-count/:siteId", publicSite, getUserSessionCount);
+server.get("/api/users/:userId/:siteId", publicSite, getUserInfo);
+server.get("/api/session-locations/:siteId", publicSite, getSessionLocations);
+server.get("/api/funnels/:siteId", publicSite, getFunnels);
+server.get("/api/journeys/:siteId", publicSite, getJourneys);
+server.post("/api/funnels/analyze/:siteId", publicSite, getFunnel);
+server.post("/api/funnels/:stepNumber/sessions/:siteId", publicSite, getFunnelStepSessions);
+server.post("/api/funnels/:siteId", authSite, createFunnel);
+server.delete("/api/funnels/:funnelId/:siteId", authSite, deleteFunnel);
+server.get("/api/goals/:siteId", publicSite, getGoals);
+server.get("/api/goals/:goalId/sessions/:siteId", publicSite, getGoalSessions);
+server.post("/api/goals/:siteId", authSite, createGoal);
+server.delete("/api/goals/:goalId/:siteId", authSite, deleteGoal);
+server.put("/api/goals/:goalId/:siteId", authSite, updateGoal);
+server.get("/api/events/names/:siteId", publicSite, getEventNames);
+server.get("/api/events/properties/:siteId", publicSite, getEventProperties);
+server.get("/api/events/outbound/:siteId", publicSite, getOutboundLinks);
+server.get("/api/org-event-count/:organizationId", orgMember, getOrgEventCount);
 
 // Performance Analytics
-server.get("/api/performance/overview/:site", getPerformanceOverview);
-server.get("/api/performance/time-series/:site", getPerformanceTimeSeries);
-server.get("/api/performance/by-dimension/:site", getPerformanceByDimension);
+server.get("/api/performance/overview/:siteId", publicSite, getPerformanceOverview);
+server.get("/api/performance/time-series/:siteId", publicSite, getPerformanceTimeSeries);
+server.get("/api/performance/by-dimension/:siteId", publicSite, getPerformanceByDimension);
 
 // Session Replay
-server.post("/api/session-replay/record/:site", recordSessionReplay);
-server.get("/api/session-replay/list/:site", getSessionReplays);
-server.get("/api/session-replay/:sessionId/:site", getSessionReplayEvents);
-server.delete("/api/session-replay/:sessionId/:site", deleteSessionReplay);
+server.post("/api/session-replay/record/:siteId", recordSessionReplay); // Public - tracking endpoint
+server.get("/api/session-replay/list/:siteId", publicSite, getSessionReplays);
+server.get("/api/session-replay/:sessionId/:siteId", publicSite, getSessionReplayEvents);
+server.delete("/api/session-replay/:sessionId/:siteId", authSite, deleteSessionReplay);
 
 // Sites
-server.get("/api/sites/:id", getSite);
-server.post("/api/sites", addSite);
-server.put("/api/sites/:id/config", updateSiteConfig);
-server.delete("/api/sites/:id", deleteSite);
-server.get("/api/sites/:siteId/private-link-config", getSitePrivateLinkConfig);
-server.post("/api/sites/:siteId/private-link-config", updateSitePrivateLinkConfig);
-server.get("/api/site/tracking-config/:siteId", getTrackingConfig);
-server.get("/api/sites/:siteId/excluded-ips", getSiteExcludedIPs);
-server.get("/api/sites/:siteId/excluded-countries", getSiteExcludedCountries);
+server.get("/api/sites/:siteId", publicSite, getSite);
+server.post("/api/sites/:organizationId", orgAdminParams, addSite);
+server.put("/api/sites/:siteId/config", adminSite, updateSiteConfig);
+server.delete("/api/sites/:siteId", adminSite, deleteSite);
+server.get("/api/sites/:siteId/private-link-config", adminSite, getSitePrivateLinkConfig);
+server.post("/api/sites/:siteId/private-link-config", adminSite, updateSitePrivateLinkConfig);
+server.get("/api/site/tracking-config/:siteId", getTrackingConfig); // Public - used by tracking script
+server.get("/api/sites/:siteId/excluded-ips", authSite, getSiteExcludedIPs);
+server.get("/api/sites/:siteId/excluded-countries", authSite, getSiteExcludedCountries);
 
 // Site Imports
-server.get("/api/sites/:site/imports", getSiteImports);
-server.post("/api/sites/:site/imports", createSiteImport);
-server.post("/api/sites/:site/imports/:importId/events", batchImportEvents);
-server.delete("/api/sites/:site/imports/:importId", deleteSiteImport);
+server.get("/api/sites/:siteId/imports", adminSite, getSiteImports);
+server.post("/api/sites/:siteId/imports", adminSite, createSiteImport);
+server.post("/api/sites/:siteId/imports/:importId/events", adminSite, batchImportEvents);
+server.delete("/api/sites/:siteId/imports/:importId", adminSite, deleteSiteImport);
 
 // Organizations
-server.get("/api/organizations/:organizationId/sites", getSitesFromOrg);
-server.get("/api/organizations/:organizationId/members", listOrganizationMembers);
-server.post("/api/organizations/:organizationId/members", addUserToOrganization);
+server.get("/api/organizations/:organizationId/sites", orgMember, getSitesFromOrg);
+server.get("/api/organizations/:organizationId/members", orgMember, listOrganizationMembers);
+server.post("/api/organizations/:organizationId/members", orgMember, addUserToOrganization);
 
 // User
-server.get("/api/config", getConfig);
-server.get("/api/user/organizations", getUserOrganizations);
-server.post("/api/user/account-settings", updateAccountSettings);
-server.get("/api/user/api-keys", listApiKeys);
-server.post("/api/user/api-keys", createApiKey);
-server.delete("/api/user/api-keys/:keyId", deleteApiKey);
+server.get("/api/config", getConfig); // Public - returns app config
+server.get("/api/user/organizations", authOnly, getUserOrganizations);
+server.post("/api/user/account-settings", authOnly, updateAccountSettings);
+server.get("/api/user/api-keys", authOnly, listApiKeys);
+server.post("/api/user/api-keys", authOnly, createApiKey);
+server.delete("/api/user/api-keys/:keyId", authOnly, deleteApiKey);
 
 // GOOGLE SEARCH CONSOLE
-server.get("/api/gsc/connect/:site", connectGSC);
-server.get("/api/gsc/callback", gscCallback);
-server.get("/api/gsc/status/:site", getGSCStatus);
-server.delete("/api/gsc/disconnect/:site", disconnectGSC);
-server.post("/api/gsc/select-property/:site", selectGSCProperty);
-server.get("/api/gsc/data/:site", getGSCData);
+server.get("/api/gsc/connect/:siteId", authSite, connectGSC);
+server.get("/api/gsc/callback", gscCallback); // Public - OAuth callback
+server.get("/api/gsc/status/:siteId", publicSite, getGSCStatus);
+server.delete("/api/gsc/disconnect/:siteId", authSite, disconnectGSC);
+server.post("/api/gsc/select-property/:siteId", authSite, selectGSCProperty);
+server.get("/api/gsc/data/:siteId", publicSite, getGSCData);
 
 // UPTIME MONITORING
 // Only register uptime routes when IS_CLOUD is true (Redis is available)
@@ -454,31 +354,28 @@ server.get("/api/gsc/data/:site", getGSCData);
 
 if (IS_CLOUD) {
   // Stripe Routes
-  server.post("/api/stripe/create-checkout-session", createCheckoutSession);
-  server.post("/api/stripe/create-portal-session", createPortalSession);
-  server.post("/api/stripe/preview-subscription-update", previewSubscriptionUpdate);
-  server.post("/api/stripe/update-subscription", updateSubscription);
-  server.get("/api/stripe/subscription", getSubscription);
-  server.post("/api/stripe/webhook", { config: { rawBody: true } }, handleWebhook); // Use rawBody parser config for webhook
+  server.post("/api/stripe/create-checkout-session", authOnly, createCheckoutSession);
+  server.post("/api/stripe/create-portal-session", authOnly, createPortalSession);
+  server.post("/api/stripe/preview-subscription-update", authOnly, previewSubscriptionUpdate);
+  server.post("/api/stripe/update-subscription", authOnly, updateSubscription);
+  server.get("/api/stripe/subscription", authOnly, getSubscription);
+  server.post("/api/stripe/webhook", { config: { rawBody: true } }, handleWebhook); // Public - Stripe webhook
 
   // Admin Routes
-  server.get("/api/admin/sites", getAdminSites);
-  server.get("/api/admin/organizations", getAdminOrganizations);
-  server.get("/api/admin/service-event-count", getAdminServiceEventCount);
-  server.post("/api/admin/telemetry", collectTelemetry);
+  server.get("/api/admin/sites", adminOnly, getAdminSites);
+  server.get("/api/admin/organizations", adminOnly, getAdminOrganizations);
+  server.get("/api/admin/service-event-count", adminOnly, getAdminServiceEventCount);
+  server.post("/api/admin/telemetry", collectTelemetry); // Public - telemetry collection
 
   // AppSumo Routes
   const { activateAppSumoLicense } = await import("./api/as/activate.js");
   const { handleAppSumoWebhook } = await import("./api/as/webhook.js");
 
-  server.post("/api/as/activate", activateAppSumoLicense);
-  server.post("/api/as/webhook", handleAppSumoWebhook);
+  server.post("/api/as/activate", authOnly, activateAppSumoLicense);
+  server.post("/api/as/webhook", handleAppSumoWebhook); // Public - AppSumo webhook
 }
 
-server.post("/track", trackEvent);
 server.post("/api/track", trackEvent);
-
-server.post("/identify", handleIdentify);
 server.post("/api/identify", handleIdentify);
 
 server.get("/api/health", { logLevel: "silent" }, (_, reply) => reply.send("OK"));

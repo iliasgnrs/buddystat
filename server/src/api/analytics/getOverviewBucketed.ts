@@ -157,7 +157,7 @@ type getOverviewBucketed = { time: string; pageviews: number }[];
 export async function getOverviewBucketed(
   req: FastifyRequest<{
     Params: {
-      site: string;
+      siteId: string;
     };
     Querystring: FilterParams<{
       bucket: TimeBucket;
@@ -166,7 +166,7 @@ export async function getOverviewBucketed(
   res: FastifyReply
 ) {
   const { start_date, end_date, time_zone, bucket, filters, past_minutes_start, past_minutes_end } = req.query;
-  const site = req.params.site;
+  const site = req.params.siteId;
 
   const query = getQuery(
     {

@@ -30,14 +30,14 @@ export async function getFunnel(
   request: FastifyRequest<{
     Body: Funnel;
     Params: {
-      site: string;
+      siteId: string;
     };
     Querystring: FilterParams<{}>;
   }>,
   reply: FastifyReply
 ) {
   const { steps } = request.body;
-  const { site } = request.params;
+  const { siteId } = request.params;
 
   // Validate request
   if (!steps || steps.length < 2) {
@@ -46,7 +46,7 @@ export async function getFunnel(
 
   try {
     const timeStatement = getTimeStatement(request.query);
-    const filterStatement = getFilterStatement(request.query.filters, Number(site), timeStatement);
+    const filterStatement = getFilterStatement(request.query.filters, Number(siteId), timeStatement);
 
     // Build conditional statements for each step
     const stepConditions = steps.map(step => {
@@ -180,7 +180,7 @@ export async function getFunnel(
       query,
       format: "JSONEachRow",
       query_params: {
-        siteId: Number(site),
+        siteId: Number(siteId),
         stepNumber: steps.length,
       },
     });

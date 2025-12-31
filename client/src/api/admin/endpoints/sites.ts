@@ -75,12 +75,11 @@ export function addSite(
     blockBots?: boolean;
   }
 ) {
-  return authedFetch<{ siteId: number }>("/sites", undefined, {
+  return authedFetch<{ siteId: number }>(`/sites/${organizationId}`, undefined, {
     method: "POST",
     data: {
       domain,
       name,
-      organizationId,
       public: settings?.isPublic || false,
       saltUserIds: settings?.saltUserIds || false,
       blockBots: settings?.blockBots === undefined ? true : settings?.blockBots,

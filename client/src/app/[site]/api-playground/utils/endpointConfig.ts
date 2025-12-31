@@ -358,6 +358,85 @@ export const endpointCategories: EndpointCategory[] = [
       },
     ],
   },
+  {
+    name: "Sites",
+    endpoints: [
+      {
+        method: "POST",
+        path: "/sites/:orgId",
+        name: "Create Site",
+        description: "Creates a new site in an organization. Requires admin/owner role.",
+        hasCommonParams: false,
+        pathParams: ["orgId"],
+        hasRequestBody: true,
+        requestBodyExample: {
+          domain: "example.com",
+          name: "My Website",
+          public: false,
+          blockBots: true,
+        },
+      },
+      {
+        method: "GET",
+        path: "/sites/:site",
+        name: "Get Site",
+        description: "Returns details for a specific site",
+        hasCommonParams: false,
+      },
+      {
+        method: "DELETE",
+        path: "/sites/:site",
+        name: "Delete Site",
+        description: "Permanently deletes a site and all its data. Requires admin/owner role.",
+        hasCommonParams: false,
+      },
+      {
+        method: "PUT",
+        path: "/sites/:site/config",
+        name: "Update Site Config",
+        description: "Updates site configuration settings. Requires admin/owner role.",
+        hasCommonParams: false,
+        hasRequestBody: true,
+        requestBodyExample: {
+          public: true,
+          blockBots: true,
+          excludedCountries: ["CN", "RU"],
+        },
+      },
+      {
+        method: "GET",
+        path: "/sites/:site/excluded-ips",
+        name: "Get Excluded IPs",
+        description: "Returns the list of excluded IP addresses",
+        hasCommonParams: false,
+      },
+      {
+        method: "GET",
+        path: "/sites/:site/excluded-countries",
+        name: "Get Excluded Countries",
+        description: "Returns the list of excluded country codes",
+        hasCommonParams: false,
+      },
+      {
+        method: "GET",
+        path: "/sites/:site/private-link-config",
+        name: "Get Private Link Config",
+        description: "Returns the private link key configuration",
+        hasCommonParams: false,
+      },
+      {
+        method: "POST",
+        path: "/sites/:site/private-link-config",
+        name: "Update Private Link",
+        description: "Generates or revokes a private link key. Requires admin/owner role.",
+        hasCommonParams: false,
+        hasRequestBody: true,
+        requestBodyExample: {
+          action: "generate_private_link_key",
+        },
+      },
+    ],
+  },
 ];
 
 // Flatten all endpoints for easy lookup
@@ -441,11 +520,19 @@ export const parameterMetadata: Record<
   time_zone: { label: "Time Zone", type: "text", placeholder: "America/New_York" },
   identified_only: { label: "Identified Only", type: "select", options: ["true", "false"] },
   // Path params
+  orgId: { label: "Organization ID", type: "text", placeholder: "org_abc123" },
   goalId: { label: "Goal ID", type: "number", placeholder: "Goal ID" },
   funnelId: { label: "Funnel ID", type: "number", placeholder: "Funnel ID" },
   sessionId: { label: "Session ID", type: "text", placeholder: "Session ID" },
   userId: { label: "User ID", type: "text", placeholder: "User ID" },
   stepNumber: { label: "Step Number", type: "number", placeholder: "Step number (1-indexed)" },
+  siteId: { label: "Site ID", type: "number", placeholder: "Site ID" },
+  // Sites-specific params
+  action: {
+    label: "Action",
+    type: "select",
+    options: ["generate_private_link_key", "revoke_private_link_key"],
+  },
 };
 
 // Method colors for UI

@@ -61,14 +61,14 @@ type CreateGoalBody = z.infer<typeof goalBodySchema>;
 
 export async function createGoal(
   request: FastifyRequest<{
-    Params: { site: string };
+    Params: { siteId: string };
     Body: CreateGoalBody;
   }>,
   reply: FastifyReply
 ) {
   try {
     // Get siteId from URL params
-    const siteId = parseInt(request.params.site, 10);
+    const siteId = parseInt(request.params.siteId, 10);
     if (isNaN(siteId) || siteId <= 0) {
       return reply.status(400).send({ error: "Invalid site ID" });
     }

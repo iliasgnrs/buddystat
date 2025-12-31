@@ -10,7 +10,7 @@ import SqlString from "sqlstring";
 
 export interface GetGoalSessionsRequest {
   Params: {
-    site: string;
+    siteId: string;
     goalId: string;
   };
   Querystring: FilterParams<{
@@ -20,7 +20,7 @@ export interface GetGoalSessionsRequest {
 }
 
 export async function getGoalSessions(req: FastifyRequest<GetGoalSessionsRequest>, res: FastifyReply) {
-  const { goalId, site } = req.params;
+  const { goalId, siteId } = req.params;
   const { page, limit } = req.query;
 
   try {
@@ -38,7 +38,7 @@ export async function getGoalSessions(req: FastifyRequest<GetGoalSessionsRequest
     const goalData = goal[0];
 
     // Verify the goal belongs to the site
-    if (goalData.siteId !== Number(site)) {
+    if (goalData.siteId !== Number(siteId)) {
       return res.status(403).send({ error: "Goal does not belong to this site" });
     }
 
@@ -149,7 +149,7 @@ export async function getGoalSessions(req: FastifyRequest<GetGoalSessionsRequest
       query,
       format: "JSONEachRow",
       query_params: {
-        siteId: Number(site),
+        siteId: Number(siteId),
         limit: limit || 25,
         offset: (page - 1) * (limit || 25),
       },

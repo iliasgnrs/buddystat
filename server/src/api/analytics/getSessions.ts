@@ -47,7 +47,7 @@ export type GetSessionsResponse = {
 
 export interface GetSessionsRequest {
   Params: {
-    site: string;
+    siteId: string;
   };
   Querystring: FilterParams<{
     limit: number;
@@ -59,7 +59,7 @@ export interface GetSessionsRequest {
 
 export async function getSessions(req: FastifyRequest<GetSessionsRequest>, res: FastifyReply) {
   const { filters, page = 1, user_id: userId, limit = 100, identified_only: identifiedOnly = "false" } = req.query;
-  const site = req.params.site;
+  const site = req.params.siteId;
   const filterIdentified = identifiedOnly === "true";
 
   const timeStatement = getTimeStatement(req.query);

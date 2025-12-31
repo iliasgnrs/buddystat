@@ -33,7 +33,7 @@ interface GetGoalsResponse {
 export async function getGoals(
   request: FastifyRequest<{
     Params: {
-      site: string;
+      siteId: string;
     };
     Querystring: FilterParams<{
       page?: string;
@@ -44,7 +44,7 @@ export async function getGoals(
   }>,
   reply: FastifyReply
 ) {
-  const { site } = request.params;
+  const { siteId } = request.params;
   const { filters, page = "1", page_size: pageSize = "10", sort = "createdAt", order = "desc" } = request.query;
 
   const pageNumber = parseInt(page, 10);
@@ -64,7 +64,7 @@ export async function getGoals(
     const totalGoalsResult = await db
       .select({ count: sql<number>`count(*)` })
       .from(goals)
-      .where(eq(goals.siteId, Number(site)));
+      .where(eq(goals.siteId, Number(siteId)));
 
     const totalGoals = totalGoalsResult[0]?.count || 0;
     const totalPages = Math.ceil(totalGoals / pageSizeNumber);
@@ -104,7 +104,7 @@ export async function getGoals(
     const siteGoals = await db
       .select()
       .from(goals)
-      .where(eq(goals.siteId, Number(site)))
+      .where(eq(goals.siteId, Number(siteId)))
       .orderBy(orderBy)
       .limit(pageSizeNumber)
       .offset((pageNumber - 1) * pageSizeNumber);
@@ -124,13 +124,13 @@ export async function getGoals(
 
     // Build filter and time clauses for ClickHouse queries
     const timeStatement = getTimeStatement(request.query);
-    const filterStatement = filters ? getFilterStatement(filters, Number(site), timeStatement) : "";
+    const filterStatement = filters ? getFilterStatement(filters, Number(siteId), timeStatement) : "";
 
     // First, get the total number of unique sessions (denominator for conversion rate)
     const totalSessionsQuery = `
       SELECT COUNT(DISTINCT session_id) AS total_sessions
       FROM events
-      WHERE site_id = ${SqlString.escape(Number(site))}
+      WHERE site_id = ${SqlString.escape(Number(siteId))}
       ${timeStatement}
       ${filterStatement}
     `;
@@ -223,7 +223,7 @@ export async function getGoals(
       SELECT
         ${conditionalClauses.join(", ")}
       FROM events
-      WHERE site_id = ${SqlString.escape(Number(site))}
+      WHERE site_id = ${SqlString.escape(Number(siteId))}
       ${timeStatement}
       ${filterStatement}
     `;

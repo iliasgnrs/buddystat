@@ -6,7 +6,7 @@ import { getTimeStatement } from "./utils/utils.js";
 
 export const getJourneys = async (
   request: FastifyRequest<{
-    Params: { site: string };
+    Params: { siteId: string };
     Querystring: FilterParams<{
       steps?: string;
       limit?: string;
@@ -16,7 +16,7 @@ export const getJourneys = async (
   reply: FastifyReply
 ) => {
   try {
-    const { site } = request.params;
+    const { siteId } = request.params;
     const { steps = "3", limit = "100", filters, stepFilters } = request.query;
 
     const maxSteps = parseInt(steps, 10);
@@ -36,7 +36,7 @@ export const getJourneys = async (
 
     // Time conditions using getTimeStatement
     const timeStatement = getTimeStatement(request.query);
-    const filterStatement = getFilterStatement(filters, Number(site), timeStatement);
+    const filterStatement = getFilterStatement(filters, Number(siteId), timeStatement);
 
     // Parse step filters
     let parsedStepFilters: Record<number, string> = {};
@@ -106,7 +106,7 @@ export const getJourneys = async (
         FROM journey_segments
       `,
       query_params: {
-        siteId: parseInt(site, 10),
+        siteId: parseInt(siteId, 10),
         maxSteps: maxSteps,
         journeyLimit: journeyLimit,
       },

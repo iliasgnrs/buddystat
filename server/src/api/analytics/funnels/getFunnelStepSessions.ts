@@ -22,7 +22,7 @@ type Funnel = {
 export interface GetFunnelStepSessionsRequest {
   Body: Funnel;
   Params: {
-    site: string;
+    siteId: string;
     stepNumber: string;
   };
   Querystring: FilterParams<{
@@ -34,7 +34,7 @@ export interface GetFunnelStepSessionsRequest {
 
 export async function getFunnelStepSessions(req: FastifyRequest<GetFunnelStepSessionsRequest>, res: FastifyReply) {
   const { steps } = req.body;
-  const { stepNumber: stepNumberStr, site } = req.params;
+  const { stepNumber: stepNumberStr, siteId } = req.params;
   const { mode, page, limit } = req.query;
 
   const stepNumber = parseInt(stepNumberStr, 10);
@@ -59,7 +59,7 @@ export async function getFunnelStepSessions(req: FastifyRequest<GetFunnelStepSes
 
   try {
     const timeStatement = getTimeStatement(req.query);
-    let filterStatement = getFilterStatement(req.query.filters, Number(site), timeStatement);
+    let filterStatement = getFilterStatement(req.query.filters, Number(siteId), timeStatement);
 
     // Transform filter statement to use extracted UTM columns instead of map access
     // since the CTE already extracts utm_source, utm_medium, etc. as separate columns
@@ -231,7 +231,7 @@ export async function getFunnelStepSessions(req: FastifyRequest<GetFunnelStepSes
       query,
       format: "JSONEachRow",
       query_params: {
-        siteId: Number(site),
+        siteId: Number(siteId),
         limit: limit || 25,
         offset: (page - 1) * (limit || 25),
       },

@@ -1,21 +1,12 @@
-import { and, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { db } from "../../db/postgres/postgres.js";
 import { member, user } from "../../db/postgres/schema.js";
-import { getSessionFromReq } from "../../lib/auth-utils.js";
 
 interface ListOrganizationMembersRequest {
   Params: {
     organizationId: string;
   };
-}
-
-// Define user interface based on schema
-interface UserInfo {
-  id: string;
-  name: string | null;
-  email: string;
-  image: string | null;
 }
 
 export async function listOrganizationMembers(
@@ -25,29 +16,6 @@ export async function listOrganizationMembers(
   try {
     const { organizationId } = request.params;
 
-    const session = await getSessionFromReq(request);
-
-    if (!session?.user?.id) {
-      return reply.status(401).send({
-        error: "Unauthorized",
-        message: "You must be logged in to access this resource",
-      });
-    }
-
-    // Check if user is a member of this organization
-    const userMembership = await db.query.member.findFirst({
-      where: and(eq(member.userId, session.user.id), eq(member.organizationId, organizationId)),
-    });
-
-    if (!userMembership) {
-      return reply.status(403).send({
-        error: "Forbidden",
-        message: "You do not have access to this organization",
-      });
-    }
-
-    // User has access, fetch all members of the organization
-    // Use a direct SQL query approach instead of relations
     const organizationMembers = await db
       .select({
         id: member.id,

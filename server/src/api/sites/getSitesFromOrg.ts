@@ -3,7 +3,6 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import { clickhouse } from "../../db/clickhouse/clickhouse.js";
 import { db } from "../../db/postgres/postgres.js";
 import { sites, member, organization } from "../../db/postgres/schema.js";
-import { getSessionFromReq, getIsUserAdmin } from "../../lib/auth-utils.js";
 import { IS_CLOUD, DEFAULT_EVENT_LIMIT } from "../../lib/const.js";
 import { processResults } from "../analytics/utils/utils.js";
 import { getSubscriptionInner } from "../stripe/getSubscription.js";
@@ -18,29 +17,21 @@ export async function getSitesFromOrg(
 ) {
   try {
     const { organizationId } = req.params;
-    const session = await getSessionFromReq(req);
-    const userId = session?.user.id;
 
-    if (!userId) {
-      return res.status(401).send({ error: "Unauthorized" });
-    }
+    const userId = req.user?.id;
 
     // Run all database queries concurrently
-    const [isOwner, memberCheck, sitesData, orgInfo] = await Promise.all([
-      getIsUserAdmin(req),
-      db
-        .select()
-        .from(member)
-        .where(and(eq(member.organizationId, organizationId), eq(member.userId, userId)))
-        .limit(1),
+    const [memberCheck, sitesData, orgInfo] = await Promise.all([
+      userId
+        ? db
+            .select()
+            .from(member)
+            .where(and(eq(member.organizationId, organizationId), eq(member.userId, userId)))
+            .limit(1)
+        : Promise.resolve([]),
       db.select().from(sites).where(eq(sites.organizationId, organizationId)),
       db.select().from(organization).where(eq(organization.id, organizationId)).limit(1),
     ]);
-
-    // If not admin, verify user is a member of the organization
-    if (!isOwner && memberCheck.length === 0) {
-      return res.status(403).send({ error: "Access denied to this organization" });
-    }
 
     // Query session counts for the sites
     const sessionCountMap = new Map<number, number>();
