@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { DateTime } from "luxon";
 import { useEffect, useMemo } from "react";
-import { GetSessionsResponse } from "../../../../../../api/analytics/endpoints";
+import { fetchSessions, GetSessionsResponse, SessionsParams } from "../../../../../../api/analytics/endpoints";
 import { APIResponse } from "../../../../../../api/types";
-import { toQueryParams } from "../../../../../../api/analytics/endpoints/types";
 import { authedFetch, buildApiParams } from "../../../../../../api/utils";
 import { getFilteredFilters, useStore } from "../../../../../../lib/store";
 import { SESSION_PAGE_FILTERS } from "../../../../../../lib/filterGroups";
@@ -27,13 +26,13 @@ export function useTimelineSessions() {
       let reachedMaxPages = false;
 
       for (let page = 1; page <= MAX_PAGES; page++) {
-        const requestParams = {
-          ...toQueryParams(buildApiParams(time, { filters: filteredFilters })),
+        const requestParams: SessionsParams = {
+          ...buildApiParams(time, { filters: filteredFilters }),
           page,
           limit: PAGE_SIZE,
         };
 
-        const response = await authedFetch<APIResponse<GetSessionsResponse>>(`/sessions/${site}`, requestParams);
+        const response = await fetchSessions(site, requestParams);
 
         if (response?.data) {
           allSessions.push(...response.data);
