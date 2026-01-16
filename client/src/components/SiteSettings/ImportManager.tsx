@@ -247,12 +247,12 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
               <Button type="submit" disabled={isImportDisabled} className="w-full sm:w-auto">
                 {createImportMutation.isPending ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin" />
                     Importing...
                   </>
                 ) : (
                   <>
-                    <Upload className="mr-2 h-4 w-4" />
+                    <Upload className="h-4 w-4" />
                     Import
                   </>
                 )}

@@ -36,10 +36,14 @@ const formSchema = z
       eventName: z.string().optional(),
       eventPropertyKey: z.string().optional(),
       eventPropertyValue: z.string().optional(),
-      propertyFilters: z.array(z.object({
-        key: z.string(),
-        value: z.union([z.string(), z.number(), z.boolean()]),
-      })).optional(),
+      propertyFilters: z
+        .array(
+          z.object({
+            key: z.string(),
+            value: z.union([z.string(), z.number(), z.boolean()]),
+          })
+        )
+        .optional(),
     }),
   })
   .refine(
@@ -70,16 +74,18 @@ export default function GoalFormModal({ siteId, goal, trigger, isCloneMode = fal
   const [isOpen, setIsOpen] = useState(false);
 
   // Initialize useProperties based on either new propertyFilters or legacy properties
-  const hasProperties = !!(goal?.config.propertyFilters?.length ||
-    (goal?.config.eventPropertyKey && goal?.config.eventPropertyValue !== undefined));
+  const hasProperties = !!(
+    goal?.config.propertyFilters?.length ||
+    (goal?.config.eventPropertyKey && goal?.config.eventPropertyValue !== undefined)
+  );
   const [useProperties, setUseProperties] = useState(hasProperties);
 
   // State for managing multiple property filters (store as strings in UI)
   const [propertyFilters, setPropertyFilters] = useState<Array<{ key: string; value: string }>>(
     goal?.config.propertyFilters?.map(f => ({ key: f.key, value: String(f.value) })) ||
-    (goal?.config.eventPropertyKey && goal?.config.eventPropertyValue !== undefined
-      ? [{ key: goal.config.eventPropertyKey, value: String(goal.config.eventPropertyValue) }]
-      : [{ key: "", value: "" }])
+      (goal?.config.eventPropertyKey && goal?.config.eventPropertyValue !== undefined
+        ? [{ key: goal.config.eventPropertyKey, value: String(goal.config.eventPropertyValue) }]
+        : [{ key: "", value: "" }])
   );
 
   // Fetch suggestions for paths and events
@@ -112,12 +118,15 @@ export default function GoalFormModal({ siteId, goal, trigger, isCloneMode = fal
   useEffect(() => {
     if (isOpen && goal) {
       // Update useProperties based on either new propertyFilters or legacy properties
-      const hasFilters = !!(goal.config.propertyFilters?.length ||
-        (goal.config.eventPropertyKey && goal.config.eventPropertyValue !== undefined));
+      const hasFilters = !!(
+        goal.config.propertyFilters?.length ||
+        (goal.config.eventPropertyKey && goal.config.eventPropertyValue !== undefined)
+      );
       setUseProperties(hasFilters);
 
       // Update propertyFilters state
-      const filters = goal.config.propertyFilters?.map(f => ({ key: f.key, value: String(f.value) })) ||
+      const filters =
+        goal.config.propertyFilters?.map(f => ({ key: f.key, value: String(f.value) })) ||
         (goal.config.eventPropertyKey && goal.config.eventPropertyValue !== undefined
           ? [{ key: goal.config.eventPropertyKey, value: String(goal.config.eventPropertyValue) }]
           : [{ key: "", value: "" }]);
@@ -395,7 +404,7 @@ export default function GoalFormModal({ siteId, goal, trigger, isCloneMode = fal
                         onClick={() => setPropertyFilters([...propertyFilters, { key: "", value: "" }])}
                         className="w-full"
                       >
-                        <Plus className="mr-2 h-4 w-4" />
+                        <Plus className="h-4 w-4" />
                         Add Another Parameter
                       </Button>
                     </div>
@@ -476,7 +485,7 @@ export default function GoalFormModal({ siteId, goal, trigger, isCloneMode = fal
                         onClick={() => setPropertyFilters([...propertyFilters, { key: "", value: "" }])}
                         className="w-full"
                       >
-                        <Plus className="mr-2 h-4 w-4" />
+                        <Plus className="h-4 w-4" />
                         Add Another Property
                       </Button>
                     </div>
