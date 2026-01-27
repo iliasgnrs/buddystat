@@ -9,7 +9,7 @@ import { ArrowRight, Clock, ExternalLink, Loader2, Monitor, Smartphone, Tablet, 
 import { DateTime } from "luxon";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { memo, useMemo } from "react";
+import { memo, useMemo, useState } from "react";
 import { useGetSessionDetailsInfinite } from "../../api/analytics/hooks/useGetUserSessions";
 import { GetSessionsResponse, SessionEvent } from "../../api/analytics/endpoints";
 import { Browser } from "../../app/[site]/components/shared/icons/Browser";
@@ -20,6 +20,7 @@ import { useGetRegionName } from "../../lib/geo";
 import { cn, getCountryName, getLanguageName } from "../../lib/utils";
 import { Avatar, generateName } from "../Avatar";
 import { EventIcon, PageviewIcon } from "../EventIcons";
+import { EventTypeFilter } from "../EventTypeFilter";
 import { IdentifiedBadge } from "../IdentifiedBadge";
 import { Button } from "../ui/button";
 
@@ -303,6 +304,28 @@ export function SessionDetails({ session, userId }: SessionDetailsProps) {
     return allEvents.filter((p: SessionEvent) => p.type === "outbound").length;
   }, [allEvents]);
 
+  // Event type filter state
+  const [visibleEventTypes, setVisibleEventTypes] = useState<Set<string>>(
+    new Set(["pageview", "custom_event", "outbound"])
+  );
+
+  const toggleEventType = (type: string) => {
+    setVisibleEventTypes((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(type)) {
+        newSet.delete(type);
+      } else {
+        newSet.add(type);
+      }
+      return newSet;
+    });
+  };
+
+  // Filter events based on visible types
+  const filteredEvents = useMemo(() => {
+    return allEvents.filter((event: SessionEvent) => visibleEventTypes.has(event.type));
+  }, [allEvents, visibleEventTypes]);
+
   const { getRegionName } = useGetRegionName();
 
   const isIdentified = !!session.identified_user_id;
@@ -335,14 +358,26 @@ export function SessionDetails({ session, userId }: SessionDetailsProps) {
             )}
           </div>
 
-          <TabsContent value="timeline" className="mt-4">
+          <TabsContent value="timeline">
+            <div className="mb-4">
+              <EventTypeFilter
+                visibleTypes={visibleEventTypes}
+                onToggle={toggleEventType}
+                counts={{
+                  pageview: totalPageviews,
+                  custom_event: totalEvents,
+                  error: totalErrors,
+                  outbound: totalOutbound,
+                }}
+              />
+            </div>
             <div className="mb-4 px-1">
-              {allEvents.map((pageview: SessionEvent, index: number) => {
+              {filteredEvents.map((pageview: SessionEvent, index: number) => {
                 // Determine the next timestamp for duration calculation
                 // For the last item, use the session end time
                 let nextTimestamp;
-                if (index < allEvents.length - 1) {
-                  nextTimestamp = allEvents[index + 1].timestamp;
+                if (index < filteredEvents.length - 1) {
+                  nextTimestamp = filteredEvents[index + 1].timestamp;
                 } else if (sessionDetails) {
                   nextTimestamp = sessionDetails.session_end;
                 }
@@ -352,7 +387,7 @@ export function SessionDetails({ session, userId }: SessionDetailsProps) {
                     key={`${pageview.timestamp}-${index}`}
                     item={pageview}
                     index={index}
-                    isLast={index === allEvents.length - 1 && !hasNextPage}
+                    isLast={index === filteredEvents.length - 1 && !hasNextPage}
                     nextTimestamp={nextTimestamp}
                   />
                 );
@@ -404,8 +439,8 @@ export function SessionDetails({ session, userId }: SessionDetailsProps) {
                           <span className="font-medium text-neutral-600 dark:text-neutral-300">
                             {isIdentified
                               ? (session.traits?.username as string) ||
-                                (session.traits?.name as string) ||
-                                session.identified_user_id
+                              (session.traits?.name as string) ||
+                              session.identified_user_id
                               : generateName(sessionDetails.user_id)}
                           </span>
                           {isIdentified && <IdentifiedBadge traits={session.traits} />}
