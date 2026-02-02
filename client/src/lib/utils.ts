@@ -116,7 +116,7 @@ export function normalizeDomain(domain: string): string {
  * - Requires the TLD to be alphabetical (e.g. .com)
  */
 export function isValidDomain(domain: string): boolean {
-  const domainRegex = /^(?:https?:\/\/)?(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?\.)+\p{L}{2,}$/u;
+  const domainRegex = /^(?:https?:\/\/)?(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?\.)+\p{L}{2,}\/?$/u;
   return domainRegex.test(domain);
 }
 

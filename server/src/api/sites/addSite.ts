@@ -21,19 +21,20 @@ export async function addSite(
   const { organizationId } = request.params;
   const { domain, name, public: isPublic, saltUserIds, blockBots } = request.body;
 
+  // Strip protocol and trailing slash before validation
+  const cleanedDomain = domain.replace(/^https?:\/\//, "").replace(/\/+$/, "");
+
   // Validate domain format using regex
   const domainRegex = /^(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?\.)+\p{L}{2,}$/u;
-  if (!domainRegex.test(domain)) {
+  if (!domainRegex.test(cleanedDomain)) {
     return reply.status(400).send({
       error: "Invalid domain format. Must be a valid domain like example.com or sub.example.com",
     });
   }
 
   try {
-    // Auth and org admin check handled by requireOrgAdminFromBody middleware
     const userId = request.user?.id;
 
-    // Generate a random 12-character hex ID
     const id = randomBytes(6).toString("hex");
 
     // Create the new site
@@ -41,7 +42,7 @@ export async function addSite(
       .insert(sites)
       .values({
         id,
-        domain,
+        domain: cleanedDomain,
         name,
         createdBy: userId,
         organizationId,
