@@ -32,7 +32,7 @@ function ownerMessage(message: string, featurePath?: string, requiredPlan?: "pro
           </p>
           {featurePath && (
             <Link
-              href={`https://${DEMO_HOSTNAME}/1/${featurePath}`}
+              href={`https://${DEMO_HOSTNAME}/81/${featurePath}`}
               target="_blank"
               className="text-sm text-neutral-100 hover:underline flex items-center gap-1"
             >
@@ -63,7 +63,7 @@ function userMessage(message: string, featurePath?: string) {
           </p>
           {featurePath && (
             <Link
-              href={`https://${DEMO_HOSTNAME}/1/${featurePath}`}
+              href={`https://${DEMO_HOSTNAME}/81/${featurePath}`}
               target="_blank"
               className="text-sm text-neutral-100 hover:underline flex items-center gap-1"
             >
