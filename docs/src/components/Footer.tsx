@@ -11,8 +11,8 @@ export function Footer() {
           <div className="space-y-4">
             <Image src="/rybbit-text.svg" alt="Rybbit" width={120} height={0} style={{ height: "auto" }}
               className="dark:invert-0 invert"
-              
-               />
+
+            />
             {/* <p className="text-sm text-neutral-400 max-w-xs">
               Open source, privacy-focused web analytics platform that respects
               user privacy.
@@ -172,9 +172,14 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="https://ipapi.is/" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
-                  Geolocation by ipapi.is
-                </Link>
+                <a
+                  href="https://rybbit.featurebase.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                >
+                  Feedback
+                </a>
               </li>
               <li>
                 <Link href="/oss-friends" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">

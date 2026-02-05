@@ -108,7 +108,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
                 >
-                  Community
+                  Discord
                 </a>
               </li>
               <li>
