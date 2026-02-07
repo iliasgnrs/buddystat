@@ -1,0 +1,27 @@
+# Merge strategy for custom configuration files
+# Use 'ours' strategy to always keep our version during merges
+
+# Environment files - always keep ours
+.env merge=ours
+.env.local merge=ours
+.env.production merge=ours
+.env.*.local merge=ours
+
+# Deployment configuration - keep ours
+.env.example merge=union
+docker-compose.cloud.yml merge=union
+DEPLOYMENT.md merge=union
+
+# Custom scripts - keep ours
+deploy-to-hetzner.sh merge=ours
+update-from-upstream.sh merge=ours
+
+# White label / branding assets - keep ours
+client/public/logo.* merge=ours
+client/public/favicon.* merge=ours
+client/public/brand/** merge=ours
+docs/public/logos/** merge=ours
+
+# Custom theme overrides
+client/src/app/globals.css merge=union
+client/tailwind.config.ts merge=union

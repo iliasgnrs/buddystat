@@ -11,6 +11,32 @@
     <a href="https://github.com/rybbit-io/rybbit/blob/master/CONTRIBUTE.md" target="_blank">Contribute</a>
 </p>
 
+---
+
+## 🔧 BuddyStat - Custom Fork
+
+This is a customized fork of [Rybbit](https://github.com/rybbit-io/rybbit) with white labeling and custom features.
+
+**📚 Custom Documentation:**
+- **[WORKFLOW.md](./WORKFLOW.md)** - Complete workflow guide for maintaining this fork
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Hetzner VPS deployment guide
+- **[WHITE_LABEL.md](./WHITE_LABEL.md)** - White labeling and customization guide
+
+**🚀 Quick Commands:**
+```bash
+# Update from upstream (original Rybbit repo)
+./update-from-upstream.sh
+
+# Deploy to Hetzner VPS
+./deploy-to-hetzner.sh
+```
+
+**📦 Repository Structure:**
+- **Origin**: `github.com/iliasgnrs/buddystat` (this fork - your custom version)
+- **Upstream**: `github.com/rybbit-io/rybbit` (original Rybbit repository)
+
+---
+
 <a href="https://rybbit.com/" target="_blank">Rybbit</a> is the modern open source and privacy friendly alternative to Google Analytics. It takes only a couple minutes to setup and is super intuitive to use.
 
 <p align="center">
