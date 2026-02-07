@@ -24,7 +24,7 @@ export default function MainPage() {
 }
 
 function MainPageContent() {
-  useSetPageTitle("Rybbit · Main");
+  useSetPageTitle("BuddyStat · Main");
 
   return (
     <div className="p-2 md:p-4 max-w-[1100px] mx-auto space-y-3">

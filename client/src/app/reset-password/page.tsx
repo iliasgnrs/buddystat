@@ -14,7 +14,7 @@ import { authClient } from "../../lib/auth";
 import { IS_CLOUD } from "../../lib/const";
 
 export default function ResetPasswordPage() {
-  useSetPageTitle("Rybbit · Reset Password");
+  useSetPageTitle("BuddyStat · Reset Password");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();

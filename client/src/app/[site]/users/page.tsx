@@ -77,7 +77,7 @@ const SortHeader = ({ column, children }: any) => {
 };
 
 export default function UsersPage() {
-  useSetPageTitle("Rybbit · Users");
+  useSetPageTitle("BuddyStat · Users");
 
   const { site } = useParams();
 

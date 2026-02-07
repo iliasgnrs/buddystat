@@ -8,7 +8,7 @@ import { Footer } from "./components/Footer";
 import { Button } from "../components/ui/button";
 
 export default function NotFound() {
-  useSetPageTitle("Rybbit · Page Not Found");
+  useSetPageTitle("BuddyStat · Page Not Found");
 
   return (
     <StandardPage>

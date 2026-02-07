@@ -15,7 +15,7 @@ import { authClient } from "@/lib/auth";
 import { AppSumoPlan } from "../../../../components/subscription/AppSumoPlan";
 
 export default function OrganizationSubscriptionPage() {
-  useSetPageTitle("Rybbit · Organization Subscription");
+  useSetPageTitle("BuddyStat · Organization Subscription");
   const { data: activeSubscription, isLoading: isLoadingSubscription } = useStripeSubscription();
 
   const { data: activeOrg, isPending } = authClient.useActiveOrganization();

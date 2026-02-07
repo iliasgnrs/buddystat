@@ -29,7 +29,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { WINDOW_SIZE_OPTIONS } from "./timelineUtils";
 
 export default function GlobePage() {
-  useSetPageTitle("Rybbit · Globe");
+  useSetPageTitle("BuddyStat · Globe");
   const mapContainer = useRef<HTMLDivElement>(null);
   const { windowSize, setManualWindowSize } = useTimelineStore();
 

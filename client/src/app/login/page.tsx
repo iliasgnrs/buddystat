@@ -18,7 +18,7 @@ import { userStore } from "../../lib/userStore";
 
 export default function Page() {
   const { configs, isLoading: isLoadingConfigs } = useConfigs();
-  useSetPageTitle("Rybbit · Login");
+  useSetPageTitle("BuddyStat · Login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);

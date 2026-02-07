@@ -47,7 +47,7 @@ function AppSumoCodeHandler({
 }
 
 export default function AppSumoSignupPage() {
-  useSetPageTitle("Rybbit · AppSumo Signup");
+  useSetPageTitle("BuddyStat · AppSumo Signup");
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);

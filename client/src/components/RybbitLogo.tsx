@@ -16,10 +16,10 @@ export function RybbitLogo({ width = 32, height = 32 }: { width?: number; height
   }
 
   if (whiteLabelImage) {
-    return <Image src={whiteLabelImage} alt="Rybbit" width={width} height={height} />;
+    return <Image src={whiteLabelImage} alt="BuddyStat" width={width} height={height} />;
   }
 
-  return null;
+  return <Image src="/buddystat-icon.png" alt="BuddyStat" width={width} height={height} />;
 
   // return (
   //   <Image
@@ -45,8 +45,8 @@ export function RybbitTextLogo({ width = 150, height = 34 }: { width?: number; h
   }
 
   if (whiteLabelImage) {
-    return <Image src={whiteLabelImage} alt="Rybbit" width={width} height={height} />;
+    return <Image src={whiteLabelImage} alt="BuddyStat" width={width} height={height} />;
   }
 
-  return <Image src="/rybbit-text.svg" alt="Rybbit" width={width} height={height} className="dark:invert-0 invert" />;
+  return <Image src="/buddystat-text.png" alt="BuddyStat" width={width} height={height} />;
 }

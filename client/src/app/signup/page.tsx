@@ -27,7 +27,7 @@ import { cn, isValidDomain, normalizeDomain } from "../../lib/utils";
 
 function SignupPageContent() {
   const { configs, isLoading: isLoadingConfigs } = useConfigs();
-  useSetPageTitle("Rybbit · Signup");
+  useSetPageTitle("BuddyStat · Signup");
 
   const [currentStep, setCurrentStep] = useState(1);
   const [stepParam] = useQueryState("step", parseAsInteger);
