@@ -15,12 +15,9 @@
 
 ## 🔧 BuddyStat - Custom Fork
 
-This is a customized fork of [Rybbit](https://github.com/rybbit-io/rybbit) with white labeling and custom features.
+This is a customized fork of [Rybbit](https://github.com/rybbit-io/rybbit) with white labeling and deployment automation.
 
-**📚 Custom Documentation:**
-- **[WORKFLOW.md](./WORKFLOW.md)** - Complete workflow guide for maintaining this fork
-- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Hetzner VPS deployment guide
-- **[WHITE_LABEL.md](./WHITE_LABEL.md)** - White labeling and customization guide
+**📚 Complete Guide:** [BUDDYSTAT.md](./BUDDYSTAT.md) - Deployment, updates, customization & workflow
 
 **🚀 Quick Commands:**
 ```bash
@@ -32,8 +29,8 @@ This is a customized fork of [Rybbit](https://github.com/rybbit-io/rybbit) with 
 ```
 
 **📦 Repository Structure:**
-- **Origin**: `github.com/iliasgnrs/buddystat` (this fork - your custom version)
-- **Upstream**: `github.com/rybbit-io/rybbit` (original Rybbit repository)
+- **Origin**: `github.com/iliasgnrs/buddystat` (this fork)
+- **Upstream**: `github.com/rybbit-io/rybbit` (original Rybbit)
 
 ---
 
