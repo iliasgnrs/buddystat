@@ -100,19 +100,10 @@ export function Footer() {
         <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
-              <span>© {new Date().getFullYear()} Rybbit. All rights reserved.</span>
-              <Link
-                href={`https://github.com/rybbit-io/rybbit/releases/tag/v${APP_VERSION}`}
-                className="hover:text-neutral-700 dark:hover:text-neutral-300"
-              >
+              <span>© {new Date().getFullYear()} BuddyStat. All rights reserved.</span>
+              <span className="hover:text-neutral-700 dark:hover:text-neutral-300">
                 v{APP_VERSION}
-              </Link>
-            </div>
-            <div className="text-sm text-neutral-500 dark:text-neutral-400">
-              Made with ❤️ by frogs{" "}
-              <a href="https://tomato.gg" target="_blank" title="Tomato.gg">
-                🐸🍅
-              </a>
+              </span>
             </div>
           </div>
         </div>

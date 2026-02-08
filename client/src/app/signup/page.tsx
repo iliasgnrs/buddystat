@@ -140,7 +140,7 @@ function SignupPageContent() {
 
       setOrganizationId(data.id);
 
-      // Track how user found Rybbit
+      // Track how user found BuddyStat
       if (IS_CLOUD && referralSource && userStore.getState().user?.id) {
         window.rybbit?.identify(userStore.getState().user?.id || "", {
           source: referralSource,
@@ -264,7 +264,7 @@ function SignupPageContent() {
 
               {IS_CLOUD && (
                 <div className="space-y-2">
-                  <Label htmlFor="referralSource">How did you find Rybbit?</Label>
+                  <Label htmlFor="referralSource">How did you find BuddyStat?</Label>
                   <Select value={referralSource} onValueChange={setReferralSource}>
                     <SelectTrigger className="h-10 bg-neutral-100 dark:bg-neutral-800/50 border-neutral-200 dark:border-neutral-700">
                       <SelectValue placeholder="Select an option" />
@@ -397,7 +397,7 @@ function SignupPageContent() {
       <div className="w-full lg:w-[550px] flex flex-col p-6 lg:p-10">
         {/* Logo at top left */}
         <div className="mb-8">
-          <a href="https://rybbit.com" target="_blank" className="inline-block">
+          <a href="/" className="inline-block">
             <RybbitTextLogo />
           </a>
         </div>
