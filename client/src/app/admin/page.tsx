@@ -32,7 +32,7 @@ function MobileSidebar() {
         </SheetTrigger>
         <VisuallyHidden>
           <SheetHeader>
-            <SheetTitle>Rybbit Sidebar</SheetTitle>
+            <SheetTitle>BuddyStat Sidebar</SheetTitle>
           </SheetHeader>
         </VisuallyHidden>
         <SheetContent side="left" className="p-0 w-[40px] flex gap-0" showClose={false}>

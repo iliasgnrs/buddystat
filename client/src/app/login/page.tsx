@@ -77,7 +77,7 @@ export default function Page() {
       <div className="w-full lg:w-[550px] flex flex-col p-6 lg:p-10">
         {/* Logo at top left */}
         <div className="mb-8">
-          <a href="https://rybbit.com" target="_blank" className="inline-block">
+          <a href="/" className="inline-block">
             <RybbitTextLogo />
           </a>
         </div>
@@ -152,12 +152,11 @@ export default function Page() {
         {!IS_CLOUD && (
           <div className="text-xs text-muted-foreground mt-8">
             <a
-              href="https://rybbit.com"
-              target="_blank"
-              rel="noopener"
-              title="Rybbit - Open Source Privacy-Focused Web Analytics"
+              href="/"
+              rel="noopener noreferrer"
+              title="BuddyStat - Open Source Privacy-Focused Web Analytics"
             >
-              Open source web analytics powered by Rybbit
+              Open source web analytics powered by BuddyStat
             </a>
           </div>
         )}

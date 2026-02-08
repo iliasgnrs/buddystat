@@ -64,19 +64,17 @@ function AppSidebarContent() {
           expanded={isExpanded}
         />
         <SidebarLink
-          href="https://rybbit.com/docs"
+          href="/docs"
           icon={<BookOpen className="w-5 h-5" />}
           label="Documentation"
-          target="_blank"
           active={false}
           expanded={isExpanded}
         />
         {
           IS_CLOUD && subscription?.status === "active" && <SidebarLink
-            href="https://rybbit.featurebase.app"
+            href="/feedback"
             icon={<Lightbulb className="w-5 h-5" />}
             label="Feedback"
-            target="_blank"
             active={false}
             expanded={isExpanded}
           />

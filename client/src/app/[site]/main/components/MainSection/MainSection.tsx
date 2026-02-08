@@ -77,11 +77,11 @@ export function MainSection() {
             <div className="flex items-center space-x-4">
               {!isWhiteLabel && (
                 <Link
-                  href={session.data ? "/" : "https://rybbit.com"}
+                  href={session.data ? "/" : "/"}
                   className={cn("text-lg font-semibold flex items-center gap-1.5 opacity-75", tilt_wrap.className)}
                 >
                   <RybbitLogo width={20} height={20} />
-                  rybbit
+                  BuddyStat
                 </Link>
               )}
             </div>
