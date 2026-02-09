@@ -107,9 +107,8 @@ function getFormattedPrice(eventLimit: number | string, planType: "standard" | "
   };
 }
 
-export function PricingSection() {
+export function PricingSection({ isAnnual, setIsAnnual }: { isAnnual: boolean, setIsAnnual: (isAnnual: boolean) => void }) {
   const [eventLimitIndex, setEventLimitIndex] = useState(0); // Default to 100k (index 0)
-  const [isAnnual, setIsAnnual] = useState(true);
 
   const eventLimit = EVENT_TIERS[eventLimitIndex];
   const standardPrices = getFormattedPrice(eventLimit, "standard");
