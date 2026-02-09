@@ -145,7 +145,7 @@ export function AccountInner() {
               </Button>
             </div>
           </div>
-          {(session.data?.user as any)?.sendAutoEmailReports !== undefined && IS_CLOUD && (
+          {(session.data?.user as any)?.sendAutoEmailReports !== undefined && (
             <div className="flex items-center justify-between">
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">Send Weekly Email Reports</h4>

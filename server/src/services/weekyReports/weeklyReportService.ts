@@ -393,11 +393,6 @@ class WeeklyReportService {
   }
 
   public async generateAndSendReports(): Promise<void> {
-    if (!IS_CLOUD) {
-      this.logger.info("Skipping weekly reports for non-cloud instance");
-      return;
-    }
-
     this.logger.info("Starting weekly report generation and sending");
 
     try {
@@ -443,10 +438,7 @@ class WeeklyReportService {
   }
 
   private initializeWeeklyReportCron(): void {
-    if (!IS_CLOUD) {
-      this.logger.info("Skipping weekly report cron initialization for non-cloud instance");
-      return;
-    }
+    this.logger.info("Initializing weekly report cron job");
 
     this.logger.info("Initializing weekly report cron");
 
