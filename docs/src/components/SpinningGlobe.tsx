@@ -9,6 +9,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import * as CountryFlags from "country-flag-icons/react/3x2";
 import {
+  Bot,
   Monitor,
   Smartphone,
   Link,
@@ -234,6 +235,9 @@ function getChannelIconComponent(channel: string) {
       return Calendar;
     case "Audio":
       return Headphones;
+    case "AI":
+    case "Paid AI":
+      return Bot;
     default:
       return null;
   }
