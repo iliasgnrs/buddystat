@@ -431,7 +431,7 @@ export const WeeklyReportEmail = ({ userName, organizationReport }: WeeklyReport
                 {/* Dashboard Link */}
                 <div className="text-center mb-6">
                   <Link
-                    href={`https://app.rybbit.io/${site.siteId}`}
+                    href={`${process.env.BASE_URL}/${site.siteId}`}
                     className="inline-block bg-brand text-white px-6 py-2.5 rounded-md font-medium text-sm no-underline"
                   >
                     View Full Dashboard
@@ -446,11 +446,11 @@ export const WeeklyReportEmail = ({ userName, organizationReport }: WeeklyReport
                 This weekly report covers the last 7 days of analytics data.
               </Text>
               <Text className="text-mutedText text-xs mb-3">
-                <Link href="https://app.rybbit.io/settings/account" className="text-brand no-underline">
+                <Link href={`${process.env.BASE_URL}/settings/account`} className="text-brand no-underline">
                   Unsubscribe from weekly reports
                 </Link>
               </Text>
-              <Text className="text-mutedText text-xs">© {currentYear} Rybbit Analytics</Text>
+              <Text className="text-mutedText text-xs">© {currentYear} BuddyStat Analytics</Text>
             </Section>
           </Container>
         </Body>

@@ -24,7 +24,7 @@ interface ReengagementEmailProps {
   unsubscribeUrl: string;
 }
 
-const DOCS_URL = "https://www.rybbit.io/docs";
+const DOCS_URL = `${process.env.BASE_URL}/docs`;
 
 export const ReengagementEmail = ({
   userName,
@@ -37,7 +37,7 @@ export const ReengagementEmail = ({
   unsubscribeUrl,
 }: ReengagementEmailProps) => {
   const greeting = userName ? `Hi ${userName}` : "Hi there";
-  const dashboardUrl = `https://app.rybbit.io/${siteId}`;
+  const dashboardUrl = `${process.env.BASE_URL}/${siteId}`;
   const messageWithDomain = message.replace("{domain}", domain);
 
   // Split message into paragraphs
@@ -64,13 +64,7 @@ export const ReengagementEmail = ({
       >
         <Body className="bg-white font-sans">
           <Container className="mx-auto py-8 px-6 max-w-[600px]">
-            <Img
-              src="https://app.rybbit.io/rybbit-text-black.png"
-              alt="Rybbit"
-              width="120"
-              height="28"
-              className="mb-8"
-            />
+            <Text className="text-brand text-2xl font-bold mb-8">BuddyStat</Text>
 
             <Text className="text-darkText text-base leading-relaxed mb-4">{greeting},</Text>
 
@@ -94,9 +88,7 @@ export const ReengagementEmail = ({
             </Text>
 
             <Text className="text-darkText text-base leading-relaxed mt-8">
-              You can reply to this email,
-              <br />
-              Bill – Founder of Rybbit
+              You can reply to this email for support.
             </Text>
 
             <Hr className="border-borderColor my-8" />

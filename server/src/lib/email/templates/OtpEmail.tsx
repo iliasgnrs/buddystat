@@ -23,21 +23,21 @@ const getContent = (type: OtpEmailType) => {
   switch (type) {
     case "sign-in":
       return {
-        preview: "Your Rybbit Sign-In Code",
+        preview: "Your BuddyStat Sign-In Code",
         heading: "Your Sign-In Code",
-        description: "Here is your one-time password to sign in to Rybbit:",
+        description: "Here is your one-time password to sign in to BuddyStat:",
       };
     case "email-verification":
       return {
         preview: "Verify Your Email Address",
         heading: "Verify Your Email",
-        description: "Here is your verification code for Rybbit:",
+        description: "Here is your verification code for BuddyStat:",
       };
     case "forget-password":
       return {
         preview: "Reset Your Password",
         heading: "Reset Your Password",
-        description: "You requested to reset your password for Rybbit. Here is your one-time password:",
+        description: "You requested to reset your password for BuddyStat. Here is your one-time password:",
       };
   }
 };
@@ -91,7 +91,7 @@ export const OtpEmail = ({ otp, type }: OtpEmailProps) => {
             </Section>
 
             <Section className="text-center border-t border-borderColor pt-5">
-              <Text className="text-mutedText text-xs">© {currentYear} Rybbit Analytics</Text>
+              <Text className="text-mutedText text-xs">© {currentYear} BuddyStat Analytics</Text>
             </Section>
           </Container>
         </Body>

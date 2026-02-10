@@ -86,9 +86,9 @@ export const LimitExceededEmail = ({
 
             <Section className="text-center border-t border-borderColor pt-5">
               <Text className="text-mutedText text-xs mb-2">
-                Need help? Contact our support team at support@rybbit.com
+                Need help? Contact our support team at support@buddystat.com
               </Text>
-              <Text className="text-mutedText text-xs">© {currentYear} Rybbit Analytics</Text>
+              <Text className="text-mutedText text-xs">© {currentYear} BuddyStat Analytics</Text>
             </Section>
           </Container>
         </Body>

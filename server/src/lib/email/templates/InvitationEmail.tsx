@@ -26,7 +26,7 @@ export const InvitationEmail = ({ email, invitedBy, organizationName, inviteLink
   return (
     <Html>
       <Head />
-      <Preview>You're Invited to Join {organizationName} on Rybbit</Preview>
+      <Preview>You're Invited to Join {organizationName} on BuddyStat</Preview>
       <Tailwind
         config={{
           presets: [pixelBasedPreset],
@@ -56,10 +56,10 @@ export const InvitationEmail = ({ email, invitedBy, organizationName, inviteLink
             <Section className="mb-8">
               <Text className="text-darkText text-base leading-relaxed mb-4">
                 {invitedBy} has invited you to join <span className="font-bold text-brand">{organizationName}</span> on
-                Rybbit Analytics.
+                BuddyStat Analytics.
               </Text>
               <Text className="text-darkText text-base leading-relaxed">
-                Rybbit is an open-source analytics platform that helps you understand your website traffic while
+                BuddyStat is a privacy-focused analytics platform that helps you understand your website traffic while
                 respecting user privacy.
               </Text>
             </Section>
@@ -77,7 +77,7 @@ export const InvitationEmail = ({ email, invitedBy, organizationName, inviteLink
               <Text className="text-mutedText text-xs mb-2">
                 This invitation was sent to <span className="text-brand">{email}</span>.
               </Text>
-              <Text className="text-mutedText text-xs">© {currentYear} Rybbit Analytics</Text>
+              <Text className="text-mutedText text-xs">© {currentYear} BuddyStat Analytics</Text>
             </Section>
           </Container>
         </Body>

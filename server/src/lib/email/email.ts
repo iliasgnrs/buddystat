@@ -80,7 +80,7 @@ export const sendEmail = async (email: string, subject: string, html: string) =>
   }
   try {
     const response = await resend.emails.send({
-      from: "Rybbit <automail@email.rybbit.com>",
+      from: "BuddyStat <noreply@buddystat.com>",
       to: email,
       subject,
       html,
@@ -93,7 +93,7 @@ export const sendEmail = async (email: string, subject: string, html: string) =>
 };
 
 const OTP_SUBJECTS: Record<OtpEmailType, string> = {
-  "sign-in": "Your Rybbit Sign-In Code",
+  "sign-in": "Your BuddyStat Sign-In Code",
   "email-verification": "Verify Your Email Address",
   "forget-password": "Reset Your Password",
 };
@@ -118,7 +118,7 @@ export const sendInvitationEmail = async (
     })
   );
 
-  await sendEmail(email, "You're Invited to Join an Organization on Rybbit", html);
+  await sendEmail(email, "You're Invited to Join an Organization on BuddyStat", html);
 };
 
 export const sendLimitExceededEmail = async (
@@ -127,7 +127,7 @@ export const sendLimitExceededEmail = async (
   eventCount: number,
   eventLimit: number
 ) => {
-  const upgradeLink = "https://app.rybbit.io/settings/organization/subscription";
+  const upgradeLink = `${process.env.BASE_URL}/settings/organization/subscription`;
 
   const html = await render(
     LimitExceededEmail({
@@ -164,9 +164,9 @@ export const sendWelcomeEmail = async (email: string, name?: string) => {
   const greeting = name ? `Hi ${name}` : "Hi there";
   const text = `${greeting},
 
-Welcome to Rybbit! Thanks for signing up.
+Welcome to BuddyStat! Thanks for signing up.
 
-I'm excited to have you on board. Rybbit is fully self-funded and we're fully committed to making an analytics platform that only serves the interests of our users.
+I'm excited to have you on board. BuddyStat is a privacy-focused analytics platform that helps you understand your website traffic while respecting user privacy.
 
 If you run into any issues or have any questions or suggestions, just reply to this email - I'd love to hear from you.
 
@@ -175,10 +175,10 @@ Bill`;
 
   try {
     await resend.emails.send({
-      from: "Bill from Rybbit <bill@email.rybbit.com>",
-      replyTo: "hello@rybbit.com",
+      from: "BuddyStat <noreply@buddystat.com>",
+      replyTo: "support@buddystat.com",
       to: email,
-      subject: "Welcome to Rybbit!",
+      subject: "Welcome to BuddyStat!",
       text,
     });
   } catch (error) {
@@ -209,7 +209,7 @@ export const scheduleOnboardingTipEmail = async (
     );
 
     const response = await resend.emails.send({
-      from: "Rybbit <automail@email.rybbit.com>",
+      from: "BuddyStat <noreply@buddystat.com>",
       to: email,
       subject: tipContent.subject,
       html,
@@ -264,7 +264,7 @@ export const sendReengagementEmail = async (
     );
 
     await resend.emails.send({
-      from: "Rybbit <automail@email.rybbit.com>",
+      from: "BuddyStat <noreply@buddystat.com>",
       to: email,
       subject: content.subject,
       html,
