@@ -14,7 +14,7 @@ import type { ReengagementContent } from "../../services/reengagement/reengageme
 let resend: Resend | undefined;
 let marketingAudienceId: string | null = null;
 
-if (IS_CLOUD) {
+if (IS_CLOUD && process.env.RESEND_API_KEY) {
   resend = new Resend(process.env.RESEND_API_KEY);
 }
 
