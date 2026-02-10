@@ -32,12 +32,8 @@ function SiteSelectorContent({ onSiteSelect }: { onSiteSelect: () => void }) {
         <div className="max-h-96 overflow-y-auto">
           {[
             {
-              siteId: 81,
-              domain: "rybbit.com",
-            },
-            {
               siteId: 1,
-              domain: "tomato.gg",
+              domain: "demo.buddystat.com",
             },
           ].map(site => {
             const isSelected = site.siteId === currentSiteId;

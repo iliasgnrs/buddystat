@@ -92,14 +92,10 @@ export function NoData() {
             />
             <span className="text-xs text-muted-foreground">
               See our{" "}
-              <a href="https://rybbit.com/docs/script" className="text-blue-500 hover:underline">
+              <a href="/docs" className="text-blue-500 hover:underline">
                 docs
               </a>{" "}
-              for more information, or{" "}
-              <a href="https://rybbit.com/docs/script-troubleshooting" className="text-blue-500 hover:underline">
-                troubleshoot
-              </a>{" "}
-              if your script isn't sending traffic.
+              for more information if your script isn't sending traffic.
             </span>
             {siteMetadata?.siteId && <VerifyInstallation siteId={siteMetadata.siteId} />}
             {/* Framework Guide Cards */}

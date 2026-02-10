@@ -33,10 +33,10 @@ export function VersionCheck() {
                 className="flex items-center gap-3 bg-white dark:bg-neutral-850 border border-neutral-150 dark:border-neutral-850 rounded-lg shadow-lg py-2 px-3 text-sm"
               >
                 <span>
-                  Rybbit v{latest} is available (you&apos;re on v{current})
+                  BuddyStat v{latest} is available (you&apos;re on v{current})
                 </span>
                 <a
-                  href="https://rybbit.com/docs/managing-your-installation#updating-your-installation"
+                  href="/docs"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -85,7 +85,7 @@ export function Footer() {
               {IS_CLOUD && (
                 <li>
                   <a
-                    href="mailto:hello@rybbit.com"
+                    href="mailto:support@buddystat.com"
                     className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
                   >
                     Support

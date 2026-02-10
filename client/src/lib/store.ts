@@ -263,7 +263,7 @@ export const useStore = create<Store>()(
       },
     }),
     {
-      name: "rybbit-store",
+      name: "buddystat-store",
       partialize: state => ({ timezone: state.timezone }),
     }
   )
