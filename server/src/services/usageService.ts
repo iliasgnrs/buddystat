@@ -21,9 +21,10 @@ class UsageService {
 
   /**
    * Initialize the cron job for checking monthly usage
+   * Only runs when Stripe is configured (for billing/subscriptions)
    */
   private initializeUsageCheckCron() {
-    if (IS_CLOUD && process.env.NODE_ENV !== "development") {
+    if (IS_CLOUD && process.env.STRIPE_SECRET_KEY && process.env.NODE_ENV !== "development") {
       // Schedule the monthly usage checker to run every 30 minutes
       this.usageCheckTask = cron.schedule(
         "*/30 * * * *",
