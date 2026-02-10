@@ -317,8 +317,61 @@ class WeeklyReportService {
     }
   }
 
+  /**
+   * Send weekly reports to email addresses configured per site
+   */
+  private async sendPerSiteReports(report: OrganizationReport): Promise<void> {
+    try {
+      for (const siteReport of report.sites) {
+        // Fetch the site's configured report emails
+        const [site] = await db
+          .select({ reportEmails: sites.reportEmails })
+          .from(sites)
+          .where(eq(sites.siteId, siteReport.siteId));
+
+        if (!site?.reportEmails || site.reportEmails.length === 0) {
+          continue; // Skip sites without configured report emails
+        }
+
+        // Create a report with just this single site
+        const singleSiteReport: OrganizationReport = {
+          organizationId: report.organizationId,
+          organizationName: report.organizationName,
+          sites: [siteReport],
+        };
+
+        // Send to all configured email addresses for this site
+        for (const email of site.reportEmails) {
+          try {
+            await sendWeeklyReportEmail(email, email, singleSiteReport);
+            this.logger.info(
+              {
+                email,
+                siteId: siteReport.siteId,
+                siteName: siteReport.siteName,
+                siteDomain: siteReport.siteDomain,
+              },
+              "Sent per-site weekly report"
+            );
+          } catch (error) {
+            this.logger.error(
+              { error, email, siteId: siteReport.siteId },
+              "Failed to send per-site weekly report"
+            );
+          }
+        }
+      }
+    } catch (error) {
+      this.logger.error({ error, organizationId: report.organizationId }, "Error sending per-site reports");
+    }
+  }
+
   private async sendReportsToOrganization(report: OrganizationReport): Promise<void> {
     try {
+      // First, send per-site reports to configured email addresses
+      await this.sendPerSiteReports(report);
+
+      // Then send reports to organization members
       // Fetch all members of the organization with their access restrictions
       const members = await db
         .select({

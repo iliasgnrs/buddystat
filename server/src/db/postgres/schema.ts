@@ -86,6 +86,7 @@ export const sites = pgTable("sites", {
   apiKey: text("api_key"), // Format: rb_{64_hex_chars} = 67 chars total
   privateLinkKey: text("private_link_key"),
   tags: jsonb("tags").default([]).$type<string[]>(),
+  reportEmails: text("report_emails").array(), // Array of email addresses to receive weekly reports for this site
 });
 
 // Active sessions table
