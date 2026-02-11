@@ -26,6 +26,7 @@ import { useGetSitesFromOrg } from "@/api/admin/hooks/useSites";
 import { normalizeDomain } from "@/lib/utils";
 import { IPExclusionManager } from "./IPExclusionManager";
 import { CountryExclusionManager } from "./CountryExclusionManager";
+import { EmailReportsManager } from "./EmailReportsManager";
 import { GSCManager } from "./GSCManager";
 import { useStripeSubscription } from "../../lib/subscription/useStripeSubscription";
 import { Badge } from "../ui/badge";
@@ -342,6 +343,7 @@ export function SiteConfiguration({ siteMetadata, disabled = false, onClose }: S
       <div className="space-y-4">{renderToggleSection(autoCaptureToggles, "Auto Capture")}</div>
       <IPExclusionManager siteId={siteMetadata.siteId} disabled={disabled} />
       <CountryExclusionManager siteId={siteMetadata.siteId} disabled={disabled} />
+      <EmailReportsManager siteId={siteMetadata.siteId} disabled={disabled} />
       {IS_CLOUD && <GSCManager disabled={disabled} />}
       <div className="space-y-3">
         <div>

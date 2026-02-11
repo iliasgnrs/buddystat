@@ -34,6 +34,9 @@ const updateSiteConfigSchema = z.object({
   // Tags
   tags: z.array(z.string().trim().min(1).max(50)).max(20).optional(),
 
+  // Email reports
+  reportEmails: z.array(z.string().email("Invalid email address")).max(10).optional(),
+
   // Analytics features
   sessionReplay: z.boolean().optional(),
   webVitals: z.boolean().optional(),
@@ -116,6 +119,7 @@ export async function updateSiteConfig(
       "excludedIPs",
       "excludedCountries",
       "tags",
+      "reportEmails",
       "sessionReplay",
       "webVitals",
       "trackErrors",

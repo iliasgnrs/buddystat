@@ -26,6 +26,7 @@ export type SiteResponse = {
   trackCopy?: boolean;
   trackFormInteractions?: boolean;
   tags?: string[];
+  reportEmails?: string[];
 };
 
 export type GetSitesFromOrgResponse = {
@@ -122,6 +123,7 @@ export function updateSiteConfig(
     trackCopy?: boolean;
     trackFormInteractions?: boolean;
     tags?: string[];
+    reportEmails?: string[];
   }
 ) {
   return authedFetch(`/sites/${siteId}/config`, undefined, {
