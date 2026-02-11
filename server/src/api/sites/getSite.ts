@@ -51,6 +51,8 @@ export async function getSite(request: FastifyRequest<GetSiteParams>, reply: Fas
       trackButtonClicks: site.trackButtonClicks,
       trackCopy: site.trackCopy,
       trackFormInteractions: site.trackFormInteractions,
+      tags: site.tags,
+      reportEmails: site.reportEmails,
     });
   } catch (error) {
     console.error("Error retrieving site:", error);
