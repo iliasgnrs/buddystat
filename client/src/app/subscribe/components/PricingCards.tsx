@@ -4,7 +4,7 @@ import { Slider } from "@/components/ui/slider";
 import { authClient } from "@/lib/auth";
 import { BACKEND_URL } from "@/lib/const";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "@/components/ui/sonner";
 import { DEFAULT_EVENT_LIMIT } from "../../../lib/subscription/constants";
 import { trackAdEvent } from "../../../lib/trackAdEvent";
@@ -29,7 +29,18 @@ export function PricingCards({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [eventLimitIndex, setEventLimitIndex] = useState<number>(0);
   const [isAnnual, setIsAnnual] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showTestPlan, setShowTestPlan] = useState(false);
   const { data: activeOrg } = authClient.useActiveOrganization();
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "D" && e.shiftKey) {
+        setShowTestPlan((prev) => !prev);
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const eventLimit = EVENT_TIERS[eventLimitIndex];
 
@@ -97,6 +108,52 @@ export function PricingCards({ isLoggedIn }: { isLoggedIn: boolean }) {
     } catch (error: any) {
       toast.error(`Subscription failed: ${error.message}`);
       setIsLoading(false); // Stop loading on error
+    }
+  }
+
+  async function handleTestSubscribe(): Promise<void> {
+    if (!isLoggedIn) {
+      toast.error("Please log in to subscribe.");
+      return;
+    }
+    if (!activeOrg) {
+      toast.error("Please select an organization to subscribe.");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const baseUrl = window.location.origin;
+      const successUrl = `${baseUrl}/settings/organization/subscription?session_id={CHECKOUT_SESSION_ID}`;
+      const cancelUrl = `${baseUrl}/subscribe`;
+
+      const response = await fetch(`${BACKEND_URL}/stripe/create-checkout-session`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          priceId: "price_1SzT8pDFVprnAny2EdkqxRAZ",
+          successUrl,
+          cancelUrl,
+          organizationId: activeOrg.id,
+          referral: window.Rewardful?.referral || undefined,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to create checkout session.");
+      }
+
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      } else {
+        throw new Error("Checkout URL not received.");
+      }
+    } catch (error: any) {
+      toast.error(`Subscription failed: ${error.message}`);
+      setIsLoading(false);
     }
   }
 
@@ -242,6 +299,23 @@ export function PricingCards({ isLoggedIn }: { isLoggedIn: boolean }) {
           onClick={() => handleSubscribe("pro")}
           disabled={isLoading}
         />
+
+        {showTestPlan && (
+          <PricingCard
+            title="Test"
+            description="$1 test subscription for development"
+            priceDisplay={
+              <div>
+                <span className="text-3xl font-bold">$1</span>
+                <span className="ml-1 text-neutral-600 dark:text-neutral-400">/month</span>
+              </div>
+            }
+            buttonText={isLoading ? "Processing..." : "Subscribe ($1)"}
+            features={["Test plan"]}
+            onClick={() => handleTestSubscribe()}
+            disabled={isLoading}
+          />
+        )}
 
         <PricingCard
           title="Enterprise"
