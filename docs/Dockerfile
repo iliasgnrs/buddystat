@@ -11,8 +11,11 @@ WORKDIR /app
 # Copy package files
 COPY docs/package.json docs/package-lock.json* ./
 
-# Install dependencies
-RUN npm ci --legacy-peer-deps
+# Install dependencies without running postinstall scripts
+RUN npm ci --legacy-peer-deps --ignore-scripts
+
+# Now run the postinstall script for fumadocs
+RUN npx fumadocs-mdx
 
 # ---- Builder ----
 FROM base AS builder
