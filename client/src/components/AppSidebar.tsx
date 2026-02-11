@@ -51,7 +51,7 @@ function AppSidebarContent() {
       onMouseLeave={() => setIsExpanded(false)}
     >
       <div className="flex flex-col items-start gap-2">
-        <Link href="/" className="mb-3 mt-1 ml-0.5 flex items-center justify-center">
+        <Link href="/" className="mb-2 mt-1 ml-0.5 flex items-center justify-center">
           <RybbitLogo width={24} height={18} />
         </Link>
         <SidebarLink
