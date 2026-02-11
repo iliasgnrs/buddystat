@@ -172,16 +172,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://rybbit.featurebase.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
-                >
-                  Feedback
-                </a>
-              </li>
-              <li>
                 <Link href="/oss-friends" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
                   OSS Friends
                 </Link>

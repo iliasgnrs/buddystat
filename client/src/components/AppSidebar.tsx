@@ -73,16 +73,6 @@ function AppSidebarContent() {
         />
         {
           IS_CLOUD && subscription?.status === "active" && <SidebarLink
-            href="https://rybbit.featurebase.app"
-            icon={<Lightbulb className="w-5 h-5" />}
-            label="Feedback"
-            target="_blank"
-            active={false}
-            expanded={isExpanded}
-          />
-        }
-        {
-          IS_CLOUD && subscription?.status === "active" && <SidebarLink
             href="mailto:hello@rybbit.com"
             icon={<HelpCircle className="w-5 h-5" />}
             label="Email Support"
