@@ -86,20 +86,29 @@ export default function Layout({ children }: { children: ReactNode }) {
       </Script>
       <Script src="https://r.wdfl.co/rw.js" data-rewardful="fc3780" strategy="afterInteractive" />
       <Script id="rewardful-cross-domain" strategy="afterInteractive">
-        {`document.addEventListener('click', function(e) {
-          var link = e.target && e.target.closest ? e.target.closest('a') : null;
-          if (!link || !link.href) return;
-          if (link.href.indexOf('app.rybbit.io') === -1) return;
-          var referral = window.Rewardful && window.Rewardful.referral;
-          if (!referral) return;
-          try {
-            var url = new URL(link.href);
-            if (!url.searchParams.has('referral')) {
-              url.searchParams.set('referral', referral);
-              link.href = url.toString();
+        {`(function(){
+          function decorateLinks(referral){
+            document.querySelectorAll('a[href*="app.rybbit.io"]').forEach(function(a){
+              try{
+                var url=new URL(a.href);
+                if(!url.searchParams.has('referral')){
+                  url.searchParams.set('referral',referral);
+                  a.href=url.toString();
+                }
+              }catch(e){}
+            });
+          }
+          function start(referral){
+            decorateLinks(referral);
+            new MutationObserver(function(){decorateLinks(referral);})
+              .observe(document.body,{childList:true,subtree:true});
+          }
+          window.rewardful('ready',function(){
+            if(window.Rewardful&&window.Rewardful.referral){
+              start(window.Rewardful.referral);
             }
-          } catch(e) {}
-        });`}
+          });
+        })();`}
       </Script>
       <body className={`flex flex-col min-h-screen ${inter.variable} font-sans`}>
         <RootProvider
