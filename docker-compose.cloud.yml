@@ -17,9 +17,11 @@ services:
       # Pass domain name for use in Caddyfile
       # Email is configured via Caddyfile global options
       - DOMAIN_NAME=${DOMAIN_NAME}
+      - APP_DOMAIN=${APP_DOMAIN}
     depends_on:
       - backend
       - client
+      - docs
 
   clickhouse:
     container_name: clickhouse
@@ -162,6 +164,17 @@ services:
     restart: unless-stopped
     ports:
       - "3002:3002"
+
+  docs:
+    container_name: docs
+    build:
+      context: .
+      dockerfile: ./docs/Dockerfile
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    ports:
+      - "3003:3003"
 
 volumes:
   clickhouse-data:

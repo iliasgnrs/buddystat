@@ -1,14 +1,31 @@
 # Caddyfile
+
+# Main marketing site (docs)
 {$DOMAIN_NAME} {
     # Enable compression
     encode zstd gzip
 
     request_body max_size 10MB
+
+    # Proxy all requests to the docs service
+    handle {
+        reverse_proxy docs:3003
+    }
+}
+
+# Application dashboard
+{$APP_DOMAIN} {
+    # Enable compression
+    encode zstd gzip
+
+    request_body max_size 10MB
+
+    # API routes go to backend
     handle /api/* {
         reverse_proxy backend:3001
     }
 
-    # Proxy all other requests to the client service
+    # All other requests go to client
     handle {
         reverse_proxy client:3002
     }
