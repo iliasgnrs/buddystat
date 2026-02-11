@@ -14,9 +14,6 @@ COPY docs/package.json docs/package-lock.json* ./
 # Install dependencies without running postinstall scripts
 RUN npm ci --legacy-peer-deps --ignore-scripts
 
-# Now run the postinstall script for fumadocs
-RUN npx fumadocs-mdx
-
 # ---- Builder ----
 FROM base AS builder
 WORKDIR /app
@@ -26,6 +23,9 @@ COPY --from=deps /app/node_modules ./node_modules
 
 # Copy docs source
 COPY docs/ .
+
+# Now run fumadocs-mdx with all source files in place
+RUN npx fumadocs-mdx
 
 # Build the application
 RUN npm run build
