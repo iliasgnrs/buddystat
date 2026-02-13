@@ -145,6 +145,9 @@ async function getLocationFromIPAPI(ips: string[]): Promise<Record<string, Locat
     batches.push(uncachedIps.slice(i, i + BATCH_SIZE));
   }
 
+  // Track IPs that failed in IPAPI to fallback to local
+  const failedIps: string[] = [];
+
   try {
     // Process batches sequentially to avoid rate limiting
     for (const batch of batches) {
@@ -163,6 +166,8 @@ async function getLocationFromIPAPI(ips: string[]): Promise<Record<string, Locat
         logger.error(
           `IPAPI request failed for batch of ${batch.length} IPs: ${response.status} ${response.statusText}`
         );
+        // Add failed IPs to fallback list
+        failedIps.push(...batch);
         continue; // Skip this batch but continue with others
       }
 
@@ -207,9 +212,22 @@ async function getLocationFromIPAPI(ips: string[]): Promise<Record<string, Locat
       }
     }
 
+    // Fallback to local for failed IPs
+    if (failedIps.length > 0) {
+      logger.info(`Falling back to local GeoLite2 for ${failedIps.length} IPs`);
+      const localFallback = await getLocationFromLocal(failedIps);
+      for (const ip of failedIps) {
+        if (localFallback[ip]) {
+          results[ip] = localFallback[ip];
+          setCachedIP(ip, localFallback[ip]);
+        }
+      }
+    }
+
     return results;
   } catch (error) {
     logger.error(error, "Error fetching from IPAPI");
+    // Fallback to local for all uncached IPs
     return { ...results, ...localInfo };
   }
 }
