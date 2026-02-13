@@ -43,6 +43,13 @@ coverage/
 # Production
 .env.production 
 
+# SSL Certificates (sensitive - never commit)
+buddystat.crt
+buddystat.key
+*.crt
+*.key
+*.pem
+
 .cursor/
 
 .claude/

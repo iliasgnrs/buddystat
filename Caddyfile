@@ -1,7 +1,10 @@
 # Caddyfile
 
-# Temporary: Route both domains to client until docs is fixed
+# Use Cloudflare Origin Certificates
 {$DOMAIN_NAME} {$APP_DOMAIN} {
+    # Use Cloudflare Origin Certificate
+    tls /opt/buddystat/buddystat.crt /opt/buddystat/buddystat.key
+
     # Enable compression
     encode zstd gzip
 
