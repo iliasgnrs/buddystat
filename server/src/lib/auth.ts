@@ -117,7 +117,12 @@ export const auth = betterAuth({
     },
   },
   plugins: pluginList,
-  trustedOrigins: ["http://localhost:3002"],
+  trustedOrigins: [
+    "http://localhost:3002",
+    process.env.BASE_URL || "",
+    process.env.NEXT_PUBLIC_APP_URL || "",
+    ...(process.env.CORS_ORIGINS?.split(",").filter(Boolean) || []),
+  ].filter(Boolean),
   advanced: {
     useSecureCookies: process.env.NODE_ENV === "production", // don't mark Secure in dev
     defaultCookieAttributes: {

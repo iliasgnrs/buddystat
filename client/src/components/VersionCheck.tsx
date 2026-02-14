@@ -11,15 +11,29 @@ import { Button } from "./ui/button";
 export function VersionCheck() {
   useEffect(() => {
     if (IS_CLOUD) return;
-    if (sessionStorage.getItem("version-check-done")) return;
-
-    sessionStorage.setItem("version-check-done", "1");
+    
+    // Check if we've already dismissed this version or checked recently
+    const dismissedVersion = localStorage.getItem("version-check-dismissed");
+    const lastCheck = localStorage.getItem("version-check-last");
+    const now = Date.now();
+    
+    // Only check once per day
+    if (lastCheck && now - parseInt(lastCheck) < 24 * 60 * 60 * 1000) {
+      return;
+    }
+    
+    localStorage.setItem("version-check-last", now.toString());
 
     fetch("https://app.rybbit.io/api/version")
       .then((res) => res.json())
       .then((data: { version: string }) => {
         const latest = data.version;
         const current = packageJson.version;
+
+        // Don't show if user already dismissed this version
+        if (dismissedVersion === latest) {
+          return;
+        }
 
         if (latest && latest !== current && isNewer(latest, current)) {
           toast.custom(
@@ -45,7 +59,11 @@ export function VersionCheck() {
                   </Button>
                 </a>
                 <button
-                  onClick={() => toast.dismiss(t.id)}
+                  onClick={() => {
+                    toast.dismiss(t.id);
+                    // Remember that user dismissed this version
+                    localStorage.setItem("version-check-dismissed", latest);
+                  }}
                   className="text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300"
                 >
                   <X size={16} />

@@ -11,8 +11,9 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Configuration - Update these values
-VPS_HOST="${VPS_HOST:-your-vps-ip}"
+# Configuration - Update these values or use environment variables
+# If you've set up SSH config (see SSH_SETUP.md), use: VPS_HOST="buddystat"
+VPS_HOST="${VPS_HOST:-buddystat}"
 VPS_USER="${VPS_USER:-root}"
 VPS_PATH="${VPS_PATH:-/opt/buddystat}"
 COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.cloud.yml}"
@@ -21,12 +22,20 @@ echo -e "${YELLOW}BuddyStat Deployment to Hetzner VPS${NC}"
 echo "=================================="
 echo ""
 
-# Check if VPS_HOST is default
-if [ "$VPS_HOST" = "your-vps-ip" ]; then
-    echo -e "${RED}Error: Please set VPS_HOST environment variable${NC}"
-    echo "Usage: VPS_HOST=your-ip VPS_USER=your-user ./deploy-to-hetzner.sh"
-    echo "Or edit this script and update the default values"
-    exit 1
+# Check if VPS_HOST is default and SSH config doesn't exist
+if [ "$VPS_HOST" = "buddystat" ]; then
+    if ! grep -q "Host buddystat" ~/.ssh/config 2>/dev/null; then
+        echo -e "${RED}Error: SSH not configured${NC}"
+        echo ""
+        echo "Please run the SSH setup script first:"
+        echo -e "${YELLOW}  ./setup-ssh-hetzner.sh${NC}"
+        echo ""
+        echo "Or set VPS_HOST manually:"
+        echo -e "${YELLOW}  VPS_HOST=your-ip ./deploy-to-hetzner.sh${NC}"
+        echo ""
+        echo "See SSH_SETUP.md for more information."
+        exit 1
+    fi
 fi
 
 # Confirm deployment
@@ -60,7 +69,15 @@ echo -e "${GREEN}✓ Pushed to origin${NC}"
 echo ""
 
 echo -e "${YELLOW}Step 4: Deploying to VPS...${NC}"
-ssh ${VPS_USER}@${VPS_HOST} << ENDSSH
+
+# Use simpler syntax if VPS_HOST is an SSH config alias
+if [ "$VPS_USER" = "root" ] && grep -q "Host $VPS_HOST" ~/.ssh/config 2>/dev/null; then
+    SSH_TARGET="$VPS_HOST"
+else
+    SSH_TARGET="${VPS_USER}@${VPS_HOST}"
+fi
+
+ssh ${SSH_TARGET} << ENDSSH
     set -e
     cd ${VPS_PATH}
     
@@ -87,4 +104,4 @@ echo ""
 echo -e "${GREEN}✓ Deployment completed successfully!${NC}"
 echo ""
 echo "View logs with:"
-echo "  ssh ${VPS_USER}@${VPS_HOST} 'cd ${VPS_PATH} && docker-compose -f ${COMPOSE_FILE} logs -f'"
+echo "  ssh ${SSH_TARGET} 'cd ${VPS_PATH} && docker-compose -f ${COMPOSE_FILE} logs -f'"
