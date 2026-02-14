@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { redirect, usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { userStore } from "../lib/userStore";
 import { useGetSiteIsPublic } from "../api/admin/hooks/useSites";
 
@@ -10,6 +10,8 @@ const PUBLIC_ROUTES = ["/login", "/signup", "/invitation", "/reset-password", "/
 export function AuthenticationGuard() {
   const { user, isPending } = userStore();
   const pathname = usePathname();
+  const router = useRouter();
+  const hasRedirectedRef = useRef(false);
 
   // Extract potential siteId from path like /{siteId} or /{siteId}/something
   const pathSegments = pathname.split("/").filter(Boolean);
@@ -22,23 +24,31 @@ export function AuthenticationGuard() {
   const { data: isPublicSite, isLoading: isCheckingPublic } = useGetSiteIsPublic(potentialSiteId);
 
   useEffect(() => {
+    // Reset redirect flag when pathname changes
+    hasRedirectedRef.current = false;
+  }, [pathname]);
+
+  useEffect(() => {
     // Only redirect if:
     // 1. We're not checking public status anymore
     // 2. User is not logged in
     // 3. Not on a public route
     // 4. Not on a public site
     // 5. Not using a private link key
+    // 6. Haven't already redirected
     if (
       !isPending &&
       !isCheckingPublic &&
       !user &&
       !PUBLIC_ROUTES.includes(pathname) &&
       !isPublicSite &&
-      !hasPrivateKey
+      !hasPrivateKey &&
+      !hasRedirectedRef.current
     ) {
-      redirect("/login");
+      hasRedirectedRef.current = true;
+      router.push("/login");
     }
-  }, [isPending, user, pathname, isCheckingPublic, isPublicSite, hasPrivateKey]);
+  }, [isPending, user, pathname, isCheckingPublic, isPublicSite, hasPrivateKey, router]);
 
   return null; // This component doesn't render anything
 }
