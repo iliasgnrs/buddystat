@@ -174,8 +174,8 @@ export default function AppSumoSignupPage() {
     setError("");
 
     try {
-      // Validate Turnstile token if in cloud mode
-      if (IS_CLOUD && !turnstileToken) {
+      // Validate Turnstile token if in cloud mode and production
+      if (IS_CLOUD && process.env.NODE_ENV === "production" && !turnstileToken) {
         setError("Please complete the captcha verification");
         setIsLoading(false);
         return;
@@ -189,7 +189,7 @@ export default function AppSumoSignupPage() {
         },
         {
           onRequest: context => {
-            if (IS_CLOUD && turnstileToken) {
+            if (IS_CLOUD && process.env.NODE_ENV === "production" && turnstileToken) {
               context.headers.set("x-captcha-response", turnstileToken);
             }
           },
@@ -316,7 +316,7 @@ export default function AppSumoSignupPage() {
                 onChange={e => setPassword(e.target.value)}
               />
 
-              {IS_CLOUD && (
+              {IS_CLOUD && process.env.NODE_ENV === "production" && (
                 <Turnstile
                   onSuccess={token => setTurnstileToken(token)}
                   onError={() => setTurnstileToken("")}
@@ -331,7 +331,7 @@ export default function AppSumoSignupPage() {
                 onClick={handleAccountSubmit}
                 type="button"
                 className="mt-6 transition-all duration-300 h-11"
-                disabled={IS_CLOUD ? !turnstileToken || isLoading : isLoading}
+                disabled={IS_CLOUD && process.env.NODE_ENV === "production" ? !turnstileToken || isLoading : isLoading}
               >
                 Continue
                 <ArrowRight className="ml-2 h-4 w-4" />

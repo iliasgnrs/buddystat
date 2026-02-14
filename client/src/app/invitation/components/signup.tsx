@@ -27,8 +27,8 @@ export function Signup({ callbackURL }: SignupProps) {
     setError("");
 
     try {
-      // Validate Turnstile token if in cloud mode
-      if (IS_CLOUD && !turnstileToken) {
+      // Validate Turnstile token if in cloud mode and production
+      if (IS_CLOUD && process.env.NODE_ENV === "production" && !turnstileToken) {
         setError("Please complete the captcha verification");
         setIsLoading(false);
         return;
@@ -42,7 +42,7 @@ export function Signup({ callbackURL }: SignupProps) {
         },
         {
           onRequest: context => {
-            if (IS_CLOUD && turnstileToken) {
+            if (IS_CLOUD && process.env.NODE_ENV === "production" && turnstileToken) {
               context.headers.set("x-captcha-response", turnstileToken);
             }
           },
@@ -92,15 +92,7 @@ export function Signup({ callbackURL }: SignupProps) {
           onChange={e => setPassword(e.target.value)}
         />
 
-        <AuthButton
-          isLoading={isLoading}
-          loadingText="Creating account..."
-          disabled={IS_CLOUD ? !turnstileToken || isLoading : isLoading}
-        >
-          Sign Up to Accept Invitation
-        </AuthButton>
-
-        {IS_CLOUD && (
+        {IS_CLOUD && process.env.NODE_ENV === "production" && (
           <Turnstile
             onSuccess={token => setTurnstileToken(token)}
             onError={() => setTurnstileToken("")}
@@ -108,6 +100,14 @@ export function Signup({ callbackURL }: SignupProps) {
             className="flex justify-center"
           />
         )}
+
+        <AuthButton
+          isLoading={isLoading}
+          loadingText="Creating account..."
+          disabled={IS_CLOUD && process.env.NODE_ENV === "production" ? !turnstileToken || isLoading : isLoading}
+        >
+          Sign Up to Accept Invitation
+        </AuthButton>
 
         <AuthError error={error} />
       </div>

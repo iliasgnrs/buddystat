@@ -7,6 +7,8 @@ import { AuthInput } from "@/components/auth/AuthInput";
 import { AuthButton } from "@/components/auth/AuthButton";
 import { AuthError } from "@/components/auth/AuthError";
 import { SocialButtons } from "@/components/auth/SocialButtons";
+import { Turnstile } from "@/components/auth/Turnstile";
+import { IS_CLOUD } from "../../../lib/const";
 
 interface LoginProps {
   callbackURL: string;
@@ -17,6 +19,7 @@ export function Login({ callbackURL }: LoginProps) {
   const [error, setError] = useState<string>("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,10 +27,26 @@ export function Login({ callbackURL }: LoginProps) {
     setError("");
 
     try {
-      const { data, error } = await authClient.signIn.email({
-        email,
-        password,
-      });
+      // Validate Turnstile token if in cloud mode and production
+      if (IS_CLOUD && process.env.NODE_ENV === "production" && !turnstileToken) {
+        setError("Please complete the captcha verification");
+        setIsLoading(false);
+        return;
+      }
+
+      const { data, error } = await authClient.signIn.email(
+        {
+          email,
+          password,
+        },
+        {
+          onRequest: context => {
+            if (IS_CLOUD && process.env.NODE_ENV === "production" && turnstileToken) {
+              context.headers.set("x-captcha-response", turnstileToken);
+            }
+          },
+        }
+      );
 
       if (data?.user) {
         userStore.setState({
@@ -69,7 +88,15 @@ export function Login({ callbackURL }: LoginProps) {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <AuthButton isLoading={isLoading} loadingText="Logging in...">
+        {IS_CLOUD && process.env.NODE_ENV === "production" && (
+          <Turnstile
+            onSuccess={token => setTurnstileToken(token)}
+            onError={() => setTurnstileToken("")}
+            onExpire={() => setTurnstileToken("")}
+            className="flex justify-center"
+          />
+        )}
+        <AuthButton isLoading={isLoading} loadingText="Logging in..." disabled={IS_CLOUD && process.env.NODE_ENV === "production" ? !turnstileToken || isLoading : isLoading}>
           Login to Accept Invitation
         </AuthButton>
         <AuthError error={error} />
