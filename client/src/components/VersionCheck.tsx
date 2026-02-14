@@ -36,12 +36,12 @@ export function VersionCheck() {
                   BuddyStat v{latest} is available (you&apos;re on v{current})
                 </span>
                 <a
-                  href="/docs"
+                  href="https://github.com/rybbit-io/rybbit/releases"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Button variant="success" size="sm">
-                    Upgrade
+                    View Update
                   </Button>
                 </a>
                 <button
