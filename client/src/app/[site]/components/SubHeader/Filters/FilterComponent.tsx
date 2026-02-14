@@ -90,7 +90,7 @@ export function FilterComponent({
 
   return (
     <div className="grid grid-cols-[220px_auto] md:grid-cols-[160px_130px_250px_auto] gap-2">
-      <Select onValueChange={handleParameterChange} value={filter.parameter}>
+      <Select onValueChange={handleParameterChange} value={filter.parameter || ""}>
         <SelectTrigger>
           <SelectValue placeholder="Filter" />
         </SelectTrigger>
@@ -106,7 +106,7 @@ export function FilterComponent({
         </SelectContent>
       </Select>
       <Select
-        value={filter.type}
+        value={filter.type || ""}
         onValueChange={value => {
           updateFilter(
             {
