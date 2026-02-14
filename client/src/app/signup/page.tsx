@@ -21,7 +21,7 @@ import { SpinningGlobe } from "../../components/SpinningGlobe";
 import { useSetPageTitle } from "../../hooks/useSetPageTitle";
 import { authClient } from "../../lib/auth";
 import { useConfigs } from "../../lib/configs";
-import { IS_CLOUD } from "../../lib/const";
+import { IS_CLOUD, TURNSTILE_ENABLED } from "../../lib/const";
 import { userStore } from "../../lib/userStore";
 import { cn, isValidDomain, normalizeDomain } from "../../lib/utils";
 
@@ -73,14 +73,9 @@ function SignupPageContent() {
     setIsLoading(true);
     setError("");
 
-    const turnstileEnabled =
-      IS_CLOUD &&
-      process.env.NODE_ENV === "production" &&
-      !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-
     try {
-      // Validate Turnstile token if Turnstile is actually enabled
-      if (turnstileEnabled && !turnstileToken) {
+      // Validate Turnstile token if Turnstile is enabled
+      if (TURNSTILE_ENABLED && !turnstileToken) {
         setError("Please complete the captcha verification");
         setIsLoading(false);
         return;
@@ -94,7 +89,7 @@ function SignupPageContent() {
         },
         {
           onRequest: context => {
-            if (turnstileEnabled && turnstileToken) {
+            if (TURNSTILE_ENABLED && turnstileToken) {
               context.headers.set("x-captcha-response", turnstileToken);
             }
           },
@@ -218,7 +213,7 @@ function SignupPageContent() {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
-              {IS_CLOUD && process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+              {TURNSTILE_ENABLED && (
                 <Turnstile
                   onSuccess={token => setTurnstileToken(token)}
                   onError={() => setTurnstileToken("")}
@@ -232,13 +227,7 @@ function SignupPageContent() {
                 onClick={handleAccountSubmit}
                 type="button"
                 className="mt-6 transition-all duration-300 h-11"
-                disabled={
-                  IS_CLOUD &&
-                  process.env.NODE_ENV === "production" &&
-                  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
-                    ? !turnstileToken || isLoading
-                    : isLoading
-                }
+                disabled={TURNSTILE_ENABLED ? !turnstileToken || isLoading : isLoading}
               >
                 Continue
                 <ArrowRight className="ml-2 h-4 w-4" />

@@ -13,7 +13,7 @@ import { SpinningGlobe } from "../../components/SpinningGlobe";
 import { useSetPageTitle } from "../../hooks/useSetPageTitle";
 import { authClient } from "../../lib/auth";
 import { useConfigs } from "../../lib/configs";
-import { IS_CLOUD } from "../../lib/const";
+import { IS_CLOUD, TURNSTILE_ENABLED } from "../../lib/const";
 import { userStore } from "../../lib/userStore";
 
 export default function Page() {
@@ -32,8 +32,8 @@ export default function Page() {
 
     setError("");
 
-    // Validate Turnstile token if in cloud mode and production
-    if (IS_CLOUD && process.env.NODE_ENV === "production" && !turnstileToken) {
+    // Validate Turnstile token if Turnstile is enabled
+    if (TURNSTILE_ENABLED && !turnstileToken) {
       setError("Please complete the captcha verification");
       setIsLoading(false);
       return;
@@ -47,7 +47,7 @@ export default function Page() {
         },
         {
           onRequest: context => {
-            if (IS_CLOUD && process.env.NODE_ENV === "production" && turnstileToken) {
+            if (TURNSTILE_ENABLED && turnstileToken) {
               context.headers.set("x-captcha-response", turnstileToken);
             }
           },
@@ -68,11 +68,6 @@ export default function Page() {
     }
     setIsLoading(false);
   };
-
-  const turnstileEnabled =
-    IS_CLOUD &&
-    process.env.NODE_ENV === "production" &&
-    !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
     <div className="flex h-dvh w-full">
@@ -117,7 +112,7 @@ export default function Page() {
                   }
                 />
 
-                {turnstileEnabled && (
+                {TURNSTILE_ENABLED && (
                   <Turnstile
                     onSuccess={token => setTurnstileToken(token)}
                     onError={() => setTurnstileToken("")}
@@ -129,7 +124,7 @@ export default function Page() {
                 <AuthButton
                   isLoading={isLoading}
                   loadingText="Logging in..."
-                  disabled={turnstileEnabled ? !turnstileToken || isLoading : isLoading}
+                  disabled={TURNSTILE_ENABLED ? !turnstileToken || isLoading : isLoading}
                 >
                   Login
                 </AuthButton>
