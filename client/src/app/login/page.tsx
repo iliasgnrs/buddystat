@@ -69,7 +69,10 @@ export default function Page() {
     setIsLoading(false);
   };
 
-  const turnstileEnabled = IS_CLOUD && process.env.NODE_ENV === "production";
+  const turnstileEnabled =
+    IS_CLOUD &&
+    process.env.NODE_ENV === "production" &&
+    !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
     <div className="flex h-dvh w-full">

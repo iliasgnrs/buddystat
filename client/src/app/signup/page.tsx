@@ -73,9 +73,14 @@ function SignupPageContent() {
     setIsLoading(true);
     setError("");
 
+    const turnstileEnabled =
+      IS_CLOUD &&
+      process.env.NODE_ENV === "production" &&
+      !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
     try {
-      // Validate Turnstile token if in cloud mode
-      if (IS_CLOUD && !turnstileToken) {
+      // Validate Turnstile token if Turnstile is actually enabled
+      if (turnstileEnabled && !turnstileToken) {
         setError("Please complete the captcha verification");
         setIsLoading(false);
         return;
@@ -89,7 +94,7 @@ function SignupPageContent() {
         },
         {
           onRequest: context => {
-            if (IS_CLOUD && turnstileToken) {
+            if (turnstileEnabled && turnstileToken) {
               context.headers.set("x-captcha-response", turnstileToken);
             }
           },
@@ -213,7 +218,7 @@ function SignupPageContent() {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
-              {IS_CLOUD && (
+              {IS_CLOUD && process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
                 <Turnstile
                   onSuccess={token => setTurnstileToken(token)}
                   onError={() => setTurnstileToken("")}
@@ -227,7 +232,13 @@ function SignupPageContent() {
                 onClick={handleAccountSubmit}
                 type="button"
                 className="mt-6 transition-all duration-300 h-11"
-                disabled={IS_CLOUD ? !turnstileToken || isLoading : isLoading}
+                disabled={
+                  IS_CLOUD &&
+                  process.env.NODE_ENV === "production" &&
+                  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+                    ? !turnstileToken || isLoading
+                    : isLoading
+                }
               >
                 Continue
                 <ArrowRight className="ml-2 h-4 w-4" />
