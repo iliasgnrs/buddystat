@@ -19,8 +19,8 @@ RUN npm install --legacy-peer-deps
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/shared ./shared
-COPY --from=deps /app/client/node_modules ./client/node_modules
 COPY client/ ./client
+COPY --from=deps /app/client/node_modules ./client/node_modules
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
