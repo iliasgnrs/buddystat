@@ -1,7 +1,25 @@
 # Caddyfile
 
 # Use Cloudflare Origin Certificates
-{$DOMAIN_NAME} {$APP_DOMAIN} {
+
+# Marketing/Documentation Site (buddystat.com)
+{$DOMAIN_NAME} {
+    # Use Cloudflare Origin Certificate
+    tls /opt/buddystat/buddystat.crt /opt/buddystat/buddystat.key
+
+    # Enable compression
+    encode zstd gzip
+
+    request_body max_size 10MB
+
+    # All requests go to docs service
+    handle {
+        reverse_proxy docs:3003
+    }
+}
+
+# Application Dashboard (app.buddystat.com)
+{$APP_DOMAIN} {
     # Use Cloudflare Origin Certificate
     tls /opt/buddystat/buddystat.crt /opt/buddystat/buddystat.key
 
