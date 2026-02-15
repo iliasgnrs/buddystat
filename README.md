@@ -28,7 +28,9 @@ This is a customized fork of [Rybbit](https://github.com/rybbit-io/rybbit) with 
 ./deploy-to-hetzner.sh
 ```
 
-**📦 Repository Structure:**
+**� Authentication Milestone:** [AUTHENTICATION_MILESTONE.md](./AUTHENTICATION_MILESTONE.md) - Critical issues resolved & prevention guide
+
+**�📦 Repository Structure:**
 - **Origin**: `github.com/iliasgnrs/buddystat` (this fork)
 - **Upstream**: `github.com/rybbit-io/rybbit` (original Rybbit)
 
