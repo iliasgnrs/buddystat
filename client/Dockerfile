@@ -8,7 +8,10 @@ WORKDIR /app
 # Copy shared package first
 COPY shared ./shared
 WORKDIR /app/shared
-RUN npm install && npm run build
+RUN npm install
+RUN npm run build
+RUN ls -la
+RUN pwd
 
 # Install client dependencies
 WORKDIR /app/client
@@ -29,6 +32,13 @@ COPY client/ ./client
 # Link shared package to ensure types are available
 WORKDIR /app/client
 RUN npm link ../shared
+
+# Debug: Check what's in node_modules/@rybbit/shared
+RUN ls -la node_modules/@rybbit/ || echo "No @rybbit directory"
+RUN ls -la node_modules/@rybbit/shared/ || echo "No shared package"
+RUN ls -la node_modules/@rybbit/shared/dist/ || echo "No dist directory"
+RUN ls -la /app/shared/ || echo "No /app/shared"
+RUN ls -la /app/shared/dist/ || echo "No /app/shared/dist"
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
