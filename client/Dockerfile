@@ -18,9 +18,17 @@ RUN npm install --legacy-peer-deps
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
+
+# Copy shared package and node_modules
 COPY --from=deps /app/shared ./shared
-COPY client/ ./client
 COPY --from=deps /app/client/node_modules ./client/node_modules
+
+# Copy client source code
+COPY client/ ./client
+
+# Link shared package to ensure types are available
+WORKDIR /app/client
+RUN npm link ../shared
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
