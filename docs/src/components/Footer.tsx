@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <Image src="/rybbit-text.svg" alt="Rybbit" width={120} height={0} style={{ height: "auto" }}
+            <Image src="/rybbit1.svg" alt="Rybbit" width={140} height={0} style={{ height: "auto" }}
               className="dark:invert-0 invert"
 
             />
@@ -172,18 +172,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://rybbit.featurebase.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
-                >
-                  Feedback
-                </a>
-              </li>
-              <li>
                 <Link href="/oss-friends" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
                   OSS Friends
+                </Link>
+              </li>
+              <li>
+                <Link href="/affiliate" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+                  50% Affiliate Program
                 </Link>
               </li>
             </ul>

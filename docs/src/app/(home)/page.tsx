@@ -240,7 +240,7 @@ export default function HomePage() {
           </div>
           <p className="text-neutral-500 dark:text-neutral-400 text-xs md:text-sm flex items-center justify-center gap-2 mt-6">
             <CircleCheckIcon size={16} className="text-neutral-500 dark:text-neutral-400" />
-            First {DEFAULT_EVENT_LIMIT.toLocaleString()} pageviews/m are free. No credit card required.
+            30 day money-back guarantee. No credit card required.
           </p>
         </div>
         <div className="relative w-full max-w-[1300px] mb-10">

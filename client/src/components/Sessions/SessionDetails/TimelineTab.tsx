@@ -15,9 +15,11 @@ interface TimelineTabProps {
   isFetchingNextPage: boolean;
   fetchNextPage: () => void;
   totalEvents: number;
+  highlightedEventTimestamp?: number;
 }
 
 export function TimelineTab({
+  highlightedEventTimestamp,
   allEvents,
   filteredEvents,
   visibleEventTypes,
@@ -63,6 +65,7 @@ export function TimelineTab({
               isLast={index === filteredEvents.length - 1 && !hasNextPage}
               nextTimestamp={nextTimestamp}
               showHostname={showHostname}
+              highlightedEventTimestamp={highlightedEventTimestamp}
             />
           );
         })}

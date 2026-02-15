@@ -8,6 +8,7 @@ import { StandardSection } from "../../../components/shared/StandardSection/Stan
 import { Browser } from "../../../components/shared/icons/Browser";
 import { OperatingSystem } from "../../../components/shared/icons/OperatingSystem";
 import { Button } from "../../../../../components/ui/button";
+import { DeviceIcon } from "../../../components/shared/icons/Device";
 
 type Tab = "devices" | "browsers" | "os" | "dimensions" | "browser_versions" | "os_versions";
 
@@ -45,9 +46,7 @@ export function Devices() {
               getKey={e => e.value}
               getLabel={e => (
                 <div className="flex gap-2 items-center">
-                  {e.value === "Desktop" && <Monitor className="w-4 h-4" />}
-                  {e.value === "Mobile" && <Smartphone className="w-4 h-4" />}
-                  {e.value === "Tablet" && <Tablet className="w-4 h-4" />}
+                  <DeviceIcon deviceType={e.value || ""} size={16} />
                   {e.value || "Other"}
                 </div>
               )}

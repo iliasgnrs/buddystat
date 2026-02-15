@@ -6,6 +6,14 @@
 
   // utils.ts
   function patternToRegex(pattern) {
+    const REGEX_PREFIX = "re:";
+    if (pattern.startsWith(REGEX_PREFIX)) {
+      const rawRegex = pattern.slice(REGEX_PREFIX.length);
+      if (!rawRegex) {
+        throw new Error("Empty regex pattern");
+      }
+      return new RegExp(rawRegex);
+    }
     const DOUBLE_WILDCARD_TOKEN = "__DOUBLE_ASTERISK_TOKEN__";
     const SINGLE_WILDCARD_TOKEN = "__SINGLE_ASTERISK_TOKEN__";
     let tokenized = pattern.replace(/\*\*/g, DOUBLE_WILDCARD_TOKEN).replace(/\*/g, SINGLE_WILDCARD_TOKEN);
@@ -374,6 +382,8 @@
   var Tracker = class {
     constructor(config) {
       this.customUserId = null;
+      this.errorDedupeCache = /* @__PURE__ */ new Map();
+      this.errorDedupeLastCleanup = 0;
       this.config = config;
       this.loadUserId();
       if (config.enableSessionReplay) {
@@ -503,6 +513,10 @@
       this.sendTrackingData(payload);
     }
     trackError(error, additionalInfo = {}) {
+      const message = error?.message || "";
+      if (message.includes("ResizeObserver loop completed with undelivered notifications") || message.includes("ResizeObserver loop limit exceeded")) {
+        return;
+      }
       const currentOrigin = window.location.origin;
       const filename = additionalInfo.filename || "";
       const errorStack = error.stack || "";
@@ -518,6 +532,30 @@
         if (!errorStack.includes(currentOrigin)) {
           return;
         }
+      }
+      const dedupeKeyParts = [
+        error.name || "Error",
+        message,
+        additionalInfo.filename || "",
+        additionalInfo.lineno ?? "",
+        additionalInfo.colno ?? ""
+      ];
+      const dedupeKey = dedupeKeyParts.join("|");
+      const now = Date.now();
+      const dedupeWindowMs = 6e4;
+      const lastSeen = this.errorDedupeCache.get(dedupeKey);
+      if (lastSeen && now - lastSeen < dedupeWindowMs) {
+        return;
+      }
+      this.errorDedupeCache.set(dedupeKey, now);
+      const pruneAfterMs = 10 * 6e4;
+      if (now - this.errorDedupeLastCleanup > dedupeWindowMs) {
+        for (const [key, ts] of this.errorDedupeCache.entries()) {
+          if (now - ts > pruneAfterMs) {
+            this.errorDedupeCache.delete(key);
+          }
+        }
+        this.errorDedupeLastCleanup = now;
       }
       const errorProperties = {
         message: error.message?.substring(0, 500) || "Unknown error",

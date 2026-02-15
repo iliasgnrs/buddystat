@@ -1,7 +1,5 @@
-import { BackgroundGrid } from "@/components/BackgroundGrid";
-import { PricingSection } from "@/components/PricingSection";
-import { ComparisonSection } from "./components/ComparisonSection";
 import type { Metadata } from "next";
+import { PricingPageClient } from "./components/PricingPageClient";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -9,11 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPage() {
-  return (
-    <div className="flex flex-col items-center justify-center overflow-x-hidden">
-      <BackgroundGrid />
-      <PricingSection />
-      <ComparisonSection />
-    </div>
-  );
+  return <PricingPageClient />;
 }

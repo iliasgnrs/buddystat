@@ -15,6 +15,7 @@ import { OrganizationsTable } from "./OrganizationsTable";
 import { OrganizationFilters, TierOption } from "./OrganizationFilters";
 import { FilteredStatsCards } from "./FilteredStatsCards";
 import { useFilteredOrganizations } from "./useFilteredOrganizations";
+import { DownloadIcon } from "lucide-react";
 
 export function Organizations() {
   const { data: organizations, isLoading, isError } = useAdminOrganizations();
@@ -127,32 +128,46 @@ export function Organizations() {
           <SubscriptionTiersTable organizations={organizations} isLoading={isLoading} />
         </TabsContent>
       </Tabs>
-
-      <div className="mb-4">
+      <div className="space-y-2">
         <SearchInput
           placeholder="Search by name, slug, domain, or member email..."
           value={searchQuery}
           onChange={setSearchQuery}
         />
+        <OrganizationFilters
+          showZeroEvents={showZeroEvents}
+          setShowZeroEvents={setShowZeroEvents}
+          showOnlyOverLimit={showOnlyOverLimit}
+          setShowOnlyOverLimit={setShowOnlyOverLimit}
+          availableTiers={availableTiers}
+          selectedTiers={selectedTiers}
+          setSelectedTiers={setSelectedTiers}
+        />
+        <FilteredStatsCards organizations={filteredOrganizations} isLoading={isLoading} />
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            if (!filteredOrganizations) return;
+            const emails = filteredOrganizations
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .flatMap((org) =>
+                org.members.filter((m) => m.role === "owner").map((m) => m.email)
+              )
+              .filter(Boolean);
+            const unique = [...new Set(emails)];
+            navigator.clipboard.writeText(unique.join("\n"));
+          }}
+        >
+          <DownloadIcon className="w-4 h-4" />
+          Export
+        </Button>
+        <OrganizationsTable
+          organizations={filteredOrganizations}
+          isLoading={isLoading}
+          searchQuery={searchQuery}
+        />
       </div>
-
-      <OrganizationFilters
-        showZeroEvents={showZeroEvents}
-        setShowZeroEvents={setShowZeroEvents}
-        showOnlyOverLimit={showOnlyOverLimit}
-        setShowOnlyOverLimit={setShowOnlyOverLimit}
-        availableTiers={availableTiers}
-        selectedTiers={selectedTiers}
-        setSelectedTiers={setSelectedTiers}
-      />
-
-      <FilteredStatsCards organizations={filteredOrganizations} isLoading={isLoading} />
-
-      <OrganizationsTable
-        organizations={filteredOrganizations}
-        isLoading={isLoading}
-        searchQuery={searchQuery}
-      />
-    </AdminLayout>
+    </AdminLayout >
   );
 }

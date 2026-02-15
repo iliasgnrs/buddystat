@@ -347,7 +347,7 @@ export default function FeaturesPage() {
             </div>
             <p className="text-neutral-500 dark:text-neutral-400 text-sm flex items-center justify-center gap-2 mt-6">
               <CheckCircle className="w-4 h-4" />
-              First {DEFAULT_EVENT_LIMIT.toLocaleString()} pageviews/m free • No credit card required
+              30 day money-back guarantee. No credit card required
             </p>
           </div>
         </div>

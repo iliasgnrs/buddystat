@@ -10,6 +10,7 @@ import {
   TableRow,
   TableSortIndicator,
 } from "@/components/ui/table";
+import { FilterParameter } from "@rybbit/shared";
 import {
   createColumnHelper,
   flexRender,
@@ -18,22 +19,22 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import { Monitor, Smartphone, Tablet, SquareArrowOutUpRight } from "lucide-react";
-import { useMemo, useState, useCallback } from "react";
+import { SquareArrowOutUpRight } from "lucide-react";
+import { useCallback, useMemo, useState } from "react";
 import { useGetSite } from "../../../../api/admin/hooks/useSites";
-import { useGetPerformanceByDimension } from "../../../../api/analytics/hooks/performance/useGetPerformanceByDimension";
 import { PerformanceByDimensionItem } from "../../../../api/analytics/endpoints";
+import { useGetPerformanceByDimension } from "../../../../api/analytics/hooks/performance/useGetPerformanceByDimension";
 import { Pagination } from "../../../../components/pagination";
-import { FilterParameter } from "@rybbit/shared";
-import { useStore, addFilter, removeFilter } from "../../../../lib/store";
+import { CardLoader } from "../../../../components/ui/card";
+import { addFilter, removeFilter, useStore } from "../../../../lib/store";
+import { getCountryName } from "../../../../lib/utils";
+import { Browser } from "../../components/shared/icons/Browser";
+import { CountryFlag } from "../../components/shared/icons/CountryFlag";
+import { DeviceIcon } from "../../components/shared/icons/Device";
+import { OperatingSystem } from "../../components/shared/icons/OperatingSystem";
 import { PerformanceMetric, usePerformanceStore } from "../performanceStore";
 import { formatMetricValue, getMetricColor, getMetricUnit } from "../utils/performanceUtils";
-import { CountryFlag } from "../../components/shared/icons/CountryFlag";
-import { Browser } from "../../components/shared/icons/Browser";
-import { OperatingSystem } from "../../components/shared/icons/OperatingSystem";
-import { getCountryName } from "../../../../lib/utils";
 import { MetricTooltip } from "./shared/MetricTooltip";
-import { CardLoader } from "../../../../components/ui/card";
 
 const MetricCell = ({
   metric,
@@ -153,13 +154,7 @@ export function PerformanceTable({ dimension, title }: PerformanceTableProps) {
                 </>
               ) : dimension === "device_type" ? (
                 <>
-                  {value === "Desktop" ? (
-                    <Monitor className="h-4 w-4" />
-                  ) : value === "Mobile" ? (
-                    <Smartphone className="h-4 w-4" />
-                  ) : value === "Tablet" ? (
-                    <Tablet className="h-4 w-4" />
-                  ) : null}
+                  <DeviceIcon deviceType={value || ""} />
                   {value || "Other"}
                 </>
               ) : dimension === "browser" && value ? (
@@ -377,11 +372,10 @@ export function PerformanceTable({ dimension, title }: PerformanceTableProps) {
                   {headerGroup.headers.map(header => (
                     <TableHead
                       key={header.id}
-                      className={`text-neutral-600 dark:text-neutral-300 ${
-                        header.column.getCanSort()
-                          ? "cursor-pointer hover:text-white transition-colors select-none"
-                          : ""
-                      }`}
+                      className={`text-neutral-600 dark:text-neutral-300 ${header.column.getCanSort()
+                        ? "cursor-pointer hover:text-white transition-colors select-none"
+                        : ""
+                        }`}
                       onClick={header.column.getToggleSortingHandler()}
                     >
                       <div className="flex items-center gap-1">

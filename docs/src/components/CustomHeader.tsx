@@ -5,23 +5,26 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { AppLink } from "./AppLink";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { BlackFridayBanner } from "./BlackFridayBanner";
+import { WelcomeBanner } from "./WelcomeBanner";
 
 export function CustomHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-300 dark:border-neutral-800 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full">
       {/* <BlackFridayBanner /> */}
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3" aria-label="Global">
+      <WelcomeBanner />
+      <nav className="mx-auto flex max-w-[1167px] items-center justify-between px-4 py-3 sm:border border-neutral-200 sm:rounded-xl dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/80 backdrop-blur-md sm:mt-1 shadow-md" aria-label="Global">
         {/* Logo */}
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Image
-              src="/rybbit-text.svg"
+              src="/rybbit1.svg"
               alt="Rybbit"
-              width={80}
+              width={120}
               height={0}
               style={{ height: "auto" }}
               className="dark:invert-0 invert"
@@ -98,14 +101,14 @@ export function CustomHeader() {
           <ThemeSwitcher />
 
           {/* Login Button */}
-          <a href="https://app.rybbit.io" target="_blank" rel="noopener noreferrer">
+          <AppLink href="https://app.rybbit.io" target="_blank" rel="noopener noreferrer">
             <button
               onClick={() => trackAdEvent("login", { location: "header" })}
               className="bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white text-sm font-medium px-3 py-1.5 rounded-md transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50"
             >
               Login
             </button>
-          </a>
+          </AppLink>
         </div>
 
         {/* Mobile menu button */}
@@ -164,7 +167,7 @@ export function CustomHeader() {
             </div>
 
             <div className="border-t border-neutral-300 dark:border-neutral-800">
-              <a href="https://app.rybbit.io" target="_blank" rel="noopener noreferrer" className="block w-full">
+              <AppLink href="https://app.rybbit.io" target="_blank" rel="noopener noreferrer" className="block w-full">
                 <button
                   onClick={() => trackAdEvent("login", { location: "header" })}
                   data-rybbit-event="login"
@@ -172,7 +175,7 @@ export function CustomHeader() {
                 >
                   Login
                 </button>
-              </a>
+              </AppLink>
             </div>
           </div>
         </div>

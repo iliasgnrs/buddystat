@@ -29,9 +29,10 @@ interface SessionCardProps {
   userId?: string;
   onClick?: () => void;
   expandedByDefault?: boolean;
+  highlightedEventTimestamp?: number;
 }
 
-export function SessionCard({ session, onClick, userId, expandedByDefault }: SessionCardProps) {
+export function SessionCard({ session, onClick, userId, expandedByDefault, highlightedEventTimestamp }: SessionCardProps) {
   const { site } = useParams();
   const [expanded, setExpanded] = useState(expandedByDefault || false);
   const [replayDrawerOpen, setReplayDrawerOpen] = useState(false);
@@ -307,7 +308,7 @@ export function SessionCard({ session, onClick, userId, expandedByDefault }: Ses
       </div>
 
       {/* Expanded content using SessionDetails component */}
-      {expanded && <SessionDetails session={session} userId={userId} />}
+      {expanded && <SessionDetails session={session} userId={userId} highlightedEventTimestamp={highlightedEventTimestamp} />}
 
       {/* Replay Drawer */}
       {session.has_replay === 1 && (

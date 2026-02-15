@@ -81,6 +81,10 @@ export default function Layout({ children }: { children: ReactNode }) {
         data-site-id="3b023d1a7895"
         data-namespace="rybbit_demo"
       />
+      <Script id="rewardful-queue" strategy="beforeInteractive">
+        {`(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,'rewardful');`}
+      </Script>
+      <Script src="https://r.wdfl.co/rw.js" data-rewardful="fc3780" strategy="afterInteractive" />
       <body className={`flex flex-col min-h-screen ${inter.variable} font-sans`}>
         <RootProvider
           theme={{

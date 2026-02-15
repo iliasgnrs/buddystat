@@ -2,38 +2,26 @@
 
 import { ErrorEvent } from "@/api/analytics/endpoints";
 import { useGetErrorEventsInfinite } from "@/api/analytics/hooks/errors/useGetErrorEvents";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { userLocale } from "@/lib/dateTimeUtils";
 import { useGetRegionName } from "@/lib/geo";
 import { getTimezone } from "@/lib/store";
-import { getCountryName, getUserDisplayName, truncateString } from "@/lib/utils";
-import { AlertTriangle, Code, Hash, Laptop, Loader2, Smartphone, TriangleAlert, User } from "lucide-react";
+import { getCountryName, truncateString } from "@/lib/utils";
+import { AlertTriangle, Code, Loader2, TriangleAlert } from "lucide-react";
 import { DateTime } from "luxon";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useMemo } from "react";
+import { Avatar } from "../../../../components/Avatar";
 import { ErrorState } from "../../../../components/ErrorState";
 import { Browser } from "../../components/shared/icons/Browser";
 import { CountryFlag } from "../../components/shared/icons/CountryFlag";
 import { OperatingSystem } from "../../components/shared/icons/OperatingSystem";
-import { Avatar } from "../../../../components/Avatar";
+import { DeviceIcon } from "../../components/shared/icons/Device";
 
 interface ErrorDetailsProps {
   errorMessage: string;
-}
-
-// DeviceIcon component for displaying mobile/desktop icons
-function DeviceIcon({ deviceType }: { deviceType: string | null }) {
-  if (!deviceType) return <Laptop className="w-4 h-4" />;
-
-  const type = deviceType.toLowerCase();
-  if (type.includes("mobile") || type.includes("tablet")) {
-    return <Smartphone className="w-4 h-4" />;
-  }
-  return <Laptop className="w-4 h-4" />;
 }
 
 // Component to display individual error event
@@ -61,7 +49,7 @@ function ErrorEventItem({ errorEvent }: { errorEvent: ErrorEvent }) {
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <span className="text-sm text-neutral-700 dark:text-neutral-200">
-            { DateTime.fromSQL(errorEvent.timestamp, { zone: "utc" }).setZone(getTimezone()).toRelative()}
+            {DateTime.fromSQL(errorEvent.timestamp, { zone: "utc" }).setZone(getTimezone()).toRelative()}
           </span>
           <div className="flex items-center gap-2">
             {errorEvent.country && (
@@ -102,7 +90,7 @@ function ErrorEventItem({ errorEvent }: { errorEvent: ErrorEvent }) {
             )}
             <Tooltip>
               <TooltipTrigger>
-                <DeviceIcon deviceType={errorEvent.device_type} />
+                <DeviceIcon deviceType={errorEvent.device_type ?? ""} />
               </TooltipTrigger>
               <TooltipContent>
                 <p>{errorEvent.device_type || "Unknown device"}</p>
@@ -121,7 +109,7 @@ function ErrorEventItem({ errorEvent }: { errorEvent: ErrorEvent }) {
           </Link>
         </div>
         <div className="flex items-center gap-2">
-       
+
 
           {errorEvent.user_id && (
             <Tooltip>

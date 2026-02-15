@@ -15,9 +15,10 @@ import { TimelineTab } from "./TimelineTab";
 interface SessionDetailsProps {
   session: GetSessionsResponse[number];
   userId?: string;
+  highlightedEventTimestamp?: number;
 }
 
-export function SessionDetails({ session, userId }: SessionDetailsProps) {
+export function SessionDetails({ session, userId, highlightedEventTimestamp }: SessionDetailsProps) {
   const {
     data: sessionDetailsData,
     isLoading,
@@ -105,6 +106,7 @@ export function SessionDetails({ session, userId }: SessionDetailsProps) {
 
           <TabsContent value="timeline">
             <TimelineTab
+              highlightedEventTimestamp={highlightedEventTimestamp}
               allEvents={allEvents}
               filteredEvents={filteredEvents}
               visibleEventTypes={visibleEventTypes}

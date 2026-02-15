@@ -12,9 +12,9 @@ const EVENT_TIERS = [100_000, 250_000, 500_000, 1_000_000, 2_000_000, 5_000_000,
 
 // Define standard plan features
 const STANDARD_FEATURES = [
-  "Everything in Free",
   `Up to ${STANDARD_SITE_LIMIT} websites`,
   `Up to ${STANDARD_TEAM_LIMIT} team members`,
+  "Custom events",
   "Funnels",
   "Goals",
   "Journeys",
@@ -98,8 +98,8 @@ function getFormattedPrice(eventLimit: number | string, planType: "standard" | "
     else return { custom: true };
   }
 
-  // Annual prices are 10x monthly (2 months free)
-  const annualPrice = monthlyPrice * 10;
+  // Annual prices are 8 monthly (4 months free)
+  const annualPrice = monthlyPrice * 8;
   return {
     monthly: monthlyPrice,
     annual: annualPrice,
@@ -107,9 +107,8 @@ function getFormattedPrice(eventLimit: number | string, planType: "standard" | "
   };
 }
 
-export function PricingSection() {
+export function PricingSection({ isAnnual, setIsAnnual }: { isAnnual: boolean, setIsAnnual: (isAnnual: boolean) => void }) {
   const [eventLimitIndex, setEventLimitIndex] = useState(0); // Default to 100k (index 0)
-  const [isAnnual, setIsAnnual] = useState(false);
 
   const eventLimit = EVENT_TIERS[eventLimitIndex];
   const standardPrices = getFormattedPrice(eventLimit, "standard");
@@ -133,10 +132,10 @@ export function PricingSection() {
       <div className="max-w-[1300px] mx-auto px-4">
         <div className="mb-12 text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight pb-4 text-transparent bg-clip-text bg-gradient-to-b from-neutral-900 via-neutral-700 to-neutral-500 dark:from-white dark:via-gray-200 dark:to-gray-400">
-            Simple, Transparent Pricing
+            Pricing
           </h2>
           <p className="text-lg text-neutral-600 dark:text-neutral-300">
-            Privacy-friendly analytics with all the features you need to grow
+            Try Rybbit today risk-free with our 30-day money-back guarantee.
           </p>
         </div>
 
@@ -149,15 +148,15 @@ export function PricingSection() {
                 {typeof eventLimit === "number" ? eventLimit.toLocaleString() : eventLimit}
               </div>
             </div>
-            <div className="flex flex-col items-end">
+            <div className="flex flex-col items-end relative">
               {/* Billing toggle */}
-              <div className="flex mb-2 text-sm">
+              <div className="flex mb-2 text-sm bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-full p-1">
                 <button
                   onClick={() => setIsAnnual(false)}
                   className={cn(
                     "px-3 py-1 rounded-full transition-colors cursor-pointer",
                     !isAnnual
-                      ? "bg-emerald-500/30 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium"
+                      ? "bg-white dark:bg-white/20 text-neutral-700 dark:text-neutral-100 font-medium"
                       : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
                   )}
                 >
@@ -168,13 +167,15 @@ export function PricingSection() {
                   className={cn(
                     "px-3 py-1 rounded-full transition-colors cursor-pointer",
                     isAnnual
-                      ? "bg-emerald-500/30 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium"
+                      ? "bg-white dark:bg-white/20 text-neutral-700 dark:text-neutral-100 font-medium"
                       : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
                   )}
                 >
                   Annual
-                  <span className="ml-1 text-xs text-emerald-600 dark:text-emerald-500">-17%</span>
                 </button>
+                <div className="text-xs text-white absolute top-0 right-0 -translate-y-3 translate-x-1/2 bg-emerald-500 dark:bg-emerald-500 rounded-full px-2 py-0.5">
+                  4 months free
+                </div>
               </div>
             </div>
           </div>
@@ -195,19 +196,19 @@ export function PricingSection() {
                 {index === EVENT_TIERS.length - 1
                   ? "20M+"
                   : typeof tier === "number" && tier >= 1_000_000
-                  ? `${tier / 1_000_000}M`
-                  : typeof tier === "number"
-                  ? `${tier / 1_000}K`
-                  : "Custom"}
+                    ? `${tier / 1_000_000}M`
+                    : typeof tier === "number"
+                      ? `${tier / 1_000}K`
+                      : "Custom"}
               </span>
             ))}
           </div>
         </div>
 
         {/* Pricing cards layout */}
-        <div className="grid min-[1100px]:grid-cols-4 min-[600px]:grid-cols-2 min-[400px]:grid-cols-1 gap-6 max-w-[1300px] mx-auto justify-center items-stretch">
-          {/* Free Plan Card */}
-          <PricingCard
+        <div className="grid min-[1100px]:grid-cols-3 min-[400px]:grid-cols-1 gap-6 max-w-[1000px] mx-auto justify-center items-stretch">
+          {/* <div className="grid min-[1100px]:grid-cols-3 min-[600px]:grid-cols-2 min-[400px]:grid-cols-1 gap-6 max-w-[1300px] mx-auto justify-center items-stretch"> */}
+          {/* <PricingCard
             title="Free"
             description="Perfect for hobby projects"
             priceDisplay={
@@ -222,7 +223,7 @@ export function PricingSection() {
             features={FREE_FEATURES}
             variant="free"
             eventLocation="free"
-          />
+          /> */}
 
           {/* Standard Plan Card */}
           <PricingCard

@@ -76,7 +76,7 @@ export function CTASection({
             </div>
 
             <p className="text-neutral-500 text-sm">
-              {DEFAULT_EVENT_LIMIT.toLocaleString()} events/month free. No credit card required.
+              30 day money-back guarantee. No credit card required.
             </p>
           </div>
         </div>

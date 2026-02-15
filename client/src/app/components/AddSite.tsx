@@ -119,6 +119,25 @@ export function AddSite({ trigger, disabled }: { trigger?: React.ReactNode; disa
     setSaltUserIds(false);
   };
 
+
+  if (subscription?.status !== "active" && IS_CLOUD) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          {trigger || (
+            <Button disabled title="Upgrade to Pro to add more websites">
+              <Plus className="h-4 w-4" />
+              Add Website
+            </Button>
+          )}
+        </TooltipTrigger>
+        <TooltipContent>
+          You need to be on an active subscription to add websites
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
   // Show upgrade message if disabled due to limit
   if (isOverSiteLimit) {
     return (
@@ -132,8 +151,7 @@ export function AddSite({ trigger, disabled }: { trigger?: React.ReactNode; disa
           )}
         </TooltipTrigger>
         <TooltipContent>
-          You have reached the limit of {subscription?.isPro ? STANDARD_SITE_LIMIT : FREE_SITE_LIMIT} websites. Upgrade
-          to add more websites
+          You have reached the limit of {getSiteLimit(subscription)} websites. Upgrade to add more websites
         </TooltipContent>
       </Tooltip>
     );

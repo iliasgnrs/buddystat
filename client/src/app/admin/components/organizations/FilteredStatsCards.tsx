@@ -56,7 +56,7 @@ export function FilteredStatsCards({ organizations, isLoading }: FilteredStatsCa
   ];
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {cards.map((card, index) => {
         const Icon = card.icon;
         return (

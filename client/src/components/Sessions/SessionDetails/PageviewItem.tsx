@@ -129,8 +129,8 @@ function renderDetails(
     const propsToHide = PROPS_TO_HIDE[item.type] || [];
     const remainingProps = item.props
       ? Object.entries(item.props).filter(
-          ([key]) => !propsToHide.includes(key)
-        )
+        ([key]) => !propsToHide.includes(key)
+      )
       : [];
 
     if (remainingProps.length === 0) return null;
@@ -155,6 +155,7 @@ interface PageviewItemProps {
   isLast?: boolean;
   nextTimestamp?: string;
   showHostname?: boolean;
+  highlightedEventTimestamp?: number;
 }
 
 export function PageviewItem({
@@ -163,6 +164,7 @@ export function PageviewItem({
   isLast = false,
   nextTimestamp,
   showHostname = true,
+  highlightedEventTimestamp,
 }: PageviewItemProps) {
   const isPageview = item.type === "pageview";
   const isOutbound = item.type === "outbound";
@@ -176,6 +178,7 @@ export function PageviewItem({
     getTimezone()
   );
   const formattedTime = timestamp.toFormat(hour12 ? "h:mm:ss a" : "HH:mm:ss");
+  const isHighlightedEvent = highlightedEventTimestamp === DateTime.fromSQL(item.timestamp, { zone: "utc" }).toMillis();
 
   // Calculate duration if this is a pageview and we have the next timestamp
   let duration = null;
@@ -203,7 +206,8 @@ export function PageviewItem({
         <div
           className={cn(
             "flex items-center justify-center w-8 h-8 rounded-full border",
-            "bg-neutral-50 border-neutral-200 dark:bg-neutral-600/10 dark:border-neutral-600/25"
+            "bg-neutral-50 border-neutral-200 dark:bg-neutral-600/10 dark:border-neutral-600/25",
+            isHighlightedEvent && "bg-accent-400 border-accent-300 dark:bg-accent-600 dark:border-accent-500"
           )}
         >
           <span className="text-sm font-medium">{index + 1}</span>

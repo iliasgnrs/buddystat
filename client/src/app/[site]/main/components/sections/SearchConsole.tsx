@@ -1,19 +1,20 @@
-import { Expand, Info, Monitor, Smartphone, SquareArrowOutUpRight, Tablet } from "lucide-react";
+import { SiGoogle } from "@icons-pack/react-simple-icons";
+import { round } from "lodash";
+import { Expand, Info, SquareArrowOutUpRight } from "lucide-react";
 import { useState } from "react";
+import { GSCDimension } from "../../../../../api/gsc/endpoints";
 import { useConnectGSC } from "../../../../../api/gsc/hooks/useConnectGSC";
 import { useGetGSCConnection } from "../../../../../api/gsc/hooks/useGetGSCConnection";
 import { useGetGSCData } from "../../../../../api/gsc/hooks/useGetGSCData";
-import { GSCDimension } from "../../../../../api/gsc/endpoints";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../components/ui/basic-tabs";
 import { Button } from "../../../../../components/ui/button";
 import { Card, CardContent, CardLoader } from "../../../../../components/ui/card";
+import { ScrollArea } from "../../../../../components/ui/scroll-area";
 import { formatter, getCountryName, truncateString } from "../../../../../lib/utils";
 import { CountryFlag } from "../../../components/shared/icons/CountryFlag";
+import { DeviceIcon } from "../../../components/shared/icons/Device";
 import { StandardSkeleton } from "../../../components/shared/StandardSection/Skeleton";
 import { SearchConsoleDialog } from "./SearchConsoleDialog";
-import { SiGoogle } from "@icons-pack/react-simple-icons";
-import { round } from "lodash";
-import { ScrollArea } from "../../../../../components/ui/scroll-area";
 
 type Tab = "queries" | "pages" | "countries" | "devices";
 
@@ -215,9 +216,7 @@ export function SearchConsole() {
                   close={close}
                   renderName={e => (
                     <div className="flex gap-2 items-center">
-                      {e === "DESKTOP" && <Monitor className="w-4 h-4" />}
-                      {e === "MOBILE" && <Smartphone className="w-4 h-4" />}
-                      {e === "TABLET" && <Tablet className="w-4 h-4" />}
+                      <DeviceIcon deviceType={e || ""} size={16} />
                       {e === "DESKTOP" ? "Desktop" : e === "MOBILE" ? "Mobile" : e === "TABLET" ? "Tablet" : "Other"}
                     </div>
                   )}

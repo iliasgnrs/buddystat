@@ -29,7 +29,7 @@ export function OrganizationFilters({
   setSelectedTiers,
 }: OrganizationFiltersProps) {
   return (
-    <div className="flex items-start gap-4 mb-4 sm:flex-row flex-col sm:items-center">
+    <div className="flex items-start gap-4 sm:flex-row flex-col sm:items-center">
       <div className="flex items-center gap-2">
         <Switch id="show-zero-events" checked={showZeroEvents} onCheckedChange={setShowZeroEvents} />
         <Label htmlFor="show-zero-events" className="text-sm cursor-pointer">

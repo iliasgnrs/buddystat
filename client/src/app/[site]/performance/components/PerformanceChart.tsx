@@ -149,49 +149,49 @@ export function PerformanceChart() {
   // Create markers for performance thresholds
   const markers = thresholds
     ? [
-        {
-          axis: "y" as const,
-          value: thresholds.good,
-          lineStyle: {
-            stroke: "hsl(var(--green-400))", // green
-            strokeWidth: 1,
-            strokeDasharray: "8 8",
-          },
-          legend: `Good (≤${formatMetricValue(selectedPerformanceMetric, thresholds.good)}${getMetricUnit(
-            selectedPerformanceMetric,
-            thresholds.good
-          )})`,
-          legendPosition: "top-left" as const,
-          legendOrientation: "horizontal" as const,
-          textStyle: {
-            fill: "hsl(var(--green-400))",
-            fontSize: 11,
-          },
+      {
+        axis: "y" as const,
+        value: thresholds.good,
+        lineStyle: {
+          stroke: "hsl(var(--green-400))", // green
+          strokeWidth: 1,
+          strokeDasharray: "8 8",
         },
-        {
-          axis: "y" as const,
-          value: thresholds.needs_improvement,
-          lineStyle: {
-            stroke: "hsl(var(--amber-400))", // yellow/amber
-            strokeWidth: 1,
-            strokeDasharray: "8 8",
-          },
-          legend: `Needs Improvement (≤${formatMetricValue(
-            selectedPerformanceMetric,
-            thresholds.needs_improvement
-          )}${getMetricUnit(selectedPerformanceMetric, thresholds.needs_improvement)})`,
-          legendPosition: "top-left" as const,
-          legendOrientation: "horizontal" as const,
-          textStyle: {
-            fill: "hsl(var(--amber-400))",
-            fontSize: 11,
-          },
+        legend: `Good (≤${formatMetricValue(selectedPerformanceMetric, thresholds.good)}${getMetricUnit(
+          selectedPerformanceMetric,
+          thresholds.good
+        )})`,
+        legendPosition: "top-left" as const,
+        legendOrientation: "horizontal" as const,
+        textStyle: {
+          fill: "hsl(var(--green-400))",
+          fontSize: 11,
         },
-      ]
+      },
+      {
+        axis: "y" as const,
+        value: thresholds.needs_improvement,
+        lineStyle: {
+          stroke: "hsl(var(--amber-400))", // yellow/amber
+          strokeWidth: 1,
+          strokeDasharray: "8 8",
+        },
+        legend: `Needs Improvement (≤${formatMetricValue(
+          selectedPerformanceMetric,
+          thresholds.needs_improvement
+        )}${getMetricUnit(selectedPerformanceMetric, thresholds.needs_improvement)})`,
+        legendPosition: "top-left" as const,
+        legendOrientation: "horizontal" as const,
+        textStyle: {
+          fill: "hsl(var(--amber-400))",
+          fontSize: 11,
+        },
+      },
+    ]
     : [];
 
   return (
-    <Card>
+    <Card className="overflow-visible">
       {isFetching && <CardLoader />}
       <CardContent className="p-2 md:p-4 py-3 w-full">
         <div className="flex items-center justify-between px-2 md:px-0">

@@ -15,6 +15,7 @@ import { OperatingSystem } from "../../../components/shared/icons/OperatingSyste
 import { VisitCalendar } from "./Calendar";
 import { EventIcon, PageviewIcon } from "../../../../../components/EventIcons";
 import { UserInfo, UserSessionCountResponse } from "../../../../../api/analytics/endpoints";
+import { DeviceIcon } from "../../../components/shared/icons/Device";
 
 interface UserSidebarProps {
   data: UserInfo | undefined;
@@ -215,13 +216,7 @@ export function UserSidebar({ data, isLoading, sessionCount, getRegionName }: Us
             <InfoRow label="Language" value={data?.language ? getLanguageName(data.language) : "—"} />
             <InfoRow
               icon={
-                data?.device_type === "Desktop" ? (
-                  <Monitor className="w-4 h-4" />
-                ) : data?.device_type === "Mobile" ? (
-                  <Smartphone className="w-4 h-4" />
-                ) : data?.device_type === "Tablet" ? (
-                  <Tablet className="w-4 h-4" />
-                ) : null
+                <DeviceIcon deviceType={data?.device_type || ""} size={13} />
               }
               label="Device"
               value={data?.device_type ?? "—"}

@@ -63,7 +63,6 @@ export type GetSitesFromOrgResponse = {
     overMonthlyLimit: boolean;
     planName: string;
     status: string;
-    isPro: boolean;
   };
 };
 

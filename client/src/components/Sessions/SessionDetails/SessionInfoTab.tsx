@@ -8,6 +8,7 @@ import { useGetRegionName } from "../../../lib/geo";
 import { getCountryName, getLanguageName } from "../../../lib/utils";
 import { Avatar, generateName } from "../../Avatar";
 import { IdentifiedBadge } from "../../IdentifiedBadge";
+import { DeviceIcon } from "../../../app/[site]/components/shared/icons/Device";
 
 interface SessionInfoTabProps {
   session: GetSessionsResponse[number];
@@ -63,8 +64,8 @@ export function SessionInfoTab({
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">
                     {isIdentified
                       ? (session.traits?.username as string) ||
-                        (session.traits?.name as string) ||
-                        session.identified_user_id
+                      (session.traits?.name as string) ||
+                      session.identified_user_id
                       : generateName(sessionDetails.user_id)}
                   </span>
                   {isIdentified && (
@@ -153,15 +154,7 @@ export function SessionInfoTab({
               Device:
             </span>
             <div className="flex items-center gap-1.5 text-neutral-500 dark:text-neutral-400">
-              {sessionDetails?.device_type === "Desktop" && (
-                <Monitor className="w-4 h-4" />
-              )}
-              {sessionDetails?.device_type === "Mobile" && (
-                <Smartphone className="w-4 h-4" />
-              )}
-              {sessionDetails?.device_type === "Tablet" && (
-                <Tablet className="w-4 h-4" />
-              )}
+              <DeviceIcon deviceType={sessionDetails?.device_type || ""} />
               <span>{sessionDetails?.device_type || "Unknown"}</span>
             </div>
           </div>
@@ -205,7 +198,7 @@ export function SessionInfoTab({
           </div>
 
           {sessionDetails?.screen_width &&
-          sessionDetails?.screen_height ? (
+            sessionDetails?.screen_height ? (
             <div className="flex items-center gap-2 text-sm">
               <span className="font-medium text-neutral-600 dark:text-neutral-300 min-w-[80px]">
                 Screen:

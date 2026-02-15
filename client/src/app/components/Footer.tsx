@@ -13,7 +13,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="border-t border-neutral-200 dark:border-neutral-850 bg-neutral-50 dark:bg-neutral-900 mt-8">
+    <footer className="border-t border-neutral-200 dark:border-neutral-850 bg-neutral-50 dark:bg-neutral-900">
       <div className="max-w-[1100px] mx-auto px-4 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
@@ -49,6 +49,14 @@ export function Footer() {
                   className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
                 >
                   API Reference
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://rybbit.com/affiliate"
+                  className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
+                >
+                  50% Affiliate Program
                 </a>
               </li>
             </ul>
