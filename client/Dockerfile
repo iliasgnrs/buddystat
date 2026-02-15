@@ -13,7 +13,7 @@ RUN npm install && npm run build
 # Install client dependencies
 WORKDIR /app/client
 COPY client/package.json client/package-lock.json* ./
-RUN npm ci --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 # Rebuild the source code only when needed
 FROM base AS builder
