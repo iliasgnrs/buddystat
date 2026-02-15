@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Free Cost Per Acquisition (CPA) Calculator",
     description: "Calculate and optimize your customer acquisition costs with industry benchmarks",
     type: "website",
-    url: "https://rybbit.com/tools/cost-per-acquisition-calculator",
+    url: "https://buddystat.com/tools/cost-per-acquisition-calculator",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Calculate your cost per acquisition and compare against industry benchmarks",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/cost-per-acquisition-calculator",
+    canonical: "https://buddystat.com/tools/cost-per-acquisition-calculator",
   },
 };
 
@@ -31,7 +31,7 @@ const structuredData = {
       "@type": "WebApplication",
       name: "Cost Per Acquisition Calculator",
       description: "Free CPA calculator to measure customer acquisition costs and compare against industry benchmarks",
-      url: "https://rybbit.com/tools/cost-per-acquisition-calculator",
+      url: "https://buddystat.com/tools/cost-per-acquisition-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
       offers: {

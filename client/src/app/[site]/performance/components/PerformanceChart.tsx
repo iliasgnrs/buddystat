@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useGetPerformanceTimeSeries } from "../../../../api/analytics/hooks/performance/useGetPerformanceTimeSeries";
 import { BucketSelection } from "../../../../components/BucketSelection";
-import { RybbitLogo } from "../../../../components/RybbitLogo";
+import { BuddyStatLogo } from "../../../../components/BuddyStatLogo";
 import { authClient } from "../../../../lib/auth";
 import { formatChartDateTime, hour12, userLocale } from "../../../../lib/dateTimeUtils";
 import { getTimezone, useStore } from "../../../../lib/store";
@@ -200,7 +200,7 @@ export function PerformanceChart() {
               href={session.data ? "/" : "/"}
               className={cn("text-lg font-semibold flex items-center gap-1.5 opacity-75", tilt_wrap.className)}
             >
-              <RybbitLogo width={20} height={20} />
+              <BuddyStatLogo width={20} height={20} />
               BuddyStat
             </Link>
           </div>

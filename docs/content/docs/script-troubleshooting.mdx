@@ -1,16 +1,16 @@
 ---
 title: Troubleshooting
-description: Common issues and solutions when the Rybbit tracking script isn't sending traffic
+description: Common issues and solutions when the BuddyStat tracking script isn't sending traffic
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Steps, Step } from 'fumadocs-ui/components/steps';
 
-If you've installed the Rybbit tracking script but aren't seeing any traffic in your dashboard, this guide will help you diagnose and fix common issues.
+If you've installed the BuddyStat tracking script but aren't seeing any traffic in your dashboard, this guide will help you diagnose and fix common issues.
 
 ## Check if the Script is Loaded
 
-The first step is to verify that the Rybbit script is properly loaded on your page.
+The first step is to verify that the BuddyStat script is properly loaded on your page.
 
 <Steps>
 <Step>
@@ -46,7 +46,7 @@ If you see the error, the script is not loading properly. Continue reading for c
 
 ### Data Attributes Being Stripped
 
-Some platforms, content management systems, and tag managers automatically remove or sanitize `data-*` attributes (or all non-standard attributes) from script tags. This means the `data-site-id` attribute required by Rybbit gets removed, causing the script to fail silently.
+Some platforms, content management systems, and tag managers automatically remove or sanitize `data-*` attributes (or all non-standard attributes) from script tags. This means the `data-site-id` attribute required by BuddyStat gets removed, causing the script to fail silently.
 
 **Platforms known to strip attributes:**
 - Google Tag Manager
@@ -60,7 +60,7 @@ Some platforms, content management systems, and tag managers automatically remov
 <script>
   (function() {
     var el = document.createElement("script");
-    el.src = "https://app.rybbit.io/api/script.js";
+    el.src = "https://app.buddystat.com/api/script.js";
     el.defer = true;
     el.setAttribute("data-site-id", "YOUR_SITE_ID");
     document.head.appendChild(el);
@@ -76,7 +76,7 @@ For detailed Google Tag Manager setup instructions, see our [Google Tag Manager 
 
 ### Ad Blockers
 
-In rare cases, ad blockers may block the Rybbit tracking script. While Rybbit is privacy-focused and doesn't use cookies for tracking, some aggressive ad blockers may still flag analytics scripts.
+In rare cases, ad blockers may block the BuddyStat tracking script. While BuddyStat is privacy-focused and doesn't use cookies for tracking, some aggressive ad blockers may still flag analytics scripts.
 
 **How to check if an ad blocker is the issue:**
 1. Temporarily disable your ad blocker
@@ -89,7 +89,7 @@ In rare cases, ad blockers may block the Rybbit tracking script. While Rybbit is
 
 ### Script Not in the Right Location
 
-The Rybbit script should be placed in the `<head>` section of your HTML. If it's placed in the wrong location or loaded after the page has already finished loading, it may not work correctly.
+The BuddyStat script should be placed in the `<head>` section of your HTML. If it's placed in the wrong location or loaded after the page has already finished loading, it may not work correctly.
 
 **Verify the script placement:**
 1. View your page source (right-click → **View Page Source**)
@@ -98,28 +98,28 @@ The Rybbit script should be placed in the `<head>` section of your HTML. If it's
 
 ### Incorrect Site ID
 
-Double-check that your `data-site-id` matches the site ID shown in your Rybbit dashboard.
+Double-check that your `data-site-id` matches the site ID shown in your BuddyStat dashboard.
 
-1. Go to your Rybbit dashboard
+1. Go to your BuddyStat dashboard
 2. Navigate to your site's settings
 3. Copy the site ID and compare it with what's in your script tag
 
 ### Content Security Policy (CSP) Blocking
 
-If your site has a strict Content Security Policy, it may block the Rybbit script from loading or executing.
+If your site has a strict Content Security Policy, it may block the BuddyStat script from loading or executing.
 
 **Check for CSP errors:**
 1. Open the browser console
 2. Look for errors mentioning "Content Security Policy" or "CSP"
 
-**Solution:** Add the Rybbit script domain to your CSP headers:
+**Solution:** Add the BuddyStat script domain to your CSP headers:
 
 ```
-script-src 'self' https://app.rybbit.io;
-connect-src 'self' https://app.rybbit.io;
+script-src 'self' https://app.buddystat.com;
+connect-src 'self' https://app.buddystat.com;
 ```
 
-If you're self-hosting Rybbit, replace `app.rybbit.io` with your Rybbit instance domain.
+If you're self-hosting Rybbit, replace `app.buddystat.com` with your BuddyStat instance domain.
 
 ### Script Loading Too Late in SPAs
 
@@ -138,17 +138,17 @@ Once you've made changes, verify that tracking is working:
    ```javascript
    rybbit.event("test_event")
    ```
-3. **Check your dashboard**: Navigate to the Events tab in your Rybbit dashboard and look for "test_event" (it may take a few seconds to appear)
+3. **Check your dashboard**: Navigate to the Events tab in your BuddyStat dashboard and look for "test_event" (it may take a few seconds to appear)
 4. **Check the Network tab**: In browser dev tools, go to the Network tab, filter by "track" or "rybbit", and verify requests are being sent with 200 status codes
 
 ## Still Having Issues?
 
 If you've tried all the above and are still not seeing traffic:
 
-1. **Check the browser Network tab** for any failed requests to your Rybbit instance
+1. **Check the browser Network tab** for any failed requests to your BuddyStat instance
 2. **Verify your site ID** is correct in the dashboard
 3. **Check if traffic is being filtered** - review your [IP exclusions](/docs/hiding-own-traffic) and [country exclusions](/docs/filter-traffic) to ensure your traffic isn't being blocked
-4. **For self-hosted instances** - ensure your Rybbit server is running and accessible
+4. **For self-hosted instances** - ensure your BuddyStat server is running and accessible
 
 ---
 

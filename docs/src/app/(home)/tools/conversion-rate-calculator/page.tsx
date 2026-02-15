@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Calculate and optimize your conversion rates with industry benchmarks",
     type: "website",
-    url: "https://rybbit.com/tools/conversion-rate-calculator",
+    url: "https://buddystat.com/tools/conversion-rate-calculator",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Calculate your conversion rate and compare against industry benchmarks",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/conversion-rate-calculator",
+    canonical: "https://buddystat.com/tools/conversion-rate-calculator",
   },
 };
 
@@ -33,7 +33,7 @@ const structuredData = {
       name: "Conversion Rate Calculator",
       description:
         "Free conversion rate calculator to measure marketing effectiveness and compare against industry benchmarks",
-      url: "https://rybbit.com/tools/conversion-rate-calculator",
+      url: "https://buddystat.com/tools/conversion-rate-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
       offers: {

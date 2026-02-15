@@ -319,7 +319,7 @@ ssh root@vps "cd /opt/buddystat && docker-compose -f docker-compose.cloud.yml re
 ## 🔗 Additional Resources
 
 - Original Rybbit: https://github.com/rybbit-io/rybbit
-- Rybbit Docs: https://rybbit.com/docs
+- BuddyStat Docs: https://buddystat.com/docs
 - Docker Docs: https://docs.docker.com
 - Caddy Docs: https://caddyserver.com/docs
 

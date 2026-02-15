@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     try {
       const response = await fetch(validatedData.url, {
         headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; RybbitBot/1.0; +https://rybbit.com)",
+          "User-Agent": "Mozilla/5.0 (compatible; BuddyStatBot/1.0; +https://buddystat.com)",
         },
         signal: AbortSignal.timeout(10000), // 10 second timeout
       });

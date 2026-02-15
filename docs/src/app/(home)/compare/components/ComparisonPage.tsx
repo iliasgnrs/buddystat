@@ -63,7 +63,7 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
         <div className="relative z-10 flex flex-col items-center my-8 md:my-10">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 text-base md:text-lg px-4">
             <TrackedButton
-              href="https://app.rybbit.io/signup"
+              href="https://app.buddystat.com/signup"
               eventName="signup"
               eventProps={{ location: "hero", button_text: "Track your site" }}
               className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-5 py-3 rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 cursor-pointer"
@@ -71,7 +71,7 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
               Track your site
             </TrackedButton>
             <TrackedButton
-              href="https://demo.rybbit.com/1"
+              href="https://buddystat.com/1"
               eventName="demo"
               target="_blank"
               rel="noopener noreferrer"

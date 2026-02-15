@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useWhiteLabel } from "../hooks/useIsWhiteLabel";
 import { Skeleton } from "./ui/skeleton";
 
-export function RybbitLogo({ width = 32, height = 32 }: { width?: number; height?: number }) {
+export function BuddyStatLogo({ width = 32, height = 32 }: { width?: number; height?: number }) {
   const { whiteLabelImage, isPending } = useWhiteLabel();
   const [mounted, setMounted] = useState(false);
 
@@ -22,7 +22,7 @@ export function RybbitLogo({ width = 32, height = 32 }: { width?: number; height
   return <Image src="/buddystat-icon.png" alt="BuddyStat" width={width} height={height} />;
 }
 
-export function RybbitTextLogo({ width = 150, height = 34 }: { width?: number; height?: number }) {
+export function BuddyStatTextLogo({ width = 150, height = 34 }: { width?: number; height?: number }) {
   const { whiteLabelImage, isPending } = useWhiteLabel();
   const [mounted, setMounted] = useState(false);
 

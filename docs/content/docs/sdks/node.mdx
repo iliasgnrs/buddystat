@@ -20,7 +20,7 @@ yarn add @rybbit/node
 ### Syntax
 
 ```typescript
-import { Rybbit } from "@rybbit/node";
+import { BuddyStat } from "@rybbit/node";
 
 const rybbit = new Rybbit(config: RybbitConfig);
 ```
@@ -28,10 +28,10 @@ const rybbit = new Rybbit(config: RybbitConfig);
 ### Example
 
 ```javascript
-import { Rybbit } from "@rybbit/node";
+import { BuddyStat } from "@rybbit/node";
 
 const rybbit = new Rybbit({
-  analyticsHost: "https://app.rybbit.io/api",
+  analyticsHost: "https://app.buddystat.com/api",
   siteId: "1",
   apiKey: "your-secret-api-key",
 });
@@ -45,8 +45,8 @@ The `Rybbit` constructor will throw an error if required configuration options (
 
 | Option          | Type               | Default | Description                                                                                      |
 | :-------------- | :----------------- | :------ | :----------------------------------------------------------------------------------------------- |
-| `analyticsHost` | `string`           | -       | **Required.** URL of your Rybbit analytics instance (e.g., `https://rybbit.yourdomain.com/api`). |
-| `siteId`        | `string \| number` | -       | **Required.** The Site ID for your website obtained from your Rybbit instance.                   |
+| `analyticsHost` | `string`           | -       | **Required.** URL of your BuddyStat analytics instance (e.g., `https://rybbit.yourdomain.com/api`). |
+| `siteId`        | `string \| number` | -       | **Required.** The Site ID for your website obtained from your BuddyStat instance.                   |
 | `apiKey`        | `string`           | -       | **Required.** Your secret API key for the site                                                   |
 | `debug`         | `boolean`          | `false` | Enable detailed logging to the console.                                                          |
 

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Rybbit vs Umami: Open-Source Analytics Head-to-Head",
     description: "Two open-source analytics platforms compared. See which offers more features and flexibility.",
     type: "website",
-    url: "https://rybbit.com/compare/umami",
+    url: "https://buddystat.com/compare/umami",
   },
   twitter: {
     card: "summary_large_image",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Open-source analytics showdown. Compare features, hosting options, and more.",
   },
   alternates: {
-    canonical: "https://rybbit.com/compare/umami",
+    canonical: "https://buddystat.com/compare/umami",
   },
 };
 
@@ -28,14 +28,14 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://rybbit.com/compare/umami",
+      "@id": "https://buddystat.com/compare/umami",
       name: "Rybbit vs Umami Comparison",
       description: "Compare Rybbit and Umami analytics platforms",
-      url: "https://rybbit.com/compare/umami",
+      url: "https://buddystat.com/compare/umami",
       isPartOf: {
         "@type": "WebSite",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

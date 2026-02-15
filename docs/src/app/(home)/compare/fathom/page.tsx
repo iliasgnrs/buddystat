@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Rybbit vs Fathom: More Features, Same Privacy Focus",
     description: "Fathom is simple. Rybbit is simple AND powerful. Compare session replay, funnels, and more.",
     type: "website",
-    url: "https://rybbit.com/compare/fathom",
+    url: "https://buddystat.com/compare/fathom",
   },
   twitter: {
     card: "summary_large_image",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Privacy-first analytics compared. See which offers more value.",
   },
   alternates: {
-    canonical: "https://rybbit.com/compare/fathom",
+    canonical: "https://buddystat.com/compare/fathom",
   },
 };
 
@@ -28,14 +28,14 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://rybbit.com/compare/fathom",
+      "@id": "https://buddystat.com/compare/fathom",
       name: "Rybbit vs Fathom Comparison",
       description: "Compare Rybbit and Fathom analytics platforms",
-      url: "https://rybbit.com/compare/fathom",
+      url: "https://buddystat.com/compare/fathom",
       isPartOf: {
         "@type": "WebSite",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

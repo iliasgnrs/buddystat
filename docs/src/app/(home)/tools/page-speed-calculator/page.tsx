@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     description:
       "Calculate how page load time affects your conversions and revenue. See the real cost of a slow website.",
     type: "website",
-    url: "https://rybbit.com/tools/page-speed-calculator",
+    url: "https://buddystat.com/tools/page-speed-calculator",
     siteName: "Rybbit",
     images: [
       {
-        url: "https://rybbit.com/og-image.png",
+        url: "https://buddystat.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Page Speed Calculator",
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Page Speed Calculator | Website Load Time Impact Calculator",
     description: "Calculate how page load time affects your conversions and revenue.",
-    images: ["https://rybbit.com/og-image.png"],
+    images: ["https://buddystat.com/og-image.png"],
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/page-speed-calculator",
+    canonical: "https://buddystat.com/tools/page-speed-calculator",
   },
 };
 
@@ -41,7 +41,7 @@ const structuredData = {
       name: "Page Speed Impact Calculator",
       description:
         "Calculate how page load time affects your conversions and revenue. See the real cost of a slow website.",
-      url: "https://rybbit.com/tools/page-speed-calculator",
+      url: "https://buddystat.com/tools/page-speed-calculator",
       applicationCategory: "WebApplication",
       offers: {
         "@type": "Offer",
@@ -51,7 +51,7 @@ const structuredData = {
       creator: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

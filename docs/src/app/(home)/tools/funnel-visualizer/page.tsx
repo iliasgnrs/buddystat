@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Visualize your conversion funnel step-by-step. Identify drop-off points and optimize conversion rates.",
     type: "website",
-    url: "https://rybbit.com/tools/funnel-visualizer",
+    url: "https://buddystat.com/tools/funnel-visualizer",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
       "Visualize your conversion funnel step-by-step. Identify drop-off points and optimize conversion rates.",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/funnel-visualizer",
+    canonical: "https://buddystat.com/tools/funnel-visualizer",
   },
 };
 
@@ -32,7 +32,7 @@ const structuredData = {
       "@type": "WebApplication",
       name: "Funnel Visualizer",
       description: "Free tool to visualize conversion funnels and analyze drop-off rates at each step",
-      url: "https://rybbit.com/tools/funnel-visualizer",
+      url: "https://buddystat.com/tools/funnel-visualizer",
       applicationCategory: "BusinessApplication",
       featureList: [
         "Step-by-step funnel visualization",
@@ -244,7 +244,7 @@ const faqs = [
         Optimize high drop-off steps first by: simplifying forms and checkout processes, improving page load speed,
         enhancing trust signals and social proof, clarifying value propositions, reducing friction (fewer clicks),
         improving mobile experience, A/B testing changes, and removing distractions. Track these improvements with{" "}
-        <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to measure the actual impact on conversions.

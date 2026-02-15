@@ -1,6 +1,6 @@
 ---
 title: JavaScript (Web)
-description: Official JavaScript SDK for Rybbit Analytics
+description: Official JavaScript SDK for BuddyStat Analytics
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
@@ -29,7 +29,7 @@ yarn add rrweb
 ```
 
 <Callout type="info">
-The `rrweb` package is only required if you enable session replay in your Rybbit dashboard. The SDK will work without it for all other tracking features.
+The `rrweb` package is only required if you enable session replay in your BuddyStat dashboard. The SDK will work without it for all other tracking features.
 </Callout>
 
 ## Initialization
@@ -50,7 +50,7 @@ async rybbit.init(config: RybbitConfig): Promise<void>;
 import rybbit from "@rybbit/js";
 
 await rybbit.init({
-  analyticsHost: "https://app.rybbit.io/api",
+  analyticsHost: "https://app.buddystat.com/api",
   siteId: "1",
 });
 ```
@@ -61,8 +61,8 @@ await rybbit.init({
 
 | Option          | Type     | Description                                                                          |
 | :-------------- | :------- | :----------------------------------------------------------------------------------- |
-| `analyticsHost` | `string` | URL of your Rybbit analytics instance (e.g., `https://rybbit.yourdomain.com/api`). |
-| `siteId`        | `string` | The Site ID for your website obtained from your Rybbit instance.       |
+| `analyticsHost` | `string` | URL of your BuddyStat analytics instance (e.g., `https://rybbit.yourdomain.com/api`). |
+| `siteId`        | `string` | The Site ID for your website obtained from your BuddyStat instance.       |
 
 #### Local Configuration Options
 
@@ -78,7 +78,7 @@ These options are configured in your code and control SDK behavior locally:
 
 #### Remote Configuration
 
-These settings are controlled through your Rybbit dashboard and cannot be set in the init config:
+These settings are controlled through your BuddyStat dashboard and cannot be set in the init config:
 
 | Dashboard Setting      | Description                                                | Default |
 | :--------------------- | :--------------------------------------------------------- | :------ |
@@ -236,7 +236,7 @@ document.getElementById("external-service-button")?.addEventListener("click", ()
 
 ## Error Tracking
 
-The SDK can automatically capture JavaScript errors and unhandled promise rejections. This feature must be enabled in your Rybbit dashboard.
+The SDK can automatically capture JavaScript errors and unhandled promise rejections. This feature must be enabled in your BuddyStat dashboard.
 
 ### Automatic Error Capture
 
@@ -306,7 +306,7 @@ npm install rrweb
 
 ### Enabling Session Replay
 
-Session replay must be enabled in your Rybbit dashboard under. Once enabled, recording starts automatically when the SDK initializes.
+Session replay must be enabled in your BuddyStat dashboard under. Once enabled, recording starts automatically when the SDK initializes.
 
 ### Manual Controls
 
@@ -332,7 +332,7 @@ Session replay includes privacy-focused defaults and configuration options:
 
 ```javascript
 await rybbit.init({
-  analyticsHost: "https://app.rybbit.io/api",
+  analyticsHost: "https://app.buddystat.com/api",
   siteId: "1",
   replayPrivacyConfig: {
     maskAllInputs: true, // Mask all input values (default: true)
@@ -434,7 +434,7 @@ rybbit.getUserId(): string | null;
 
 ```javascript
 let currentUserId = rybbit.getUserId();
-console.log("Current Rybbit User ID:", currentUserId);
+console.log("Current BuddyStat User ID:", currentUserId);
 ```
 
 ## Page Change Callbacks
@@ -533,7 +533,7 @@ rybbit.cleanup();
 // In React
 useEffect(() => {
   rybbit.init({
-    analyticsHost: "https://app.rybbit.io/api",
+    analyticsHost: "https://app.buddystat.com/api",
     siteId: "1",
   });
 

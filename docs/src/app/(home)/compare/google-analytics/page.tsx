@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Why thousands are switching from Google Analytics to Rybbit. Open-source, cookie-free, GDPR compliant.",
     type: "website",
-    url: "https://rybbit.com/compare/google-analytics",
+    url: "https://buddystat.com/compare/google-analytics",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "The privacy-first Google Analytics alternative. Compare features side-by-side.",
   },
   alternates: {
-    canonical: "https://rybbit.com/compare/google-analytics",
+    canonical: "https://buddystat.com/compare/google-analytics",
   },
 };
 
@@ -29,14 +29,14 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://rybbit.com/compare/google-analytics",
+      "@id": "https://buddystat.com/compare/google-analytics",
       name: "Rybbit vs Google Analytics Comparison",
       description: "Compare Rybbit and Google Analytics platforms",
-      url: "https://rybbit.com/compare/google-analytics",
+      url: "https://buddystat.com/compare/google-analytics",
       isPartOf: {
         "@type": "WebSite",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

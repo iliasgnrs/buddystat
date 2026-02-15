@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     title: "Rybbit Sponsors",
     description: "Meet the sponsors who support Rybbit, the open-source privacy-first analytics platform.",
     type: "website",
-    url: "https://rybbit.com/sponsors",
+    url: "https://buddystat.com/sponsors",
   },
   alternates: {
-    canonical: "https://rybbit.com/sponsors",
+    canonical: "https://buddystat.com/sponsors",
   },
 };
 

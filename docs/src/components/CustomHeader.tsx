@@ -101,7 +101,7 @@ export function CustomHeader() {
           <ThemeSwitcher />
 
           {/* Login Button */}
-          <AppLink href="https://app.rybbit.io" target="_blank" rel="noopener noreferrer">
+          <AppLink href="https://app.buddystat.com" target="_blank" rel="noopener noreferrer">
             <button
               onClick={() => trackAdEvent("login", { location: "header" })}
               className="bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white text-sm font-medium px-3 py-1.5 rounded-md transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50"
@@ -167,7 +167,7 @@ export function CustomHeader() {
             </div>
 
             <div className="border-t border-neutral-300 dark:border-neutral-800">
-              <AppLink href="https://app.rybbit.io" target="_blank" rel="noopener noreferrer" className="block w-full">
+              <AppLink href="https://app.buddystat.com" target="_blank" rel="noopener noreferrer" className="block w-full">
                 <button
                   onClick={() => trackAdEvent("login", { location: "header" })}
                   data-rybbit-event="login"

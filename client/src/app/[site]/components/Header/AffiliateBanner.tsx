@@ -23,9 +23,9 @@ export function AffiliateBanner() {
       <div className="flex items-center gap-2">
         <HandCoins className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
         <span className="text-emerald-700 dark:text-emerald-300 font-medium">
-          Earn <b>50%</b> recurring commission by referring Rybbit.{" "}
+          Earn <b>50%</b> recurring commission by referring BuddyStat.{" "}
           <a
-            href="https://rybbit.com/affiliate"
+            href="https://buddystat.com/affiliate"
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-emerald-900 dark:hover:text-emerald-100"

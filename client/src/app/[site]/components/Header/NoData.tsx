@@ -106,212 +106,212 @@ export function NoData() {
                   icon={<SiGoogletagmanager className="w-5 h-5" />}
                   title="Google Tag Manager"
                   description=""
-                  href="https://rybbit.com/docs/guides/google-tag-manager"
+                  href="https://buddystat.com/docs/guides/google-tag-manager"
                 />
                 <Card
                   icon={<SiReact className="w-5 h-5" />}
                   title="React"
                   description=""
-                  href="https://rybbit.com/docs/guides/react/vite-cra"
+                  href="https://buddystat.com/docs/guides/react/vite-cra"
                 />
                 <Card
                   icon={<SiNextdotjs className="w-5 h-5" />}
                   title="Next.js"
                   description=""
-                  href="https://rybbit.com/docs/guides/react/next-js"
+                  href="https://buddystat.com/docs/guides/react/next-js"
                 />
                 <Card
                   icon={<SiAngular className="w-5 h-5" />}
                   title="Angular"
                   description=""
-                  href="https://rybbit.com/docs/guides/angular"
+                  href="https://buddystat.com/docs/guides/angular"
                 />
                 <Card
                   icon={<SiVuedotjs className="w-5 h-5" />}
                   title="Vue"
                   description=""
-                  href="https://rybbit.com/docs/guides/vue/vite"
+                  href="https://buddystat.com/docs/guides/vue/vite"
                 />
                 <Card
                   icon={<SiNuxt className="w-5 h-5" />}
                   title="Nuxt"
                   description=""
-                  href="https://rybbit.com/docs/guides/vue/nuxt"
+                  href="https://buddystat.com/docs/guides/vue/nuxt"
                 />
                 <Card
                   icon={<SiSvelte className="w-5 h-5" />}
                   title="Svelte"
                   description=""
-                  href="https://rybbit.com/docs/guides/svelte/vite"
+                  href="https://buddystat.com/docs/guides/svelte/vite"
                 />
                 <Card
                   icon={<SiSvelte className="w-5 h-5" />}
                   title="SvelteKit"
                   description=""
-                  href="https://rybbit.com/docs/guides/svelte/sveltekit"
+                  href="https://buddystat.com/docs/guides/svelte/sveltekit"
                 />
                 <Card
                   icon={<img src="/platforms/thrivecart.svg" alt="ThriveCart" className="w-5 h-5 grayscale" />}
                   title="ThriveCart"
                   description=""
-                  href="https://rybbit.com/docs/guides/thrivecart"
+                  href="https://buddystat.com/docs/guides/thrivecart"
                 />
                 <Card
                   icon={<SiAstro className="w-5 h-5" />}
                   title="Astro"
                   description=""
-                  href="https://rybbit.com/docs/guides/astro"
+                  href="https://buddystat.com/docs/guides/astro"
                 />
                 <Card
                   icon={<SiBigcommerce className="w-5 h-5" />}
                   title="BigCommerce"
                   description=""
-                  href="https://rybbit.com/docs/guides/bigcommerce"
+                  href="https://buddystat.com/docs/guides/bigcommerce"
                 />
                 <Card
                   icon={<SiCarrd className="w-5 h-5" />}
                   title="Carrd"
                   description=""
-                  href="https://rybbit.com/docs/guides/carrd"
+                  href="https://buddystat.com/docs/guides/carrd"
                 />
                 <Card
                   icon={<SiContentful className="w-5 h-5" />}
                   title="Contentful"
                   description=""
-                  href="https://rybbit.com/docs/guides/contentful"
+                  href="https://buddystat.com/docs/guides/contentful"
                 />
                 <Card
                   icon={<SiGatsby className="w-5 h-5" />}
                   title="Gatsby"
                   description=""
-                  href="https://rybbit.com/docs/guides/react/gatsby"
+                  href="https://buddystat.com/docs/guides/react/gatsby"
                 />
                 <Card
                   icon={<SiGhost className="w-5 h-5" />}
                   title="Ghost"
                   description=""
-                  href="https://rybbit.com/docs/guides/ghost"
+                  href="https://buddystat.com/docs/guides/ghost"
                 />
                 <Card
                   icon={<SiGitbook className="w-5 h-5" />}
                   title="GitBook"
                   description=""
-                  href="https://rybbit.com/docs/guides/gitbook"
+                  href="https://buddystat.com/docs/guides/gitbook"
                 />
                 <Card
                   icon={<SiRemix className="w-5 h-5" />}
                   title="Remix"
                   description=""
-                  href="https://rybbit.com/docs/guides/react/remix"
+                  href="https://buddystat.com/docs/guides/react/remix"
                 />
                 <Card
                   icon={<SiDocusaurus className="w-5 h-5" />}
                   title="Docusaurus"
                   description=""
-                  href="https://rybbit.com/docs/guides/docusaurus"
+                  href="https://buddystat.com/docs/guides/docusaurus"
                 />
                 <Card
                   icon={<SiDrupal className="w-5 h-5" />}
                   title="Drupal"
                   description=""
-                  href="https://rybbit.com/docs/guides/drupal"
+                  href="https://buddystat.com/docs/guides/drupal"
                 />
                 <Card
                   icon={<SiFramer className="w-5 h-5" />}
                   title="Framer"
                   description=""
-                  href="https://rybbit.com/docs/guides/framer"
+                  href="https://buddystat.com/docs/guides/framer"
                 />
 
                 <Card
                   icon={<SiHugo className="w-5 h-5" />}
                   title="Hugo"
                   description=""
-                  href="https://rybbit.com/docs/guides/hugo"
+                  href="https://buddystat.com/docs/guides/hugo"
                 />
                 <Card
                   icon={<SiJekyll className="w-5 h-5" />}
                   title="Jekyll"
                   description=""
-                  href="https://rybbit.com/docs/guides/jekyll"
+                  href="https://buddystat.com/docs/guides/jekyll"
                 />
                 <Card
                   icon={<SiJoomla className="w-5 h-5" />}
                   title="Joomla"
                   description=""
-                  href="https://rybbit.com/docs/guides/joomla"
+                  href="https://buddystat.com/docs/guides/joomla"
                 />
                 <Card
                   icon={<SiLaravel className="w-5 h-5" />}
                   title="Laravel"
                   description=""
-                  href="https://rybbit.com/docs/guides/laravel"
+                  href="https://buddystat.com/docs/guides/laravel"
                 />
                 <Card
                   icon={<SiMintlify className="w-5 h-5" />}
                   title="Mintlify"
                   description=""
-                  href="https://rybbit.com/docs/guides/mintlify"
+                  href="https://buddystat.com/docs/guides/mintlify"
                 />
                 <Card
                   icon={<SiPrestashop className="w-5 h-5" />}
                   title="PrestaShop"
                   description=""
-                  href="https://rybbit.com/docs/guides/prestashop"
+                  href="https://buddystat.com/docs/guides/prestashop"
                 />
                 <Card
                   icon={<SiSanity className="w-5 h-5" />}
                   title="Sanity"
                   description=""
-                  href="https://rybbit.com/docs/guides/sanity"
+                  href="https://buddystat.com/docs/guides/sanity"
                 />
                 <Card
                   icon={<SiShopify className="w-5 h-5" />}
                   title="Shopify"
                   description=""
-                  href="https://rybbit.com/docs/guides/shopify"
+                  href="https://buddystat.com/docs/guides/shopify"
                 />
                 <Card
                   icon={<SiSquarespace className="w-5 h-5" />}
                   title="Squarespace"
                   description=""
-                  href="https://rybbit.com/docs/guides/squarespace"
+                  href="https://buddystat.com/docs/guides/squarespace"
                 />
                 <Card
                   icon={<SiStrapi className="w-5 h-5" />}
                   title="Strapi"
                   description=""
-                  href="https://rybbit.com/docs/guides/strapi"
+                  href="https://buddystat.com/docs/guides/strapi"
                 />
                 <Card
                   icon={<SiVitepress className="w-5 h-5" />}
                   title="VitePress"
                   description=""
-                  href="https://rybbit.com/docs/guides/vitepress"
+                  href="https://buddystat.com/docs/guides/vitepress"
                 />
                 <Card
                   icon={<SiWordpress className="w-5 h-5" />}
                   title="WordPress"
                   description=""
-                  href="https://rybbit.com/docs/guides/wordpress"
+                  href="https://buddystat.com/docs/guides/wordpress"
                 />
                 <Card
                   icon={<SiWebflow className="w-5 h-5" />}
                   title="Webflow"
                   description=""
-                  href="https://rybbit.com/docs/guides/webflow"
+                  href="https://buddystat.com/docs/guides/webflow"
                 />
                 <Card
                   icon={<SiWix className="w-5 h-5" />}
                   title="Wix"
                   description=""
-                  href="https://rybbit.com/docs/guides/wix"
+                  href="https://buddystat.com/docs/guides/wix"
                 />
                 <Card
                   icon={<SiWoocommerce className="w-5 h-5" />}
                   title="WooCommerce"
                   description=""
-                  href="https://rybbit.com/docs/guides/woocommerce"
+                  href="https://buddystat.com/docs/guides/woocommerce"
                 />
               </div>
             </div>

@@ -195,7 +195,7 @@ export function UTMBuilderForm() {
               <AccordionTrigger>How do I track UTM links with Rybbit?</AccordionTrigger>
               <AccordionContent>
                 Once you have Rybbit installed on your website, UTM parameters are automatically tracked. You can view your campaign performance in your{" "}
-                <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
                   Rybbit dashboard
                 </Link>{" "}
                 under the UTM section.

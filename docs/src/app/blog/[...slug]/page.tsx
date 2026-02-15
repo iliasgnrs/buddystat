@@ -19,7 +19,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string[]
   const page = blogSource.getPage(params.slug);
   if (!page) return {};
 
-  const url = `https://rybbit.com/blog/${params.slug.join("/")}`;
+  const url = `https://buddystat.com/blog/${params.slug.join("/")}`;
   const publishedTime = page.data.date ? new Date(page.data.date).toISOString() : undefined;
   const ogImage = page.data.image || "/opengraph-image.png";
 
@@ -89,7 +89,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
       name: "Rybbit",
       logo: {
         "@type": "ImageObject",
-        url: "https://rybbit.com/public/rybbit.svg",
+        url: "https://buddystat.com/public/rybbit.svg",
       },
     },
     keywords: page.data.tags?.join(", "),

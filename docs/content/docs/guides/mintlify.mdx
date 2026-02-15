@@ -1,15 +1,15 @@
 ---
 title: Mintlify
-description: Integrate Rybbit Analytics with your Mintlify documentation site
+description: Integrate BuddyStat Analytics with your Mintlify documentation site
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps';
 import { Callout } from 'fumadocs-ui/components/callout';
 
 
-This guide explains how to integrate Rybbit with your Mintlify documentation site for analytics tracking. Mintlify uses a file-based approach for custom scripts where any JavaScript file in your content directory is automatically included on every documentation page.
+This guide explains how to integrate BuddyStat with your Mintlify documentation site for analytics tracking. Mintlify uses a file-based approach for custom scripts where any JavaScript file in your content directory is automatically included on every documentation page.
 
-## How to Add Rybbit to Your Mintlify Docs
+## How to Add BuddyStat to Your Mintlify Docs
 
 Mintlify allows you to add custom JavaScript files to your documentation by placing `.js` files inside your content directory. These files will be automatically included on every page.
 
@@ -17,7 +17,7 @@ Mintlify allows you to add custom JavaScript files to your documentation by plac
 <Step>
 ### Retrieve Your Tracking Script Details
 
-Navigate to your Rybbit dashboard to obtain your **Site ID**. The script source will be `https://app.rybbit.io/api/script.js` (or your self-hosted URL if applicable).
+Navigate to your BuddyStat dashboard to obtain your **Site ID**. The script source will be `https://app.buddystat.com/api/script.js` (or your self-hosted URL if applicable).
 </Step>
 
 <Step>
@@ -26,11 +26,11 @@ Navigate to your Rybbit dashboard to obtain your **Site ID**. The script source 
 Create a new JavaScript file in your Mintlify content directory (typically where your `.mdx` files are located). You can name it something descriptive like `rybbit-analytics.js`.
 
 ```javascript filename="rybbit-analytics.js"
-// Rybbit Analytics Integration
+// BuddyStat Analytics Integration
 (function() {
   // Create the script element
   const script = document.createElement('script');
-  script.src = 'https://app.rybbit.io/api/script.js';
+  script.src = 'https://app.buddystat.com/api/script.js';
   script.async = true;
   script.defer = true;
   script.setAttribute('data-site-id', 'YOUR_SITE_ID'); // Replace with your actual Site ID
@@ -40,19 +40,19 @@ Create a new JavaScript file in your Mintlify content directory (typically where
 })();
 ```
 
-Make sure to replace `YOUR_SITE_ID` with your actual Site ID from your Rybbit dashboard.
+Make sure to replace `YOUR_SITE_ID` with your actual Site ID from your BuddyStat dashboard.
 
-If you're self-hosting Rybbit, replace `https://app.rybbit.io/api/script.js` with your self-hosted URL (e.g., `https://your-domain.com/api/script.js`).
+If you're self-hosting Rybbit, replace `https://app.buddystat.com/api/script.js` with your self-hosted URL (e.g., `https://your-domain.com/api/script.js`).
 </Step>
 
 <Step>
 ### Verify Installation
 
-After deploying your Mintlify documentation site, open your Rybbit dashboard to check if data is being received. You can also inspect your browser's network tab to confirm that `script.js` is loaded on your pages and the Rybbit tracking requests are being sent.
+After deploying your Mintlify documentation site, open your BuddyStat dashboard to check if data is being received. You can also inspect your browser's network tab to confirm that `script.js` is loaded on your pages and the BuddyStat tracking requests are being sent.
 
 Look for:
 - The `script.js` file being loaded in the Network tab
-- POST requests to your Rybbit analytics endpoint (e.g., `/api/event`)
+- POST requests to your BuddyStat analytics endpoint (e.g., `/api/event`)
 </Step>
 </Steps>
 
@@ -64,12 +64,12 @@ Look for:
 
 ### Custom Script Attributes
 
-You can customize the Rybbit script behavior by adding data attributes to the script tag:
+You can customize the BuddyStat script behavior by adding data attributes to the script tag:
 
 ```javascript filename="rybbit-analytics.js"
 (function() {
   const script = document.createElement('script');
-  script.src = 'https://app.rybbit.io/api/script.js';
+  script.src = 'https://app.buddystat.com/api/script.js';
   script.async = true;
   script.defer = true;
   script.setAttribute('data-site-id', 'YOUR_SITE_ID');
@@ -88,7 +88,7 @@ You can customize the Rybbit script behavior by adding data attributes to the sc
 ```
 
 Available script attributes:
-- `data-site-id` (required): Your Rybbit site ID
+- `data-site-id` (required): Your BuddyStat site ID
 - `data-debounce`: Debounce duration in milliseconds for tracking events (default: 500)
 - `data-skip-patterns`: JSON array of URL patterns to skip tracking
 - `data-mask-patterns`: JSON array of patterns to mask in tracked data

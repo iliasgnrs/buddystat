@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Free Cost Per Lead (CPL) Calculator",
     description: "Calculate and optimize your cost per lead with channel-specific benchmarks",
     type: "website",
-    url: "https://rybbit.com/tools/cost-per-lead-calculator",
+    url: "https://buddystat.com/tools/cost-per-lead-calculator",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Calculate your cost per lead and compare against channel benchmarks",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/cost-per-lead-calculator",
+    canonical: "https://buddystat.com/tools/cost-per-lead-calculator",
   },
 };
 
@@ -31,7 +31,7 @@ const structuredData = {
       "@type": "WebApplication",
       name: "Cost Per Lead Calculator",
       description: "Free CPL calculator to measure lead generation costs and compare against channel benchmarks",
-      url: "https://rybbit.com/tools/cost-per-lead-calculator",
+      url: "https://buddystat.com/tools/cost-per-lead-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
       offers: {

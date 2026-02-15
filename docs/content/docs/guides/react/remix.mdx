@@ -1,15 +1,15 @@
 ---
 title: Remix
-description: Integrate Rybbit with your Remix application for analytics tracking
+description: Integrate BuddyStat with your Remix application for analytics tracking
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps'
 import { Callout } from 'fumadocs-ui/components/callout'
 
 
-This guide explains how to integrate Rybbit with your Remix application for analytics tracking. Remix is a full-stack web framework that leverages React for building user interfaces.
+This guide explains how to integrate BuddyStat with your Remix application for analytics tracking. Remix is a full-stack web framework that leverages React for building user interfaces.
 
-## How to Add Rybbit to Your Remix App
+## How to Add BuddyStat to Your Remix App
 
 The recommended way to add a script that should appear on every page in a Remix application is by including it in your root layout file, typically `app/root.tsx` (or `app/root.jsx`).
 
@@ -17,11 +17,11 @@ The recommended way to add a script that should appear on every page in a Remix 
 <Step>
 ### Retrieve Your Tracking Script
 
-Navigate to your Rybbit dashboard to obtain your code snippet. It will look like this:
+Navigate to your BuddyStat dashboard to obtain your code snippet. It will look like this:
 
 ```html
 <script
-  src="https://app.rybbit.io/api/script.js"
+  src="https://app.buddystat.com/api/script.js"
   data-site-id="YOUR_SITE_ID"
   defer
 ></script>
@@ -32,7 +32,7 @@ Remember to replace `YOUR_SITE_ID` with your actual Site ID.
 <Step>
 ### Add the Snippet to `app/root.tsx`
 
-Open your `app/root.tsx` (or `app/root.jsx`) file. This file defines the root HTML structure for your application. Add the Rybbit tracking snippet within the `<head>` section of the returned JSX.
+Open your `app/root.tsx` (or `app/root.jsx`) file. This file defines the root HTML structure for your application. Add the BuddyStat tracking snippet within the `<head>` section of the returned JSX.
 
 ```tsx filename="app/root.tsx"
 import {
@@ -53,9 +53,9 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {/* Rybbit Tracking Snippet */}
+        {/* BuddyStat Tracking Snippet */}
         <script
-          src="https://app.rybbit.io/api/script.js"
+          src="https://app.buddystat.com/api/script.js"
           data-site-id={rybbitSiteId}
           defer
         ></script>
@@ -75,7 +75,7 @@ Make sure to replace `YOUR_SITE_ID` with your actual Site ID. You can define it 
 <Step>
 ### Verify Installation
 
-After restarting your Remix development server or deploying your application, open your Rybbit dashboard to check if data is being received. You can also inspect your browser's network tab to confirm that `script.js` is loaded.
+After restarting your Remix development server or deploying your application, open your BuddyStat dashboard to check if data is being received. You can also inspect your browser's network tab to confirm that `script.js` is loaded.
 </Step>
 </Steps>
 
@@ -88,7 +88,7 @@ After restarting your Remix development server or deploying your application, op
 
 ## Custom Event Tracking
 
-Once the Rybbit script is installed and loaded, you can track custom events from any of your Remix route components or other React components within your Remix app:
+Once the BuddyStat script is installed and loaded, you can track custom events from any of your Remix route components or other React components within your Remix app:
 
 ```tsx
 // Example in a Remix route component

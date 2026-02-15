@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     description:
       "Earn 50% recurring commission for 12 months by referring customers to Rybbit.",
     type: "website",
-    url: "https://rybbit.com/affiliate",
+    url: "https://buddystat.com/affiliate",
   },
   alternates: {
-    canonical: "https://rybbit.com/affiliate",
+    canonical: "https://buddystat.com/affiliate",
   },
 };
 

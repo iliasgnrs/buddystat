@@ -35,7 +35,7 @@ export const baseOptions: BaseLayoutProps = {
     //   },
     {
       text: "Demo",
-      url: "https://demo.rybbit.com/1",
+      url: "https://buddystat.com/1",
       external: true,
     },
     //   {

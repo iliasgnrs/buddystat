@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { RybbitLogo } from "../../components/RybbitLogo";
+import { BuddyStatLogo } from "../../components/BuddyStatLogo";
 import { useSetPageTitle } from "../../hooks/useSetPageTitle";
 import { authClient } from "../../lib/auth";
 import { IS_CLOUD } from "../../lib/const";
@@ -102,7 +102,7 @@ export default function ResetPasswordPage() {
     <div className="flex justify-center items-center h-dvh w-full p-4">
       <Card className="w-full max-w-sm p-1">
         <CardHeader>
-          <RybbitLogo width={32} height={32} />
+          <BuddyStatLogo width={32} height={32} />
           <CardTitle className="text-2xl flex justify-center">
             {resetSuccess ? "Password Reset Successful" : otpSent ? "Enter OTP Code" : "Reset Password"}
           </CardTitle>

@@ -1,6 +1,6 @@
 ---
 title: Framer
-description: Integrate Rybbit Analytics with your Framer site for behavior tracking and custom events
+description: Integrate BuddyStat Analytics with your Framer site for behavior tracking and custom events
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps';
@@ -9,17 +9,17 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 Rybbit enables you to gather analytics on user behavior, capture custom events, record sessions, and more within your Framer site.
 
-## How to Add Rybbit to Framer
+## How to Add BuddyStat to Framer
 
 <Steps>
 <Step>
 ### Retrieve Your Tracking Script
 
-Navigate to your Rybbit dashboard to obtain your code snippet.
+Navigate to your BuddyStat dashboard to obtain your code snippet.
 
 ```html
 <script
-  src="https://app.rybbit.io/api/script.js"
+  src="https://app.buddystat.com/api/script.js"
   data-site-id="YOUR_SITE_ID"
   defer
 ></script>
@@ -37,12 +37,12 @@ Navigate to your Rybbit dashboard to obtain your code snippet.
 </Steps>
 
 <Callout type="info">
-  **Page View Tracking in Framer**: Framer sites often behave like Single Page Applications (SPAs). Rybbit's tracking script is designed to automatically detect URL changes and track them as page views. If you use Framer's navigation features (like links between pages or components that change the URL), Rybbit should capture these. If you notice page views are not tracked correctly after navigation, you might need to manually trigger `window.rybbit.pageview()` using a Framer code override or code component when a "virtual" page change occurs. Test the default behavior first.
+  **Page View Tracking in Framer**: Framer sites often behave like Single Page Applications (SPAs). Rybbit's tracking script is designed to automatically detect URL changes and track them as page views. If you use Framer's navigation features (like links between pages or components that change the URL), BuddyStat should capture these. If you notice page views are not tracked correctly after navigation, you might need to manually trigger `window.rybbit.pageview()` using a Framer code override or code component when a "virtual" page change occurs. Test the default behavior first.
 </Callout>
 
 ## Custom Event Tracking in Framer
 
-You can track custom events in Framer using **Code Overrides** or by creating **Code Components**. This allows you to trigger Rybbit tracking calls in response to user interactions.
+You can track custom events in Framer using **Code Overrides** or by creating **Code Components**. This allows you to trigger BuddyStat tracking calls in response to user interactions.
 
 **Example using a Code Override on a button:**
 

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Rybbit vs Plausible: Which Privacy-First Analytics Wins?",
     description: "Both respect privacy, but Rybbit offers more power. Compare session replay, funnels, and pricing.",
     type: "website",
-    url: "https://rybbit.com/compare/plausible",
+    url: "https://buddystat.com/compare/plausible",
   },
   twitter: {
     card: "summary_large_image",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Privacy-first analytics showdown. See which platform offers more value.",
   },
   alternates: {
-    canonical: "https://rybbit.com/compare/plausible",
+    canonical: "https://buddystat.com/compare/plausible",
   },
 };
 
@@ -28,14 +28,14 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://rybbit.com/compare/plausible",
+      "@id": "https://buddystat.com/compare/plausible",
       name: "Rybbit vs Plausible Comparison",
       description: "Compare Rybbit and Plausible analytics platforms",
-      url: "https://rybbit.com/compare/plausible",
+      url: "https://buddystat.com/compare/plausible",
       isPartOf: {
         "@type": "WebSite",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

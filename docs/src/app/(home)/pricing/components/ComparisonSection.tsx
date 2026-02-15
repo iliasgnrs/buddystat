@@ -277,7 +277,7 @@ export function ComparisonSection({ isAnnual }: { isAnnual: boolean }) {
                   Free <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">$0/month</span>
                 </div>
                 <AppLink
-                  href="https://app.rybbit.io/signup"
+                  href="https://app.buddystat.com/signup"
                   className="inline-flex items-center justify-center px-4 py-2 bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 dark:hover:bg-neutral-600 text-neutral-900 dark:text-white text-sm font-medium rounded-lg border border-neutral-400 dark:border-neutral-600 transform hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Start Free
@@ -289,7 +289,7 @@ export function ComparisonSection({ isAnnual }: { isAnnual: boolean }) {
                   <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">From ${isAnnual ? "16" : "19"} /month</span>
                 </div>
                 <AppLink
-                  href="https://app.rybbit.io/signup"
+                  href="https://app.buddystat.com/signup"
                   className="inline-flex items-center justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Get started
@@ -301,7 +301,7 @@ export function ComparisonSection({ isAnnual }: { isAnnual: boolean }) {
                   <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">From ${isAnnual ? "33" : "39"} /month</span>
                 </div>
                 <AppLink
-                  href="https://app.rybbit.io/signup"
+                  href="https://app.buddystat.com/signup"
                   className="inline-flex items-center justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Get started

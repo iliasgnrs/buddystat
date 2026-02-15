@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Rybbit vs Matomo: Which Analytics Platform is Right for You?",
     description: "Side-by-side comparison of Rybbit and Matomo. Modern, privacy-first analytics vs legacy PHP system.",
     type: "website",
-    url: "https://rybbit.com/compare/matomo",
+    url: "https://buddystat.com/compare/matomo",
   },
   twitter: {
     card: "summary_large_image",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Compare Rybbit and Matomo analytics. See which open-source platform fits your needs.",
   },
   alternates: {
-    canonical: "https://rybbit.com/compare/matomo",
+    canonical: "https://buddystat.com/compare/matomo",
   },
 };
 
@@ -28,14 +28,14 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://rybbit.com/compare/matomo",
+      "@id": "https://buddystat.com/compare/matomo",
       name: "Rybbit vs Matomo Comparison",
       description: "Compare Rybbit and Matomo analytics platforms",
-      url: "https://rybbit.com/compare/matomo",
+      url: "https://buddystat.com/compare/matomo",
       isPartOf: {
         "@type": "WebSite",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

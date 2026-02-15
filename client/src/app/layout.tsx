@@ -42,10 +42,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </TooltipProvider>
           </ThemeProvider>
           {appEnv === "prod" && (
-            <Script src="https://demo.rybbit.com/api/script.js" data-site-id="21" strategy="afterInteractive" />
+            <Script src="https://buddystat.com/api/script.js" data-site-id="21" strategy="afterInteractive" />
           )}
           {appEnv === "demo" && (
-            <Script src="https://demo.rybbit.com/api/script.js" data-site-id="22" strategy="afterInteractive" />
+            <Script src="https://buddystat.com/api/script.js" data-site-id="22" strategy="afterInteractive" />
           )}
           {appEnv === "prod" && IS_CLOUD && (
             <>

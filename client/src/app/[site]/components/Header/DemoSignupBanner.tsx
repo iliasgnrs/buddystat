@@ -12,7 +12,7 @@ export function DemoSignupBanner() {
     return null;
   }
 
-  // Only show on demo.rybbit.com and not in an iframe
+  // Only show on demo.buddystat.com and not in an iframe
   if (typeof window === "undefined" || window.location.host !== DEMO_HOSTNAME) {
     return null;
   }
@@ -29,7 +29,7 @@ export function DemoSignupBanner() {
         <span>Enjoying the demo? Get started with your own analytics dashboard!</span>
       </div>
       <Button variant="success" size="sm" asChild>
-        <Link href="https://app.rybbit.io/signup" target="_blank" rel="noopener">
+        <Link href="https://app.buddystat.com/signup" target="_blank" rel="noopener">
           Sign Up <ArrowRight className="ml-1 h-3 w-3" />
         </Link>
       </Button>

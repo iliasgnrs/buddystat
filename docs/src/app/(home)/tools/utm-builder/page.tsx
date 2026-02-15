@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
       "Generate UTM campaign URLs instantly for accurate marketing tracking in Google Analytics and other analytics platforms.",
     type: "website",
-    url: "https://rybbit.com/tools/utm-builder",
+    url: "https://buddystat.com/tools/utm-builder",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Build trackable campaign URLs with UTM parameters for better marketing analytics.",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/utm-builder",
+    canonical: "https://buddystat.com/tools/utm-builder",
   },
 };
 
@@ -31,7 +31,7 @@ const structuredData = {
       "@type": "WebApplication",
       name: "UTM Builder Tool",
       description: "Free tool to generate UTM parameters for campaign URL tracking",
-      url: "https://rybbit.com/tools/utm-builder",
+      url: "https://buddystat.com/tools/utm-builder",
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -41,7 +41,7 @@ const structuredData = {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

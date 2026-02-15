@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Free Customer Lifetime Value (CLV) Calculator",
     description: "Calculate CLV with retention rates and profit margins, compare against industry benchmarks",
     type: "website",
-    url: "https://rybbit.com/tools/customer-lifetime-value-calculator",
+    url: "https://buddystat.com/tools/customer-lifetime-value-calculator",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Calculate customer lifetime value with retention rate analysis",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/customer-lifetime-value-calculator",
+    canonical: "https://buddystat.com/tools/customer-lifetime-value-calculator",
   },
 };
 
@@ -32,7 +32,7 @@ const structuredData = {
       name: "Customer Lifetime Value Calculator",
       description:
         "Free CLV calculator with retention rate analysis to predict customer revenue and compare against industry benchmarks",
-      url: "https://rybbit.com/tools/customer-lifetime-value-calculator",
+      url: "https://buddystat.com/tools/customer-lifetime-value-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
       offers: {

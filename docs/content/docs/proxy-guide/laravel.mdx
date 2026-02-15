@@ -1,31 +1,31 @@
 ---
 title: Laravel Proxy Setup
-description: Configure Laravel routes and middleware to proxy Rybbit tracking
+description: Configure Laravel routes and middleware to proxy BuddyStat tracking
 ---
 
 import { Steps } from 'fumadocs-ui/components/steps';
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
 
-Laravel makes it straightforward to proxy Rybbit tracking using routes and the HTTP client. This guide shows how to set up proxy endpoints in your Laravel application.
+Laravel makes it straightforward to proxy BuddyStat tracking using routes and the HTTP client. This guide shows how to set up proxy endpoints in your Laravel application.
 
 ## Overview
 
-Laravel's HTTP client (built on Guzzle) provides an elegant way to proxy requests to Rybbit servers while maintaining full control over headers, caching, and error handling.
+Laravel's HTTP client (built on Guzzle) provides an elegant way to proxy requests to BuddyStat servers while maintaining full control over headers, caching, and error handling.
 
 **What you'll achieve:**
-- Proxy all Rybbit endpoints through your Laravel app
+- Proxy all BuddyStat endpoints through your Laravel app
 - Forward necessary headers for accurate tracking
 - Optional caching with Laravel Cache
-- Support all Rybbit features
+- Support all BuddyStat features
 
 ## Prerequisites
 
 - Laravel 8 or later
-- Your Rybbit instance URL:
-  - **Cloud hosted**: `https://app.rybbit.io`
+- Your BuddyStat instance URL:
+  - **Cloud hosted**: `https://app.buddystat.com`
   - **Self-hosted**: Your instance URL
-- Your Rybbit site ID
+- Your BuddyStat site ID
 
 ## Implementation
 
@@ -33,11 +33,11 @@ Laravel's HTTP client (built on Guzzle) provides an elegant way to proxy request
 
 ### Configure Environment Variables
 
-Add your Rybbit host to `.env`:
+Add your BuddyStat host to `.env`:
 
 ```bash
 # .env
-RYBBIT_HOST=https://app.rybbit.io
+RYBBIT_HOST=https://app.buddystat.com
 # For self-hosted: RYBBIT_HOST=https://analytics.yourcompany.com
 ```
 
@@ -67,7 +67,7 @@ class AnalyticsProxyController extends Controller
 
     public function __construct()
     {
-        $this->rybbitHost = config('services.rybbit.host', 'https://app.rybbit.io');
+        $this->rybbitHost = config('services.rybbit.host', 'https://app.buddystat.com');
     }
 
     /**
@@ -121,7 +121,7 @@ class AnalyticsProxyController extends Controller
     }
 
     /**
-     * Forward request to Rybbit backend
+     * Forward request to BuddyStat backend
      */
     private function forwardRequest(string $path, string $method, Request $request)
     {
@@ -188,7 +188,7 @@ Route::prefix('analytics')->group(function () {
 
 ### Add Service Configuration (Optional)
 
-Add Rybbit configuration to `config/services.php`:
+Add BuddyStat configuration to `config/services.php`:
 
 ```php
 <?php
@@ -198,7 +198,7 @@ return [
     // ... other services
 
     'rybbit' => [
-        'host' => env('RYBBIT_HOST', 'https://app.rybbit.io'),
+        'host' => env('RYBBIT_HOST', 'https://app.buddystat.com'),
     ],
 ];
 ```
@@ -215,7 +215,7 @@ Add the tracking script to your layout:
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
 
-    {{-- Rybbit Analytics --}}
+    {{-- BuddyStat Analytics --}}
     <script src="{{ url('/analytics/script.js') }}" async data-site-id="YOUR_SITE_ID"></script>
 </head>
 <body>
@@ -233,7 +233,7 @@ Add the tracking script to your layout:
 
 2. **Visit your application** with Developer Tools open
 3. **Check Network tab**: Requests should go to `/analytics/*`
-4. **Verify in Rybbit dashboard**: Data should appear
+4. **Verify in BuddyStat dashboard**: Data should appear
 
 </Steps>
 
@@ -242,7 +242,7 @@ Add the tracking script to your layout:
 Laravel routes intercept requests to `/analytics/*` and forward them to Rybbit:
 
 1. Request to `/analytics/script.js` hits Laravel route
-2. Controller forwards to `https://app.rybbit.io/api/script.js`
+2. Controller forwards to `https://app.buddystat.com/api/script.js`
 3. Response is cached (for cacheable endpoints)
 4. Client IP and headers are preserved for accurate tracking
 
@@ -441,7 +441,7 @@ And add to HTTP request:
 
 ### Cache not clearing
 
-**Problem**: Old script cached after Rybbit update.
+**Problem**: Old script cached after BuddyStat update.
 
 **Solution**:
 Clear specific cache key:
@@ -464,7 +464,7 @@ Cache::tags(['rybbit', 'scripts'])->remember($cacheKey, 3600, function () {
     // ... fetch script
 });
 
-// Clear all Rybbit cache
+// Clear all BuddyStat cache
 Cache::tags(['rybbit'])->flush();
 ```
 

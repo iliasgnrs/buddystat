@@ -11,7 +11,7 @@ import { authClient } from "../lib/auth";
 import { IS_CLOUD } from "../lib/const";
 import { useStripeSubscription } from "../lib/subscription/useStripeSubscription";
 import { cn } from "../lib/utils";
-import { RybbitLogo } from "./RybbitLogo";
+import { BuddyStatLogo } from "./BuddyStatLogo";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
 function AdminLink({ isExpanded }: { isExpanded: boolean }) {
@@ -52,7 +52,7 @@ function AppSidebarContent() {
     >
       <div className="flex flex-col items-start gap-2">
         <Link href="/" className="mb-2 mt-1 ml-0.5 flex items-center justify-center">
-          <RybbitLogo width={24} height={18} />
+          <BuddyStatLogo width={24} height={18} />
         </Link>
         <SidebarLink
           href="/docs"
@@ -63,7 +63,7 @@ function AppSidebarContent() {
         />
         {
           IS_CLOUD && subscription?.status === "active" && <SidebarLink
-            href="mailto:hello@rybbit.com"
+            href="mailto:hello@buddystat.com"
             icon={<HelpCircle className="w-5 h-5" />}
             label="Email Support"
             target="_blank"

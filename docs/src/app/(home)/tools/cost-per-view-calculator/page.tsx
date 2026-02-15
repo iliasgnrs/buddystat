@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Free Cost Per View (CPV) Calculator",
     description: "Calculate and optimize your video advertising CPV with platform-specific benchmarks",
     type: "website",
-    url: "https://rybbit.com/tools/cost-per-view-calculator",
+    url: "https://buddystat.com/tools/cost-per-view-calculator",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Calculate your cost per view and compare against platform benchmarks",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/cost-per-view-calculator",
+    canonical: "https://buddystat.com/tools/cost-per-view-calculator",
   },
 };
 
@@ -31,7 +31,7 @@ const structuredData = {
       "@type": "WebApplication",
       name: "Cost Per View Calculator",
       description: "Free CPV calculator to measure video advertising costs and compare against platform benchmarks",
-      url: "https://rybbit.com/tools/cost-per-view-calculator",
+      url: "https://buddystat.com/tools/cost-per-view-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
       offers: {

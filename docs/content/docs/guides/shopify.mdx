@@ -1,6 +1,6 @@
 ---
 title: "Shopify"
-description: "Integrate Rybbit with your Shopify store to capture events, track conversions, and analyze user behavior."
+description: "Integrate BuddyStat with your Shopify store to capture events, track conversions, and analyze user behavior."
 ---
 
 import { Step, Steps } from "fumadocs-ui/components/steps";
@@ -10,17 +10,17 @@ import { Callout } from "fumadocs-ui/components/callout";
 
 Rybbit can be integrated with your Shopify store to capture events, track conversions, and analyze user behavior.
 
-## How to Add Rybbit to Shopify
+## How to Add BuddyStat to Shopify
 
 <Steps>
 <Step>
 ### Retrieve Your Tracking Script
 
-Navigate to your Rybbit dashboard to obtain your code snippet.
+Navigate to your BuddyStat dashboard to obtain your code snippet.
 
 ```html
 <script
-  src="https://app.rybbit.io/api/script.js"
+  src="https://app.buddystat.com/api/script.js"
   data-site-id="YOUR_SITE_ID"
   defer
 ></script>
@@ -42,7 +42,7 @@ Navigate to your Rybbit dashboard to obtain your code snippet.
 
 ## Tracking E-commerce Events
 
-To get the most out of Rybbit with Shopify, you should track key e-commerce events. This typically involves adding small Liquid and JavaScript snippets to your theme files.
+To get the most out of BuddyStat with Shopify, you should track key e-commerce events. This typically involves adding small Liquid and JavaScript snippets to your theme files.
 
 <Callout type="warn">
   Always back up your theme before making code changes. If you are not comfortable editing theme code, consider hiring a Shopify expert. The following snippets are examples and might need adjustments based on your specific theme structure and Shopify version.
@@ -217,5 +217,5 @@ Track completed purchases on the Shopify "Order status" page (also known as the 
 *   **Theme Differences**: Shopify themes can vary significantly. You may need to adjust Liquid object paths (e.g., `product.selected_or_first_available_variant` vs. `current_variant`) and JavaScript selectors based on your specific theme's structure.
 *   **Currency Conversion**: Prices in Shopify Liquid objects are often in cents. Ensure you divide by 100 to get the decimal value for Rybbit.
 *   **AJAX Carts**: If your theme uses an AJAX cart (drawer or pop-up cart that updates without page reload), tracking `add_to_cart` accurately requires hooking into your theme's specific JavaScript events or using MutationObserver to detect cart changes. The provided `add_to_cart` example is a basic starting point.
-*   **Shopify Customer Events**: For more robust server-side or client-side event tracking, especially for `add_to_cart` and `begin_checkout` without relying on DOM manipulation, explore [Shopify Customer Events](https://shopify.dev/docs/api/customer-events). This allows you to subscribe to events like "product added to cart" or "checkout started" and send data to Rybbit via a custom pixel or by triggering client-side JavaScript. This is a more advanced but often more reliable method.
-*   **Testing**: Thoroughly test each event in your Rybbit dashboard after implementation. Use your browser's developer console to check for JavaScript errors.
+*   **Shopify Customer Events**: For more robust server-side or client-side event tracking, especially for `add_to_cart` and `begin_checkout` without relying on DOM manipulation, explore [Shopify Customer Events](https://shopify.dev/docs/api/customer-events). This allows you to subscribe to events like "product added to cart" or "checkout started" and send data to BuddyStat via a custom pixel or by triggering client-side JavaScript. This is a more advanced but often more reliable method.
+*   **Testing**: Thoroughly test each event in your BuddyStat dashboard after implementation. Use your browser's developer console to check for JavaScript errors.

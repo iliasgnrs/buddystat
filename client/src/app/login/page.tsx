@@ -8,7 +8,7 @@ import { Turnstile } from "@/components/auth/Turnstile";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { RybbitTextLogo } from "../../components/RybbitLogo";
+import { BuddyStatTextLogo } from "../../components/BuddyStatLogo";
 import { SpinningGlobe } from "../../components/SpinningGlobe";
 import { useSetPageTitle } from "../../hooks/useSetPageTitle";
 import { authClient } from "../../lib/auth";
@@ -76,7 +76,7 @@ export default function Page() {
         {/* Logo at top left */}
         <div className="mb-8">
           <a href="/" className="inline-block">
-            <RybbitTextLogo />
+            <BuddyStatTextLogo />
           </a>
         </div>
         <div className="flex-1 flex flex-col justify-center w-full max-w-[550px] mx-auto">

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
       "Calculate and analyze your website's bounce rate compared to industry benchmarks. Get actionable insights to improve visitor engagement.",
     type: "website",
-    url: "https://rybbit.com/tools/bounce-rate-calculator",
+    url: "https://buddystat.com/tools/bounce-rate-calculator",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Calculate your bounce rate and see how you compare to industry averages.",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/bounce-rate-calculator",
+    canonical: "https://buddystat.com/tools/bounce-rate-calculator",
   },
 };
 
@@ -31,7 +31,7 @@ const structuredData = {
       "@type": "WebApplication",
       name: "Bounce Rate Calculator",
       description: "Free tool to calculate and analyze website bounce rate with industry benchmarks",
-      url: "https://rybbit.com/tools/bounce-rate-calculator",
+      url: "https://buddystat.com/tools/bounce-rate-calculator",
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -41,7 +41,7 @@ const structuredData = {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Rybbit vs Simple Analytics: Simple AND Powerful",
     description: "Simple Analytics keeps it basic. Rybbit adds power without complexity. Compare features.",
     type: "website",
-    url: "https://rybbit.com/compare/simpleanalytics",
+    url: "https://buddystat.com/compare/simpleanalytics",
   },
   twitter: {
     card: "summary_large_image",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Privacy-first analytics compared. See which offers the best value.",
   },
   alternates: {
-    canonical: "https://rybbit.com/compare/simpleanalytics",
+    canonical: "https://buddystat.com/compare/simpleanalytics",
   },
 };
 
@@ -28,14 +28,14 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://rybbit.com/compare/simpleanalytics",
+      "@id": "https://buddystat.com/compare/simpleanalytics",
       name: "Rybbit vs Simple Analytics Comparison",
       description: "Compare Rybbit and Simple Analytics platforms",
-      url: "https://rybbit.com/compare/simpleanalytics",
+      url: "https://buddystat.com/compare/simpleanalytics",
       isPartOf: {
         "@type": "WebSite",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

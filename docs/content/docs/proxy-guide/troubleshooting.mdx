@@ -1,12 +1,12 @@
 ---
 title: Troubleshooting Proxy Setup
-description: Common issues and solutions for Rybbit proxy configurations
+description: Common issues and solutions for BuddyStat proxy configurations
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Steps } from 'fumadocs-ui/components/steps';
 
-This guide covers common issues you might encounter when setting up a Rybbit proxy and how to resolve them.
+This guide covers common issues you might encounter when setting up a BuddyStat proxy and how to resolve them.
 
 ## Script Loading Issues
 
@@ -35,7 +35,7 @@ Check your proxy rules are correctly configured:
 Ensure paths are correctly mapped:
 
 ```
-Your domain          →  Rybbit backend
+Your domain          →  BuddyStat backend
 -----------------        ---------------
 /analytics/script.js →  /api/script.js
 ```
@@ -47,10 +47,10 @@ Common mistakes:
 
 ### Test Direct Backend Access
 
-Verify Rybbit backend is accessible:
+Verify BuddyStat backend is accessible:
 
 ```bash
-curl -I https://app.rybbit.io/api/script.js
+curl -I https://app.buddystat.com/api/script.js
 ```
 
 Should return `HTTP/2 200` with `content-type: application/javascript`.
@@ -95,7 +95,7 @@ app.get('*', (req, res) => res.sendFile('index.html'));
 **Symptoms:**
 - Script loads successfully
 - No errors in console
-- No tracking data appears in Rybbit dashboard
+- No tracking data appears in BuddyStat dashboard
 - POST requests to `/analytics/track` fail or return errors
 
 **Solutions:**
@@ -115,7 +115,7 @@ Ensure tracking endpoints are configured:
 
 ### Check CORS Headers
 
-Tracking endpoints need proper CORS headers. Rybbit sets these automatically, but ensure your proxy preserves them:
+Tracking endpoints need proper CORS headers. BuddyStat sets these automatically, but ensure your proxy preserves them:
 
 ```nginx
 # Nginx - preserve CORS headers
@@ -159,7 +159,7 @@ Ensure POST requests remain POST:
 proxy_method $request_method;
 
 # Or let it default (preserves method)
-proxy_pass https://app.rybbit.io;
+proxy_pass https://app.buddystat.com;
 ```
 
 </Steps>
@@ -190,7 +190,7 @@ proxy_set_header User-Agent $http_user_agent;
 
 **Caddy:**
 ```txt
-reverse_proxy https://app.rybbit.io {
+reverse_proxy https://app.buddystat.com {
     header_up X-Real-IP {remote_host}
     header_up X-Forwarded-For {remote_host}
 }
@@ -250,7 +250,7 @@ Session replay can send large payloads (up to 10MB). Ensure your proxy allows th
 # Nginx
 location ~ ^/analytics/session-replay/record/ {
     client_max_body_size 10M;
-    proxy_pass https://app.rybbit.io;
+    proxy_pass https://app.buddystat.com;
 }
 ```
 
@@ -277,7 +277,7 @@ module.exports = {
 ### Stale Configuration (Settings Changes Not Applied)
 
 **Symptoms:**
-- Changed settings in Rybbit dashboard
+- Changed settings in BuddyStat dashboard
 - But tracking script still uses old settings
 - Takes a long time for changes to appear
 
@@ -291,7 +291,7 @@ module.exports = {
 # Nginx - cache for 5 minutes max
 location ~ ^/analytics/site/tracking-config/(.*)$ {
     proxy_cache_valid 200 5m;  # Not longer!
-    proxy_pass https://app.rybbit.io/api/site/tracking-config/$1;
+    proxy_pass https://app.buddystat.com/api/site/tracking-config/$1;
 }
 ```
 
@@ -319,7 +319,7 @@ cache.flushAll();
 # Nginx - no caching
 location ~ ^/analytics/site/tracking-config/(.*)$ {
     proxy_cache off;
-    proxy_pass https://app.rybbit.io/api/site/tracking-config/$1;
+    proxy_pass https://app.buddystat.com/api/site/tracking-config/$1;
 }
 ```
 
@@ -328,7 +328,7 @@ location ~ ^/analytics/site/tracking-config/(.*)$ {
 ### Script Updates Not Appearing
 
 **Symptoms:**
-- Rybbit released an update
+- BuddyStat released an update
 - Your site still loads old script version
 - Missing new features or bug fixes
 
@@ -405,7 +405,7 @@ location = /analytics/script.js {
     proxy_cache_valid 200 1h;
     proxy_cache_key "$scheme$request_method$host$request_uri";
     add_header X-Cache-Status $upstream_cache_status;
-    proxy_pass https://app.rybbit.io/api/script.js;
+    proxy_pass https://app.buddystat.com/api/script.js;
 }
 ```
 
@@ -460,7 +460,7 @@ proxy_http_version 1.1;
 proxy_set_header Connection "";
 
 upstream rybbit {
-    server app.rybbit.io:443;
+    server app.buddystat.com:443;
     keepalive 32;
 }
 ```
@@ -469,7 +469,7 @@ upstream rybbit {
 
 ```bash
 # Test latency to Rybbit
-curl -w "@curl-format.txt" -o /dev/null -s https://app.rybbit.io/api/script.js
+curl -w "@curl-format.txt" -o /dev/null -s https://app.buddystat.com/api/script.js
 
 # Create curl-format.txt:
 # time_namelookup:  %{time_namelookup}s
@@ -479,7 +479,7 @@ curl -w "@curl-format.txt" -o /dev/null -s https://app.rybbit.io/api/script.js
 ```
 
 If backend is slow, consider:
-- Self-hosting Rybbit closer to your users
+- Self-hosting BuddyStat closer to your users
 - Using a CDN proxy
 - Caching more aggressively
 
@@ -536,7 +536,7 @@ proxy_ssl_server_name on;
 
 2. **Check DNS resolution**:
 ```bash
-nslookup app.rybbit.io
+nslookup app.buddystat.com
 ```
 
 3. **Check logs**:
@@ -546,7 +546,7 @@ sudo tail -f /var/log/nginx/error.log
 
 4. **Test backend directly**:
 ```bash
-curl -v https://app.rybbit.io/api/script.js
+curl -v https://app.buddystat.com/api/script.js
 ```
 
 ---
@@ -560,7 +560,7 @@ curl -v https://app.rybbit.io/api/script.js
 1. **Ensure `vercel.json` is committed**:
 ```bash
 git add vercel.json
-git commit -m "Add Rybbit proxy config"
+git commit -m "Add BuddyStat proxy config"
 git push
 ```
 
@@ -595,7 +595,7 @@ If you've tried everything and still have issues:
 2. **Check Network tab** for failed requests (note status codes)
 3. **Check server logs** for proxy errors
 4. **Test with curl** to isolate browser vs server issues
-5. **Verify directly** against `https://app.rybbit.io/api/script.js`
+5. **Verify directly** against `https://app.buddystat.com/api/script.js`
 
 **Gather this information before asking for help:**
 - Framework/platform you're using

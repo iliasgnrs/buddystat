@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Rybbit Team" }],
   creator: "Rybbit",
   publisher: "Rybbit",
-  metadataBase: new URL("https://rybbit.com"),
+  metadataBase: new URL("https://buddystat.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://rybbit.com",
+    url: "https://buddystat.com",
     siteName: "Rybbit",
     title: "Rybbit - Privacy-First Web Analytics Platform",
     description:
@@ -75,9 +75,9 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Script src="https://demo.rybbit.com/api/script.js" data-site-id="21" />
+      <Script src="https://buddystat.com/api/script.js" data-site-id="21" />
       <Script
-        src="https://demo.rybbit.com/api/script.js?ns=demo"
+        src="https://buddystat.com/api/script.js?ns=demo"
         data-site-id="3b023d1a7895"
         data-namespace="rybbit_demo"
       />

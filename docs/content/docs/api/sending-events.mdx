@@ -28,7 +28,7 @@ The `/api/track` endpoint accepts tracking requests for pageviews, custom events
 
 API keys are recommended for server-side tracking to bypass bot detection.
 
-1. Navigate to **Settings → Account** in your Rybbit dashboard
+1. Navigate to **Settings → Account** in your BuddyStat dashboard
 2. Scroll to the **API Keys** section
 3. Enter a name for your API key
 4. Click **Create**
@@ -45,7 +45,7 @@ API keys are user-scoped and grant access to all sites in your organization(s).
 <Tabs items={['Pageview', 'Custom Event']}>
 <Tab value="Pageview">
 ```bash
-curl -X POST 'https://app.rybbit.io/api/track' \
+curl -X POST 'https://app.buddystat.com/api/track' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer rb_your_api_key_here' \
   -d '{
@@ -61,7 +61,7 @@ curl -X POST 'https://app.rybbit.io/api/track' \
 </Tab>
 <Tab value="Custom Event">
 ```bash
-curl -X POST 'https://app.rybbit.io/api/track' \
+curl -X POST 'https://app.buddystat.com/api/track' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer rb_your_api_key_here' \
   -d '{
@@ -336,7 +336,7 @@ Track JavaScript errors. Set `type: "error"`.
 <Tab value="Node.js">
 ```javascript
 const trackEvent = async (eventData) => {
-  const response = await fetch('https://app.rybbit.io/api/track', {
+  const response = await fetch('https://app.buddystat.com/api/track', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -376,7 +376,7 @@ import os
 
 def track_event(event_data):
     response = requests.post(
-        'https://app.rybbit.io/api/track',
+        'https://app.buddystat.com/api/track',
         headers={
             'Content-Type': 'application/json',
             'Authorization': f"Bearer {os.getenv('RYBBIT_API_KEY')}"
@@ -435,7 +435,7 @@ func trackEvent(event TrackingEvent) error {
 
     req, err := http.NewRequest(
         "POST",
-        "https://app.rybbit.io/api/track",
+        "https://app.buddystat.com/api/track",
         bytes.NewBuffer(jsonData),
     )
     if err != nil {
@@ -485,7 +485,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class RybbitTracker {
-    private static final String API_URL = "https://app.rybbit.io/api/track";
+    private static final String API_URL = "https://app.buddystat.com/api/track";
     private static final String API_KEY = System.getenv("RYBBIT_API_KEY");
     private static final String SITE_ID = System.getenv("RYBBIT_SITE_ID");
 
@@ -539,7 +539,7 @@ public class RybbitTracker {
 <?php
 
 class RybbitTracker {
-    private $apiUrl = 'https://app.rybbit.io/api/track';
+    private $apiUrl = 'https://app.buddystat.com/api/track';
     private $apiKey;
     private $siteId;
 
@@ -599,7 +599,7 @@ require 'json'
 require 'uri'
 
 class RybbitTracker
-  API_URL = 'https://app.rybbit.io/api/track'
+  API_URL = 'https://app.buddystat.com/api/track'
 
   def initialize
     @api_key = ENV['RYBBIT_API_KEY']
@@ -663,7 +663,7 @@ public class RybbitTracker
     private readonly HttpClient _httpClient;
     private readonly string _apiKey;
     private readonly string _siteId;
-    private const string ApiUrl = "https://app.rybbit.io/api/track";
+    private const string ApiUrl = "https://app.buddystat.com/api/track";
 
     public RybbitTracker()
     {
@@ -736,7 +736,7 @@ impl RybbitTracker {
             client: reqwest::Client::new(),
             api_key: env::var("RYBBIT_API_KEY").expect("RYBBIT_API_KEY not set"),
             site_id: env::var("RYBBIT_SITE_ID").expect("RYBBIT_SITE_ID not set"),
-            api_url: "https://app.rybbit.io/api/track".to_string(),
+            api_url: "https://app.buddystat.com/api/track".to_string(),
         }
     }
 
@@ -798,7 +798,7 @@ import UIKit
 class RybbitTracker {
     static let shared = RybbitTracker()
 
-    private let apiUrl = "https://app.rybbit.io/api/track"
+    private let apiUrl = "https://app.buddystat.com/api/track"
     private let apiKey: String
     private let siteId: String
 
@@ -891,7 +891,7 @@ import java.util.Locale
 
 class RybbitTracker(private val context: Context) {
     companion object {
-        private const val API_URL = "https://app.rybbit.io/api/track"
+        private const val API_URL = "https://app.buddystat.com/api/track"
         private val JSON = "application/json; charset=utf-8".toMediaType()
     }
 
@@ -976,7 +976,7 @@ class RybbitTracker {
   factory RybbitTracker() => _instance;
   RybbitTracker._internal();
 
-  static const String _apiUrl = 'https://app.rybbit.io/api/track';
+  static const String _apiUrl = 'https://app.buddystat.com/api/track';
   static const String _apiKey = String.fromEnvironment('RYBBIT_API_KEY');
   static const String _siteId = String.fromEnvironment('RYBBIT_SITE_ID');
 

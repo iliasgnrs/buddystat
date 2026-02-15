@@ -8,17 +8,17 @@ import { Callout } from "fumadocs-ui/components/callout";
 
 Rybbit enables you to collect analytics, capture custom events, and more on your Webflow site.
 
-## How to Add Rybbit to Webflow
+## How to Add BuddyStat to Webflow
 
 <Steps>
 <Step>
 ### Retrieve Your Tracking Script
 
-Navigate to your Rybbit dashboard to obtain your code snippet.
+Navigate to your BuddyStat dashboard to obtain your code snippet.
 
 ```html
 <script
-  src="https://app.rybbit.io/api/script.js"
+  src="https://app.buddystat.com/api/script.js"
   data-site-id="YOUR_SITE_ID"
   defer
 ></script>
@@ -36,8 +36,8 @@ Navigate to your Rybbit dashboard to obtain your code snippet.
 
 <Callout type="info">
   **Page View Tracking in Webflow**:
-  - **Standard Navigation**: For standard page-to-page navigation in Webflow, Rybbit will track each new page load automatically.
-  - **Interactions & Animations**: If you use Webflow interactions that change content significantly without changing the URL (e.g., showing/hiding sections to simulate tabs or multi-step forms on a single page), Rybbit will only track the initial page load. For these "virtual" page views, you would need to use custom event tracking to mark those interactions.
+  - **Standard Navigation**: For standard page-to-page navigation in Webflow, BuddyStat will track each new page load automatically.
+  - **Interactions & Animations**: If you use Webflow interactions that change content significantly without changing the URL (e.g., showing/hiding sections to simulate tabs or multi-step forms on a single page), BuddyStat will only track the initial page load. For these "virtual" page views, you would need to use custom event tracking to mark those interactions.
   - **Single-Page Sites**: If your Webflow site is a single-page design with sections, only one page view will be tracked unless you implement custom event tracking for section views.
 </Callout>
 

@@ -120,7 +120,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-photo-resizer`,
+        url: `https://buddystat.com/tools/${platform.id}-photo-resizer`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -129,7 +129,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-photo-resizer`,
+        canonical: `https://buddystat.com/tools/${platform.id}-photo-resizer`,
       },
     };
   }
@@ -150,7 +150,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-bio-generator`,
+        url: `https://buddystat.com/tools/${platform.id}-bio-generator`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -159,7 +159,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-bio-generator`,
+        canonical: `https://buddystat.com/tools/${platform.id}-bio-generator`,
       },
     };
   }
@@ -180,7 +180,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-character-counter`,
+        url: `https://buddystat.com/tools/${platform.id}-character-counter`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -189,7 +189,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-character-counter`,
+        canonical: `https://buddystat.com/tools/${platform.id}-character-counter`,
       },
     };
   }
@@ -210,7 +210,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-hashtag-generator`,
+        url: `https://buddystat.com/tools/${platform.id}-hashtag-generator`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -219,7 +219,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-hashtag-generator`,
+        canonical: `https://buddystat.com/tools/${platform.id}-hashtag-generator`,
       },
     };
   }
@@ -240,7 +240,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-username-generator`,
+        url: `https://buddystat.com/tools/${platform.id}-username-generator`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -249,7 +249,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-username-generator`,
+        canonical: `https://buddystat.com/tools/${platform.id}-username-generator`,
       },
     };
   }
@@ -270,7 +270,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-post-generator`,
+        url: `https://buddystat.com/tools/${platform.id}-post-generator`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -279,7 +279,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-post-generator`,
+        canonical: `https://buddystat.com/tools/${platform.id}-post-generator`,
       },
     };
   }
@@ -300,7 +300,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-page-name-generator`,
+        url: `https://buddystat.com/tools/${platform.id}-page-name-generator`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -309,7 +309,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-page-name-generator`,
+        canonical: `https://buddystat.com/tools/${platform.id}-page-name-generator`,
       },
     };
   }
@@ -330,7 +330,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-comment-generator`,
+        url: `https://buddystat.com/tools/${platform.id}-comment-generator`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -339,7 +339,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-comment-generator`,
+        canonical: `https://buddystat.com/tools/${platform.id}-comment-generator`,
       },
     };
   }
@@ -360,7 +360,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: platform.displayName,
         description: platform.description,
         type: "website",
-        url: `https://rybbit.com/tools/${platform.id}-logo-generator`,
+        url: `https://buddystat.com/tools/${platform.id}-logo-generator`,
         siteName: "Rybbit Documentation",
       },
       twitter: {
@@ -369,7 +369,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: platform.description,
       },
       alternates: {
-        canonical: `https://rybbit.com/tools/${platform.id}-logo-generator`,
+        canonical: `https://buddystat.com/tools/${platform.id}-logo-generator`,
       },
     };
   }
@@ -391,7 +391,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `Free ${platform.displayName}`,
       description: platform.description,
       type: "website",
-      url: `https://rybbit.com/tools/${platform.id}-font-generator`,
+      url: `https://buddystat.com/tools/${platform.id}-font-generator`,
       siteName: "Rybbit Documentation",
     },
     twitter: {
@@ -400,7 +400,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: platform.description,
     },
     alternates: {
-      canonical: `https://rybbit.com/tools/${platform.id}-font-generator`,
+      canonical: `https://buddystat.com/tools/${platform.id}-font-generator`,
     },
   };
 }
@@ -422,7 +422,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-photo-resizer`,
+      url: `https://buddystat.com/tools/${platform.id}-photo-resizer`,
       applicationCategory: "MultimediaApplication",
       offers: {
         "@type": "Offer",
@@ -432,7 +432,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -528,7 +528,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-bio-generator`,
+      url: `https://buddystat.com/tools/${platform.id}-bio-generator`,
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -538,7 +538,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -662,7 +662,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Once you have a great bio, Rybbit helps you track engagement, clicks, and growth on {platform.name}.
             Understand what content resonates with your audience and optimize your strategy.{" "}
-            <a href="https://rybbit.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
               Start tracking for free
             </a>
             .
@@ -704,7 +704,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-character-counter`,
+      url: `https://buddystat.com/tools/${platform.id}-character-counter`,
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -714,7 +714,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -811,7 +811,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit helps you track engagement, clicks, and performance of your {platform.name} posts. See which content
             resonates with your audience and optimize your strategy.{" "}
-            <a href="https://rybbit.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
               Start tracking for free
             </a>
             .
@@ -853,7 +853,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-hashtag-generator`,
+      url: `https://buddystat.com/tools/${platform.id}-hashtag-generator`,
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -863,7 +863,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -988,7 +988,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit helps you measure which content and hashtags drive the most engagement on {platform.name}. Track
             clicks, traffic sources, and content performance to optimize your hashtag strategy.{" "}
-            <a href="https://rybbit.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
               Start tracking for free
             </a>
             .
@@ -1030,7 +1030,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-username-generator`,
+      url: `https://buddystat.com/tools/${platform.id}-username-generator`,
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -1040,7 +1040,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -1151,7 +1151,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Once you've claimed your username, Rybbit helps you track engagement, clicks, and growth on {platform.name}.
             Understand your audience and optimize your content strategy.{" "}
-            <a href="https://rybbit.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
               Start tracking for free
             </a>
             .
@@ -1193,7 +1193,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-post-generator`,
+      url: `https://buddystat.com/tools/${platform.id}-post-generator`,
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -1203,7 +1203,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -1304,7 +1304,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit tracks clicks, engagement, and traffic from your {platform.name} posts. See which content drives the
             most interaction and optimize your social media strategy.{" "}
-            <a href="https://rybbit.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
               Start tracking for free
             </a>
             .
@@ -1346,7 +1346,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-page-name-generator`,
+      url: `https://buddystat.com/tools/${platform.id}-page-name-generator`,
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -1356,7 +1356,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -1447,7 +1447,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit helps you track engagement, clicks, and traffic sources from your {platform.name} presence.
             Understand what content resonates with your audience and optimize your strategy.{" "}
-            <a href="https://rybbit.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
               Start tracking for free
             </a>
             .
@@ -1491,7 +1491,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-comment-generator`,
+      url: `https://buddystat.com/tools/${platform.id}-comment-generator`,
       applicationCategory: "Utility",
       offers: {
         "@type": "Offer",
@@ -1501,7 +1501,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -1591,7 +1591,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit helps you measure which content drives the most engagement and comments on your social media. Track
             clicks, traffic sources, and content performance to understand what resonates with your audience.{" "}
-            <a href="https://rybbit.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
               Start tracking for free
             </a>
             .
@@ -1632,7 +1632,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       "@type": "WebApplication",
       name: platform.displayName,
       description: platform.description,
-      url: `https://rybbit.com/tools/${platform.id}-logo-generator`,
+      url: `https://buddystat.com/tools/${platform.id}-logo-generator`,
       applicationCategory: "DesignApplication",
       offers: {
         "@type": "Offer",
@@ -1642,7 +1642,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
       author: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     };
 
@@ -1747,7 +1747,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
             Rybbit helps you track your brand&apos;s performance across social media platforms. Monitor how your brand is
             discovered, track engagement, and understand your audience.{" "}
             <a
-              href="https://app.rybbit.io/signup"
+              href="https://app.buddystat.com/signup"
               className="text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 underline"
             >
               Start tracking for free
@@ -1790,7 +1790,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
     "@type": "WebApplication",
     name: platform.displayName,
     description: platform.description,
-    url: `https://rybbit.com/tools/${platform.id}-font-generator`,
+    url: `https://buddystat.com/tools/${platform.id}-font-generator`,
     applicationCategory: "Utility",
     offers: {
       "@type": "Offer",
@@ -1800,7 +1800,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
     author: {
       "@type": "Organization",
       name: "Rybbit",
-      url: "https://rybbit.com",
+      url: "https://buddystat.com",
     },
   };
 
@@ -1861,7 +1861,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
         <>
           Rybbit helps you track clicks, engagement, and traffic sources from your {platform.name} posts and bio links.
           See which content drives the most engagement and optimize your social media strategy.{" "}
-          <a href="https://rybbit.com" className="text-emerald-600 hover:text-emerald-500 underline">
+          <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
             Start tracking for free
           </a>
           .

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Generate a customized privacy policy for your website in minutes. GDPR and CCPA compliant. Free tool with no sign-up required.",
     type: "website",
-    url: "https://rybbit.com/tools/privacy-policy-builder",
+    url: "https://buddystat.com/tools/privacy-policy-builder",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Create a custom privacy policy for your website instantly. GDPR and CCPA compliant.",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/privacy-policy-builder",
+    canonical: "https://buddystat.com/tools/privacy-policy-builder",
   },
 };
 
@@ -46,7 +46,7 @@ const structuredData = {
         "Download as Markdown",
       ],
       operatingSystem: "Any",
-      url: "https://rybbit.com/tools/privacy-policy-builder",
+      url: "https://buddystat.com/tools/privacy-policy-builder",
     },
     {
       "@type": "FAQPage",
@@ -235,7 +235,7 @@ const faqs = [
       <>
         Under GDPR and similar regulations, IP addresses and analytics data can be considered personal data. However,
         privacy-focused analytics tools like{" "}
-        <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
           Rybbit
         </Link>{" "}
         don't use cookies and anonymize data, making compliance much easier. If you use privacy-first analytics, you

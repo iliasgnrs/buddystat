@@ -67,7 +67,7 @@ export async function callOpenRouter(
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://rybbit.com",
+        "HTTP-Referer": "https://buddystat.com",
         "X-Title": "Rybbit Analytics Tools",
       },
       body: JSON.stringify({
@@ -115,7 +115,7 @@ export async function callOpenRouterImage(
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://rybbit.com",
+        "HTTP-Referer": "https://buddystat.com",
         "X-Title": "Rybbit Analytics Tools",
       },
       body: JSON.stringify({

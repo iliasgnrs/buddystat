@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Rybbit vs PostHog: Focused Analytics vs Feature Bloat",
     description: "PostHog does everything. Rybbit does web analytics perfectly. Compare the approaches.",
     type: "website",
-    url: "https://rybbit.com/compare/posthog",
+    url: "https://buddystat.com/compare/posthog",
   },
   twitter: {
     card: "summary_large_image",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Focused web analytics vs all-in-one platform. Which approach fits your needs?",
   },
   alternates: {
-    canonical: "https://rybbit.com/compare/posthog",
+    canonical: "https://buddystat.com/compare/posthog",
   },
 };
 
@@ -28,14 +28,14 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://rybbit.com/compare/posthog",
+      "@id": "https://buddystat.com/compare/posthog",
       name: "Rybbit vs PostHog Comparison",
       description: "Compare Rybbit and PostHog analytics platforms",
-      url: "https://rybbit.com/compare/posthog",
+      url: "https://buddystat.com/compare/posthog",
       isPartOf: {
         "@type": "WebSite",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

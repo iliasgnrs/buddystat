@@ -1,17 +1,17 @@
 ---
 title: Vue.js (Vite / Client-Side)
-description: Integrate Rybbit with your client-side Vue.js application
+description: Integrate BuddyStat with your client-side Vue.js application
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps'
 import { Callout } from 'fumadocs-ui/components/callout'
 
 
-This guide explains how to integrate Rybbit with your standard client-side Vue.js Single Page Applications (SPAs), typically built using Vite (e.g., via `npm create vue@latest` or `npm create vite@latest -- --template vue`).
+This guide explains how to integrate BuddyStat with your standard client-side Vue.js Single Page Applications (SPAs), typically built using Vite (e.g., via `npm create vue@latest` or `npm create vite@latest -- --template vue`).
 
-## How to Add Rybbit to Your Client-Side Vue.js App
+## How to Add BuddyStat to Your Client-Side Vue.js App
 
-The recommended and simplest method for client-side Vue applications is to add the Rybbit tracking script directly to your `index.html` file. This ensures the script is loaded early and reliably.
+The recommended and simplest method for client-side Vue applications is to add the BuddyStat tracking script directly to your `index.html` file. This ensures the script is loaded early and reliably.
 
 ### Adding to `index.html`
 
@@ -19,11 +19,11 @@ The recommended and simplest method for client-side Vue applications is to add t
 <Step>
 ### Retrieve Your Tracking Script
 
-Navigate to your Rybbit dashboard to obtain your code snippet:
+Navigate to your BuddyStat dashboard to obtain your code snippet:
 
 ```html
 <script
-  src="https://app.rybbit.io/api/script.js"
+  src="https://app.buddystat.com/api/script.js"
   data-site-id="YOUR_SITE_ID"
   defer
 ></script>
@@ -40,7 +40,7 @@ This file is typically located at the root of your Vite-based Vue project.
 <Step>
 ### Add the Snippet to `index.html`
 
-Open `index.html` and paste the Rybbit tracking snippet just before the closing `</head>` tag or `</body>` tag. Placing it in the `<head>` allows it to load sooner.
+Open `index.html` and paste the BuddyStat tracking snippet just before the closing `</head>` tag or `</body>` tag. Placing it in the `<head>` allows it to load sooner.
 
 ```html filename="index.html (Vite)"
 <!DOCTYPE html>
@@ -50,9 +50,9 @@ Open `index.html` and paste the Rybbit tracking snippet just before the closing 
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Vue App</title>
-    <!-- Rybbit Tracking Snippet -->
+    <!-- BuddyStat Tracking Snippet -->
     <script
-      src="https://app.rybbit.io/api/script.js"
+      src="https://app.buddystat.com/api/script.js"
       data-site-id="YOUR_SITE_ID"
       defer
     ></script>
@@ -70,7 +70,7 @@ Ensure `YOUR_SITE_ID` is replaced with your actual Site ID.
 <Step>
 ### Verify Installation
 
-Deploy your application and check your Rybbit dashboard for incoming data. You can also inspect your browser's network tab to confirm that `script.js` is loaded.
+Deploy your application and check your BuddyStat dashboard for incoming data. You can also inspect your browser's network tab to confirm that `script.js` is loaded.
 </Step>
 </Steps>
 

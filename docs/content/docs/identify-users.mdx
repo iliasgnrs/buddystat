@@ -13,7 +13,7 @@ Rybbit allows you to identify logged-in users and associate their activity with 
 
 ## How It Works
 
-By default, Rybbit assigns an anonymous ID to each visitor based on their device fingerprint. When you call `identify()`, you link this anonymous visitor to a known user ID, allowing you to:
+By default, BuddyStat assigns an anonymous ID to each visitor based on their device fingerprint. When you call `identify()`, you link this anonymous visitor to a known user ID, allowing you to:
 
 - Track the same user across multiple devices
 - Associate pre-login activity with the logged-in user
@@ -44,7 +44,7 @@ You can also include any custom fields you need for segmentation and analysis.
 Sets a custom user ID for tracking logged-in users across devices and sessions, with optional user traits (metadata).
 
 - `userId` (String): The unique identifier for the user. This will be stored in localStorage and persist across browser sessions. **Note: Custom user IDs are stored exactly as provided without any hashing or modification.**
-- `traits` (Object, Optional): An object containing user metadata like email, name, username, or any custom fields. This data is stored in Rybbit and can be used to identify users in the dashboard. Setting a trait to `null` removes it from the user's profile.
+- `traits` (Object, Optional): An object containing user metadata like email, name, username, or any custom fields. This data is stored in BuddyStat and can be used to identify users in the dashboard. Setting a trait to `null` removes it from the user's profile.
 
 ```javascript
 // Identify a user when they log in (without traits)

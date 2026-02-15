@@ -1,6 +1,6 @@
 ---
 title: Proxy Setup Guide
-description: Bypass ad blockers and improve tracking accuracy by proxying Rybbit through your own domain
+description: Bypass ad blockers and improve tracking accuracy by proxying BuddyStat through your own domain
 ---
 
 import { Cards, Card } from 'fumadocs-ui/components/card';
@@ -22,10 +22,10 @@ Proxying Rybbit's tracking script through your own domain helps bypass ad blocke
 When you add Rybbit's tracking script directly to your website using the default installation:
 
 ```html
-<script src="https://app.rybbit.io/api/script.js" async data-site-id="YOUR_SITE_ID"></script>
+<script src="https://app.buddystat.com/api/script.js" async data-site-id="YOUR_SITE_ID"></script>
 ```
 
-The browser loads the script from `app.rybbit.io`, which ad blockers can identify and block as third-party analytics. Even though Rybbit is privacy-focused and doesn't use cookies, some ad blockers use aggressive blocking rules that target any analytics domains.
+The browser loads the script from `app.buddystat.com`, which ad blockers can identify and block as third-party analytics. Even though BuddyStat is privacy-focused and doesn't use cookies, some ad blockers use aggressive blocking rules that target any analytics domains.
 
 **Proxying solves this** by serving the tracking script and handling tracking requests through your own domain (e.g., `yourdomain.com/analytics/script.js`), making all tracking appear as first-party traffic.
 
@@ -70,9 +70,9 @@ Here's the flow when you proxy Rybbit:
    ```
 
 2. **Script loads from your domain**: Your server proxies the request to Rybbit's servers
-   - Request: `yourdomain.com/analytics/script.js` → proxied to → `app.rybbit.io/api/script.js`
+   - Request: `yourdomain.com/analytics/script.js` → proxied to → `app.buddystat.com/api/script.js`
 
-3. **Script auto-discovers analytics host**: The Rybbit script automatically detects the domain it was loaded from
+3. **Script auto-discovers analytics host**: The BuddyStat script automatically detects the domain it was loaded from
    ```typescript
    // The script extracts the host from its own src attribute
    const analyticsHost = src.split("/script.js")[0];
@@ -80,11 +80,11 @@ Here's the flow when you proxy Rybbit:
    ```
 
 4. **Tracking data sent through your domain**: All analytics events are sent to your domain and proxied to Rybbit
-   - Event tracking: `yourdomain.com/analytics/track` → proxied to → `app.rybbit.io/api/track`
+   - Event tracking: `yourdomain.com/analytics/track` → proxied to → `app.buddystat.com/api/track`
    - Session replay: `yourdomain.com/analytics/session-replay/record/{siteId}` → proxied
    - Configuration: `yourdomain.com/analytics/site/tracking-config/{siteId}` → proxied
 
-5. **Data appears in your Rybbit dashboard**: No changes needed in the Rybbit interface
+5. **Data appears in your BuddyStat dashboard**: No changes needed in the BuddyStat interface
 
 <Callout type="warn">
 **Bandwidth Consideration**: All tracking requests will flow through your server infrastructure, which will increase bandwidth usage. For most sites this is minimal (typically 10-50KB per session), but consider this when evaluating hosting costs.

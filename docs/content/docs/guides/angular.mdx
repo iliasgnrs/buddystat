@@ -1,17 +1,17 @@
 ---
 title: Angular
-description: Integrate Rybbit Analytics with your Angular application
+description: Integrate BuddyStat Analytics with your Angular application
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps';
 import { Callout } from 'fumadocs-ui/components/callout';
 
 
-This guide explains how to integrate Rybbit with your Angular application.
+This guide explains how to integrate BuddyStat with your Angular application.
 
-## How to Add Rybbit to Your Angular App
+## How to Add BuddyStat to Your Angular App
 
-The recommended and most common method is to add the Rybbit tracking script directly to your `src/index.html` file. This ensures the script is loaded early and reliably for your Angular application.
+The recommended and most common method is to add the BuddyStat tracking script directly to your `src/index.html` file. This ensures the script is loaded early and reliably for your Angular application.
 
 ### Adding to `src/index.html`
 
@@ -19,11 +19,11 @@ The recommended and most common method is to add the Rybbit tracking script dire
 <Step>
 ### Retrieve Your Tracking Script
 
-Navigate to your Rybbit dashboard to obtain your code snippet. It will look like this:
+Navigate to your BuddyStat dashboard to obtain your code snippet. It will look like this:
 
 ```html
 <script
-  src="https://app.rybbit.io/api/script.js"
+  src="https://app.buddystat.com/api/script.js"
   data-site-id="YOUR_SITE_ID"
   defer
 ></script>
@@ -40,7 +40,7 @@ In a standard Angular CLI project, this file is typically located at `src/index.
 <Step>
 ### Add the Snippet to `index.html`
 
-Open `src/index.html` and paste the Rybbit tracking snippet just before the closing `</head>` tag or `</body>` tag. Placing it in the `<head>` is generally preferred for earlier loading.
+Open `src/index.html` and paste the BuddyStat tracking snippet just before the closing `</head>` tag or `</body>` tag. Placing it in the `<head>` is generally preferred for earlier loading.
 
 ```html filename="src/index.html"
 <!doctype html>
@@ -51,9 +51,9 @@ Open `src/index.html` and paste the Rybbit tracking snippet just before the clos
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!-- Rybbit Tracking Snippet -->
+  <!-- BuddyStat Tracking Snippet -->
   <script
-    src="https://app.rybbit.io/api/script.js"
+    src="https://app.buddystat.com/api/script.js"
     data-site-id="YOUR_SITE_ID"
     defer
   ></script>
@@ -70,7 +70,7 @@ Make sure to replace `YOUR_SITE_ID` with your actual Site ID.
 <Step>
 ### Verify Installation
 
-After building and deploying your application, open your Rybbit dashboard to check if data is being received. You can also inspect your browser's network tab to confirm that `script.js` is loaded.
+After building and deploying your application, open your BuddyStat dashboard to check if data is being received. You can also inspect your browser's network tab to confirm that `script.js` is loaded.
 </Step>
 </Steps>
 
@@ -98,7 +98,7 @@ After building and deploying your application, open your Rybbit dashboard to che
 
 ## Custom Event Tracking
 
-Once the Rybbit script is installed and loaded, you can track custom events from any of your Angular components or services:
+Once the BuddyStat script is installed and loaded, you can track custom events from any of your Angular components or services:
 
 ```typescript
 // Example in an Angular component

@@ -248,7 +248,7 @@ export function TrafficValueForm() {
               <AccordionTrigger>Should I include customer lifetime value?</AccordionTrigger>
               <AccordionContent>
                 This calculator shows immediate value per visitor. For businesses with repeat customers, your actual visitor value is higher when including lifetime value (LTV). Track customer behavior over time with{" "}
-                <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
                   Rybbit Analytics
                 </Link>{" "}
                 to understand true LTV.

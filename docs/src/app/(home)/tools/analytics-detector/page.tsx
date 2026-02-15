@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Discover what analytics and tracking tools any website is using. Analyze privacy implications and understand data collection practices.",
     type: "website",
-    url: "https://rybbit.com/tools/analytics-detector",
+    url: "https://buddystat.com/tools/analytics-detector",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Discover what analytics and tracking tools any website is using.",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/analytics-detector",
+    canonical: "https://buddystat.com/tools/analytics-detector",
   },
 };
 
@@ -29,10 +29,10 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebApplication",
-      "@id": "https://rybbit.com/tools/analytics-detector",
+      "@id": "https://buddystat.com/tools/analytics-detector",
       name: "Analytics Detector",
       description: "Free tool to detect and analyze analytics platforms and tracking tools used on any website",
-      url: "https://rybbit.com/tools/analytics-detector",
+      url: "https://buddystat.com/tools/analytics-detector",
       applicationCategory: "UtilityApplication",
       offers: {
         "@type": "Offer",
@@ -42,7 +42,7 @@ const structuredData = {
       creator: {
         "@type": "Organization",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {
@@ -245,7 +245,7 @@ const faqs = [
     answer: (
       <>
         Privacy-focused analytics tools like{" "}
-        <Link href="https://rybbit.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
           Rybbit
         </Link>
         , Plausible, Fathom Analytics, and Shynet don't use cookies, don't track users across sites, and are GDPR

@@ -360,7 +360,7 @@ export function PageSpeedForm() {
                 CSS/JS files, enabling browser caching, using a Content Delivery Network (CDN), reducing server response
                 time, eliminating render-blocking resources, lazy-loading below-the-fold content, and choosing
                 lightweight analytics tools like{" "}
-                <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
                   Rybbit
                 </Link>{" "}
                 which adds minimal overhead (just 3KB).
@@ -392,7 +392,7 @@ export function PageSpeedForm() {
             to {DEFAULT_EVENT_LIMIT.toLocaleString()} pageviews per month.
           </p>
           <TrackedButton
-            href="https://app.rybbit.io/signup"
+            href="https://app.buddystat.com/signup"
             eventName="signup"
             eventProps={{ location: "page_speed_calculator_cta" }}
             className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"

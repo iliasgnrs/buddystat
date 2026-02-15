@@ -195,7 +195,7 @@ export function BounceRateForm() {
               <AccordionTrigger>How can I reduce my bounce rate?</AccordionTrigger>
               <AccordionContent>
                 To reduce bounce rate: improve page load speed, ensure mobile responsiveness, create compelling content, add clear calls-to-action, use internal linking, improve content readability, and ensure your pages match visitor intent. Track your improvements with{" "}
-                <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
                   Rybbit Analytics
                 </Link>{" "}
                 to see what works.

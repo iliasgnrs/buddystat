@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Calculate how many visitors you need for statistically significant A/B test results. Get accurate sample size calculations with confidence levels and statistical power.",
     type: "website",
-    url: "https://rybbit.com/tools/sample-size-calculator",
+    url: "https://buddystat.com/tools/sample-size-calculator",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
       "Calculate sample size needed for statistically significant A/B test results. Determine confidence levels and statistical power.",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/sample-size-calculator",
+    canonical: "https://buddystat.com/tools/sample-size-calculator",
   },
 };
 
@@ -47,7 +47,7 @@ const structuredData = {
         "Real-time results visualization",
       ],
       operatingSystem: "Any",
-      url: "https://rybbit.com/tools/sample-size-calculator",
+      url: "https://buddystat.com/tools/sample-size-calculator",
     },
     {
       "@type": "FAQPage",
@@ -310,7 +310,7 @@ const faqs = [
         Run your test until you reach the calculated sample size, even if you see apparent "winners" mid-test. Stopping
         early increases false positive risk. The duration depends on your daily visitor volume - if you need 10,000
         visitors and get 1,000/day, run it about 10 days. Use{" "}
-        <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to track progress and know when you reach statistical significance.

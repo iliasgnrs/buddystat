@@ -31,8 +31,8 @@ export async function callOpenRouter(
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
-      "HTTP-Referer": "https://rybbit.com",
-      "X-Title": "Rybbit Analytics",
+      "HTTP-Referer": "https://buddystat.com",
+      "X-Title": "BuddyStat Analytics",
     },
     body: JSON.stringify({
       model,

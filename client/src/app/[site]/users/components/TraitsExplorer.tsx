@@ -35,7 +35,7 @@ export function TraitsExplorer() {
       <NothingFound
         icon={<Tags className="w-10 h-10" />}
         title="No traits found"
-        description={<p>Traits will appear here once you <a href="https://rybbit.com/docs/identify-users" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">identify users</a> with custom properties.</p>}
+        description={<p>Traits will appear here once you <a href="https://buddystat.com/docs/identify-users" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">identify users</a> with custom properties.</p>}
       />
     );
   }

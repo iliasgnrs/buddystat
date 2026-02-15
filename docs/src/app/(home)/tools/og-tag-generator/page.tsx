@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Create optimized OG tags for social sharing. Generate Facebook, Twitter, and LinkedIn previews in seconds with our free tool.",
     type: "website",
-    url: "https://rybbit.com/tools/og-tag-generator",
+    url: "https://buddystat.com/tools/og-tag-generator",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Generate optimized OG tags for social sharing. Perfect previews on Facebook, Twitter, and LinkedIn.",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/og-tag-generator",
+    canonical: "https://buddystat.com/tools/og-tag-generator",
   },
 };
 
@@ -46,7 +46,7 @@ const structuredData = {
         "Image size recommendations",
       ],
       operatingSystem: "Any",
-      url: "https://rybbit.com/tools/og-tag-generator",
+      url: "https://buddystat.com/tools/og-tag-generator",
     },
     {
       "@type": "FAQPage",
@@ -222,7 +222,7 @@ const educationalContent = (
       <li>
         <strong>Track Performance with Analytics:</strong> Use{" "}
         <Link
-          href="https://app.rybbit.io"
+          href="https://app.buddystat.com"
           className="text-emerald-600 dark:text-emerald-400 hover:underline font-medium"
         >
           Rybbit Analytics
@@ -261,7 +261,7 @@ const faqs = [
       <>
         Use Facebook's Sharing Debugger, LinkedIn's Post Inspector, or Twitter's Card Validator to test how your OG tags
         appear. Track social referral traffic with{" "}
-        <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to see which OG tags drive the most clicks.

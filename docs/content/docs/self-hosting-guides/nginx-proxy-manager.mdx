@@ -1,13 +1,13 @@
 ---
 title: Nginx Proxy Manager (NPM) setup
-description: Set up Rybbit with Nginx Proxy Manager without exposing ports directly to the host
+description: Set up BuddyStat with Nginx Proxy Manager without exposing ports directly to the host
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps';
 import { Callout } from 'fumadocs-ui/components/callout';
 
 
-This guide shows you how to set up Rybbit with Nginx Proxy Manager without exposing ports directly to the host.
+This guide shows you how to set up BuddyStat with Nginx Proxy Manager without exposing ports directly to the host.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ This setup assumes you have NPM running and are capable of creating SSL certific
 <Step>
 ### Create Custom Docker Compose
 
-Create a new directory for your Rybbit installation and create a `docker-compose.yml` file:
+Create a new directory for your BuddyStat installation and create a `docker-compose.yml` file:
 
 ```yaml
 services:
@@ -228,7 +228,7 @@ docker network connect npm_proxy <npm_container_name>
 <Step>
 ### Start Services
 
-Start all Rybbit services:
+Start all BuddyStat services:
 
 ```bash
 docker compose up -d
@@ -336,7 +336,7 @@ ingress:
 ### Common Issues
 
 **NPM can't reach containers**:
-- Verify both NPM and Rybbit are on the same network
+- Verify both NPM and BuddyStat are on the same network
 - Check container names match the proxy configuration
 
 **SSL certificate issues**:
@@ -344,7 +344,7 @@ ingress:
 - Check NPM logs for certificate generation errors
 
 **502 Bad Gateway**:
-- Verify Rybbit services are healthy: `docker compose ps`
+- Verify BuddyStat services are healthy: `docker compose ps`
 - Check container logs: `docker compose logs`
 
 ### Networking
@@ -367,7 +367,7 @@ docker ps --format "table {{.Names}}\t{{.Networks}}"
 Monitor logs for debugging:
 
 ```bash
-# Rybbit services
+# BuddyStat services
 docker compose logs -f
 
 # Specific service

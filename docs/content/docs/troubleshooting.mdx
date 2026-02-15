@@ -66,22 +66,22 @@ docker network rm $(docker network ls | grep -v "bridge\|host\|none" | awk '{pri
 If you only want to clean up Rybbit-related Docker resources without affecting other containers, use these commands instead:
 
 ```bash
-# Stop and remove Rybbit containers
+# Stop and remove BuddyStat containers
 docker-compose down
 
-# Remove Rybbit images
+# Remove BuddyStat images
 docker-compose down --rmi all
 
-# Remove Rybbit volumes (this will delete your data!)
+# Remove BuddyStat volumes (this will delete your data!)
 docker-compose down --volumes
 
-# Complete Rybbit cleanup
+# Complete BuddyStat cleanup
 docker-compose down --rmi all --volumes --remove-orphans
 ```
 
 ### After Cleanup
 
-Once you've completed the cleanup, you can restart Rybbit by following the setup instructions:
+Once you've completed the cleanup, you can restart BuddyStat by following the setup instructions:
 
 ```bash
 # Copy environment file

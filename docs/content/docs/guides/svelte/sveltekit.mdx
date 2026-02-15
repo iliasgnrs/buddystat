@@ -1,17 +1,17 @@
 ---
 title: SvelteKit
-description: Integrate Rybbit with your SvelteKit application for analytics tracking
+description: Integrate BuddyStat with your SvelteKit application for analytics tracking
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps'
 import { Callout } from 'fumadocs-ui/components/callout'
 
 
-This guide explains how to integrate Rybbit with your SvelteKit application for analytics tracking.
+This guide explains how to integrate BuddyStat with your SvelteKit application for analytics tracking.
 
-## How to Add Rybbit to Your SvelteKit App
+## How to Add BuddyStat to Your SvelteKit App
 
-The recommended and most straightforward method for SvelteKit is to add the Rybbit tracking script directly to your `src/app.html` file. This ensures the script is loaded early on all pages.
+The recommended and most straightforward method for SvelteKit is to add the BuddyStat tracking script directly to your `src/app.html` file. This ensures the script is loaded early on all pages.
 
 ### Adding to `src/app.html`
 
@@ -19,11 +19,11 @@ The recommended and most straightforward method for SvelteKit is to add the Rybb
 <Step>
 ### Retrieve Your Tracking Script
 
-Navigate to your Rybbit dashboard to obtain your code snippet:
+Navigate to your BuddyStat dashboard to obtain your code snippet:
 
 ```html
 <script
-  src="https://app.rybbit.io/api/script.js"
+  src="https://app.buddystat.com/api/script.js"
   data-site-id="YOUR_SITE_ID"
   defer
 ></script>
@@ -40,7 +40,7 @@ In a SvelteKit project, this file is typically located at `src/app.html`.
 <Step>
 ### Add the Snippet to `app.html`
 
-Open `src/app.html` and paste the Rybbit tracking snippet into the `<head>` section, usually before `%sveltekit.head%` or just after it.
+Open `src/app.html` and paste the BuddyStat tracking snippet into the `<head>` section, usually before `%sveltekit.head%` or just after it.
 
 ```html filename="src/app.html"
 <!doctype html>
@@ -49,9 +49,9 @@ Open `src/app.html` and paste the Rybbit tracking snippet into the `<head>` sect
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Rybbit Tracking Snippet -->
+    <!-- BuddyStat Tracking Snippet -->
     <script
-      src="https://app.rybbit.io/api/script.js"
+      src="https://app.buddystat.com/api/script.js"
       data-site-id="YOUR_SITE_ID"
       defer
     ></script>
@@ -68,7 +68,7 @@ Ensure `YOUR_SITE_ID` is replaced.
 <Step>
 ### Verify Installation
 
-Deploy your application and check your Rybbit dashboard for incoming data.
+Deploy your application and check your BuddyStat dashboard for incoming data.
 </Step>
 </Steps>
 

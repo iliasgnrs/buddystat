@@ -1,13 +1,13 @@
 ---
 title: Generic Proxy Setup
-description: Framework-agnostic guide to proxy Rybbit tracking through your own domain
+description: Framework-agnostic guide to proxy BuddyStat tracking through your own domain
 ---
 
 import { Steps } from 'fumadocs-ui/components/steps';
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
 
-This guide covers the core concepts for setting up a Rybbit proxy with any reverse proxy or server framework. If your specific framework has a dedicated guide, we recommend following that instead for optimized instructions.
+This guide covers the core concepts for setting up a BuddyStat proxy with any reverse proxy or server framework. If your specific framework has a dedicated guide, we recommend following that instead for optimized instructions.
 
 ## Prerequisites
 
@@ -16,10 +16,10 @@ Before setting up the proxy, ensure you have:
 - **A domain or subdomain** where you'll serve the proxied scripts (e.g., `yourdomain.com` or `analytics.yourdomain.com`)
 - **SSL/TLS certificate** for HTTPS (required for modern browsers)
 - **Server or platform** with reverse proxy capabilities
-- **Your Rybbit instance URL**:
-  - Cloud: `https://app.rybbit.io`
-  - Self-hosted: Your Rybbit instance URL (e.g., `https://analytics.yourcompany.com`)
-- **Your Rybbit site ID** (found in your Rybbit dashboard)
+- **Your BuddyStat instance URL**:
+  - Cloud: `https://app.buddystat.com`
+  - Self-hosted: Your BuddyStat instance URL (e.g., `https://analytics.yourcompany.com`)
+- **Your BuddyStat site ID** (found in your BuddyStat dashboard)
 
 ## Understanding the Endpoints
 
@@ -52,7 +52,7 @@ This minimal setup enables basic pageview and event tracking, but won't support 
 | `/api/session-replay/record/:siteId` | POST | Session replay data upload | No cache |
 | `/api/site/tracking-config/:siteId` | GET | Site configuration | 5 minutes |
 
-This setup supports all Rybbit features including session replay, Web Vitals, and custom events.
+This setup supports all BuddyStat features including session replay, Web Vitals, and custom events.
 
 </Tab>
 </Tabs>
@@ -67,16 +67,16 @@ The session replay and metrics scripts (`/api/replay.js` and `/api/metrics.js`) 
 
 ### Configure Your Proxy Rules
 
-Set up your reverse proxy to forward requests from your chosen path (e.g., `/analytics/*`) to the Rybbit server.
+Set up your reverse proxy to forward requests from your chosen path (e.g., `/analytics/*`) to the BuddyStat server.
 
 **Generic proxy configuration pattern:**
 
 ```
-Your domain path          →  Rybbit backend
+Your domain path          →  BuddyStat backend
 -----------------            ---------------
-/analytics/script.js      →  https://app.rybbit.io/api/script.js
-/analytics/track          →  https://app.rybbit.io/api/track
-/analytics/replay.js      →  https://app.rybbit.io/api/replay.js
+/analytics/script.js      →  https://app.buddystat.com/api/script.js
+/analytics/track          →  https://app.buddystat.com/api/track
+/analytics/replay.js      →  https://app.buddystat.com/api/replay.js
 ... and so on
 ```
 
@@ -88,7 +88,7 @@ Your domain path          →  Rybbit backend
 
 ### Configure Caching (Optional but Recommended)
 
-Implement caching to reduce load on Rybbit servers and improve performance:
+Implement caching to reduce load on BuddyStat servers and improve performance:
 
 **Recommended cache durations:**
 - **Scripts** (`.js` files): 1 hour (3600 seconds)
@@ -111,7 +111,7 @@ Change your script tag to load from your proxied domain instead of directly from
 
 **Before (direct loading):**
 ```html
-<script src="https://app.rybbit.io/api/script.js" async data-site-id="YOUR_SITE_ID"></script>
+<script src="https://app.buddystat.com/api/script.js" async data-site-id="YOUR_SITE_ID"></script>
 ```
 
 **After (proxied):**
@@ -120,7 +120,7 @@ Change your script tag to load from your proxied domain instead of directly from
 ```
 
 <Callout type="info">
-**How Auto-Discovery Works**: The Rybbit script automatically extracts the analytics host from its own `src` attribute by splitting on `/script.js`. This means when it loads from `https://yourdomain.com/analytics/script.js`, it automatically sends all tracking data to `https://yourdomain.com/analytics/*` endpoints.
+**How Auto-Discovery Works**: The BuddyStat script automatically extracts the analytics host from its own `src` attribute by splitting on `/script.js`. This means when it loads from `https://yourdomain.com/analytics/script.js`, it automatically sends all tracking data to `https://yourdomain.com/analytics/*` endpoints.
 </Callout>
 
 ### Verify the Setup
@@ -137,7 +137,7 @@ Test your proxy configuration to ensure everything works correctly:
    - Navigate to another page or trigger an event
    - You should see POST requests to `yourdomain.com/analytics/track`
    - Check the response is successful (200 OK)
-5. **Check your Rybbit dashboard**:
+5. **Check your BuddyStat dashboard**:
    - Wait 1-2 minutes for data to process
    - Verify your session appears in real-time dashboard
 
@@ -163,7 +163,7 @@ Access-Control-Allow-Headers: Content-Type
 
 ## Request Header Forwarding
 
-For accurate tracking, ensure these headers are forwarded to the Rybbit backend:
+For accurate tracking, ensure these headers are forwarded to the BuddyStat backend:
 
 | Header | Purpose | Required |
 |--------|---------|----------|
@@ -173,7 +173,7 @@ For accurate tracking, ensure these headers are forwarded to the Rybbit backend:
 | `Accept-Language` | Language detection | Optional |
 
 <Callout type="warn">
-**IP Forwarding**: Rybbit uses IP addresses for geolocation (country/city) and creating anonymous user identifiers (hashed IP + User Agent). If you don't forward the `X-Forwarded-For` or `X-Real-IP` header, all traffic will appear to come from your proxy server's IP.
+**IP Forwarding**: BuddyStat uses IP addresses for geolocation (country/city) and creating anonymous user identifiers (hashed IP + User Agent). If you don't forward the `X-Forwarded-For` or `X-Real-IP` header, all traffic will appear to come from your proxy server's IP.
 </Callout>
 
 ## Bandwidth Considerations
@@ -225,8 +225,8 @@ Configure your proxy to maintain persistent connections to Rybbit's backend to r
 Use a dedicated subdomain for analytics:
 
 ```
-https://analytics.yourdomain.com/script.js  →  https://app.rybbit.io/api/script.js
-https://analytics.yourdomain.com/track      →  https://app.rybbit.io/api/track
+https://analytics.yourdomain.com/script.js  →  https://app.buddystat.com/api/script.js
+https://analytics.yourdomain.com/track      →  https://app.buddystat.com/api/track
 ```
 
 **Pros:**
@@ -244,8 +244,8 @@ https://analytics.yourdomain.com/track      →  https://app.rybbit.io/api/track
 Use a path on your main domain:
 
 ```
-https://yourdomain.com/analytics/script.js  →  https://app.rybbit.io/api/script.js
-https://yourdomain.com/analytics/track      →  https://app.rybbit.io/api/track
+https://yourdomain.com/analytics/script.js  →  https://app.buddystat.com/api/script.js
+https://yourdomain.com/analytics/track      →  https://app.buddystat.com/api/track
 ```
 
 **Pros:**
@@ -266,7 +266,7 @@ https://yourdomain.com/analytics/track      →  https://app.rybbit.io/api/track
 Consider adding rate limiting to prevent abuse:
 
 - Limit POST requests to tracking endpoints (e.g., 100 requests per minute per IP)
-- Whitelist your Rybbit backend IP if possible
+- Whitelist your BuddyStat backend IP if possible
 - Monitor for unusual traffic patterns
 
 ### Request Size Limits
@@ -289,7 +289,7 @@ Always serve your proxy over HTTPS:
 If something isn't working, check:
 
 1. **Script loads but no events tracked**: Verify all tracking endpoints (`/api/track`, etc.) are proxied
-2. **CORS errors**: Ensure CORS headers are preserved from Rybbit backend
+2. **CORS errors**: Ensure CORS headers are preserved from BuddyStat backend
 3. **404 errors**: Check that URL paths exactly match expected format
 4. **Incorrect geolocation**: Verify `X-Forwarded-For` header is forwarded
 5. **Session replay not working**: Add `/api/replay.js` and `/api/session-replay/record/:siteId` endpoints

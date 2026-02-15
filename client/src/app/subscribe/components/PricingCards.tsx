@@ -46,7 +46,7 @@ export function PricingCards({ isLoggedIn }: { isLoggedIn: boolean }) {
   async function handleSubscribe(planType: "standard" | "pro"): Promise<void> {
     // Handle custom tier by redirecting to email contact
     if (eventLimit === "Custom") {
-      window.location.href = "https://www.rybbit.com/contact";
+      window.location.href = "https://buddystat.com/contact";
       return;
     }
 
@@ -302,7 +302,7 @@ export function PricingCards({ isLoggedIn }: { isLoggedIn: boolean }) {
           features={ENTERPRISE_FEATURES}
           isCustomTier={true}
           customButton={
-            <a href="https://www.rybbit.com/contact" className="w-full block">
+            <a href="https://buddystat.com/contact" className="w-full block">
               <button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-5 py-3 rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 cursor-pointer">
                 Contact us
               </button>

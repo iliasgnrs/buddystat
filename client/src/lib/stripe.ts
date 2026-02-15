@@ -311,7 +311,7 @@ const TEST_TO_PRICE_ID = {
 };
 
 export const getStripePrices = () => {
-  if (process.env.NEXT_PUBLIC_BACKEND_URL?.includes("app.rybbit.io")) {
+  if (process.env.NEXT_PUBLIC_BACKEND_URL?.includes("app.buddystat.com")) {
     return STRIPE_PRICES;
   }
   return STRIPE_PRICES.map(price => ({

@@ -1,30 +1,30 @@
 ---
 title: Next.js Proxy Setup
-description: Configure Next.js rewrites to proxy Rybbit tracking and bypass ad blockers
+description: Configure Next.js rewrites to proxy BuddyStat tracking and bypass ad blockers
 ---
 
 import { Steps } from 'fumadocs-ui/components/steps';
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
 
-Next.js provides a powerful [rewrites](https://nextjs.org/docs/app/api-reference/next-config-js/rewrites) feature that makes it easy to proxy Rybbit tracking through your own domain. This guide works with both the App Router (Next.js 13+) and Pages Router.
+Next.js provides a powerful [rewrites](https://nextjs.org/docs/app/api-reference/next-config-js/rewrites) feature that makes it easy to proxy BuddyStat tracking through your own domain. This guide works with both the App Router (Next.js 13+) and Pages Router.
 
 ## Overview
 
 Next.js rewrites allow you to map incoming request paths to different destination URLs transparently. This is perfect for proxying analytics since the browser sees requests to your domain while Next.js forwards them to Rybbit's servers behind the scenes.
 
 **What you'll achieve:**
-- Serve Rybbit scripts from your domain (e.g., `/analytics/script.js`)
+- Serve BuddyStat scripts from your domain (e.g., `/analytics/script.js`)
 - Proxy all tracking requests through your Next.js application
 - Bypass ad blocker detection with first-party requests
-- Support all Rybbit features (session replay, Web Vitals, custom events)
+- Support all BuddyStat features (session replay, Web Vitals, custom events)
 
 ## Prerequisites
 
 - Next.js 12 or later (rewrites are supported in all modern versions)
-- Your Rybbit site ID (found in your dashboard)
-- Your Rybbit instance URL:
-  - **Cloud hosted**: `https://app.rybbit.io`
+- Your BuddyStat site ID (found in your dashboard)
+- Your BuddyStat instance URL:
+  - **Cloud hosted**: `https://app.buddystat.com`
   - **Self-hosted**: Your instance URL (e.g., `https://analytics.yourcompany.com`)
 
 ## Implementation
@@ -33,14 +33,14 @@ Next.js rewrites allow you to map incoming request paths to different destinatio
 
 ### Configure Environment Variables
 
-Create or update your `.env` or `.env.local` file with your Rybbit instance URL:
+Create or update your `.env` or `.env.local` file with your BuddyStat instance URL:
 
 <Tabs>
 <Tab value="cloud-hosted" title="Cloud Hosted">
 
 ```bash
 # .env.local
-NEXT_PUBLIC_RYBBIT_HOST=https://app.rybbit.io
+NEXT_PUBLIC_RYBBIT_HOST=https://app.buddystat.com
 ```
 
 </Tab>
@@ -51,7 +51,7 @@ NEXT_PUBLIC_RYBBIT_HOST=https://app.rybbit.io
 NEXT_PUBLIC_RYBBIT_HOST=https://analytics.yourcompany.com
 ```
 
-Replace `analytics.yourcompany.com` with your actual Rybbit instance domain.
+Replace `analytics.yourcompany.com` with your actual BuddyStat instance domain.
 
 </Tab>
 </Tabs>
@@ -67,7 +67,7 @@ Add or update the `rewrites` function in your `next.config.js` (or `next.config.
 <Tabs>
 <Tab value="full-proxy-recommended" title="Full Proxy (Recommended)">
 
-This configuration proxies all Rybbit endpoints including session replay and Web Vitals:
+This configuration proxies all BuddyStat endpoints including session replay and Web Vitals:
 
 ```javascript
 // next.config.js
@@ -77,7 +77,7 @@ const nextConfig = {
     const rybbitHost = process.env.NEXT_PUBLIC_RYBBIT_HOST;
 
     if (!rybbitHost) {
-      console.warn('NEXT_PUBLIC_RYBBIT_HOST is not set. Rybbit proxy will not work.');
+      console.warn('NEXT_PUBLIC_RYBBIT_HOST is not set. BuddyStat proxy will not work.');
       return [];
     }
 
@@ -132,7 +132,7 @@ const nextConfig = {
     const rybbitHost = process.env.NEXT_PUBLIC_RYBBIT_HOST;
 
     if (!rybbitHost) {
-      console.warn('NEXT_PUBLIC_RYBBIT_HOST is not set. Rybbit proxy will not work.');
+      console.warn('NEXT_PUBLIC_RYBBIT_HOST is not set. BuddyStat proxy will not work.');
       return [];
     }
 
@@ -169,7 +169,7 @@ const nextConfig = {
     const rybbitHost = process.env.NEXT_PUBLIC_RYBBIT_HOST;
 
     if (!rybbitHost) {
-      console.warn('NEXT_PUBLIC_RYBBIT_HOST is not set. Rybbit proxy will not work.');
+      console.warn('NEXT_PUBLIC_RYBBIT_HOST is not set. BuddyStat proxy will not work.');
       return [];
     }
 
@@ -249,7 +249,7 @@ export default function RootLayout({
 }
 ```
 
-Replace `YOUR_SITE_ID` with your actual site ID from the Rybbit dashboard.
+Replace `YOUR_SITE_ID` with your actual site ID from the BuddyStat dashboard.
 
 </Tab>
 <Tab value="pages-router" title="Pages Router">
@@ -277,7 +277,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp;
 ```
 
-Replace `YOUR_SITE_ID` with your actual site ID from the Rybbit dashboard.
+Replace `YOUR_SITE_ID` with your actual site ID from the BuddyStat dashboard.
 
 </Tab>
 <Tab value="javascript-no-typescript" title="JavaScript (No TypeScript)">
@@ -324,14 +324,14 @@ Open your website in a browser with Developer Tools:
 
 1. **Open the Network tab** and filter by "analytics" or "script"
 2. **Verify the script loads**:
-   - You should see a request to `/analytics/script.js` (not `app.rybbit.io`)
+   - You should see a request to `/analytics/script.js` (not `app.buddystat.com`)
    - Status should be `200 OK`
    - The domain should be your own domain
 3. **Verify tracking works**:
    - Navigate to another page or trigger an event
    - You should see POST requests to `/analytics/track`
-   - All requests should show your domain, not `app.rybbit.io`
-4. **Check the Rybbit dashboard**:
+   - All requests should show your domain, not `app.buddystat.com`
+4. **Check the BuddyStat dashboard**:
    - Wait 1-2 minutes for data processing
    - Verify your session appears in the real-time dashboard
 
@@ -339,7 +339,7 @@ Open your website in a browser with Developer Tools:
 
 ## How It Works
 
-The Rybbit tracking script has a built-in auto-discovery mechanism. When it loads from:
+The BuddyStat tracking script has a built-in auto-discovery mechanism. When it loads from:
 
 ```html
 <script src="/analytics/script.js" data-site-id="123"></script>
@@ -377,7 +377,7 @@ Next.js automatically caches responses when possible, but you can optimize furth
 If deployed on Vercel, your rewrites benefit from the global Edge Network, which caches static scripts close to users worldwide.
 
 **Custom caching headers:**
-The Rybbit server sets appropriate cache headers, which Next.js respects:
+The BuddyStat server sets appropriate cache headers, which Next.js respects:
 - Scripts (`.js` files): Cached for 1 hour
 - Configuration: Cached for 5 minutes
 - Tracking POSTs: Not cached
@@ -400,7 +400,7 @@ Rewrites are handled at the edge on Vercel, so there's minimal impact on your se
 1. Check that `/analytics/track` is included in your rewrites
 2. Verify POST requests to `/analytics/track` return `200 OK` in Network tab
 3. Check for CORS errors in the browser console
-4. Ensure your Rybbit instance URL is correct in `.env.local`
+4. Ensure your BuddyStat instance URL is correct in `.env.local`
 
 ### 404 errors on tracking endpoints
 

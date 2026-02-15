@@ -1,17 +1,17 @@
 ---
 title: WooCommerce
-description: Integrate Rybbit Analytics with your WooCommerce store
+description: Integrate BuddyStat Analytics with your WooCommerce store
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps';
 import { Callout } from 'fumadocs-ui/components/callout';
 
 
-This guide explains how to integrate Rybbit with your WooCommerce store (running on WordPress) to track e-commerce events like product views, add to carts, and purchases, in addition to standard page view analytics.
+This guide explains how to integrate BuddyStat with your WooCommerce store (running on WordPress) to track e-commerce events like product views, add to carts, and purchases, in addition to standard page view analytics.
 
 ## Prerequisites
 
-1.  **Rybbit Installed on WordPress**: Ensure you have already installed the Rybbit tracking script on your WordPress site using one of the methods described in our [WordPress integration guide](/docs/guides/wordpress). This guide focuses on adding e-commerce event tracking.
+1.  **Rybbit Installed on WordPress**: Ensure you have already installed the BuddyStat tracking script on your WordPress site using one of the methods described in our [WordPress integration guide](/docs/guides/wordpress). This guide focuses on adding e-commerce event tracking.
 2.  **Access to `functions.php` or Custom Plugin**: You'll need to add PHP snippets. The recommended way is via your child theme's `functions.php` file or a custom plugin to avoid changes being overwritten by theme updates.
 
 ## Tracking E-commerce Events
@@ -211,7 +211,7 @@ function rybbit_track_purchase( $order_id ) {
 
 ## Important Considerations
 
-*   **Script Loading Order**: Ensure the main Rybbit tracking script (added via the WordPress integration guide) is loaded before these event-specific scripts attempt to call `window.rybbit`. Placing the main script in the `<head>` usually ensures this.
+*   **Script Loading Order**: Ensure the main BuddyStat tracking script (added via the WordPress integration guide) is loaded before these event-specific scripts attempt to call `window.rybbit`. Placing the main script in the `<head>` usually ensures this.
 *   **Data Accuracy**: The product data (SKU, name, price) retrieved in these examples depends on your WooCommerce setup and product configuration. Test thoroughly.
 *   **AJAX Operations**: For themes or plugins that use AJAX heavily (e.g., AJAX add to cart, mini-cart updates), you might need more sophisticated JavaScript event listeners rather than relying solely on PHP action hooks that fire on page load. The AJAX add-to-cart example provides a starting point.
 *   **Performance**: While these snippets are generally lightweight, outputting many inline scripts can have a minor impact. For very high-traffic sites, consider consolidating JavaScript or using more advanced techniques if performance becomes a concern.

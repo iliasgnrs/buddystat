@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Free CPM Calculator (Cost Per Mille)",
     description: "Calculate and optimize your CPM with platform-specific benchmarks",
     type: "website",
-    url: "https://rybbit.com/tools/cost-per-mille-calculator",
+    url: "https://buddystat.com/tools/cost-per-mille-calculator",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Calculate your CPM and compare against platform benchmarks",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/cost-per-mille-calculator",
+    canonical: "https://buddystat.com/tools/cost-per-mille-calculator",
   },
 };
 
@@ -32,7 +32,7 @@ const structuredData = {
       name: "CPM Calculator",
       description:
         "Free CPM calculator to measure cost per thousand impressions and compare against platform benchmarks",
-      url: "https://rybbit.com/tools/cost-per-mille-calculator",
+      url: "https://buddystat.com/tools/cost-per-mille-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
       offers: {

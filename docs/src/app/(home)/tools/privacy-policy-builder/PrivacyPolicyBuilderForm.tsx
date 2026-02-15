@@ -121,7 +121,7 @@ If you have any questions about this Privacy Policy, please contact us at:
 
 ---
 
-*This privacy policy was generated using ${websiteUrl.includes("rybbit") ? "Rybbit's" : "[Rybbit's](https://rybbit.com)"} Privacy Policy Builder. For compliance with specific regulations (GDPR, CCPA, etc.), please consult with a legal professional.*`;
+*This privacy policy was generated using ${websiteUrl.includes("rybbit") ? "Rybbit's" : "[Rybbit's](https://buddystat.com)"} Privacy Policy Builder. For compliance with specific regulations (GDPR, CCPA, etc.), please consult with a legal professional.*`;
   };
 
   const policy = generatePolicy();
@@ -321,7 +321,7 @@ If you have any questions about this Privacy Policy, please contact us at:
             No cookies, no tracking, full GDPR compliance. Get powerful analytics without compromising your users' privacy.
           </p>
           <TrackedButton
-            href="https://app.rybbit.io/signup"
+            href="https://app.buddystat.com/signup"
             eventName="signup"
             eventProps={{ location: "privacy_policy_builder_cta" }}
             className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"

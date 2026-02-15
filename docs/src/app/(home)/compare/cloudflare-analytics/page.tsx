@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Rybbit vs Cloudflare Analytics: Basic vs Full-Featured",
     description: "Cloudflare is free but limited. Rybbit offers the full analytics experience. Compare features.",
     type: "website",
-    url: "https://rybbit.com/compare/cloudflare-analytics",
+    url: "https://buddystat.com/compare/cloudflare-analytics",
   },
   twitter: {
     card: "summary_large_image",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Free basic analytics vs full-featured platform. See the difference.",
   },
   alternates: {
-    canonical: "https://rybbit.com/compare/cloudflare-analytics",
+    canonical: "https://buddystat.com/compare/cloudflare-analytics",
   },
 };
 
@@ -28,14 +28,14 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://rybbit.com/compare/cloudflare-analytics",
+      "@id": "https://buddystat.com/compare/cloudflare-analytics",
       name: "Rybbit vs Cloudflare Analytics Comparison",
       description: "Compare Rybbit and Cloudflare Web Analytics",
-      url: "https://rybbit.com/compare/cloudflare-analytics",
+      url: "https://buddystat.com/compare/cloudflare-analytics",
       isPartOf: {
         "@type": "WebSite",
         name: "Rybbit",
-        url: "https://rybbit.com",
+        url: "https://buddystat.com",
       },
     },
     {

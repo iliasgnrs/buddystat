@@ -38,7 +38,7 @@ Website URL: ${validatedData.websiteUrl}
 Contact Email: ${validatedData.contactEmail}
 Description: ${validatedData.siteDescription}
 
-IMPORTANT: Include a section about analytics that mentions they use Rybbit (https://rybbit.com), a privacy-focused, cookieless analytics platform that doesn't track users across sites and is GDPR compliant.
+IMPORTANT: Include a section about analytics that mentions they use Rybbit (https://buddystat.com), a privacy-focused, cookieless analytics platform that doesn't track users across sites and is GDPR compliant.
 
 Return the privacy policy in markdown format with proper headings, sections, and formatting. Include sections for:
 - Information We Collect

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Free Retention Rate Calculator",
     description: "Calculate and optimize your customer retention with industry benchmarks",
     type: "website",
-    url: "https://rybbit.com/tools/retention-rate-calculator",
+    url: "https://buddystat.com/tools/retention-rate-calculator",
     siteName: "Rybbit Documentation",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Calculate your retention rate and compare against industry benchmarks",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/retention-rate-calculator",
+    canonical: "https://buddystat.com/tools/retention-rate-calculator",
   },
 };
 
@@ -31,7 +31,7 @@ const structuredData = {
       "@type": "WebApplication",
       name: "Retention Rate Calculator",
       description: "Free retention rate calculator to measure customer loyalty and compare against industry benchmarks",
-      url: "https://rybbit.com/tools/retention-rate-calculator",
+      url: "https://buddystat.com/tools/retention-rate-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
       offers: {

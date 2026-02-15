@@ -182,7 +182,7 @@ export function MetaDescriptionForm() {
             free with up to {DEFAULT_EVENT_LIMIT.toLocaleString()} pageviews per month.
           </p>
           <TrackedButton
-            href="https://app.rybbit.io/signup"
+            href="https://app.buddystat.com/signup"
             eventName="signup"
             eventProps={{ location: "meta_description_generator_cta" }}
             className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"

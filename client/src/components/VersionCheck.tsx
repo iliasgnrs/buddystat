@@ -24,7 +24,7 @@ export function VersionCheck() {
     
     localStorage.setItem("version-check-last", now.toString());
 
-    fetch("https://app.rybbit.io/api/version")
+    fetch("https://app.buddystat.com/api/version")
       .then((res) => res.json())
       .then((data: { version: string }) => {
         const latest = data.version;
@@ -75,7 +75,7 @@ export function VersionCheck() {
         }
       })
       .catch(() => {
-        // Silently ignore - user may be offline or app.rybbit.io unreachable
+        // Silently ignore - user may be offline or app.buddystat.com unreachable
       });
   }, []);
 

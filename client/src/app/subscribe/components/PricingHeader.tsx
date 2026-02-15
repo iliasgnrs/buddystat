@@ -6,7 +6,7 @@ export function PricingHeader() {
       <h1 className="text-4xl md:text-5xl font-bold tracking-tight pb-4 text-transparent bg-clip-text bg-linear-to-b from-neutral-900 via-neutral-700 to-neutral-500 dark:from-white dark:via-gray-200 dark:to-gray-400">
         Pricing
       </h1>
-      <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">Try Rybbit today risk-free with our 30-day money-back guarantee.</p>
+      <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">Try BuddyStat today risk-free with our 30-day money-back guarantee.</p>
     </div>
   );
 }

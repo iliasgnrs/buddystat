@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 import { parseAsInteger, useQueryState } from "nuqs";
 import React, { Suspense, useEffect, useState } from "react";
 import { addSite } from "../../api/admin/endpoints";
-import { RybbitLogo, RybbitTextLogo } from "../../components/RybbitLogo";
+import { BuddyStatLogo, BuddyStatTextLogo } from "../../components/BuddyStatLogo";
 import { SpinningGlobe } from "../../components/SpinningGlobe";
 import { useSetPageTitle } from "../../hooks/useSetPageTitle";
 import { authClient } from "../../lib/auth";
@@ -372,7 +372,7 @@ function SignupPageContent() {
       <div className="flex justify-center items-center h-dvh w-full">
         <Card className="w-full max-w-sm p-1">
           <CardHeader>
-            <RybbitLogo width={32} height={32} />
+            <BuddyStatLogo width={32} height={32} />
             <CardTitle className="text-2xl flex justify-center">Sign Up Disabled</CardTitle>
           </CardHeader>
           <CardContent>
@@ -398,12 +398,12 @@ function SignupPageContent() {
         {/* Logo at top left */}
         <div className="mb-8">
           <a href="/" className="inline-block">
-            <RybbitTextLogo />
+            <BuddyStatTextLogo />
           </a>
         </div>
 
         <div className="flex-1 flex flex-col justify-center w-full max-w-[550px] mx-auto">
-          <h1 className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">Get started with Rybbit</h1>
+          <h1 className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">Get started with BuddyStat</h1>
 
           {/* Horizontal step indicator */}
           <div className="flex items-center w-full mb-8">
@@ -459,12 +459,12 @@ function SignupPageContent() {
         {!IS_CLOUD && (
           <div className="text-xs text-muted-foreground mt-8">
             <a
-              href="https://rybbit.com"
+              href="https://buddystat.com"
               target="_blank"
               rel="noopener"
-              title="Rybbit - Open Source Privacy-Focused Web Analytics"
+              title="BuddyStat - Open Source Privacy-Focused Web Analytics"
             >
-              Open source web analytics powered by Rybbit
+              Open source web analytics powered by BuddyStat
             </a>
           </div>
         )}

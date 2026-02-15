@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "AI-powered tool to generate click-worthy SEO titles. Free, unlimited use. Optimize your title tags for better search engine rankings.",
     type: "website",
-    url: "https://rybbit.com/tools/seo-title-generator",
+    url: "https://buddystat.com/tools/seo-title-generator",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Generate optimized SEO titles with AI in seconds. Free tool with unlimited use.",
   },
   alternates: {
-    canonical: "https://rybbit.com/tools/seo-title-generator",
+    canonical: "https://buddystat.com/tools/seo-title-generator",
   },
 };
 
@@ -44,7 +44,7 @@ const structuredData = {
         "Real-time optimization",
       ],
       operatingSystem: "Any",
-      url: "https://rybbit.com/tools/seo-title-generator",
+      url: "https://buddystat.com/tools/seo-title-generator",
     },
     {
       "@type": "FAQPage",
@@ -197,7 +197,7 @@ const faqs = [
     answer: (
       <>
         Use analytics to track CTR from search results. Tools like{" "}
-        <Link href="https://app.rybbit.io" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
           Rybbit
         </Link>{" "}
         can show you which pages get the most organic traffic, helping you identify successful titles and opportunities
