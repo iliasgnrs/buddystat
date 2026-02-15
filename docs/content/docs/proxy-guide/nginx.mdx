@@ -11,7 +11,7 @@ Nginx is a powerful web server and reverse proxy that makes it easy to proxy Bud
 
 ## Overview
 
-Nginx's `proxy_pass` directive lets you forward requests from your domain to Rybbit's servers. Combined with caching, this provides excellent performance and reliability for proxying analytics.
+Nginx's `proxy_pass` directive lets you forward requests from your domain to BuddyStat's servers. Combined with caching, this provides excellent performance and reliability for proxying analytics.
 
 **What you'll achieve:**
 - Proxy all BuddyStat endpoints through your domain
@@ -194,7 +194,7 @@ For better performance with caching, define a cache zone:
 ```nginx
 # /etc/nginx/nginx.conf (http block)
 http {
-    # Define cache zone for Rybbit
+    # Define cache zone for BuddyStat
     proxy_cache_path /var/cache/nginx/rybbit
         levels=1:2
         keys_zone=rybbit_cache:10m
@@ -334,7 +334,7 @@ Test your configuration:
 
 ## How It Works
 
-Nginx's `proxy_pass` directive transparently forwards requests to Rybbit's servers:
+Nginx's `proxy_pass` directive transparently forwards requests to BuddyStat's servers:
 
 1. Browser requests `https://yourdomain.com/analytics/script.js`
 2. Nginx matches the location block and forwards to `https://app.buddystat.com/api/script.js`
@@ -500,7 +500,7 @@ add_header Referrer-Policy strict-origin-when-cross-origin;
    proxy_cache_key "$scheme$request_method$host$request_uri";
    ```
 
-### Incorrect geolocation in Rybbit
+### Incorrect geolocation in BuddyStat
 
 **Problem**: All visitors show same location (your server's location).
 
@@ -513,7 +513,7 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
 ### SSL errors in Nginx logs
 
-**Problem**: Logs show SSL verification errors when connecting to Rybbit.
+**Problem**: Logs show SSL verification errors when connecting to BuddyStat.
 
 **Solution**:
 Add `proxy_ssl_server_name on` to enable SNI:
@@ -540,7 +540,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/analytics.yourdomain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/analytics.yourdomain.com/privkey.pem;
 
-    # Proxy all requests to Rybbit
+    # Proxy all requests to BuddyStat
     location / {
         proxy_pass https://app.buddystat.com/api/;
         proxy_set_header Host app.buddystat.com;

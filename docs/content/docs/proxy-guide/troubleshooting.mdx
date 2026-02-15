@@ -128,7 +128,7 @@ proxy_pass_header Access-Control-Allow-Methods;
 // ❌ Wrong - blocks CORS
 app.use('/analytics', cors({ origin: 'https://yourdomain.com' }));
 
-// ✅ Correct - allow all origins (or use Rybbit's headers)
+// ✅ Correct - allow all origins (or use BuddyStat's headers)
 app.use('/analytics', cors({ origin: true }));
 ```
 
@@ -468,7 +468,7 @@ upstream rybbit {
 3. **Check backend connectivity**:
 
 ```bash
-# Test latency to Rybbit
+# Test latency to BuddyStat
 curl -w "@curl-format.txt" -o /dev/null -s https://app.buddystat.com/api/script.js
 
 # Create curl-format.txt:

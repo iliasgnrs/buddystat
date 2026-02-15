@@ -75,7 +75,7 @@ After building and deploying your application, open your BuddyStat dashboard to 
 </Steps>
 
 <Callout type="info">
-  **SPA Page View Tracking**: Rybbit's tracking script is designed to automatically detect route changes in most Angular applications (using Angular Router) and track them as page views. If you find that page views are not being tracked correctly after navigation, you might need to manually trigger page views. You can subscribe to router events:
+  **SPA Page View Tracking**: BuddyStat's tracking script is designed to automatically detect route changes in most Angular applications (using Angular Router) and track them as page views. If you find that page views are not being tracked correctly after navigation, you might need to manually trigger page views. You can subscribe to router events:
   ```typescript
   // In a relevant component or service
   import { Router, NavigationEnd } from '@angular/router';
@@ -124,7 +124,7 @@ export class MyFeatureComponent {
     if (window.rybbit && typeof window.rybbit.event === 'function') {
       window.rybbit.event('feature_used', { featureName: 'Amazing Feature' });
     } else {
-      console.warn('Rybbit tracking not available.');
+      console.warn('BuddyStat tracking not available.');
     }
   }
 }

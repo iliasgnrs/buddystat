@@ -77,7 +77,7 @@ const app = express();
 const RYBBIT_HOST = process.env.RYBBIT_HOST || 'https://app.buddystat.com';
 
 // BuddyStat Analytics Proxy
-// Proxy all /analytics/* requests to Rybbit
+// Proxy all /analytics/* requests to BuddyStat
 app.use('/analytics', createProxyMiddleware({
   target: RYBBIT_HOST,
   changeOrigin: true,
@@ -236,7 +236,7 @@ npx nodemon server.js
 
 ## How It Works
 
-The `http-proxy-middleware` intercepts requests matching the specified paths and forwards them to Rybbit:
+The `http-proxy-middleware` intercepts requests matching the specified paths and forwards them to BuddyStat:
 
 1. Request to `/analytics/script.js` is intercepted
 2. Path is rewritten to `/api/script.js`

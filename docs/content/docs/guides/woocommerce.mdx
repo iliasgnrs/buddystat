@@ -11,12 +11,12 @@ This guide explains how to integrate BuddyStat with your WooCommerce store (runn
 
 ## Prerequisites
 
-1.  **Rybbit Installed on WordPress**: Ensure you have already installed the BuddyStat tracking script on your WordPress site using one of the methods described in our [WordPress integration guide](/docs/guides/wordpress). This guide focuses on adding e-commerce event tracking.
+1.  **BuddyStat Installed on WordPress**: Ensure you have already installed the BuddyStat tracking script on your WordPress site using one of the methods described in our [WordPress integration guide](/docs/guides/wordpress). This guide focuses on adding e-commerce event tracking.
 2.  **Access to `functions.php` or Custom Plugin**: You'll need to add PHP snippets. The recommended way is via your child theme's `functions.php` file or a custom plugin to avoid changes being overwritten by theme updates.
 
 ## Tracking E-commerce Events
 
-WooCommerce provides various action hooks that allow you to trigger JavaScript when specific e-commerce events occur. We'll use these to send data to Rybbit.
+WooCommerce provides various action hooks that allow you to trigger JavaScript when specific e-commerce events occur. We'll use these to send data to BuddyStat.
 
 <Callout type="warning">
   The following PHP code snippets should be added to your **child theme's `functions.php` file** or a **custom site-specific plugin**. Modifying your parent theme's `functions.php` directly is not recommended as changes will be lost upon theme updates.
@@ -217,4 +217,4 @@ function rybbit_track_purchase( $order_id ) {
 *   **Performance**: While these snippets are generally lightweight, outputting many inline scripts can have a minor impact. For very high-traffic sites, consider consolidating JavaScript or using more advanced techniques if performance becomes a concern.
 *   **Plugin Conflicts**: Test for conflicts if you are using other analytics or tracking plugins.
 
-By implementing these tracking snippets, you can gain valuable insights into your WooCommerce store's performance using Rybbit.
+By implementing these tracking snippets, you can gain valuable insights into your WooCommerce store's performance using BuddyStat.

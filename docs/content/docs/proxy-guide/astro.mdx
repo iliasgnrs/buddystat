@@ -119,7 +119,7 @@ async function proxyToRybbit(request: Request, pathname: string): Promise<Respon
       headers: response.headers,
     });
   } catch (error) {
-    console.error('Rybbit proxy error:', error);
+    console.error('BuddyStat proxy error:', error);
     return new Response('Analytics proxy error', { status: 500 });
   }
 }
@@ -167,7 +167,7 @@ async function proxyToRybbit(request, pathname) {
       headers: response.headers,
     });
   } catch (error) {
-    console.error('Rybbit proxy error:', error);
+    console.error('BuddyStat proxy error:', error);
     return new Response('Analytics proxy error', { status: 500 });
   }
 }
@@ -291,7 +291,7 @@ async function proxyToRybbit(request: Request, pathname: string): Promise<Respon
       timestamp: new Date().toISOString(),
     };
 
-    console.error('Rybbit proxy error:', errorDetails);
+    console.error('BuddyStat proxy error:', errorDetails);
 
     // Return error response
     return new Response(JSON.stringify({ error: 'Analytics proxy error' }), {

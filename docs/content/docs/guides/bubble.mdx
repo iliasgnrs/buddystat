@@ -60,7 +60,7 @@ Open your live Bubble application and navigate through a few pages. Then, check 
 </Steps>
 
 <Callout type="info">
-  **Page View Tracking in Bubble Apps**: Bubble applications often behave like Single Page Applications (SPAs) for navigation between "pages" (which are often groups shown/hidden on a single actual HTML page). Rybbit's script is designed to detect URL changes in SPAs.
+  **Page View Tracking in Bubble Apps**: Bubble applications often behave like Single Page Applications (SPAs) for navigation between "pages" (which are often groups shown/hidden on a single actual HTML page). BuddyStat's script is designed to detect URL changes in SPAs.
   - If your Bubble app uses actual URL route changes for different views, BuddyStat should track these automatically.
   - If navigation primarily involves showing/hiding groups without URL changes, BuddyStat will only track the initial page load. For more granular tracking of "virtual" page views in such cases, you would need to use custom event tracking.
   - If URL changes occur but are not automatically tracked, you might need to trigger `window.rybbit.pageview()` manually using a Bubble workflow action that runs JavaScript when a "page" (group) becomes visible.

@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-description: Docker cleanup and troubleshooting guide for Rybbit
+description: Docker cleanup and troubleshooting guide for BuddyStat
 ---
 
 import { Steps, Step } from 'fumadocs-ui/components/steps';
@@ -12,7 +12,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 If you encounter issues with Docker containers, images, or volumes and need to start fresh, you can perform a complete Docker cleanup. This will remove all containers, images, volumes, and custom networks.
 
 <Callout type="warn">
-**Warning**: This will remove ALL Docker containers, images, and volumes on your system, not just Rybbit-related ones. Make sure you don't have other important Docker containers running.
+**Warning**: This will remove ALL Docker containers, images, and volumes on your system, not just BuddyStat-related ones. Make sure you don't have other important Docker containers running.
 </Callout>
 
 ### Steps for Complete Docker Cleanup
@@ -61,9 +61,9 @@ docker network rm $(docker network ls | grep -v "bridge\|host\|none" | awk '{pri
 </Step>
 </Steps>
 
-### Alternative: Rybbit-Specific Cleanup
+### Alternative: BuddyStat-Specific Cleanup
 
-If you only want to clean up Rybbit-related Docker resources without affecting other containers, use these commands instead:
+If you only want to clean up BuddyStat-related Docker resources without affecting other containers, use these commands instead:
 
 ```bash
 # Stop and remove BuddyStat containers

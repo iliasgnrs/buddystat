@@ -15,11 +15,11 @@ import {
   SiVercel
 } from '@icons-pack/react-simple-icons';
 
-Proxying Rybbit's tracking script through your own domain helps bypass ad blockers and improves tracking accuracy by making all analytics requests appear as first-party traffic.
+Proxying BuddyStat's tracking script through your own domain helps bypass ad blockers and improves tracking accuracy by making all analytics requests appear as first-party traffic.
 
 ## What is Proxy Setup?
 
-When you add Rybbit's tracking script directly to your website using the default installation:
+When you add BuddyStat's tracking script directly to your website using the default installation:
 
 ```html
 <script src="https://app.buddystat.com/api/script.js" async data-site-id="YOUR_SITE_ID"></script>
@@ -30,10 +30,10 @@ The browser loads the script from `app.buddystat.com`, which ad blockers can ide
 **Proxying solves this** by serving the tracking script and handling tracking requests through your own domain (e.g., `yourdomain.com/analytics/script.js`), making all tracking appear as first-party traffic.
 
 <Callout type="info">
-Rybbit is fully compliant with GDPR, CCPA, and other privacy regulations. It uses cookieless tracking based on IP + User Agent hashing with optional daily rotating salts. Proxying is about improving data accuracy, not circumventing privacy laws.
+BuddyStat is fully compliant with GDPR, CCPA, and other privacy regulations. It uses cookieless tracking based on IP + User Agent hashing with optional daily rotating salts. Proxying is about improving data accuracy, not circumventing privacy laws.
 </Callout>
 
-## Why Proxy Rybbit?
+## Why Proxy BuddyStat?
 
 ### Improve Tracking Accuracy
 
@@ -47,7 +47,7 @@ Ad blockers are becoming increasingly aggressive and may block analytics scripts
 
 Proxying doesn't compromise user privacy:
 
-- No cookies are used (Rybbit remains cookieless)
+- No cookies are used (BuddyStat remains cookieless)
 - User data is still processed according to your privacy policy
 - GDPR, CCPA, and other privacy regulations remain fully satisfied
 - Users can still opt out through browser settings or Do Not Track
@@ -62,14 +62,14 @@ With proper caching configuration, proxying can also improve performance:
 
 ## How It Works
 
-Here's the flow when you proxy Rybbit:
+Here's the flow when you proxy BuddyStat:
 
 1. **User visits your website**: Your HTML includes the tracking script from your domain
    ```html
    <script src="https://yourdomain.com/analytics/script.js" data-site-id="123"></script>
    ```
 
-2. **Script loads from your domain**: Your server proxies the request to Rybbit's servers
+2. **Script loads from your domain**: Your server proxies the request to BuddyStat's servers
    - Request: `yourdomain.com/analytics/script.js` → proxied to → `app.buddystat.com/api/script.js`
 
 3. **Script auto-discovers analytics host**: The BuddyStat script automatically detects the domain it was loaded from
@@ -79,7 +79,7 @@ Here's the flow when you proxy Rybbit:
    // Result: "https://yourdomain.com/analytics"
    ```
 
-4. **Tracking data sent through your domain**: All analytics events are sent to your domain and proxied to Rybbit
+4. **Tracking data sent through your domain**: All analytics events are sent to your domain and proxied to BuddyStat
    - Event tracking: `yourdomain.com/analytics/track` → proxied to → `app.buddystat.com/api/track`
    - Session replay: `yourdomain.com/analytics/session-replay/record/{siteId}` → proxied
    - Configuration: `yourdomain.com/analytics/site/tracking-config/{siteId}` → proxied

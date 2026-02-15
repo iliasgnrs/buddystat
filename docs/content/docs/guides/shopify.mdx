@@ -8,7 +8,7 @@ import { Callout } from "fumadocs-ui/components/callout";
 
 # Shopify
 
-Rybbit can be integrated with your Shopify store to capture events, track conversions, and analyze user behavior.
+BuddyStat can be integrated with your Shopify store to capture events, track conversions, and analyze user behavior.
 
 ## How to Add BuddyStat to Shopify
 
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ### 3. Begin Checkout (`begin_checkout`)
 
-Shopify's checkout process is on a separate domain (`checkout.shopify.com`), and direct script injection into the checkout pages (beyond the "Order status" page) is limited for most plans. However, Rybbit's script, if loaded on your main store, should persist session information.
+Shopify's checkout process is on a separate domain (`checkout.shopify.com`), and direct script injection into the checkout pages (beyond the "Order status" page) is limited for most plans. However, BuddyStat's script, if loaded on your main store, should persist session information.
 
 A common way to track "begin_checkout" is by tracking clicks on checkout buttons.
 
@@ -215,7 +215,7 @@ Track completed purchases on the Shopify "Order status" page (also known as the 
 
 ## Important Considerations
 *   **Theme Differences**: Shopify themes can vary significantly. You may need to adjust Liquid object paths (e.g., `product.selected_or_first_available_variant` vs. `current_variant`) and JavaScript selectors based on your specific theme's structure.
-*   **Currency Conversion**: Prices in Shopify Liquid objects are often in cents. Ensure you divide by 100 to get the decimal value for Rybbit.
+*   **Currency Conversion**: Prices in Shopify Liquid objects are often in cents. Ensure you divide by 100 to get the decimal value for BuddyStat.
 *   **AJAX Carts**: If your theme uses an AJAX cart (drawer or pop-up cart that updates without page reload), tracking `add_to_cart` accurately requires hooking into your theme's specific JavaScript events or using MutationObserver to detect cart changes. The provided `add_to_cart` example is a basic starting point.
 *   **Shopify Customer Events**: For more robust server-side or client-side event tracking, especially for `add_to_cart` and `begin_checkout` without relying on DOM manipulation, explore [Shopify Customer Events](https://shopify.dev/docs/api/customer-events). This allows you to subscribe to events like "product added to cart" or "checkout started" and send data to BuddyStat via a custom pixel or by triggering client-side JavaScript. This is a more advanced but often more reliable method.
 *   **Testing**: Thoroughly test each event in your BuddyStat dashboard after implementation. Use your browser's developer console to check for JavaScript errors.

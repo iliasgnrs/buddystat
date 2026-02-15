@@ -80,7 +80,7 @@ After restarting your Remix development server or deploying your application, op
 </Steps>
 
 <Callout type="info">
-  **SPA Page View Tracking**: Rybbit's tracking script is designed to automatically detect route changes in most modern SPAs. Remix handles client-side navigation after the initial server render. If you find that page views are not being tracked correctly after client-side navigations (which can sometimes happen depending on the specifics of the script's SPA detection), you might need to manually trigger page views.
+  **SPA Page View Tracking**: BuddyStat's tracking script is designed to automatically detect route changes in most modern SPAs. Remix handles client-side navigation after the initial server render. If you find that page views are not being tracked correctly after client-side navigations (which can sometimes happen depending on the specifics of the script's SPA detection), you might need to manually trigger page views.
 
   One way to do this in Remix is to leverage a component that re-renders on navigation, or potentially by creating a custom `useLocationChange` hook if more granular control is needed, though this is often more complex. A simpler approach if manual tracking is needed might involve a root-level effect that listens to location changes. However, **test the default behavior first**, as manual tracking might not be necessary.
   If manual tracking is required, you would call `window.rybbit.pageview()` after a route change.

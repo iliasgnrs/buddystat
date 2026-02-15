@@ -11,7 +11,7 @@ This guide explains how to integrate BuddyStat with your Docusaurus v2+ website 
 
 ## How to Add BuddyStat to Your Docusaurus Site
 
-Docusaurus provides a configuration option to add scripts or tags to the `<head>` of every page, which is the recommended way to include Rybbit.
+Docusaurus provides a configuration option to add scripts or tags to the `<head>` of every page, which is the recommended way to include BuddyStat.
 
 <Steps>
 <Step>
@@ -83,7 +83,7 @@ After rebuilding and deploying your Docusaurus site (e.g., `npm run build` and `
 </Steps>
 
 <Callout type="info">
-  **Page View Tracking**: Docusaurus builds a Single Page Application (SPA). Rybbit's tracking script is designed to automatically detect route changes in SPAs and track them as page views. If you find that page views are not being tracked correctly after client-side navigation (which is uncommon), you might need to manually trigger page views. Docusaurus uses React Router internally. You could potentially use a client module or swizzle a component to tap into navigation events if manual tracking is absolutely necessary, but **test the default behavior first**.
+  **Page View Tracking**: Docusaurus builds a Single Page Application (SPA). BuddyStat's tracking script is designed to automatically detect route changes in SPAs and track them as page views. If you find that page views are not being tracked correctly after client-side navigation (which is uncommon), you might need to manually trigger page views. Docusaurus uses React Router internally. You could potentially use a client module or swizzle a component to tap into navigation events if manual tracking is absolutely necessary, but **test the default behavior first**.
   If manual tracking is required, you would call `window.rybbit.pageview()` after a route change.
 </Callout>
 

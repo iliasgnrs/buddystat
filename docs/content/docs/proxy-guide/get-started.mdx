@@ -23,7 +23,7 @@ Before setting up the proxy, ensure you have:
 
 ## Understanding the Endpoints
 
-Rybbit uses several endpoints for tracking. You can choose between a minimal setup or full proxy:
+BuddyStat uses several endpoints for tracking. You can choose between a minimal setup or full proxy:
 
 <Tabs>
 <Tab value="minimal" title="Minimal Setup">
@@ -107,7 +107,7 @@ Cache-Control: no-store              # For tracking POSTs
 
 ### Update Your Tracking Script
 
-Change your script tag to load from your proxied domain instead of directly from Rybbit:
+Change your script tag to load from your proxied domain instead of directly from BuddyStat:
 
 **Before (direct loading):**
 ```html
@@ -152,7 +152,7 @@ X-Frame-Options: DENY
 Referrer-Policy: strict-origin-when-cross-origin
 ```
 
-**CORS headers** (should be preserved from Rybbit):
+**CORS headers** (should be preserved from BuddyStat):
 ```
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: GET, POST, OPTIONS
@@ -215,7 +215,7 @@ This can reduce script size by 60-70%, improving load times and reducing bandwid
 
 ### Connection Reuse
 
-Configure your proxy to maintain persistent connections to Rybbit's backend to reduce latency on repeated requests.
+Configure your proxy to maintain persistent connections to BuddyStat's backend to reduce latency on repeated requests.
 
 ## Common Proxy Patterns
 

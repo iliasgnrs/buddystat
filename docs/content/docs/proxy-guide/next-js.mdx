@@ -11,7 +11,7 @@ Next.js provides a powerful [rewrites](https://nextjs.org/docs/app/api-reference
 
 ## Overview
 
-Next.js rewrites allow you to map incoming request paths to different destination URLs transparently. This is perfect for proxying analytics since the browser sees requests to your domain while Next.js forwards them to Rybbit's servers behind the scenes.
+Next.js rewrites allow you to map incoming request paths to different destination URLs transparently. This is perfect for proxying analytics since the browser sees requests to your domain while Next.js forwards them to BuddyStat's servers behind the scenes.
 
 **What you'll achieve:**
 - Serve BuddyStat scripts from your domain (e.g., `/analytics/script.js`)
@@ -218,7 +218,7 @@ export default nextConfig;
 
 ### Update Your Tracking Script
 
-Update your script tag to load from the proxied path instead of directly from Rybbit:
+Update your script tag to load from the proxied path instead of directly from BuddyStat:
 
 <Tabs>
 <Tab value="app-router-nextjs-13" title="App Router (Next.js 13+)">
@@ -348,14 +348,14 @@ The BuddyStat tracking script has a built-in auto-discovery mechanism. When it l
 It automatically extracts the analytics host from its own `src` attribute:
 
 ```typescript
-// Inside Rybbit's script
+// Inside BuddyStat's script
 const scriptElement = document.currentScript;
 const src = scriptElement.getAttribute('src');
 const analyticsHost = src.split('/script.js')[0];
 // Result: "" (empty string means same domain)
 ```
 
-This means all tracking requests automatically go to `/analytics/track`, `/analytics/identify`, etc., which Next.js then rewrites to forward to Rybbit's servers.
+This means all tracking requests automatically go to `/analytics/track`, `/analytics/identify`, etc., which Next.js then rewrites to forward to BuddyStat's servers.
 
 ## Performance Considerations
 

@@ -484,7 +484,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
 import java.util.HashMap;
 
-public class RybbitTracker {
+public class BuddyStatTracker {
     private static final String API_URL = "https://app.buddystat.com/api/track";
     private static final String API_KEY = System.getenv("RYBBIT_API_KEY");
     private static final String SITE_ID = System.getenv("RYBBIT_SITE_ID");
@@ -513,7 +513,7 @@ public class RybbitTracker {
     }
 
     public static void main(String[] args) throws Exception {
-        RybbitTracker tracker = new RybbitTracker();
+        BuddyStatTracker tracker = new BuddyStatTracker();
 
         // Track a pageview
         Map<String, Object> pageview = new HashMap<>();
@@ -538,7 +538,7 @@ public class RybbitTracker {
 ```php
 <?php
 
-class RybbitTracker {
+class BuddyStatTracker {
     private $apiUrl = 'https://app.buddystat.com/api/track';
     private $apiKey;
     private $siteId;
@@ -573,7 +573,7 @@ class RybbitTracker {
 }
 
 // Usage
-$tracker = new RybbitTracker();
+$tracker = new BuddyStatTracker();
 
 // Track a pageview
 $tracker->trackEvent([
@@ -598,7 +598,7 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-class RybbitTracker
+class BuddyStatTracker
   API_URL = 'https://app.buddystat.com/api/track'
 
   def initialize
@@ -629,7 +629,7 @@ class RybbitTracker
 end
 
 # Usage
-tracker = RybbitTracker.new
+tracker = BuddyStatTracker.new
 
 # Track a pageview
 tracker.track_event({
@@ -658,14 +658,14 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-public class RybbitTracker
+public class BuddyStatTracker
 {
     private readonly HttpClient _httpClient;
     private readonly string _apiKey;
     private readonly string _siteId;
     private const string ApiUrl = "https://app.buddystat.com/api/track";
 
-    public RybbitTracker()
+    public BuddyStatTracker()
     {
         _httpClient = new HttpClient();
         _apiKey = Environment.GetEnvironmentVariable("RYBBIT_API_KEY");
@@ -692,7 +692,7 @@ public class RybbitTracker
 
     static async Task Main(string[] args)
     {
-        var tracker = new RybbitTracker();
+        var tracker = new BuddyStatTracker();
 
         // Track a pageview
         await tracker.TrackEventAsync(new Dictionary<string, object>
@@ -723,14 +723,14 @@ use serde_json::{json, Value};
 use std::env;
 
 #[derive(Clone)]
-struct RybbitTracker {
+struct BuddyStatTracker {
     client: reqwest::Client,
     api_key: String,
     site_id: String,
     api_url: String,
 }
 
-impl RybbitTracker {
+impl BuddyStatTracker {
     fn new() -> Self {
         Self {
             client: reqwest::Client::new(),
@@ -768,7 +768,7 @@ impl RybbitTracker {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let tracker = RybbitTracker::new();
+    let tracker = BuddyStatTracker::new();
 
     // Track a pageview
     tracker.track_event(json!({
@@ -795,8 +795,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 import Foundation
 import UIKit
 
-class RybbitTracker {
-    static let shared = RybbitTracker()
+class BuddyStatTracker {
+    static let shared = BuddyStatTracker()
 
     private let apiUrl = "https://app.buddystat.com/api/track"
     private let apiKey: String
@@ -845,7 +845,7 @@ class RybbitTracker {
 
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
-            throw NSError(domain: "RybbitTracker", code: 1, userInfo: [NSLocalizedDescriptionKey: "Tracking failed"])
+            throw NSError(domain: "BuddyStatTracker", code: 1, userInfo: [NSLocalizedDescriptionKey: "Tracking failed"])
         }
     }
 
@@ -860,7 +860,7 @@ class RybbitTracker {
 // Usage
 Task {
     // Track a pageview
-    try await RybbitTracker.shared.trackEvent([
+    try await BuddyStatTracker.shared.trackEvent([
         "type": "pageview",
         "pathname": "/api/users",
         "hostname": "api.example.com",
@@ -868,7 +868,7 @@ Task {
     ])
 
     // Track a custom event
-    try await RybbitTracker.shared.trackEvent([
+    try await BuddyStatTracker.shared.trackEvent([
         "type": "custom_event",
         "pathname": "/checkout",
         "event_name": "purchase",
@@ -889,7 +889,7 @@ import android.content.Context
 import android.os.Build
 import java.util.Locale
 
-class RybbitTracker(private val context: Context) {
+class BuddyStatTracker(private val context: Context) {
     companion object {
         private const val API_URL = "https://app.buddystat.com/api/track"
         private val JSON = "application/json; charset=utf-8".toMediaType()
@@ -936,7 +936,7 @@ class RybbitTracker(private val context: Context) {
 
 // Usage
 class MainActivity : AppCompatActivity() {
-    private val tracker = RybbitTracker(this)
+    private val tracker = BuddyStatTracker(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -971,10 +971,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
-class RybbitTracker {
-  static final RybbitTracker _instance = RybbitTracker._internal();
-  factory RybbitTracker() => _instance;
-  RybbitTracker._internal();
+class BuddyStatTracker {
+  static final BuddyStatTracker _instance = BuddyStatTracker._internal();
+  factory BuddyStatTracker() => _instance;
+  BuddyStatTracker._internal();
 
   static const String _apiUrl = 'https://app.buddystat.com/api/track';
   static const String _apiKey = String.fromEnvironment('RYBBIT_API_KEY');
@@ -1035,7 +1035,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final tracker = RybbitTracker();
+  final tracker = BuddyStatTracker();
 
   @override
   void initState() {
@@ -1120,7 +1120,7 @@ API keys have built-in rate limiting:
 </Callout>
 
 <Callout type="info">
-**Browser Tracking**: For standard browser-based tracking, use the [Rybbit Web SDK](/docs/sdks/web) instead. The HTTP API is designed for server-side applications, mobile apps, and custom integrations.
+**Browser Tracking**: For standard browser-based tracking, use the [BuddyStat Web SDK](/docs/sdks/web) instead. The HTTP API is designed for server-side applications, mobile apps, and custom integrations.
 </Callout>
 
 <Callout type="info">

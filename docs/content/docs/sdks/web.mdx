@@ -41,7 +41,7 @@ The `rrweb` package is only required if you enable session replay in your BuddyS
 ### Syntax
 
 ```typescript
-async rybbit.init(config: RybbitConfig): Promise<void>;
+async rybbit.init(config: BuddyStatConfig): Promise<void>;
 ```
 
 ### Example
@@ -61,7 +61,7 @@ await rybbit.init({
 
 | Option          | Type     | Description                                                                          |
 | :-------------- | :------- | :----------------------------------------------------------------------------------- |
-| `analyticsHost` | `string` | URL of your BuddyStat analytics instance (e.g., `https://rybbit.yourdomain.com/api`). |
+| `analyticsHost` | `string` | URL of your BuddyStat analytics instance (e.g., `https://buddystat.yourdomain.com/api`). |
 | `siteId`        | `string` | The Site ID for your website obtained from your BuddyStat instance.       |
 
 #### Local Configuration Options

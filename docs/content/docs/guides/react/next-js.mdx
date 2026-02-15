@@ -87,7 +87,7 @@ With Next.js's [rewrites](https://nextjs.org/docs/app/api-reference/config/next-
 ```dotenv
 # .env
 
-# use this value if you are self-hosting Rybbit
+# use this value if you are self-hosting BuddyStat
 NEXT_PUBLIC_RYBBIT_HOST=https://your-hosted-rybbit-instance.com
 
 # use this value if you are using the BuddyStat hosted tracking
@@ -128,7 +128,7 @@ Note that this rewrite will consume the bandwidth of your server, as all trackin
 
 
 <Callout type="info">
-  **Page View Tracking in Next.js**: Rybbit's tracking script is designed to automatically detect route changes when using Next.js's `&lt;Link&gt;` component or `router.push()` and track them as page views. If you encounter a rare scenario where page views are not being tracked correctly after client-side navigation, you might need to manually trigger page views using `window.rybbit.pageview()`. However, test the default behavior first, as manual tracking is typically not necessary.
+  **Page View Tracking in Next.js**: BuddyStat's tracking script is designed to automatically detect route changes when using Next.js's `&lt;Link&gt;` component or `router.push()` and track them as page views. If you encounter a rare scenario where page views are not being tracked correctly after client-side navigation, you might need to manually trigger page views using `window.rybbit.pageview()`. However, test the default behavior first, as manual tracking is typically not necessary.
 </Callout>
 
 ## Custom Event Tracking
@@ -156,7 +156,7 @@ export default function MyButton({ title }) {
     if (typeof window !== 'undefined' && window.rybbit && typeof window.rybbit.event === 'function') {
       window.rybbit.event('button_click', { buttonTitle: title });
     } else {
-      console.warn('Rybbit tracking not available.');
+      console.warn('BuddyStat tracking not available.');
     }
   };
 

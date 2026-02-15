@@ -149,7 +149,7 @@ class AnalyticsProxyController extends Controller
             return response($response->body(), $response->status())
                 ->header('Content-Type', $response->header('Content-Type'));
         } catch (\Exception $e) {
-            \Log::error('Rybbit proxy error', [
+            \Log::error('BuddyStat proxy error', [
                 'url' => $url,
                 'error' => $e->getMessage(),
             ]);
@@ -239,7 +239,7 @@ Add the tracking script to your layout:
 
 ## How It Works
 
-Laravel routes intercept requests to `/analytics/*` and forward them to Rybbit:
+Laravel routes intercept requests to `/analytics/*` and forward them to BuddyStat:
 
 1. Request to `/analytics/script.js` hits Laravel route
 2. Controller forwards to `https://app.buddystat.com/api/script.js`

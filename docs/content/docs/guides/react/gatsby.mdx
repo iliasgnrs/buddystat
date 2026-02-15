@@ -74,10 +74,10 @@ module.exports = {
   ],
 };
 ```
-The `onRenderBody` method is generally simpler for a basic async script like Rybbit's.
+The `onRenderBody` method is generally simpler for a basic async script like BuddyStat's.
 
 <Callout type="info">
-  **Page View Tracking**: Gatsby sites behave like Single Page Applications (SPAs) after the initial load. Rybbit's tracking script is designed to automatically detect route changes (e.g., when using Gatsby's `<Link>` component) and track them as page views.
+  **Page View Tracking**: Gatsby sites behave like Single Page Applications (SPAs) after the initial load. BuddyStat's tracking script is designed to automatically detect route changes (e.g., when using Gatsby's `<Link>` component) and track them as page views.
 
   If you find that page views are not being tracked correctly after client-side navigation, you might need to manually trigger page views. You can do this using the `onRouteUpdate` API in `gatsby-browser.js`:
 
@@ -86,7 +86,7 @@ The `onRenderBody` method is generally simpler for a basic async script like Ryb
     if (typeof window !== 'undefined' && window.rybbit && location.pathname !== prevLocation?.pathname) {
       // BuddyStat should auto-track, but if needed:
       // window.rybbit.pageview();
-      console.log("Rybbit: Route updated to", location.pathname); // For debugging
+      console.log("BuddyStat: Route updated to", location.pathname); // For debugging
     }
   };
   ```

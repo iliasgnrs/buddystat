@@ -117,7 +117,7 @@ async function proxyToRybbit(request, url) {
     }
   }
 
-  // Fetch from Rybbit
+  // Fetch from BuddyStat
   const response = await fetch(proxyRequest);
 
   // Cache scripts for 1 hour
@@ -146,7 +146,7 @@ async function proxyToRybbit(request, url) {
 <Tab value="minimal-proxy" title="Minimal Proxy">
 
 ```javascript
-// Minimal Cloudflare Worker for Rybbit
+// Minimal Cloudflare Worker for BuddyStat
 
 const RYBBIT_HOST = 'https://app.buddystat.com';
 

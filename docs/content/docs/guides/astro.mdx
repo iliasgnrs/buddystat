@@ -11,7 +11,7 @@ This guide explains how to integrate BuddyStat with your Astro application for a
 
 ## How to Add BuddyStat to Your Astro Site
 
-The most common way to add a global script like Rybbit's to an Astro site is by including it in a common layout component that is used across your pages, or directly within the `<head>` of your pages if you don't use a shared layout.
+The most common way to add a global script like BuddyStat's to an Astro site is by including it in a common layout component that is used across your pages, or directly within the `<head>` of your pages if you don't use a shared layout.
 
 <Steps>
 <Step>
@@ -86,8 +86,8 @@ After building and deploying your Astro site, open your BuddyStat dashboard to c
 
 <Callout type="info">
   **Page View Tracking in Astro**:
-  - **MPA (Multi-Page Application) Mode**: By default, Astro builds multi-page applications. When a user navigates between different pages, a full page load occurs, and Rybbit's script will naturally track this as a new page view.
-  - **View Transitions**: If you are using Astro's [View Transitions API](https://docs.astro.build/en/guides/view-transitions/) for client-side navigation effects, Rybbit's script should generally still detect these as page views if the URL changes. However, if you notice issues, you might need to manually trigger page views. You can listen to Astro's `astro:after-swap` event:
+  - **MPA (Multi-Page Application) Mode**: By default, Astro builds multi-page applications. When a user navigates between different pages, a full page load occurs, and BuddyStat's script will naturally track this as a new page view.
+  - **View Transitions**: If you are using Astro's [View Transitions API](https://docs.astro.build/en/guides/view-transitions/) for client-side navigation effects, BuddyStat's script should generally still detect these as page views if the URL changes. However, if you notice issues, you might need to manually trigger page views. You can listen to Astro's `astro:after-swap` event:
     ```javascript
     // In a client-side script, perhaps in your common layout or a global script file
     document.addEventListener('astro:after-swap', () => {

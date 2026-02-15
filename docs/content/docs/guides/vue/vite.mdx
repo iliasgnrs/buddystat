@@ -75,7 +75,7 @@ Deploy your application and check your BuddyStat dashboard for incoming data. Yo
 </Steps>
 
 <Callout type="info">
-  **SPA Page View Tracking**: Rybbit's script is designed to automatically track route changes in SPAs using Vue Router. If page views aren't tracked correctly after navigation, you might need to manually trigger them using `window.rybbit.pageview()` after each route change. This can be done using Vue Router's navigation guards:
+  **SPA Page View Tracking**: BuddyStat's script is designed to automatically track route changes in SPAs using Vue Router. If page views aren't tracked correctly after navigation, you might need to manually trigger them using `window.rybbit.pageview()` after each route change. This can be done using Vue Router's navigation guards:
   ```javascript
   // Example with Vue Router in your router setup file (e.g., src/router/index.js)
   import { createRouter, createWebHistory } from 'vue-router';
