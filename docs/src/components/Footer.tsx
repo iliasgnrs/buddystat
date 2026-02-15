@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <Image src="/rybbit1.svg" alt="Rybbit" width={140} height={0} style={{ height: "auto" }}
+            <Image src="/buddystat-icon.png" alt="BuddyStat" width={140} height={0} style={{ height: "auto" }}
               className="dark:invert-0 invert"
 
             />
@@ -225,7 +225,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-sm text-neutral-400">© {new Date().getFullYear()} Rybbit. All rights reserved.</div>
+            <div className="text-sm text-neutral-400">© {new Date().getFullYear()} BuddyStat. All rights reserved.</div>
             <div className="text-sm text-neutral-400">
               Made with ❤️ by frogs{" "}
               <a href="https://tomato.gg" target="_blank" title="Tomato.gg">

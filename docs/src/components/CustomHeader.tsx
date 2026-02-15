@@ -22,8 +22,8 @@ export function CustomHeader() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Image
-              src="/rybbit1.svg"
-              alt="Rybbit"
+              src="/buddystat-icon.png"
+              alt="BuddyStat"
               width={120}
               height={0}
               style={{ height: "auto" }}

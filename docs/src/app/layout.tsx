@@ -12,8 +12,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Rybbit - Privacy-First Web Analytics Platform",
-    template: "%s | Rybbit",
+    default: "BuddyStat - Privacy-First Web Analytics Platform",
+    template: "%s | BuddyStat",
   },
   description:
     "Open-source, privacy-focused web analytics platform. Track your website performance without compromising user privacy. Self-hostable alternative to Google Analytics.",
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     "website tracking",
     "self-hosted analytics",
   ],
-  authors: [{ name: "Rybbit Team" }],
-  creator: "Rybbit",
-  publisher: "Rybbit",
+  authors: [{ name: "BuddyStat Team" }],
+  creator: "BuddyStat",
+  publisher: "BuddyStat",
   metadataBase: new URL("https://buddystat.com"),
   openGraph: {
     type: "website",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Rybbit Analytics Dashboard",
+        alt: "BuddyStat Analytics Dashboard",
       },
     ],
   },

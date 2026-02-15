@@ -52,11 +52,11 @@ export async function generateMetadata(props: { params: Promise<{ slug: string[]
       title: page.data.title,
       description: page.data.description,
       images: [ogImage],
-      creator: "@rybbitio",
+      creator: "@buddystatanalytics",
     },
     keywords: page.data.tags
-      ? [...page.data.tags, "web analytics", "privacy analytics", "Rybbit"]
-      : ["web analytics", "privacy analytics", "Rybbit"],
+      ? [...page.data.tags, "web analytics", "privacy analytics", "BuddyStat"]
+      : ["web analytics", "privacy analytics", "BuddyStat"],
     authors: page.data.author ? [{ name: page.data.author }] : undefined,
   };
 }
@@ -82,11 +82,11 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
     dateModified: date?.toISOString(),
     author: {
       "@type": "Person",
-      name: page.data.author || "Rybbit Team",
+      name: page.data.author || "BuddyStat Team",
     },
     publisher: {
       "@type": "Organization",
-      name: "Rybbit",
+      name: "BuddyStat",
       logo: {
         "@type": "ImageObject",
         url: "https://buddystat.com/public/rybbit.svg",
