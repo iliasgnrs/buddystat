@@ -33,6 +33,20 @@
         reverse_proxy backend:3001
     }
 
+    # Analytics scripts go to backend
+    handle /script.js {
+        reverse_proxy backend:3001
+    }
+    handle /script-full.js {
+        reverse_proxy backend:3001
+    }
+    handle /web-vitals.iife.js {
+        reverse_proxy backend:3001
+    }
+    handle /rrweb.min.js {
+        reverse_proxy backend:3001
+    }
+
     # All other requests go to client
     handle {
         reverse_proxy client:3002
