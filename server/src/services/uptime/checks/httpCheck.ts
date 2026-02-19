@@ -56,7 +56,7 @@ export async function performHttpCheck(options: HttpCheckOptions): Promise<HttpC
 
     // Prepare headers
     const headers: Record<string, string> = {
-      "User-Agent": options.userAgent || "Rybbit-Uptime-Monitor/1.0",
+      "User-Agent": options.userAgent || "BuddyStat-Uptime-Monitor/1.0",
       ...options.headers,
     };
 
