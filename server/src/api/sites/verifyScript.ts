@@ -100,7 +100,7 @@ export async function verifyScript(
 
       if (!scriptTagFound) {
         issues.push(
-          "Rybbit script tag not found in the page HTML. Make sure the script is placed in the <head> tag."
+          "BuddyStat script tag not found in the page HTML. Make sure the script is placed in the <head> tag."
         );
       } else if (!siteIdMatch) {
         issues.push(
