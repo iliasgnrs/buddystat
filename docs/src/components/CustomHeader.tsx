@@ -22,7 +22,7 @@ export function CustomHeader() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Image
-              src="/buddystat-icon.png"
+              src="/buddystat-text.png"
               alt="BuddyStat"
               width={120}
               height={0}

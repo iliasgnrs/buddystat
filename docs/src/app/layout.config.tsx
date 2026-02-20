@@ -13,7 +13,7 @@ export const baseOptions: BaseLayoutProps = {
     title: (
       <>
         <Image
-          src="/buddystat-icon.png"
+          src="/buddystat-text.png"
           alt="BuddyStat"
           width={120}
           height={0}

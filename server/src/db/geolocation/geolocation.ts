@@ -111,8 +111,8 @@ function setCachedIP(ip: string, data: LocationResponse): void {
 
 async function getLocationFromIPAPI(ips: string[]): Promise<Record<string, LocationResponse>> {
   if (!apiKey) {
-    logger.warn("IPAPI_KEY not configured for cloud geolocation");
-    return {};
+    logger.warn("IPAPI_KEY not configured for cloud geolocation, falling back to local GeoLite2 database");
+    return getLocationFromLocal(ips);
   }
 
   // Check cache first
