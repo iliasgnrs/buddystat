@@ -58,18 +58,18 @@ function OutboundLinks({ expanded, close }: { expanded: boolean; close: () => vo
 }
 
 export function Events() {
-  const [tab, setTab] = useState<Tab>("events");
+  const [tab, setTab] = useState<Tab>("outbound");
   const [expandedOutbound, setExpandedOutbound] = useState(false);
 
   return (
     <Card className="h-[483px]">
       <CardContent className="mt-2">
-        <Tabs defaultValue="events" value={tab} onValueChange={value => setTab(value as Tab)}>
+        <Tabs defaultValue="outbound" value={tab} onValueChange={value => setTab(value as Tab)}>
           <div className="flex flex-row gap-2 justify-between items-center">
             <div className="overflow-x-auto">
               <TabsList>
-                <TabsTrigger value="events">Custom Events</TabsTrigger>
                 <TabsTrigger value="outbound">Outbound Links</TabsTrigger>
+                <TabsTrigger value="events">Custom Events</TabsTrigger>
               </TabsList>
             </div>
             {tab === "outbound" && (

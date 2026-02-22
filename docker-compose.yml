@@ -91,6 +91,7 @@ services:
       - DISABLE_SIGNUP=${DISABLE_SIGNUP}
       - DISABLE_TELEMETRY=${DISABLE_TELEMETRY}
       - MAPBOX_TOKEN=${MAPBOX_TOKEN}
+      - IPAPI_KEY=${IPAPI_KEY}
     depends_on:
       clickhouse:
         condition: service_healthy
