@@ -74,9 +74,10 @@ export const unsubscribeContact = async (email: string): Promise<void> => {
 
 export const sendEmail = async (email: string, subject: string, html: string) => {
   if (!resend) {
-    return;
-    // not sure how to handle self hosted instances without resend
-    // throw new Error("Resend is not initialized");
+    console.error(
+      "Email sending failed: RESEND_API_KEY not configured. Please set RESEND_API_KEY in your .env file to enable email functionality."
+    );
+    throw new Error("Email service not configured: RESEND_API_KEY is required");
   }
   try {
     const response = await resend.emails.send({

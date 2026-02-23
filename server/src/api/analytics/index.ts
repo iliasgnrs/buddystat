@@ -28,6 +28,7 @@ export { getPerformanceTimeSeries } from "./performance/getPerformanceTimeSeries
 
 // Export
 export { generatePdfReport } from "./generatePdfReport.js";
+export { sendManualReport } from "./sendManualReport.js";
 
 // Core Analytics
 export { getErrorBucketed } from "./getErrorBucketed.js";

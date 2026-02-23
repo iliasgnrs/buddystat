@@ -22,6 +22,7 @@ export function EmailReportsManager({ siteId, disabled = false }: EmailReportsMa
   const [emailList, setEmailList] = useState<string[]>([]);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isSendingReport, setIsSendingReport] = useState(false);
 
   // Initialize email list when data is loaded
   React.useEffect(() => {
@@ -105,6 +106,46 @@ export function EmailReportsManager({ siteId, disabled = false }: EmailReportsMa
     setHasUnsavedChanges(false);
   };
 
+  const handleSendReport = async () => {
+    // Check if there are any configured emails
+    const activeEmails = emailList.filter(email => email.trim() !== "");
+    
+    if (activeEmails.length === 0) {
+      toast.error("Please add and save at least one email address before sending a report");
+      return;
+    }
+
+    // Check if there are unsaved changes
+    if (hasUnsavedChanges) {
+      toast.error("Please save your email changes before sending a report");
+      return;
+    }
+
+    try {
+      setIsSendingReport(true);
+      
+      const response = await fetch(`/api/sites/${siteId}/send-report`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Failed to send report");
+      }
+
+      toast.success(data.message || "Weekly report sent successfully! Check your email.");
+    } catch (error) {
+      console.error("Error sending manual report:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to send report");
+    } finally {
+      setIsSendingReport(false);
+    }
+  };
+
   if (isLoading) {
     return <div className="text-sm text-muted-foreground">Loading report settings...</div>;
   }
@@ -175,12 +216,33 @@ export function EmailReportsManager({ siteId, disabled = false }: EmailReportsMa
       </div>
 
       {emailList.filter(e => e.trim()).length > 0 && (
-        <div className="text-xs text-muted-foreground bg-muted/50 p-3 rounded-md">
-          <p className="font-medium mb-1">📧 Report Schedule:</p>
-          <p>
-            {emailList.filter(e => e.trim()).length} recipient(s) will receive weekly reports for {siteData?.domain}{" "}
-            every Monday at midnight UTC.
-          </p>
+        <div className="text-xs text-muted-foreground bg-muted/50 p-3 rounded-md space-y-3">
+          <div>
+            <p className="font-medium mb-1">📧 Report Schedule:</p>
+            <p>
+              {emailList.filter(e => e.trim()).length} recipient(s) will receive weekly reports for {siteData?.domain}{" "}
+              every Monday at midnight UTC.
+            </p>
+          </div>
+          <div>
+            <p className="font-medium mb-2">📤 Send Report Manually:</p>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={handleSendReport}
+              disabled={disabled || isSendingReport || hasUnsavedChanges}
+              className="w-full sm:w-auto"
+            >
+              <Mail className="mr-2 h-4 w-4" />
+              {isSendingReport ? "Sending..." : "Send Report Now"}
+            </Button>
+            {hasUnsavedChanges && (
+              <p className="text-xs text-orange-600 dark:text-orange-400 mt-2">
+                Save your changes before sending a report
+              </p>
+            )}
+          </div>
         </div>
       )}
     </div>

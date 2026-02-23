@@ -445,6 +445,98 @@ class WeeklyReportService {
     }
   }
 
+  /**
+   * Generate and send a manual report for a specific organization
+   * Can be used for on-demand report generation
+   */
+  public async generateAndSendManualReport(organizationId: string): Promise<{ success: boolean; message: string }> {
+    try {
+      this.logger.info({ organizationId }, "Generating manual weekly report");
+
+      const report = await this.generateOrganizationReport(organizationId);
+
+      if (!report) {
+        return { success: false, message: "No report data available for this organization" };
+      }
+
+      await this.sendReportsToOrganization(report);
+
+      this.logger.info({ organizationId }, "Manual weekly report sent successfully");
+      return { success: true, message: "Report sent successfully" };
+    } catch (error) {
+      this.logger.error({ error, organizationId }, "Error generating manual report");
+      return {
+        success: false,
+        message: error instanceof Error ? error.message : "Failed to generate report",
+      };
+    }
+  }
+
+  /**
+   * Generate and send a manual report for a specific site
+   * Sends to the configured email addresses for that site only
+   */
+  public async generateAndSendSiteReport(
+    organizationId: string,
+    siteId: number,
+    siteName: string,
+    siteDomain: string,
+    emailRecipients: string[]
+  ): Promise<{ success: boolean; message: string }> {
+    try {
+      this.logger.info({ organizationId, siteId }, "Generating manual site report");
+
+      // Fetch organization details
+      const [org] = await db.select().from(organization).where(eq(organization.id, organizationId));
+
+      if (!org) {
+        return { success: false, message: "Organization not found" };
+      }
+
+      // Generate report for this specific site
+      const siteReport = await this.generateSiteReport(siteId, siteName, siteDomain);
+
+      if (!siteReport) {
+        return { success: false, message: "No analytics data available for this site in the last 7 days" };
+      }
+
+      // Create a single-site organization report
+      const organizationReport: OrganizationReport = {
+        organizationId: org.id,
+        organizationName: org.name,
+        sites: [siteReport],
+      };
+
+      // Send to all configured email addresses for this site
+      let sentCount = 0;
+      for (const email of emailRecipients) {
+        try {
+          await sendWeeklyReportEmail(email, email, organizationReport);
+          sentCount++;
+          this.logger.info({ email, siteId, siteName }, "Sent manual site report");
+        } catch (error) {
+          this.logger.error({ error, email, siteId }, "Failed to send manual site report");
+        }
+      }
+
+      if (sentCount === 0) {
+        return { success: false, message: "Failed to send report to any recipients" };
+      }
+
+      this.logger.info({ siteId, sentCount }, "Manual site report sent successfully");
+      return {
+        success: true,
+        message: `Report sent successfully to ${sentCount} recipient${sentCount > 1 ? "s" : ""}`,
+      };
+    } catch (error) {
+      this.logger.error({ error, siteId }, "Error generating manual site report");
+      return {
+        success: false,
+        message: error instanceof Error ? error.message : "Failed to generate site report",
+      };
+    }
+  }
+
   public async generateAndSendReports(): Promise<void> {
     this.logger.info("Starting weekly report generation and sending");
 

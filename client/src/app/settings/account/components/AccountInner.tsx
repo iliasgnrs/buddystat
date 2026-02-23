@@ -16,6 +16,7 @@ import { ApiKeyManager } from "./ApiKeyManager";
 import { ChangePassword } from "./ChangePassword";
 import { DeleteAccount } from "./DeleteAccount";
 import { useSignout } from "../../../../hooks/useSignout";
+import { Mail } from "lucide-react";
 
 export function AccountInner() {
   const session = authClient.useSession();
@@ -28,6 +29,7 @@ export function AccountInner() {
   const [name, setName] = useState(session.data?.user.name ?? "");
   const [isUpdatingEmail, setIsUpdatingEmail] = useState(false);
   const [isUpdatingName, setIsUpdatingName] = useState(false);
+  const [isSendingReport, setIsSendingReport] = useState(false);
 
   useEffect(() => {
     setEmail(session.data?.user.email ?? "");
@@ -104,6 +106,38 @@ export function AccountInner() {
     }
   };
 
+  const handleSendManualReport = async () => {
+    try {
+      setIsSendingReport(true);
+      const organizationId = session.data?.session?.organizationId;
+      
+      if (!organizationId) {
+        toast.error("No organization found");
+        return;
+      }
+
+      const response = await fetch(`/api/organizations/${organizationId}/send-manual-report`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Failed to send report");
+      }
+
+      toast.success("Weekly report sent successfully! Check your email.");
+    } catch (error) {
+      console.error("Error sending manual report:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to send manual report");
+    } finally {
+      setIsSendingReport(false);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <Card className="p-2">
@@ -114,19 +148,36 @@ export function AccountInner() {
           <div className="space-y-2">
             <h4 className="text-sm font-medium">Name</h4>
             <p className="text-xs text-neutral-500">Update your name displayed across the platform</p>
-            <div className="flex space-x-2">
-              <Input id="name" value={name} onChange={({ target }) => setName(target.value)} placeholder="name" />
-              <Button
-                variant="outline"
-                onClick={handleNameUpdate}
-                disabled={isUpdatingName || name === session.data?.user.name}
-              >
-                {isUpdatingName ? "Updating..." : "Update"}
-              </Button>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <h4 className="text-sm font-medium">Email</h4>
+            <>
+              <div className="flex items-center justify-between">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium">Send Weekly Email Reports</h4>
+                  <p className="text-xs text-neutral-500">Enable or disable automatic email reports for your account.</p>
+                </div>
+                <div className="flex space-x-2">
+                  <Switch
+                    checked={(session.data?.user as any).sendAutoEmailReports}
+                    onCheckedChange={handleEmailReportsToggle}
+                    disabled={updateAccountSettings.isPending}
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium">Send Manual Report</h4>
+                <p className="text-xs text-neutral-500">
+                  Generate and send a weekly analytics report for the last 7 days to all members in your organization.
+                </p>
+                <Button 
+                  variant="outline" 
+                  onClick={handleSendManualReport}
+                  disabled={isSendingReport}
+                  className="w-full sm:w-auto"
+                >
+                  <Mail className="mr-2 h-4 w-4" />
+                  {isSendingReport ? "Sending..." : "Send Report Now"}
+                </Button>
+              </div>
+            </lassName="text-sm font-medium">Email</h4>
             <p className="text-xs text-neutral-500">Update your email address for account notifications</p>
             <div className="flex space-x-2">
               <Input

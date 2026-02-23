@@ -51,6 +51,7 @@ import {
   getUserTraitValueUsers,
   getUserTraitValues,
   getUsers,
+  sendManualReport,
   updateGoal,
 } from "./api/analytics/index.js";
 import { getConfig, getVersion } from "./api/getConfig.js";
@@ -84,6 +85,7 @@ import {
   getSitePrivateLinkConfig,
   getSitesFromOrg,
   getTrackingConfig,
+  sendSiteReport,
   updateSiteConfig,
   updateSitePrivateLinkConfig,
   verifyScript,
@@ -295,6 +297,9 @@ async function sitesRoutes(fastify: FastifyInstance) {
   fastify.get("/sites/:siteId/excluded-countries", authSite, getSiteExcludedCountries);
   fastify.get("/sites/:siteId/verify-script", authSite, verifyScript);
 
+  // Manual site report
+  fastify.post("/sites/:siteId/send-report", authSite, sendSiteReport);
+
   // Site Imports
   fastify.get("/sites/:siteId/imports", adminSite, getSiteImports);
   fastify.post("/sites/:siteId/imports", adminSite, createSiteImport);
@@ -309,6 +314,9 @@ async function organizationsRoutes(fastify: FastifyInstance) {
   fastify.post("/organizations/:organizationId/sites", orgAdminParams, addSite);
   fastify.get("/organizations/:organizationId/members", orgMember, listOrganizationMembers);
   fastify.post("/organizations/:organizationId/members", orgMember, addUserToOrganization);
+
+  // Manual weekly report
+  fastify.post("/organizations/:organizationId/send-manual-report", orgMember, sendManualReport);
 
   // Member site access management (admin/owner only)
   fastify.put("/organizations/:organizationId/members/:memberId/sites", orgAdminParams, updateMemberSiteAccess);
