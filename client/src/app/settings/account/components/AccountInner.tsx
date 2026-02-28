@@ -177,7 +177,8 @@ export function AccountInner() {
                   {isSendingReport ? "Sending..." : "Send Report Now"}
                 </Button>
               </div>
-            </lassName="text-sm font-medium">Email</h4>
+            </>
+            <h4 className="text-sm font-medium">Email</h4>
             <p className="text-xs text-neutral-500">Update your email address for account notifications</p>
             <div className="flex space-x-2">
               <Input
