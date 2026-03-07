@@ -72,6 +72,7 @@ const pluginList = [
 
 export const auth = betterAuth({
   basePath: "/api/auth",
+  baseURL: process.env.BASE_URL,
   database: new pg.Pool({
     host: process.env.POSTGRES_HOST || "postgres",
     port: parseInt(process.env.POSTGRES_PORT || "5432", 10),
@@ -89,6 +90,7 @@ export const auth = betterAuth({
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      redirectURI: `${process.env.BASE_URL}/api/auth/callback/google`,
     },
     github: {
       clientId: process.env.GITHUB_CLIENT_ID!,
