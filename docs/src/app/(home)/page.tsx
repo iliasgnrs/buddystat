@@ -1,6 +1,5 @@
 import { CTASection } from "@/components/CTASection";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { GitHubStarButton } from "@/components/GitHubStarButton";
 import { IntegrationsGrid } from "@/components/Integration";
 import { Marquee } from "@/components/magicui/marquee";
 import { SectionBadge } from "@/components/SectionBadge";
@@ -187,7 +186,6 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="flex flex-col items-center justify-center overflow-x-hidden pt-16 md:pt-24">
-        <GitHubStarButton />
 
         <h1
           className={cn(
