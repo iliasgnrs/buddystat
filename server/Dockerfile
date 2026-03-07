@@ -6,14 +6,12 @@ WORKDIR /app
 
 # Copy and build shared package first
 COPY shared ./shared
-WORKDIR /app/shared
-RUN npm install && npm run build
-
 # Install server dependencies
 WORKDIR /app/server
 COPY server/package*.json ./
-# Install server dependencies and place shared package explicitly into node_modules
-RUN npm install --legacy-peer-deps && \
+# Build shared package and install server deps in one atomic step
+RUN cd /app/shared && npm install && npm run build && \
+    cd /app/server && npm install --legacy-peer-deps && \
     rm -rf node_modules/@rybbit/shared && \
     mkdir -p node_modules/@rybbit/shared && \
     cp /app/shared/package.json node_modules/@rybbit/shared/ && \
