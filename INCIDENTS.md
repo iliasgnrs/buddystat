@@ -9,7 +9,8 @@
 1. [Incident 1 — Authentication & Login (Feb 14–15, 2026)](#incident-1--authentication--login-feb-1415-2026)
 2. [Incident 2 — Whitelabeling / Deployment Break (Feb 19, 2026)](#incident-2--whitelabeling--deployment-break-feb-19-2026)
 3. [Incident 3 — Account Deletion + Geolocation Failure (Feb–Mar 7, 2026)](#incident-3--account-deletion--geolocation-failure-febmar-7-2026)
-4. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
+4. [Incident 4 — BSI Security Report: Databases Publicly Exposed (Mar 7, 2026)](#incident-4--bsi-security-report-databases-publicly-exposed-mar-7-2026)
+5. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
 
 ---
 
@@ -242,6 +243,84 @@ docker exec clickhouse clickhouse-client --password frog -q \
 
 ---
 
+## Incident 4 — BSI Security Report: Databases Publicly Exposed (Mar 7, 2026)
+
+**Status:** ✅ Resolved  
+**Severity:** Critical — four database ports accessible from the public internet  
+**Reported by:** Hetzner / BSI (German Federal Office for Information Security)
+
+### What Broke
+
+| Port | Service | Exposure |
+|------|---------|----------|
+| 5432 | PostgreSQL | `0.0.0.0:5432` — world-accessible |
+| 8123 | ClickHouse HTTP API | `0.0.0.0:8123` — world-accessible |
+| 9000 | ClickHouse native TCP | `0.0.0.0:9000` — world-accessible |
+| 6379 | Redis | `0.0.0.0:6379` — world-accessible |
+
+All database ports were bound to `0.0.0.0` (all interfaces) instead of `127.0.0.1` (localhost only). Docker's port publishing bypasses the host firewall (UFW), so these ports were directly reachable from the internet even if UFW rules existed.
+
+The Redis entry in `docker-compose.cloud.yml` even had the comment:  
+`"6379:6379" # Exposed to internet for remote connections` — clearly intentional at setup time but a major security mistake.
+
+### Root Cause
+
+Two compose files were in use on the VPS simultaneously:
+- `docker-compose.cloud.yml` — managed clickhouse, postgres, redis, docs (original setup file)
+- `docker-compose.yml` — managed backend, client (migrated services)
+
+The `docker-compose.cloud.yml` file had all database ports bound to `0.0.0.0` without any `127.0.0.1:` prefix. Port 9000 for ClickHouse native protocol was also exposed (not present in the newer `docker-compose.yml`).
+
+**Key lesson:** Docker port publishing (`ports:`) bypasses UFW/iptables. Only binding to `127.0.0.1` prevents external access.
+
+### Fixes Applied
+
+**`docker-compose.yml`** (postgres, clickhouse 8123):
+```yaml
+# BEFORE (insecure)
+- "8123:8123"
+- "5432:5432"
+
+# AFTER (secure)
+- "127.0.0.1:8123:8123"
+- "127.0.0.1:5432:5432"
+```
+
+**`docker-compose.cloud.yml`** (all services):
+```yaml
+# ALL database and internal ports changed to 127.0.0.1:
+- "127.0.0.1:8123:8123"
+- "127.0.0.1:9000:9000"
+- "127.0.0.1:5432:5432"
+- "127.0.0.1:6379:6379"
+- "127.0.0.1:3001:3001"  # backend
+- "127.0.0.1:3002:3002"  # client
+```
+
+Individual services restarted (no `docker-compose down`):
+```bash
+docker-compose -f docker-compose.cloud.yml up -d --no-deps redis
+docker-compose -f docker-compose.cloud.yml up -d --no-deps clickhouse
+docker-compose -f docker-compose.cloud.yml up -d --no-deps postgres
+```
+
+### Verification
+
+```bash
+ss -tlnp | grep -E '5432|8123|9000|6379'
+# LISTEN 0  127.0.0.1:5432  ✅
+# LISTEN 0  127.0.0.1:8123  ✅
+# LISTEN 0  127.0.0.1:9000  ✅
+# LISTEN 0  127.0.0.1:6379  ✅
+```
+
+Backend remained healthy — inter-container communication uses Docker DNS (`postgres`, `clickhouse`, `redis` hostnames) which is not affected by host port binding.
+
+### Commits
+`3c58468c` · `998ac526`
+
+---
+
 ## 🚨 MASTER PRECAUTIONS — Never Do This Again
 
 ### 🔴 NEVER — Database & Account Safety
@@ -272,6 +351,33 @@ Always restart ONLY the specific service:
 ```bash
 docker-compose up -d --no-deps backend   ✅
 docker-compose up -d --no-deps client    ✅
+```
+
+**VPS compose file ownership:**
+- `docker-compose.cloud.yml` → redis, clickhouse, postgres, docs
+- `docker-compose.yml` → backend, client, caddy
+
+Use the correct file when restarting:
+```bash
+docker-compose -f docker-compose.cloud.yml up -d --no-deps postgres  ✅
+docker-compose up -d --no-deps backend                                ✅
+```
+
+### 🔴 NEVER — Expose Database Ports to the Internet
+
+Docker's `ports:` directive **bypasses UFW/iptables**. Any published port is accessible from the internet regardless of firewall rules.
+
+```
+❌ NEVER use "6379:6379" style — binds to 0.0.0.0 (internet-accessible)
+✅ ALWAYS use "127.0.0.1:6379:6379" — localhost only
+```
+
+This applies to ALL internal services: PostgreSQL (5432), ClickHouse (8123, 9000), Redis (6379), backend (3001), client (3002). Only Caddy (80, 443) should be on `0.0.0.0`.
+
+Verify with:
+```bash
+ss -tlnp | grep -E '5432|8123|9000|6379|3001|3002'
+# All should show 127.0.0.1:PORT, never 0.0.0.0:PORT
 ```
 
 ### 🔴 NEVER — Client Rebuild

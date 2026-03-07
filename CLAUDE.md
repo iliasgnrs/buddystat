@@ -4,14 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## ⚠️ CRITICAL — Read Before Any Action
 
-**Always read [INCIDENTS.md](./INCIDENTS.md) before making production changes.** Three major outages have occurred. Key rules:
+**Always read [INCIDENTS.md](./INCIDENTS.md) before making production changes.** Four major outages have occurred. Key rules:
 
 - **NEVER** delete organization records from Postgres — kills all user data
 - **NEVER** run `docker-compose down` or restart all services at once
 - **NEVER** rebuild the client container on the VPS (OOM risk) — build locally and `scp`
 - **ALWAYS** restart only the specific service: `docker-compose up -d --no-deps backend`
 - **ALWAYS** use `docker-compose build --no-cache backend` for backend rebuilds
-- VPS docker compose file is `docker-compose.yml` (NOT `docker-compose.cloud.yml`)
+- **ALWAYS** prefix new database/internal port mappings with `127.0.0.1:` — Docker bypasses UFW
+- VPS uses **both** compose files: `docker-compose.cloud.yml` (redis, clickhouse, postgres, docs) and `docker-compose.yml` (backend, client, caddy). Use the correct one when restarting.
 
 ## Commands
 
