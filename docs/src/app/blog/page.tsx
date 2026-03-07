@@ -40,7 +40,7 @@ export default function BlogPage() {
                 )}
 
                 <div className="flex flex-col h-full">
-                  <h2 className="text-xl font-semibold mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                  <h2 className="text-xl font-semibold mb-2 group-hover:text-fuchsia-600 dark:group-hover:text-fuchsia-400 transition-colors">
                     {post.data.title}
                   </h2>
 

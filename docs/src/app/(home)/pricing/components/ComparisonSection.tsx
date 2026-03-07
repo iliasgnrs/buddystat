@@ -252,7 +252,7 @@ interface FeatureCellProps {
 function FeatureCell({ value }: FeatureCellProps) {
   if (typeof value === "boolean") {
     return value ? (
-      <Check className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mx-auto" />
+      <Check className="h-5 w-5 text-fuchsia-600 dark:text-fuchsia-400 mx-auto" />
     ) : (
       <Minus className="h-5 w-5 text-neutral-500 mx-auto" />
     );
@@ -290,19 +290,19 @@ export function ComparisonSection({ isAnnual }: { isAnnual: boolean }) {
                 </div>
                 <AppLink
                   href="https://app.buddystat.com/signup"
-                  className="inline-flex items-center justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
+                  className="inline-flex items-center justify-center px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Get started
                 </AppLink>
               </div>
               <div className="flex flex-col items-center justify-center px-6 border-r border-neutral-400/50 dark:border-neutral-700/50">
-                <div className="font-semibold text-lg text-emerald-600 dark:text-emerald-400 text-center mb-3">
+                <div className="font-semibold text-lg text-fuchsia-600 dark:text-fuchsia-400 text-center mb-3">
                   Pro{" "}
                   <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal block">From ${isAnnual ? "33" : "39"} /month</span>
                 </div>
                 <AppLink
                   href="https://app.buddystat.com/signup"
-                  className="inline-flex items-center justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
+                  className="inline-flex items-center justify-center px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Get started
                 </AppLink>
@@ -314,7 +314,7 @@ export function ComparisonSection({ isAnnual }: { isAnnual: boolean }) {
                 </div>
                 <a
                   href="https://www.rybbit.com/contact"
-                  className="inline-flex items-center justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
+                  className="inline-flex items-center justify-center px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Contact us
                 </a>

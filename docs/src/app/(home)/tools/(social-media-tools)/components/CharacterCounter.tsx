@@ -26,13 +26,13 @@ export function CharacterCounter({ platform }: CharacterCounterProps) {
   const getStatusColor = () => {
     if (isOverLimit) return "text-red-600 dark:text-red-400";
     if (isNearLimit) return "text-orange-600 dark:text-orange-400";
-    return "text-emerald-600 dark:text-emerald-400";
+    return "text-fuchsia-600 dark:text-fuchsia-400";
   };
 
   const getProgressBarColor = () => {
     if (isOverLimit) return "bg-red-500";
     if (isNearLimit) return "bg-orange-500";
-    return "bg-emerald-500";
+    return "bg-fuchsia-500";
   };
 
   const copyText = async () => {
@@ -48,13 +48,13 @@ export function CharacterCounter({ platform }: CharacterCounterProps) {
   return (
     <div className="w-full max-w-4xl mx-auto">
       {/* Platform Info */}
-      <div className="mb-8 p-6 bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+      <div className="mb-8 p-6 bg-fuchsia-50/50 dark:bg-fuchsia-950/20 border border-fuchsia-200 dark:border-fuchsia-800 rounded-xl">
         <div className="flex items-start gap-3">
           <div className="w-5 h-5 mt-0.5 flex-shrink-0">
             {isOverLimit ? (
               <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
             ) : (
-              <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <CheckCircle className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
             )}
           </div>
           <div className="flex-1">
@@ -84,7 +84,7 @@ export function CharacterCounter({ platform }: CharacterCounterProps) {
             onChange={(e) => setText(e.target.value)}
             placeholder={`Type or paste your ${platform.contentType} here...`}
             rows={10}
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent resize-none text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent resize-none text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
           {text && (
             <button
@@ -93,7 +93,7 @@ export function CharacterCounter({ platform }: CharacterCounterProps) {
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <Check className="w-3.5 h-3.5 text-fuchsia-600 dark:text-fuchsia-400" />
                   Copied!
                 </>
               ) : (
@@ -208,7 +208,7 @@ export function CharacterCounter({ platform }: CharacterCounterProps) {
           <ul className="space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
             {platform.bestPractices.map((practice, index) => (
               <li key={index} className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-500 mt-2 flex-shrink-0" />
                 <span>{practice}</span>
               </li>
             ))}

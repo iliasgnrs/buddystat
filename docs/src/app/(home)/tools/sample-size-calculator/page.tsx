@@ -310,7 +310,7 @@ const faqs = [
         Run your test until you reach the calculated sample size, even if you see apparent "winners" mid-test. Stopping
         early increases false positive risk. The duration depends on your daily visitor volume - if you need 10,000
         visitors and get 1,000/day, run it about 10 days. Use{" "}
-        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to track progress and know when you reach statistical significance.

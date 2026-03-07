@@ -57,8 +57,8 @@ export function ToolPageLayout({
 
           {/* 1. Header */}
           <div className="mb-16">
-            <div className="inline-block mb-4 px-4 py-1.5 bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-full">
-              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">{badge}</span>
+            <div className="inline-block mb-4 px-4 py-1.5 bg-fuchsia-100 dark:bg-fuchsia-900/30 border border-fuchsia-200 dark:border-fuchsia-800 rounded-full">
+              <span className="text-sm font-medium text-fuchsia-700 dark:text-fuchsia-400">{badge}</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-6 tracking-tight">
               {title}

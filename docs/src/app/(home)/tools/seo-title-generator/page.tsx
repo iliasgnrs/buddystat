@@ -197,7 +197,7 @@ const faqs = [
     answer: (
       <>
         Use analytics to track CTR from search results. Tools like{" "}
-        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit
         </Link>{" "}
         can show you which pages get the most organic traffic, helping you identify successful titles and opportunities

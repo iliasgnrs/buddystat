@@ -149,7 +149,7 @@ export default function DataProcessingAgreement() {
         <h2 className="text-2xl font-semibold mt-8 mb-4">13. Contact</h2>
         <p>
           For questions about this DPA or to exercise any rights, please contact us at:
-          <a href="mailto:hello@rybbit.com" className="text-emerald-400 hover:text-emerald-300 ml-1">
+          <a href="mailto:hello@rybbit.com" className="text-fuchsia-400 hover:text-fuchsia-300 ml-1">
             hello@rybbit.com
           </a>
         </p>

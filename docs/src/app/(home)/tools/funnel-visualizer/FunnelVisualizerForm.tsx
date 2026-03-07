@@ -83,7 +83,7 @@ export function FunnelVisualizerForm() {
         {steps.map((step, index) => (
           <div key={index} className="flex gap-3 items-start">
             <div className="flex-shrink-0 w-8 h-10 flex items-center justify-center">
-              <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-xs font-medium text-emerald-700 dark:text-emerald-400">
+              <div className="w-6 h-6 rounded-full bg-fuchsia-100 dark:bg-fuchsia-900/30 border border-fuchsia-200 dark:border-fuchsia-800 flex items-center justify-center text-xs font-medium text-fuchsia-700 dark:text-fuchsia-400">
                 {index + 1}
               </div>
             </div>
@@ -93,14 +93,14 @@ export function FunnelVisualizerForm() {
                 value={step.name}
                 onChange={e => updateStep(index, "name", e.target.value)}
                 placeholder={`Step ${index + 1} name`}
-                className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
               <input
                 type="number"
                 value={step.visitors}
                 onChange={e => updateStep(index, "visitors", e.target.value)}
                 placeholder="Visitors"
-                className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
             </div>
             {steps.length > 2 && (
@@ -117,7 +117,7 @@ export function FunnelVisualizerForm() {
 
       <button
         onClick={addStep}
-        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-lg transition-colors"
+        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-fuchsia-600 dark:text-fuchsia-400 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-950/30 rounded-lg transition-colors"
       >
         <Plus className="w-4 h-4" />
         Add Step
@@ -179,7 +179,7 @@ export function FunnelVisualizerForm() {
                       )}
                       {/* Absolute conversion bar (from first step) */}
                       <div
-                        className="h-full bg-emerald-500/70 rounded-md relative z-10"
+                        className="h-full bg-fuchsia-500/70 rounded-md relative z-10"
                         style={{ width: `${barWidth}%` }}
                       ></div>
                       <div className="absolute top-2 right-2 z-20">
@@ -194,7 +194,7 @@ export function FunnelVisualizerForm() {
 
           <div className="flex items-center gap-4 mt-6 ml-4 text-xs text-neutral-500 dark:text-neutral-400">
             <div className="flex items-center">
-              <div className="w-3 h-3 bg-emerald-500/70 rounded-sm mr-1"></div>
+              <div className="w-3 h-3 bg-fuchsia-500/70 rounded-sm mr-1"></div>
               <span>Overall conversion</span>
             </div>
             <div className="flex items-center">

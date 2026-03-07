@@ -34,7 +34,7 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
   const renderFeatureValue = (value: string | boolean) => {
     if (typeof value === "boolean") {
       return value ? (
-        <CheckCircle className="w-5 h-5 text-emerald-500" />
+        <CheckCircle className="w-5 h-5 text-fuchsia-500" />
       ) : (
         <CircleMinus className="w-5 h-5 text-neutral-500" />
       );
@@ -66,7 +66,7 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
               href="https://app.buddystat.com/signup"
               eventName="signup"
               eventProps={{ location: "hero", button_text: "Track your site" }}
-              className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-5 py-3 rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 cursor-pointer"
+              className="w-full sm:w-auto bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium px-5 py-3 rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-opacity-50 cursor-pointer"
             >
               Track your site
             </TrackedButton>
@@ -89,8 +89,8 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
       </div>
 
       {/* <div className="relative w-full max-w-[1300px] mb-10 px-4">
-        <div className="absolute top-0 left-0 w-[550px] h-[550px] bg-emerald-500/40 rounded-full blur-[80px] opacity-70"></div>
-        <div className="absolute top-20 left-20 w-[400px] h-[400px] bg-emerald-600/30 rounded-full blur-[70px] opacity-50"></div>
+        <div className="absolute top-0 left-0 w-[550px] h-[550px] bg-fuchsia-500/40 rounded-full blur-[80px] opacity-70"></div>
+        <div className="absolute top-20 left-20 w-[400px] h-[400px] bg-fuchsia-600/30 rounded-full blur-[70px] opacity-50"></div>
         
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/40 rounded-full blur-[80px] opacity-60"></div>
         <div className="absolute bottom-40 right-20 w-[350px] h-[350px] bg-indigo-500/30 rounded-full blur-[75px] opacity-50"></div>
@@ -98,13 +98,13 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
         <div className="absolute top-1/4 right-0 w-[320px] h-[320px] bg-purple-500/40 rounded-full blur-[70px] opacity-50"></div>
         <div className="absolute top-1/3 right-20 w-[250px] h-[250px] bg-violet-500/30 rounded-full blur-[65px] opacity-40"></div>
 
-        <div className="absolute bottom-1/3 left-0 w-[320px] h-[320px] bg-emerald-400/30 rounded-full blur-[70px] opacity-60"></div>
+        <div className="absolute bottom-1/3 left-0 w-[320px] h-[320px] bg-fuchsia-400/30 rounded-full blur-[70px] opacity-60"></div>
         <div className="absolute bottom-1/4 left-20 w-[240px] h-[240px] bg-teal-400/25 rounded-full blur-[65px] opacity-50"></div>
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-indigo-400/30 rounded-full blur-[80px] opacity-50"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/3 -translate-y-1/3 w-[350px] h-[350px] bg-sky-400/20 rounded-full blur-[75px] opacity-40"></div>
 
-        <div className="relative z-10 rounded-lg overflow-hidden border-8 border-neutral-100/5 shadow-2xl shadow-emerald-900/10">
+        <div className="relative z-10 rounded-lg overflow-hidden border-8 border-neutral-100/5 shadow-2xl shadow-fuchsia-900/10">
           <iframe
             src={demoUrl}
             width="1300"

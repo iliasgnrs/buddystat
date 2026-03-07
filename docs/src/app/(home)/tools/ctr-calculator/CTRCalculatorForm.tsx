@@ -48,7 +48,7 @@ export function CTRCalculatorForm() {
               value={impressions}
               onChange={e => setImpressions(e.target.value)}
               placeholder="10000"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">How many times your ad was shown</p>
           </div>
@@ -63,7 +63,7 @@ export function CTRCalculatorForm() {
               value={clicks}
               onChange={e => setClicks(e.target.value)}
               placeholder="300"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">How many clicks your ad received</p>
           </div>
@@ -74,7 +74,7 @@ export function CTRCalculatorForm() {
             <select
               value={industry}
               onChange={e => setIndustry(e.target.value)}
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             >
               {Object.keys(industryBenchmarks).map(ind => (
                 <option key={ind} value={ind}>
@@ -92,8 +92,8 @@ export function CTRCalculatorForm() {
             <div className="pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">Your CTR</label>
-                <div className="px-4 py-6 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 rounded-lg text-center">
-                  <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400">{ctr.toFixed(2)}%</div>
+                <div className="px-4 py-6 bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-300 dark:border-fuchsia-800 rounded-lg text-center">
+                  <div className="text-4xl font-bold text-fuchsia-600 dark:text-fuchsia-400">{ctr.toFixed(2)}%</div>
                 </div>
               </div>
 
@@ -115,7 +115,7 @@ export function CTRCalculatorForm() {
                     <div
                       className={`text-2xl font-bold ${
                         ctr >= benchmark
-                          ? "text-emerald-600 dark:text-emerald-400"
+                          ? "text-fuchsia-600 dark:text-fuchsia-400"
                           : "text-orange-600 dark:text-orange-400"
                       }`}
                     >

@@ -96,9 +96,9 @@ export function HashtagGenerator({ platform }: HashtagGeneratorProps) {
   return (
     <div className="w-full max-w-4xl mx-auto">
       {/* Context Guidelines */}
-      <div className="mb-8 p-6 bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+      <div className="mb-8 p-6 bg-fuchsia-50/50 dark:bg-fuchsia-950/20 border border-fuchsia-200 dark:border-fuchsia-800 rounded-xl">
         <div className="flex items-start gap-3">
-          <Hash className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+          <Hash className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400 mt-0.5 flex-shrink-0" />
           <div>
             <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">
               {platform.name} Hashtag Guidelines
@@ -122,7 +122,7 @@ export function HashtagGenerator({ platform }: HashtagGeneratorProps) {
             onChange={(e) => setTopic(e.target.value)}
             placeholder={`Describe your ${platform.name} content...`}
             rows={4}
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent resize-none text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent resize-none text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -134,7 +134,7 @@ export function HashtagGenerator({ platform }: HashtagGeneratorProps) {
           <select
             value={strategy}
             onChange={(e) => setStrategy(e.target.value)}
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white"
           >
             {platform.hashtagStrategies.map((strat) => (
               <option key={strat} value={strat}>
@@ -154,7 +154,7 @@ export function HashtagGenerator({ platform }: HashtagGeneratorProps) {
             value={keywords}
             onChange={(e) => setKeywords(e.target.value)}
             placeholder="e.g., fitness, vegan, startup, travel"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -162,7 +162,7 @@ export function HashtagGenerator({ platform }: HashtagGeneratorProps) {
         <button
           onClick={handleGenerate}
           disabled={loading || !topic.trim()}
-          className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-700 disabled:bg-neutral-300 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-700 disabled:bg-neutral-300 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
         >
           {loading ? (
             <>
@@ -208,7 +208,7 @@ export function HashtagGenerator({ platform }: HashtagGeneratorProps) {
             >
               {copiedIndex === -1 ? (
                 <>
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                  <Check className="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" />
                   Copied!
                 </>
               ) : (
@@ -235,7 +235,7 @@ export function HashtagGenerator({ platform }: HashtagGeneratorProps) {
                 >
                   {copiedIndex === index ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                      <Check className="w-3.5 h-3.5 text-fuchsia-600 dark:text-fuchsia-400" />
                       Copied!
                     </>
                   ) : (

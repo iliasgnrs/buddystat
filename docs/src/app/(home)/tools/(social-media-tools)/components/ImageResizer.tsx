@@ -95,8 +95,8 @@ export default function ImageResizer({ platform }: ImageResizerProps) {
               onClick={() => setSelectedDimensionIndex(index)}
               className={`p-3 rounded-lg border text-left transition-all ${
                 selectedDimensionIndex === index
-                  ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 ring-1 ring-emerald-500"
-                  : "border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:border-emerald-300 dark:hover:border-emerald-700"
+                  ? "border-fuchsia-500 bg-fuchsia-50 dark:bg-fuchsia-900/20 ring-1 ring-fuchsia-500"
+                  : "border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:border-fuchsia-300 dark:hover:border-fuchsia-700"
               }`}
             >
               <div className="font-medium text-neutral-900 dark:text-white">
@@ -129,8 +129,8 @@ export default function ImageResizer({ platform }: ImageResizerProps) {
               className="hidden"
               ref={fileInputRef}
             />
-            <div className="p-4 bg-emerald-100 dark:bg-emerald-900/30 rounded-full mb-4">
-              <Upload className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+            <div className="p-4 bg-fuchsia-100 dark:bg-fuchsia-900/30 rounded-full mb-4">
+              <Upload className="w-8 h-8 text-fuchsia-600 dark:text-fuchsia-400" />
             </div>
             <p className="text-lg font-medium text-neutral-900 dark:text-white mb-1">
               Upload an image
@@ -180,7 +180,7 @@ export default function ImageResizer({ platform }: ImageResizerProps) {
                     step={0.1}
                     aria-labelledby="Zoom"
                     onChange={(e) => setZoom(Number(e.target.value))}
-                    className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                    className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-fuchsia-600"
                   />
                 </div>
 
@@ -199,7 +199,7 @@ export default function ImageResizer({ platform }: ImageResizerProps) {
                     step={1}
                     aria-labelledby="Rotation"
                     onChange={(e) => setRotation(Number(e.target.value))}
-                    className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                    className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-fuchsia-600"
                   />
                 </div>
               </div>
@@ -211,7 +211,7 @@ export default function ImageResizer({ platform }: ImageResizerProps) {
                 <button
                   onClick={onDownload}
                   disabled={isGenerating}
-                  className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 py-2.5 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isGenerating ? (
                     "Processing..."
@@ -229,8 +229,8 @@ export default function ImageResizer({ platform }: ImageResizerProps) {
       
       <div className="p-4 bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg">
         <div className="flex gap-3">
-          <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg h-fit">
-            <ImageIcon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <div className="p-2 bg-fuchsia-100 dark:bg-fuchsia-900/30 rounded-lg h-fit">
+            <ImageIcon className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
           </div>
           <div>
             <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-1">

@@ -98,7 +98,7 @@ const educationalContent = (
     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Calculate CPM</h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
-        <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+        <div className="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
           CPM = (Total Ad Spend ÷ Total Impressions) × 1,000
         </div>
       </div>
@@ -238,7 +238,7 @@ const faqs = [
         immediate clicks or conversions. For conversion-focused campaigns, consider{" "}
         <Link
           href="/tools/cost-per-acquisition-calculator"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline"
+          className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline"
         >
           CPA
         </Link>{" "}

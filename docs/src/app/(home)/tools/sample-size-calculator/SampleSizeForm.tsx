@@ -56,7 +56,7 @@ export function SampleSizeForm() {
             value={baselineConversion}
             onChange={e => setBaselineConversion(e.target.value)}
             placeholder="2.5"
-            className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400">%</span>
         </div>
@@ -75,7 +75,7 @@ export function SampleSizeForm() {
             value={minimumDetectableEffect}
             onChange={e => setMinimumDetectableEffect(e.target.value)}
             placeholder="0.5"
-            className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400">%</span>
         </div>
@@ -90,7 +90,7 @@ export function SampleSizeForm() {
         <select
           value={confidenceLevel}
           onChange={e => setConfidenceLevel(e.target.value)}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         >
           <option value="90">90% (10% chance of false positive)</option>
           <option value="95">95% (5% chance of false positive) - Recommended</option>
@@ -107,7 +107,7 @@ export function SampleSizeForm() {
         <select
           value={statisticalPower}
           onChange={e => setStatisticalPower(e.target.value)}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         >
           <option value="80">80% (20% chance of false negative) - Recommended</option>
           <option value="90">90% (10% chance of false negative)</option>
@@ -124,8 +124,8 @@ export function SampleSizeForm() {
             <label className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">
               Sample Size Per Variant
             </label>
-            <div className="px-4 py-6 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 rounded-lg text-center">
-              <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400">
+            <div className="px-4 py-6 bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-300 dark:border-fuchsia-800 rounded-lg text-center">
+              <div className="text-4xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
                 {sampleSize.toLocaleString()}
               </div>
               <div className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">visitors per variant (A and B)</div>

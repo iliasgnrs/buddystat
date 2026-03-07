@@ -244,7 +244,7 @@ const faqs = [
         Optimize high drop-off steps first by: simplifying forms and checkout processes, improving page load speed,
         enhancing trust signals and social proof, clarifying value propositions, reducing friction (fewer clicks),
         improving mobile experience, A/B testing changes, and removing distractions. Track these improvements with{" "}
-        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to measure the actual impact on conversions.

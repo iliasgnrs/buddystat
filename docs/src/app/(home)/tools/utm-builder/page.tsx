@@ -112,23 +112,23 @@ const educationalContent = (
     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3 mt-6">The Five UTM Parameters</h3>
     <ul className="space-y-2 text-neutral-700 dark:text-neutral-300 mb-6">
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">utm_source</code> - Where the traffic
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">utm_source</code> - Where the traffic
         comes from (google, newsletter, facebook)
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">utm_medium</code> - How they got
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">utm_medium</code> - How they got
         there (cpc, email, social, organic)
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">utm_campaign</code> - Which campaign
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">utm_campaign</code> - Which campaign
         it belongs to (summer_sale, product_launch)
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">utm_term</code> - Paid search
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">utm_term</code> - Paid search
         keywords (optional)
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">utm_content</code> - Which ad or link
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">utm_content</code> - Which ad or link
         was clicked (optional)
       </li>
     </ul>

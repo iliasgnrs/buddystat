@@ -74,7 +74,7 @@ export default function AffiliatePage() {
               }}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-5 py-3 rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 cursor-pointer"
+              className="w-full sm:w-auto bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium px-5 py-3 rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-opacity-50 cursor-pointer"
             >
               Join the Program
             </TrackedButton>
@@ -89,7 +89,7 @@ export default function AffiliatePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {perks.map((perk) => (
                 <div key={perk.title} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-fuchsia-500 mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="font-medium text-neutral-900 dark:text-white">
                       {perk.title}
@@ -135,7 +135,7 @@ export default function AffiliatePage() {
               key={item.step}
               className="bg-neutral-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-xl p-6 text-center"
             >
-              <div className="w-8 h-8 rounded-full bg-emerald-600 text-white text-sm font-medium flex items-center justify-center mx-auto mb-3">
+              <div className="w-8 h-8 rounded-full bg-fuchsia-600 text-white text-sm font-medium flex items-center justify-center mx-auto mb-3">
                 {item.step}
               </div>
               <h4 className="font-medium text-neutral-900 dark:text-white mb-1">

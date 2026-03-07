@@ -89,8 +89,8 @@ export function BioGenerator({ platform }: BioGeneratorProps) {
       {/* Context Guidelines */}
       <div className="mb-8 p-4 bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg">
         <div className="flex gap-3">
-          <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg h-fit">
-            <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <div className="p-2 bg-fuchsia-100 dark:bg-fuchsia-900/30 rounded-lg h-fit">
+            <User className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
           </div>
           <div>
             <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-1">
@@ -113,7 +113,7 @@ export function BioGenerator({ platform }: BioGeneratorProps) {
             value={name}
             onChange={e => setName(e.target.value)}
             placeholder="Your name or brand name"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -127,7 +127,7 @@ export function BioGenerator({ platform }: BioGeneratorProps) {
             value={profession}
             onChange={e => setProfession(e.target.value)}
             placeholder="e.g., Software Engineer, Content Creator, Artist"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -141,7 +141,7 @@ export function BioGenerator({ platform }: BioGeneratorProps) {
             value={interests}
             onChange={e => setInterests(e.target.value)}
             placeholder="e.g., AI, fitness, travel, photography"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -151,7 +151,7 @@ export function BioGenerator({ platform }: BioGeneratorProps) {
           <select
             value={tone}
             onChange={e => setTone(e.target.value)}
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white"
           >
             {platform.tones.map(t => (
               <option key={t} value={t}>
@@ -165,7 +165,7 @@ export function BioGenerator({ platform }: BioGeneratorProps) {
         <button
           onClick={handleGenerate}
           disabled={loading || (!name.trim() && !profession.trim())}
-          className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-700 disabled:bg-neutral-300 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-700 disabled:bg-neutral-300 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
         >
           {loading ? (
             <>
@@ -221,7 +221,7 @@ export function BioGenerator({ platform }: BioGeneratorProps) {
                   >
                     {copiedIndex === index ? (
                       <>
-                        <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                        <Check className="w-3.5 h-3.5 text-fuchsia-600 dark:text-fuchsia-400" />
                         Copied!
                       </>
                     ) : (

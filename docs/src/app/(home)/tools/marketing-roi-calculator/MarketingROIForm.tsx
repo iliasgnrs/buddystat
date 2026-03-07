@@ -51,7 +51,7 @@ export function MarketingROIForm() {
             value={adSpend}
             onChange={e => setAdSpend(e.target.value)}
             placeholder="5000"
-            className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           />
         </div>
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Total amount spent on advertising</p>
@@ -69,7 +69,7 @@ export function MarketingROIForm() {
             value={revenue}
             onChange={e => setRevenue(e.target.value)}
             placeholder="15000"
-            className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           />
         </div>
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Total revenue from the campaign</p>
@@ -87,7 +87,7 @@ export function MarketingROIForm() {
             value={costOfGoodsSold}
             onChange={e => setCostOfGoodsSold(e.target.value)}
             placeholder="3000"
-            className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           />
         </div>
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
@@ -104,11 +104,11 @@ export function MarketingROIForm() {
               <label className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">
                 ROI (Return on Investment)
               </label>
-              <div className="px-4 py-6 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 rounded-lg text-center">
+              <div className="px-4 py-6 bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-300 dark:border-fuchsia-800 rounded-lg text-center">
                 <div
                   className={`text-4xl font-bold ${
                     metrics.roi >= 0
-                      ? "text-emerald-600 dark:text-emerald-400"
+                      ? "text-fuchsia-600 dark:text-fuchsia-400"
                       : "text-red-600 dark:text-red-400"
                   }`}
                 >
@@ -139,7 +139,7 @@ export function MarketingROIForm() {
                 <div
                   className={`text-3xl font-bold ${
                     metrics.profit >= 0
-                      ? "text-emerald-600 dark:text-emerald-400"
+                      ? "text-fuchsia-600 dark:text-fuchsia-400"
                       : "text-red-600 dark:text-red-400"
                   }`}
                 >
@@ -164,7 +164,7 @@ export function MarketingROIForm() {
           <div
             className={`p-4 rounded-lg border ${
               metrics.roi >= 100
-                ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900"
+                ? "bg-fuchsia-50 dark:bg-fuchsia-950/30 border-fuchsia-200 dark:border-fuchsia-900"
                 : metrics.roi >= 0
                   ? "bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900"
                   : "bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-900"
@@ -173,7 +173,7 @@ export function MarketingROIForm() {
             <p
               className={`text-sm ${
                 metrics.roi >= 100
-                  ? "text-emerald-900 dark:text-emerald-200"
+                  ? "text-fuchsia-900 dark:text-fuchsia-200"
                   : metrics.roi >= 0
                     ? "text-blue-900 dark:text-blue-200"
                     : "text-red-900 dark:text-red-200"

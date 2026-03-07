@@ -245,7 +245,7 @@ const faqs = [
     answer: (
       <>
         Privacy-focused analytics tools like{" "}
-        <Link href="https://buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit
         </Link>
         , Plausible, Fathom Analytics, and Shynet don't use cookies, don't track users across sites, and are GDPR

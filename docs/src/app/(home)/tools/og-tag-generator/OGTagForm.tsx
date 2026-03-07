@@ -75,7 +75,7 @@ export function OGTagForm() {
           onChange={e => setPageTitle(e.target.value)}
           placeholder="e.g., The Ultimate Guide to Web Analytics"
           disabled={isLoading}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 disabled:opacity-50"
         />
       </div>
 
@@ -89,7 +89,7 @@ export function OGTagForm() {
           placeholder="e.g., Learn how to track website visitors, measure conversions, and grow your business with privacy-focused analytics..."
           disabled={isLoading}
           rows={4}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 disabled:opacity-50"
         />
       </div>
 
@@ -101,7 +101,7 @@ export function OGTagForm() {
           value={pageType}
           onChange={e => setPageType(e.target.value as typeof pageType)}
           disabled={isLoading}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500 disabled:opacity-50"
         >
           <option value="website">Website</option>
           <option value="article">Article</option>
@@ -125,7 +125,7 @@ export function OGTagForm() {
       <button
         onClick={generateOGTags}
         disabled={isLoading}
-        className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+        className="w-full px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
       >
         {isLoading ? (
           <>
@@ -149,7 +149,7 @@ export function OGTagForm() {
                 <h4 className="text-lg font-semibold text-neutral-900 dark:text-white">{variation.variation}</h4>
                 <button
                   onClick={() => copyCode(variation.htmlCode, index)}
-                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+                  className="px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
                 >
                   {copiedIndex === index ? (
                     <>

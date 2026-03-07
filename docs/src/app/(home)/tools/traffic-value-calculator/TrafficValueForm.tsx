@@ -57,7 +57,7 @@ export function TrafficValueForm() {
               value={monthlyVisitors}
               onChange={(e) => setMonthlyVisitors(e.target.value)}
               placeholder="50000"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Total visitors per month</p>
           </div>
@@ -74,7 +74,7 @@ export function TrafficValueForm() {
                 value={conversionRate}
                 onChange={(e) => setConversionRate(e.target.value)}
                 placeholder="2.5"
-                className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400">%</span>
             </div>
@@ -94,7 +94,7 @@ export function TrafficValueForm() {
                 value={averageOrderValue}
                 onChange={(e) => setAverageOrderValue(e.target.value)}
                 placeholder="75.00"
-                className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
             </div>
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Average revenue per conversion</p>
@@ -112,7 +112,7 @@ export function TrafficValueForm() {
                 value={profitMargin}
                 onChange={(e) => setProfitMargin(e.target.value)}
                 placeholder="30"
-                className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400">%</span>
             </div>
@@ -126,8 +126,8 @@ export function TrafficValueForm() {
                 <label className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">
                   Value Per Visitor
                 </label>
-                <div className="px-4 py-6 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 rounded-lg text-center">
-                  <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400">
+                <div className="px-4 py-6 bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-300 dark:border-fuchsia-800 rounded-lg text-center">
+                  <div className="text-4xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
                     ${metrics.valuePerVisitor.toFixed(2)}
                   </div>
                   <div className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">per visitor</div>
@@ -180,9 +180,9 @@ export function TrafficValueForm() {
                 </div>
               </div>
 
-              <div className="p-4 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 rounded-lg">
-                <h3 className="font-semibold text-emerald-900 dark:text-emerald-200 mb-2">What this means:</h3>
-                <ul className="text-sm text-emerald-900 dark:text-emerald-200 space-y-1">
+              <div className="p-4 bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-200 dark:border-fuchsia-900 rounded-lg">
+                <h3 className="font-semibold text-fuchsia-900 dark:text-fuchsia-200 mb-2">What this means:</h3>
+                <ul className="text-sm text-fuchsia-900 dark:text-fuchsia-200 space-y-1">
                   <li>Each visitor is worth <strong>${metrics.valuePerVisitor.toFixed(2)}</strong> in profit</li>
                   <li>
                     A <strong>10% traffic increase</strong> would add{" "}
@@ -248,7 +248,7 @@ export function TrafficValueForm() {
               <AccordionTrigger>Should I include customer lifetime value?</AccordionTrigger>
               <AccordionContent>
                 This calculator shows immediate value per visitor. For businesses with repeat customers, your actual visitor value is higher when including lifetime value (LTV). Track customer behavior over time with{" "}
-                <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
                   Rybbit Analytics
                 </Link>{" "}
                 to understand true LTV.

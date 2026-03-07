@@ -308,7 +308,7 @@ const faqs = [
         To improve ROI, focus on: targeting high-intent audiences, optimizing conversion rates, reducing customer
         acquisition costs, improving ad creative and messaging, A/B testing campaigns, focusing on high-performing
         channels, and tracking performance with analytics. Use{" "}
-        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to identify which campaigns and channels drive the best returns.

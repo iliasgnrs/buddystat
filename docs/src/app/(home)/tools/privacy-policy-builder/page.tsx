@@ -235,7 +235,7 @@ const faqs = [
       <>
         Under GDPR and similar regulations, IP addresses and analytics data can be considered personal data. However,
         privacy-focused analytics tools like{" "}
-        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit
         </Link>{" "}
         don't use cookies and anonymize data, making compliance much easier. If you use privacy-first analytics, you

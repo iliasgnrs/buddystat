@@ -99,7 +99,7 @@ export function SessionReplay() {
                 >
                   <div className="w-full h-16 bg-neutral-300 rounded mb-1.5"></div>
                   <div className="w-full h-2 bg-neutral-200 rounded mb-1"></div>
-                  <div className="w-12 h-2 bg-emerald-500 rounded"></div>
+                  <div className="w-12 h-2 bg-fuchsia-500 rounded"></div>
                 </div>
                 <div
                   className={`bg-neutral-100 rounded p-1.5 transition-all duration-300 ${
@@ -110,7 +110,7 @@ export function SessionReplay() {
                     <div className="absolute top-0.5 left-0.5 w-6 h-2 bg-red-500 rounded"></div>
                   </div>
                   <div className="w-full h-2 bg-neutral-200 rounded mb-1"></div>
-                  <div className="w-12 h-2 bg-emerald-500 rounded"></div>
+                  <div className="w-12 h-2 bg-fuchsia-500 rounded"></div>
                 </div>
                 <div
                   className={`bg-neutral-100 rounded p-1.5 transition-all duration-300 ${
@@ -119,7 +119,7 @@ export function SessionReplay() {
                 >
                   <div className="w-full h-16 bg-neutral-300 rounded mb-1.5"></div>
                   <div className="w-full h-2 bg-neutral-200 rounded mb-1"></div>
-                  <div className="w-12 h-2 bg-emerald-500 rounded"></div>
+                  <div className="w-12 h-2 bg-fuchsia-500 rounded"></div>
                 </div>
               </div>
             </div>
@@ -163,7 +163,7 @@ export function SessionReplay() {
             {/* Play/Pause button */}
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-full p-1.5 transition-colors"
+              className="bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-full p-1.5 transition-colors"
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
             </button>
@@ -171,7 +171,7 @@ export function SessionReplay() {
             {/* Progress bar */}
             <div className="flex-1">
               <div className="relative h-1 bg-neutral-400 dark:bg-neutral-700 rounded-full overflow-hidden">
-                <div className="absolute left-0 top-0 h-full w-1/2 bg-emerald-500 rounded-full"></div>
+                <div className="absolute left-0 top-0 h-full w-1/2 bg-fuchsia-500 rounded-full"></div>
               </div>
             </div>
 

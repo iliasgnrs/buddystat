@@ -42,8 +42,8 @@ export function CTASection({
           </svg>
 
           {/* Gradient orbs for organic background effect */}
-          <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-emerald-600/30 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-emerald-500/20 rounded-full blur-[100px] translate-y-1/2"></div>
+          <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-fuchsia-600/30 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-fuchsia-500/20 rounded-full blur-[100px] translate-y-1/2"></div>
           <div className="absolute top-1/2 right-0 w-[250px] h-[250px] bg-teal-600/15 rounded-full blur-[80px] translate-x-1/2"></div>
 
           <div className="relative z-10 flex flex-col items-center justify-center text-center">
@@ -59,7 +59,7 @@ export function CTASection({
                 href={primaryButtonHref}
                 eventName="signup"
                 eventProps={{ location: eventLocation, button_text: primaryButtonText }}
-                className="w-full whitespace-nowrap sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-6 py-3 rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 cursor-pointer"
+                className="w-full whitespace-nowrap sm:w-auto bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium px-6 py-3 rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-opacity-50 cursor-pointer"
               >
                 {primaryButtonText}
               </TrackedButton>

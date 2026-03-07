@@ -96,7 +96,7 @@ const educationalContent = (
     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Calculate Retention Rate</h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
-        <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+        <div className="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
           Retention Rate = ((E - N) ÷ S) × 100
         </div>
       </div>
@@ -241,7 +241,7 @@ const faqs = [
         Retaining existing customers is typically 5-25x cheaper than acquiring new ones. High retention also increases{" "}
         <Link
           href="/tools/customer-lifetime-value-calculator"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline"
+          className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline"
         >
           customer lifetime value
         </Link>

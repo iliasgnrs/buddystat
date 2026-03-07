@@ -20,7 +20,7 @@ export function ToolCTA({ title, description, eventLocation, buttonText = "Start
           href="https://app.buddystat.com/signup"
           eventName="signup"
           eventProps={{ location: eventLocation }}
-          className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
+          className="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
         >
           {buttonText}
         </TrackedButton>

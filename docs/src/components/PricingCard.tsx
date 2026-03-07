@@ -53,7 +53,7 @@ export function PricingCard({
           className={cn(
             "rounded-2xl border overflow-hidden backdrop-blur-sm shadow-xl h-full",
             recommended
-              ? "bg-neutral-100/80 dark:bg-neutral-800 border-emerald-500 border-2"
+              ? "bg-neutral-100/80 dark:bg-neutral-800 border-fuchsia-500 border-2"
               : isFree
                 ? "bg-neutral-100/30 dark:bg-neutral-800/15 border-neutral-300/60 dark:border-neutral-800/60 text-neutral-600 dark:text-neutral-300"
                 : "bg-neutral-50 dark:bg-neutral-900 border-neutral-300 dark:border-neutral-800"
@@ -64,7 +64,7 @@ export function PricingCard({
               <div className="flex items-center gap-2 mb-2">
                 <h3 className="text-xl font-bold">{title}</h3>
                 {recommended && (
-                  <span className="px-2 py-0.5 text-xs font-semibold bg-emerald-500/30 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-full border border-emerald-500/40 dark:border-emerald-500/30">
+                  <span className="px-2 py-0.5 text-xs font-semibold bg-fuchsia-500/30 dark:bg-fuchsia-500/20 text-fuchsia-600 dark:text-fuchsia-400 rounded-full border border-fuchsia-500/40 dark:border-fuchsia-500/30">
                     Recommended
                   </span>
                 )}
@@ -92,7 +92,7 @@ export function PricingCard({
                   className={cn(
                     "w-full font-medium px-5 py-3 rounded-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50 cursor-pointer",
                     isPrimary
-                      ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/20 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none"
+                      ? "bg-fuchsia-600 hover:bg-fuchsia-500 text-white shadow-lg shadow-fuchsia-900/20 focus:ring-fuchsia-500 disabled:opacity-50 disabled:pointer-events-none"
                       : "bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-900 dark:text-white"
                   )}
                 >
@@ -106,7 +106,7 @@ export function PricingCard({
                 className={cn(
                   "w-full font-medium px-5 py-3 rounded-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50 cursor-pointer",
                   isPrimary
-                    ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/20 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none"
+                    ? "bg-fuchsia-600 hover:bg-fuchsia-500 text-white shadow-lg shadow-fuchsia-900/20 focus:ring-fuchsia-500 disabled:opacity-50 disabled:pointer-events-none"
                     : "bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-900 dark:text-white"
                 )}
               >
@@ -123,7 +123,7 @@ export function PricingCard({
                 return (
                   <div key={i} className="flex items-center">
                     {included ? (
-                      <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400 mr-3 shrink-0" />
+                      <Check className="h-4 w-4 text-fuchsia-600 dark:text-fuchsia-400 mr-3 shrink-0" />
                     ) : (
                       <X className="h-4 w-4 text-neutral-400 dark:text-neutral-500 mr-3 shrink-0" />
                     )}

@@ -95,7 +95,7 @@ export default function PageNameGenerator({
         <textarea
           id="topic"
           rows={3}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-y"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-y"
           placeholder={`Describe what your ${platform.pageType.toLowerCase()} is about (e.g., "A gaming community for strategy game players" or "Tech startup focused on AI tools")`}
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
@@ -116,7 +116,7 @@ export default function PageNameGenerator({
         <input
           id="keywords"
           type="text"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Keywords to include (e.g., gaming, tech, creative)"
           value={keywords}
           onChange={(e) => setKeywords(e.target.value)}
@@ -133,7 +133,7 @@ export default function PageNameGenerator({
         </label>
         <select
           id="length"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           value={length}
           onChange={(e) => setLength(e.target.value)}
         >
@@ -148,7 +148,7 @@ export default function PageNameGenerator({
       <button
         onClick={generateNames}
         disabled={isLoading || !topic.trim()}
-        className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+        className="w-full px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
       >
         {isLoading ? (
           <>
@@ -192,7 +192,7 @@ export default function PageNameGenerator({
                   title="Copy to clipboard"
                 >
                   {copiedIndex === index ? (
-                    <CheckCircle className="w-5 h-5 text-emerald-600" />
+                    <CheckCircle className="w-5 h-5 text-fuchsia-600" />
                   ) : (
                     <Copy className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
                   )}

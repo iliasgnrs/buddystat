@@ -28,7 +28,7 @@ export function FAQAccordion() {
               You can see for yourself by checking out our{" "}
               <Link
                 href="https://app.buddystat.com/6"
-                className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
+                className="text-fuchsia-600 dark:text-fuchsia-400 hover:text-fuchsia-500 dark:hover:text-fuchsia-300"
               >
                 demo site
               </Link>
@@ -73,7 +73,7 @@ export function FAQAccordion() {
           <AccordionContent>
             <Link
               href="/docs/script"
-              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
+              className="text-fuchsia-600 dark:text-fuchsia-400 hover:text-fuchsia-500 dark:hover:text-fuchsia-300"
             >
               Setting up BuddyStat
             </Link>{" "}
@@ -90,7 +90,7 @@ export function FAQAccordion() {
             Next.js, React, Vue, or any other framework, our simple tracking snippet integrates seamlessly. Check out our{" "}
             <Link
               href="/docs"
-              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
+              className="text-fuchsia-600 dark:text-fuchsia-400 hover:text-fuchsia-500 dark:hover:text-fuchsia-300"
             >
               documentation
             </Link>{" "}
@@ -126,7 +126,7 @@ export function FAQAccordion() {
             Yes, BuddyStat provides a comprehensive{" "}
             <Link
               href="/docs/api/getting-started"
-              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
+              className="text-fuchsia-600 dark:text-fuchsia-400 hover:text-fuchsia-500 dark:hover:text-fuchsia-300"
             >
               API
             </Link>{" "}

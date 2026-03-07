@@ -30,7 +30,7 @@ export function BounceRateForm() {
   const benchmark = industryBenchmarks[industry];
 
   const getPerformanceLevel = (rate: number) => {
-    if (rate <= benchmark.low) return { label: "Excellent", color: "emerald" };
+    if (rate <= benchmark.low) return { label: "Excellent", color: "fuchsia" };
     if (rate <= benchmark.average) return { label: "Good", color: "blue" };
     if (rate <= benchmark.high) return { label: "Needs Improvement", color: "orange" };
     return { label: "Poor", color: "red" };
@@ -57,7 +57,7 @@ export function BounceRateForm() {
               value={totalSessions}
               onChange={e => setTotalSessions(e.target.value)}
               placeholder="10000"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Total number of sessions in the time period</p>
           </div>
@@ -72,7 +72,7 @@ export function BounceRateForm() {
               value={bouncedSessions}
               onChange={e => setBouncedSessions(e.target.value)}
               placeholder="4500"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Sessions with only one pageview (single-page visits)</p>
           </div>
@@ -83,7 +83,7 @@ export function BounceRateForm() {
             <select
               value={industry}
               onChange={e => setIndustry(e.target.value)}
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             >
               {Object.keys(industryBenchmarks).map(ind => (
                 <option key={ind} value={ind}>
@@ -101,8 +101,8 @@ export function BounceRateForm() {
             <div className="pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">Your Bounce Rate</label>
-                <div className="px-4 py-6 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 rounded-lg text-center">
-                  <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400">{bounceRate.toFixed(2)}%</div>
+                <div className="px-4 py-6 bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-300 dark:border-fuchsia-800 rounded-lg text-center">
+                  <div className="text-4xl font-bold text-fuchsia-600 dark:text-fuchsia-400">{bounceRate.toFixed(2)}%</div>
                 </div>
               </div>
 
@@ -138,7 +138,7 @@ export function BounceRateForm() {
               {(() => {
                 const perf = getPerformanceLevel(bounceRate);
                 const colorClasses = {
-                  emerald: "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900 text-emerald-900 dark:text-emerald-200",
+                  fuchsia: "bg-fuchsia-50 dark:bg-fuchsia-950/30 border-fuchsia-200 dark:border-fuchsia-900 text-fuchsia-900 dark:text-fuchsia-200",
                   blue: "bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900 text-blue-900 dark:text-blue-200",
                   orange: "bg-orange-50 dark:bg-orange-950/30 border-orange-200 dark:border-orange-900 text-orange-900 dark:text-orange-200",
                   red: "bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-900 text-red-900 dark:text-red-200"
@@ -195,7 +195,7 @@ export function BounceRateForm() {
               <AccordionTrigger>How can I reduce my bounce rate?</AccordionTrigger>
               <AccordionContent>
                 To reduce bounce rate: improve page load speed, ensure mobile responsiveness, create compelling content, add clear calls-to-action, use internal linking, improve content readability, and ensure your pages match visitor intent. Track your improvements with{" "}
-                <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
                   Rybbit Analytics
                 </Link>{" "}
                 to see what works.

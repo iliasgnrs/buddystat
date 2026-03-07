@@ -339,14 +339,14 @@ function ToolCard({ tool }: { tool: { href: string; icon: any; title: string; de
   return (
     <Link
       href={tool.href}
-      className="group bg-white/50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 transition-all hover:border-emerald-500/40 dark:hover:border-emerald-500/30 hover:-translate-y-1 duration-300"
+      className="group bg-white/50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 transition-all hover:border-fuchsia-500/40 dark:hover:border-fuchsia-500/30 hover:-translate-y-1 duration-300"
     >
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/30 to-emerald-600/20 dark:from-emerald-500/20 dark:to-emerald-600/10 border border-emerald-500/40 dark:border-emerald-500/30 shadow-md shadow-emerald-500/20 dark:shadow-emerald-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-        <Icon className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-fuchsia-500/30 to-fuchsia-600/20 dark:from-fuchsia-500/20 dark:to-fuchsia-600/10 border border-fuchsia-500/40 dark:border-fuchsia-500/30 shadow-md shadow-fuchsia-500/20 dark:shadow-fuchsia-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+        <Icon className="w-6 h-6 text-fuchsia-600 dark:text-fuchsia-400" />
       </div>
       <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">{tool.title}</h2>
       <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-4">{tool.description}</p>
-      <div className="flex items-center text-emerald-600 dark:text-emerald-400 text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">
+      <div className="flex items-center text-fuchsia-600 dark:text-fuchsia-400 text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">
         Try it now →
       </div>
     </Link>
@@ -369,7 +369,7 @@ export default function ToolsPage() {
         {/* Calculators Section */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-8">
-            <Calculator className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+            <Calculator className="w-6 h-6 text-fuchsia-600 dark:text-fuchsia-400" />
             <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">Calculators</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
@@ -382,7 +382,7 @@ export default function ToolsPage() {
         {/* AI-Powered Tools Section */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-8">
-            <Sparkles className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+            <Sparkles className="w-6 h-6 text-fuchsia-600 dark:text-fuchsia-400" />
             <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">AI-Powered Tools</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
@@ -395,7 +395,7 @@ export default function ToolsPage() {
         {/* Social Media Tools Section */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-8">
-            <MessageCircle className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+            <MessageCircle className="w-6 h-6 text-fuchsia-600 dark:text-fuchsia-400" />
             <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">Social Media Tools</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
@@ -408,7 +408,7 @@ export default function ToolsPage() {
         {/* Other Tools Section */}
         <div>
           <div className="flex items-center gap-3 mb-8">
-            <Activity className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+            <Activity className="w-6 h-6 text-fuchsia-600 dark:text-fuchsia-400" />
             <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">Other Tools</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">

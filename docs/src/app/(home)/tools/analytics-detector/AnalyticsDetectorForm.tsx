@@ -60,7 +60,7 @@ export function AnalyticsDetectorForm() {
   const getPrivacyScoreColor = (score: string) => {
     switch (score.toLowerCase()) {
       case "low":
-        return "text-emerald-600 dark:text-emerald-400";
+        return "text-fuchsia-600 dark:text-fuchsia-400";
       case "medium":
         return "text-orange-600 dark:text-orange-400";
       case "high":
@@ -83,7 +83,7 @@ export function AnalyticsDetectorForm() {
           placeholder="https://example.com"
           disabled={isLoading}
           onKeyDown={(e) => e.key === "Enter" && detectAnalytics()}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 disabled:opacity-50"
         />
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
           Enter the full URL including https://
@@ -100,7 +100,7 @@ export function AnalyticsDetectorForm() {
       <button
         onClick={detectAnalytics}
         disabled={isLoading}
-        className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+        className="w-full px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
       >
         {isLoading ? (
           <>

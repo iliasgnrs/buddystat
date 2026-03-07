@@ -221,7 +221,7 @@ export default function HomePage() {
               href="https://app.buddystat.com/signup"
               eventName="signup"
               eventProps={{ location: "hero", button_text: "get started" }}
-              className="w-full whitespace-nowrap sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-6 py-3 rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 cursor-pointer"
+              className="w-full whitespace-nowrap sm:w-auto bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium px-6 py-3 rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-opacity-50 cursor-pointer"
             >
               Get started
             </TrackedButton>
@@ -243,8 +243,8 @@ export default function HomePage() {
         </div>
         <div className="relative w-full max-w-[1300px] mb-10">
           {/* Background gradients - overlapping circles for organic feel */}
-          <div className="absolute top-0 left-0 w-[550px] h-[550px] bg-emerald-500/30 dark:bg-emerald-500/40 rounded-full blur-[80px] opacity-80 dark:opacity-70"></div>
-          <div className="absolute top-20 left-20 w-[400px] h-[400px] bg-emerald-600/20 dark:bg-emerald-600/30 rounded-full blur-[70px] opacity-60 dark:opacity-50"></div>
+          <div className="absolute top-0 left-0 w-[550px] h-[550px] bg-fuchsia-500/30 dark:bg-fuchsia-500/40 rounded-full blur-[80px] opacity-80 dark:opacity-70"></div>
+          <div className="absolute top-20 left-20 w-[400px] h-[400px] bg-fuchsia-600/20 dark:bg-fuchsia-600/30 rounded-full blur-[70px] opacity-60 dark:opacity-50"></div>
 
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/30 dark:bg-blue-500/40 rounded-full blur-[80px] opacity-70 dark:opacity-60"></div>
           <div className="absolute bottom-40 right-20 w-[350px] h-[350px] bg-indigo-500/20 dark:bg-indigo-500/30 rounded-full blur-[75px] opacity-60 dark:opacity-50"></div>
@@ -252,14 +252,14 @@ export default function HomePage() {
           <div className="absolute top-1/4 right-0 w-[320px] h-[320px] bg-purple-500/30 dark:bg-purple-500/40 rounded-full blur-[70px] opacity-60 dark:opacity-50"></div>
           <div className="absolute top-1/3 right-20 w-[250px] h-[250px] bg-violet-500/20 dark:bg-violet-500/30 rounded-full blur-[65px] opacity-50 dark:opacity-40"></div>
 
-          <div className="absolute bottom-1/3 left-0 w-[320px] h-[320px] bg-emerald-400/20 dark:bg-emerald-400/30 rounded-full blur-[70px] opacity-70 dark:opacity-60"></div>
+          <div className="absolute bottom-1/3 left-0 w-[320px] h-[320px] bg-fuchsia-400/20 dark:bg-fuchsia-400/30 rounded-full blur-[70px] opacity-70 dark:opacity-60"></div>
           <div className="absolute bottom-1/4 left-20 w-[240px] h-[240px] bg-teal-400/15 dark:bg-teal-400/25 rounded-full blur-[65px] opacity-60 dark:opacity-50"></div>
 
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-indigo-400/20 dark:bg-indigo-400/30 rounded-full blur-[80px] opacity-60 dark:opacity-50"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/3 -translate-y-1/3 w-[350px] h-[350px] bg-sky-400/15 dark:bg-sky-400/20 rounded-full blur-[75px] opacity-50 dark:opacity-40"></div>
 
           {/* Iframe container with responsive visibility */}
-          <div className="relative z-10 rounded-2xl overflow-hidden bg-neutral-400/10 dark:bg-neutral-100/5 border-8 shadow-2xl shadow-neutral-900/20 dark:shadow-emerald-900/10">
+          <div className="relative z-10 rounded-2xl overflow-hidden bg-neutral-400/10 dark:bg-neutral-100/5 border-8 shadow-2xl shadow-neutral-900/20 dark:shadow-fuchsia-900/10">
             {/* Remove mobile message and show iframe on all devices */}
             <iframe
               src="https://app.buddystat.com/6/main"

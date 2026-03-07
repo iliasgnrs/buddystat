@@ -132,7 +132,7 @@ export default function TermsAndConditions() {
           Rybbit does not collect personally identifiable information from your website visitors. Our service is
           designed to be privacy-friendly and compliant with GDPR, CCPA, and other privacy regulations. Our full data
           practices are described in our
-          <a href="/privacy" className="text-emerald-400 hover:text-emerald-300 mx-1">
+          <a href="/privacy" className="text-fuchsia-400 hover:text-fuchsia-300 mx-1">
             Privacy Policy
           </a>
           .
@@ -215,7 +215,7 @@ export default function TermsAndConditions() {
         <h2 className="text-2xl font-semibold mt-8 mb-4">Contact Information</h2>
         <p>
           If you have any questions about these Terms and Conditions, please contact us at:
-          <a href="https://www.rybbit.com/contact" className="text-emerald-400 hover:text-emerald-300 ml-1">
+          <a href="https://www.rybbit.com/contact" className="text-fuchsia-400 hover:text-fuchsia-300 ml-1">
             hello@rybbit.com
           </a>
         </p>

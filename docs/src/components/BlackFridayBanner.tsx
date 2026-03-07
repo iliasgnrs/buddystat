@@ -43,7 +43,7 @@ export function BlackFridayBanner() {
   }
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 text-center px-2 py-1 bg-emerald-300 dark:bg-emerald-600">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 text-center px-2 py-1 bg-fuchsia-300 dark:bg-fuchsia-600">
       <span className="font-semibold text-xs sm:text-sm">Black Friday Sale: 50% off first month!</span>
       <span className="text-[11px] sm:text-xs opacity-90">
         Code: <span className="font-mono font-bold">BLACKFRIDAY</span>

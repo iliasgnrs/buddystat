@@ -97,7 +97,7 @@ const educationalContent = (
     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Calculate CLV</h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
-        <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
+        <div className="text-lg font-bold text-fuchsia-600 dark:text-fuchsia-400">
           CLV = (Avg Purchase Value × Purchase Frequency × Customer Lifespan × Profit Margin) × Retention Factor
         </div>
       </div>
@@ -259,7 +259,7 @@ const faqs = [
         The CLV:CAC ratio compares Customer Lifetime Value to{" "}
         <Link
           href="/tools/cost-per-acquisition-calculator"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline"
+          className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline"
         >
           Customer Acquisition Cost
         </Link>

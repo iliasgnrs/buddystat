@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
         <p>
           When processing visitor data, IP addresses are only used temporarily to determine geographic location (country
           and region) using{" "}
-          <a href="https://ipapi.is/" className="text-emerald-400 hover:text-emerald-300" target="_blank">
+          <a href="https://ipapi.is/" className="text-fuchsia-400 hover:text-fuchsia-300" target="_blank">
             ipapi.is
           </a>
           . The actual IP addresses are never stored in our database, preserving visitor anonymity while still providing
@@ -116,7 +116,7 @@ export default function PrivacyPolicy() {
         <p>
           As an open-source project, our code is publicly available for review. This includes our data collection
           mechanisms, which you can audit to verify our privacy claims.
-          <a href="https://github.com/rybbit-io/rybbit" className="text-emerald-400 hover:text-emerald-300 ml-1">
+          <a href="https://github.com/rybbit-io/rybbit" className="text-fuchsia-400 hover:text-fuchsia-300 ml-1">
             View our GitHub repository
           </a>
           .
@@ -125,7 +125,7 @@ export default function PrivacyPolicy() {
         <h2 className="text-2xl font-semibold mt-8 mb-4">Contact Us</h2>
         <p>
           If you have questions about this privacy policy or Rybbit&apos;s data practices, please contact us at:
-          <a href="https://www.rybbit.com/contact" className="text-emerald-400 hover:text-emerald-300 ml-1">
+          <a href="https://www.rybbit.com/contact" className="text-fuchsia-400 hover:text-fuchsia-300 ml-1">
             hello@rybbit.com
           </a>
         </p>

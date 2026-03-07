@@ -120,8 +120,8 @@ export function LogoGenerator({ platform }: LogoGeneratorProps) {
       {/* Context Guidelines */}
       <div className="mb-8 p-4 bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg">
         <div className="flex gap-3">
-          <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg h-fit">
-            <Palette className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <div className="p-2 bg-fuchsia-100 dark:bg-fuchsia-900/30 rounded-lg h-fit">
+            <Palette className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
           </div>
           <div>
             <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-1">
@@ -144,7 +144,7 @@ export function LogoGenerator({ platform }: LogoGeneratorProps) {
             value={brandName}
             onChange={e => setBrandName(e.target.value)}
             placeholder="Enter your brand or company name"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -158,7 +158,7 @@ export function LogoGenerator({ platform }: LogoGeneratorProps) {
             value={industry}
             onChange={e => setIndustry(e.target.value)}
             placeholder="e.g., Technology, Food & Beverage, Fashion, Fitness"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -168,7 +168,7 @@ export function LogoGenerator({ platform }: LogoGeneratorProps) {
           <select
             value={style}
             onChange={e => setStyle(e.target.value)}
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white"
           >
             {DESIGN_STYLES.map(s => (
               <option key={s.id} value={s.id}>
@@ -188,7 +188,7 @@ export function LogoGenerator({ platform }: LogoGeneratorProps) {
             value={colors}
             onChange={e => setColors(e.target.value)}
             placeholder="e.g., Blue and white, Earth tones, Vibrant colors"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-fuchsia-500 dark:focus:ring-fuchsia-400 focus:border-transparent text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -196,7 +196,7 @@ export function LogoGenerator({ platform }: LogoGeneratorProps) {
         <button
           onClick={handleGenerate}
           disabled={loading || !brandName.trim()}
-          className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-700 disabled:bg-neutral-300 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-700 disabled:bg-neutral-300 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
         >
           {loading ? (
             <>
@@ -251,7 +251,7 @@ export function LogoGenerator({ platform }: LogoGeneratorProps) {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={handleDownload}
-                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+                className="px-6 py-2.5 bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 <Download className="w-4 h-4" />
                 Download PNG

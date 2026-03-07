@@ -96,7 +96,7 @@ const educationalContent = (
     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Calculate CPA</h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
-        <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+        <div className="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
           CPA = Total Marketing Spend ÷ Number of Conversions
         </div>
       </div>
@@ -193,7 +193,7 @@ const faqs = [
         CPA measures the cost to acquire a paying customer, while CPL measures the cost to acquire a lead (who may or
         may not convert). CPA is typically higher than CPL because it accounts for the full conversion funnel. Learn
         more with our{" "}
-        <Link href="/tools/cost-per-lead-calculator" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="/tools/cost-per-lead-calculator" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Cost Per Lead Calculator
         </Link>
         .
@@ -213,7 +213,7 @@ const faqs = [
         rule is that CLV should be at least 3x your CPA. Calculate your CLV with our{" "}
         <Link
           href="/tools/customer-lifetime-value-calculator"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline"
+          className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline"
         >
           Customer Lifetime Value Calculator
         </Link>

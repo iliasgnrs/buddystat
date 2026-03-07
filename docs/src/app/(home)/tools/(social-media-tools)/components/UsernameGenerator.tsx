@@ -89,7 +89,7 @@ export default function UsernameGenerator({
         <input
           id="name"
           type="text"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your name, brand, or nickname"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -107,7 +107,7 @@ export default function UsernameGenerator({
         <input
           id="interests"
           type="text"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="e.g., gaming, tech, art, music"
           value={interests}
           onChange={(e) => setInterests(e.target.value)}
@@ -119,7 +119,7 @@ export default function UsernameGenerator({
         <input
           id="includeNumbers"
           type="checkbox"
-          className="w-4 h-4 text-emerald-600 bg-white dark:bg-neutral-800 border-neutral-300 dark:border-neutral-700 rounded focus:ring-2 focus:ring-emerald-500"
+          className="w-4 h-4 text-fuchsia-600 bg-white dark:bg-neutral-800 border-neutral-300 dark:border-neutral-700 rounded focus:ring-2 focus:ring-fuchsia-500"
           checked={includeNumbers}
           onChange={(e) => setIncludeNumbers(e.target.checked)}
         />
@@ -134,7 +134,7 @@ export default function UsernameGenerator({
       <button
         onClick={generateUsernames}
         disabled={isLoading || (!name.trim() && !interests.trim())}
-        className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+        className="w-full px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
       >
         {isLoading ? (
           <>
@@ -179,7 +179,7 @@ export default function UsernameGenerator({
                   title="Copy to clipboard"
                 >
                   {copiedIndex === index ? (
-                    <CheckCircle className="w-5 h-5 text-emerald-600" />
+                    <CheckCircle className="w-5 h-5 text-fuchsia-600" />
                   ) : (
                     <Copy className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
                   )}

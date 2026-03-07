@@ -63,7 +63,7 @@ export function UTMBuilderForm() {
               value={url}
               onChange={e => setUrl(e.target.value)}
               placeholder="https://example.com"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
           </div>
 
@@ -77,7 +77,7 @@ export function UTMBuilderForm() {
               value={source}
               onChange={e => setSource(e.target.value)}
               placeholder="google, newsletter, facebook"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">The referrer (e.g., google, newsletter)</p>
           </div>
@@ -92,7 +92,7 @@ export function UTMBuilderForm() {
               value={medium}
               onChange={e => setMedium(e.target.value)}
               placeholder="cpc, email, social"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Marketing medium (e.g., cpc, email, social)</p>
           </div>
@@ -107,7 +107,7 @@ export function UTMBuilderForm() {
               value={campaign}
               onChange={e => setCampaign(e.target.value)}
               placeholder="summer_sale, product_launch"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Product, promo code, or slogan (e.g., summer_sale)</p>
           </div>
@@ -120,7 +120,7 @@ export function UTMBuilderForm() {
               value={term}
               onChange={e => setTerm(e.target.value)}
               placeholder="running_shoes, blue_widget"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Identify the paid keywords (optional)</p>
           </div>
@@ -133,7 +133,7 @@ export function UTMBuilderForm() {
               value={content}
               onChange={e => setContent(e.target.value)}
               placeholder="logolink, textlink"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Differentiate ads or links (optional)</p>
           </div>
@@ -147,11 +147,11 @@ export function UTMBuilderForm() {
                   type="text"
                   value={utmUrl}
                   readOnly
-                  className="flex-1 px-4 py-3 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 rounded-lg text-neutral-900 dark:text-white font-mono text-sm"
+                  className="flex-1 px-4 py-3 bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-300 dark:border-fuchsia-800 rounded-lg text-neutral-900 dark:text-white font-mono text-sm"
                 />
                 <button
                   onClick={copyToClipboard}
-                  className="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
+                  className="px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
                 >
                   {copied ? <CheckCircle className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   {copied ? "Copied!" : "Copy"}
@@ -195,7 +195,7 @@ export function UTMBuilderForm() {
               <AccordionTrigger>How do I track UTM links with Rybbit?</AccordionTrigger>
               <AccordionContent>
                 Once you have Rybbit installed on your website, UTM parameters are automatically tracked. You can view your campaign performance in your{" "}
-                <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
                   Rybbit dashboard
                 </Link>{" "}
                 under the UTM section.

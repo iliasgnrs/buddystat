@@ -51,7 +51,7 @@ export function Funnels() {
 
                 <div className="h-8 bg-neutral-200 dark:bg-neutral-800 relative">
                   <div
-                    className="h-8 bg-emerald-600 rounded flex items-center justify-end pr-3"
+                    className="h-8 bg-fuchsia-600 rounded flex items-center justify-end pr-3"
                     style={{ width: `${overallConversion}%` }}
                   />
                   <div className="absolute top-2 right-1.5 text-right text-xs">

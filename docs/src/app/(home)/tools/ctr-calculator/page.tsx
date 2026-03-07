@@ -258,7 +258,7 @@ const faqs = [
         To improve CTR, focus on: writing compelling ad copy with clear value propositions, using strong
         calls-to-action, targeting the right audience, testing different creatives and headlines, ensuring ad relevance
         to search intent, and using ad extensions. Track your results with{" "}
-        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to see what works best.

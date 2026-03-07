@@ -172,7 +172,7 @@ If you have any questions about this Privacy Policy, please contact us at:
             value={companyName}
             onChange={e => setCompanyName(e.target.value)}
             placeholder="Acme Inc."
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           />
         </div>
 
@@ -186,7 +186,7 @@ If you have any questions about this Privacy Policy, please contact us at:
             value={websiteUrl}
             onChange={e => setWebsiteUrl(e.target.value)}
             placeholder="https://example.com"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           />
         </div>
 
@@ -200,7 +200,7 @@ If you have any questions about this Privacy Policy, please contact us at:
             value={contactEmail}
             onChange={e => setContactEmail(e.target.value)}
             placeholder="privacy@example.com"
-            className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           />
         </div>
 
@@ -213,7 +213,7 @@ If you have any questions about this Privacy Policy, please contact us at:
               type="checkbox"
               checked={collectsPersonalData}
               onChange={e => setCollectsPersonalData(e.target.checked)}
-              className="mt-1 w-4 h-4 text-emerald-600 border-neutral-300 dark:border-neutral-700 rounded focus:ring-emerald-500"
+              className="mt-1 w-4 h-4 text-fuchsia-600 border-neutral-300 dark:border-neutral-700 rounded focus:ring-fuchsia-500"
             />
             <div>
               <div className="text-sm font-medium text-neutral-900 dark:text-white">Collects personal data</div>
@@ -228,7 +228,7 @@ If you have any questions about this Privacy Policy, please contact us at:
               type="checkbox"
               checked={usesCookies}
               onChange={e => setUsesCookies(e.target.checked)}
-              className="mt-1 w-4 h-4 text-emerald-600 border-neutral-300 dark:border-neutral-700 rounded focus:ring-emerald-500"
+              className="mt-1 w-4 h-4 text-fuchsia-600 border-neutral-300 dark:border-neutral-700 rounded focus:ring-fuchsia-500"
             />
             <div>
               <div className="text-sm font-medium text-neutral-900 dark:text-white">Uses cookies</div>
@@ -243,7 +243,7 @@ If you have any questions about this Privacy Policy, please contact us at:
               type="checkbox"
               checked={usesAnalytics}
               onChange={e => setUsesAnalytics(e.target.checked)}
-              className="mt-1 w-4 h-4 text-emerald-600 border-neutral-300 dark:border-neutral-700 rounded focus:ring-emerald-500"
+              className="mt-1 w-4 h-4 text-fuchsia-600 border-neutral-300 dark:border-neutral-700 rounded focus:ring-fuchsia-500"
             />
             <div>
               <div className="text-sm font-medium text-neutral-900 dark:text-white">Uses analytics</div>
@@ -258,7 +258,7 @@ If you have any questions about this Privacy Policy, please contact us at:
               type="checkbox"
               checked={sharesData}
               onChange={e => setSharesData(e.target.checked)}
-              className="mt-1 w-4 h-4 text-emerald-600 border-neutral-300 dark:border-neutral-700 rounded focus:ring-emerald-500"
+              className="mt-1 w-4 h-4 text-fuchsia-600 border-neutral-300 dark:border-neutral-700 rounded focus:ring-fuchsia-500"
             />
             <div>
               <div className="text-sm font-medium text-neutral-900 dark:text-white">Shares data with third parties</div>
@@ -286,7 +286,7 @@ If you have any questions about this Privacy Policy, please contact us at:
                 </button>
                 <button
                   onClick={downloadPolicy}
-                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg transition-colors"
+                  className="px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm font-medium rounded-lg transition-colors"
                 >
                   Download
                 </button>
@@ -324,7 +324,7 @@ If you have any questions about this Privacy Policy, please contact us at:
             href="https://app.buddystat.com/signup"
             eventName="signup"
             eventProps={{ location: "privacy_policy_builder_cta" }}
-            className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
+            className="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
           >
             Start tracking for free
           </TrackedButton>

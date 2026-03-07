@@ -1677,7 +1677,7 @@ export function FontGeneratorTool({ platformName, characterLimit }: FontGenerato
           onChange={e => setInputText(e.target.value)}
           placeholder="Type your text here..."
           rows={3}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-none"
         />
         {characterLimit && inputText && (
           <p
@@ -1700,7 +1700,7 @@ export function FontGeneratorTool({ platformName, characterLimit }: FontGenerato
             {transformedTexts.map((style, index) => (
               <div
                 key={index}
-                className="p-4 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg hover:border-emerald-500/40 dark:hover:border-emerald-500/30 transition-colors"
+                className="p-4 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg hover:border-fuchsia-500/40 dark:hover:border-fuchsia-500/30 transition-colors"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">

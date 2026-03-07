@@ -468,7 +468,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
               className="p-4 bg-neutral-50 dark:bg-neutral-900/20 rounded-lg border border-neutral-200 dark:border-neutral-800"
             >
               <div className="font-semibold text-neutral-900 dark:text-white">{dim.label}</div>
-              <div className="text-emerald-600 dark:text-emerald-400 font-mono text-sm">
+              <div className="text-fuchsia-600 dark:text-fuchsia-400 font-mono text-sm">
                 {dim.width} x {dim.height} px
               </div>
               {dim.description && <div className="text-xs text-neutral-500 mt-1">{dim.description}</div>}
@@ -609,8 +609,8 @@ export default async function PlatformToolPage({ params }: PageProps) {
 
         <div className="bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 mb-6">
           <div className="flex items-start gap-3">
-            <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg h-fit">
-              <Type className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <div className="p-2 bg-fuchsia-100 dark:bg-fuchsia-900/30 rounded-lg h-fit">
+              <Type className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
             </div>
             <div>
               <div className="text-sm font-medium text-neutral-900 dark:text-white mb-1">Character Limit</div>
@@ -662,7 +662,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Once you have a great bio, Rybbit helps you track engagement, clicks, and growth on {platform.name}.
             Understand what content resonates with your audience and optimize your strategy.{" "}
-            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-fuchsia-600 hover:text-fuchsia-500 underline">
               Start tracking for free
             </a>
             .
@@ -811,7 +811,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit helps you track engagement, clicks, and performance of your {platform.name} posts. See which content
             resonates with your audience and optimize your strategy.{" "}
-            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-fuchsia-600 hover:text-fuchsia-500 underline">
               Start tracking for free
             </a>
             .
@@ -928,8 +928,8 @@ export default async function PlatformToolPage({ params }: PageProps) {
         {platform.maxHashtags && (
           <div className="bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 mb-6">
             <div className="flex items-start gap-3">
-              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg h-fit">
-                <Hash className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="p-2 bg-fuchsia-100 dark:bg-fuchsia-900/30 rounded-lg h-fit">
+                <Hash className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
               </div>
               <div>
                 <div className="text-sm font-medium text-neutral-900 dark:text-white mb-1">Platform Guidelines</div>
@@ -988,7 +988,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit helps you measure which content and hashtags drive the most engagement on {platform.name}. Track
             clicks, traffic sources, and content performance to optimize your hashtag strategy.{" "}
-            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-fuchsia-600 hover:text-fuchsia-500 underline">
               Start tracking for free
             </a>
             .
@@ -1091,8 +1091,8 @@ export default async function PlatformToolPage({ params }: PageProps) {
 
         <div className="bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 mb-6">
           <div className="flex items-start gap-3">
-            <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg h-fit">
-              <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <div className="p-2 bg-fuchsia-100 dark:bg-fuchsia-900/30 rounded-lg h-fit">
+              <User className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
             </div>
             <div>
               <div className="text-sm font-medium text-neutral-900 dark:text-white mb-1">Platform Requirements</div>
@@ -1151,7 +1151,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Once you've claimed your username, Rybbit helps you track engagement, clicks, and growth on {platform.name}.
             Understand your audience and optimize your content strategy.{" "}
-            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-fuchsia-600 hover:text-fuchsia-500 underline">
               Start tracking for free
             </a>
             .
@@ -1304,7 +1304,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit tracks clicks, engagement, and traffic from your {platform.name} posts. See which content drives the
             most interaction and optimize your social media strategy.{" "}
-            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-fuchsia-600 hover:text-fuchsia-500 underline">
               Start tracking for free
             </a>
             .
@@ -1447,7 +1447,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit helps you track engagement, clicks, and traffic sources from your {platform.name} presence.
             Understand what content resonates with your audience and optimize your strategy.{" "}
-            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-fuchsia-600 hover:text-fuchsia-500 underline">
               Start tracking for free
             </a>
             .
@@ -1591,7 +1591,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
           <>
             Rybbit helps you measure which content drives the most engagement and comments on your social media. Track
             clicks, traffic sources, and content performance to understand what resonates with your audience.{" "}
-            <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
+            <a href="https://buddystat.com" className="text-fuchsia-600 hover:text-fuchsia-500 underline">
               Start tracking for free
             </a>
             .
@@ -1682,7 +1682,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
               key={style}
               className="p-4 bg-neutral-50 dark:bg-neutral-900/20 rounded-lg border border-neutral-200 dark:border-neutral-800 flex items-center gap-2"
             >
-              <Palette className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <Palette className="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" />
               <div className="font-medium text-neutral-900 dark:text-white">{style}</div>
             </div>
           ))}
@@ -1748,7 +1748,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
             discovered, track engagement, and understand your audience.{" "}
             <a
               href="https://app.buddystat.com/signup"
-              className="text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 underline"
+              className="text-fuchsia-600 hover:text-fuchsia-500 dark:text-fuchsia-400 dark:hover:text-fuchsia-300 underline"
             >
               Start tracking for free
             </a>
@@ -1861,7 +1861,7 @@ export default async function PlatformToolPage({ params }: PageProps) {
         <>
           Rybbit helps you track clicks, engagement, and traffic sources from your {platform.name} posts and bio links.
           See which content drives the most engagement and optimize your social media strategy.{" "}
-          <a href="https://buddystat.com" className="text-emerald-600 hover:text-emerald-500 underline">
+          <a href="https://buddystat.com" className="text-fuchsia-600 hover:text-fuchsia-500 underline">
             Start tracking for free
           </a>
           .

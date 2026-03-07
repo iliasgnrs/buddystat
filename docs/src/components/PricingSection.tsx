@@ -144,7 +144,7 @@ export function PricingSection({ isAnnual, setIsAnnual }: { isAnnual: boolean, s
           <div className="flex justify-between mb-6 items-center">
             <div>
               <h3 className="font-semibold mb-2">Monthly pageviews</h3>
-              <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+              <div className="text-3xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
                 {typeof eventLimit === "number" ? eventLimit.toLocaleString() : eventLimit}
               </div>
             </div>
@@ -173,7 +173,7 @@ export function PricingSection({ isAnnual, setIsAnnual }: { isAnnual: boolean, s
                 >
                   Annual
                 </button>
-                <div className="text-xs text-white absolute top-0 right-0 -translate-y-3 translate-x-1/2 bg-emerald-500 dark:bg-emerald-500 rounded-full px-2 py-0.5">
+                <div className="text-xs text-white absolute top-0 right-0 -translate-y-3 translate-x-1/2 bg-fuchsia-500 dark:bg-fuchsia-500 rounded-full px-2 py-0.5">
                   4 months free
                 </div>
               </div>
@@ -192,7 +192,7 @@ export function PricingSection({ isAnnual, setIsAnnual }: { isAnnual: boolean, s
 
           <div className="flex justify-between text-xs text-neutral-400">
             {EVENT_TIERS.map((tier, index) => (
-              <span key={index} className={cn(eventLimitIndex === index && "font-bold text-emerald-400")}>
+              <span key={index} className={cn(eventLimitIndex === index && "font-bold text-fuchsia-400")}>
                 {index === EVENT_TIERS.length - 1
                   ? "20M+"
                   : typeof tier === "number" && tier >= 1_000_000

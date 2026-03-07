@@ -62,7 +62,7 @@ export function SEOTitleForm() {
   };
 
   const getLengthColor = (length: number) => {
-    if (length >= 50 && length <= 60) return "text-emerald-600 dark:text-emerald-400";
+    if (length >= 50 && length <= 60) return "text-fuchsia-600 dark:text-fuchsia-400";
     if (length > 60 && length <= 70) return "text-orange-600 dark:text-orange-400";
     return "text-red-600 dark:text-red-400";
   };
@@ -87,7 +87,7 @@ export function SEOTitleForm() {
               onChange={e => setTopic(e.target.value)}
               placeholder="e.g., Best Project Management Software for Teams"
               disabled={isLoading}
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 disabled:opacity-50"
             />
           </div>
 
@@ -101,7 +101,7 @@ export function SEOTitleForm() {
               onChange={e => setKeywords(e.target.value)}
               placeholder="e.g., project management, team collaboration, productivity"
               disabled={isLoading}
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 disabled:opacity-50"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Comma-separated keywords to include</p>
           </div>
@@ -115,7 +115,7 @@ export function SEOTitleForm() {
           <button
             onClick={generateTitles}
             disabled={isLoading}
-            className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+            className="w-full px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 disabled:bg-neutral-400 dark:disabled:bg-neutral-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
           >
             {isLoading ? (
               <>
@@ -133,7 +133,7 @@ export function SEOTitleForm() {
               {titles.map((option, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg hover:border-emerald-500/40 dark:hover:border-emerald-500/30 transition-colors"
+                  className="p-4 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg hover:border-fuchsia-500/40 dark:hover:border-fuchsia-500/30 transition-colors"
                 >
                   <div className="flex items-start justify-between gap-4 mb-2">
                     <p className="flex-1 text-neutral-900 dark:text-white font-medium">{option.title}</p>
@@ -186,7 +186,7 @@ export function SEOTitleForm() {
             href="https://app.buddystat.com/signup"
             eventName="signup"
             eventProps={{ location: "seo_title_generator_cta" }}
-            className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
+            className="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
           >
             Start tracking for free
           </TrackedButton>

@@ -22,7 +22,7 @@ export function UserFlowAnalysis() {
           {/* Path 1: Homepage → Products → Checkout */}
           <div className="flex items-center gap-2">
             <div className="flex-1 flex items-center gap-2 text-xs">
-              <div className="px-2 py-1.5 bg-emerald-900/30 border border-emerald-500/40 rounded">
+              <div className="px-2 py-1.5 bg-fuchsia-900/30 border border-fuchsia-500/40 rounded">
                 Home
               </div>
               <ChevronRight className="w-3 h-3 text-neutral-500" />
@@ -43,7 +43,7 @@ export function UserFlowAnalysis() {
           {/* Path 2: Homepage → Features → Sign Up */}
           <div className="flex items-center gap-2">
             <div className="flex-1 flex items-center gap-2 text-xs">
-              <div className="px-2 py-1.5 bg-emerald-900/30 border border-emerald-500/40 rounded">
+              <div className="px-2 py-1.5 bg-fuchsia-900/30 border border-fuchsia-500/40 rounded">
                 Home
               </div>
               <ChevronRight className="w-3 h-3 text-neutral-500" />
@@ -64,7 +64,7 @@ export function UserFlowAnalysis() {
           {/* Path 3: Homepage → Pricing → Contact */}
           <div className="flex items-center gap-2">
             <div className="flex-1 flex items-center gap-2 text-xs">
-              <div className="px-2 py-1.5 bg-emerald-900/30 border border-emerald-500/40 rounded">
+              <div className="px-2 py-1.5 bg-fuchsia-900/30 border border-fuchsia-500/40 rounded">
                 Home
               </div>
               <ChevronRight className="w-3 h-3 text-neutral-500" />
@@ -85,7 +85,7 @@ export function UserFlowAnalysis() {
           {/* Path 4: Homepage → About → Exit */}
           <div className="flex items-center gap-2">
             <div className="flex-1 flex items-center gap-2 text-xs">
-              <div className="px-2 py-1.5 bg-emerald-900/30 border border-emerald-500/40 rounded">
+              <div className="px-2 py-1.5 bg-fuchsia-900/30 border border-fuchsia-500/40 rounded">
                 Home
               </div>
               <ChevronRight className="w-3 h-3 text-neutral-500" />
@@ -117,7 +117,7 @@ export function UserFlowAnalysis() {
           </div>
           <div>
             <div className="text-xs text-neutral-400">Conversion Rate</div>
-            <div className="text-sm font-medium text-emerald-400 mt-1">38%</div>
+            <div className="text-sm font-medium text-fuchsia-400 mt-1">38%</div>
           </div>
         </div>
       </div>

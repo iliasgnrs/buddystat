@@ -19,7 +19,7 @@ const vitals = {
     status: "good", // good < 2.5s, needs improvement 2.5-4s, poor > 4s
     change: -0.2,
     icon: <Activity className="w-4 h-4" />,
-    color: "emerald" as const,
+    color: "fuchsia" as const,
   },
   FID: {
     name: "First Input Delay",
@@ -29,7 +29,7 @@ const vitals = {
     status: "good", // good < 100ms, needs improvement 100-300ms, poor > 300ms
     change: -5,
     icon: <MousePointer className="w-4 h-4" />,
-    color: "emerald" as const,
+    color: "fuchsia" as const,
   },
   CLS: {
     name: "Cumulative Layout Shift",
@@ -39,7 +39,7 @@ const vitals = {
     status: "good", // good < 0.1, needs improvement 0.1-0.25, poor > 0.25
     change: 0.01,
     icon: <Zap className="w-4 h-4" />,
-    color: "emerald" as const,
+    color: "fuchsia" as const,
   },
   FCP: {
     name: "First Contentful Paint",
@@ -58,10 +58,10 @@ type MetricType = typeof vitals[keyof typeof vitals];
 function MetricCard({ metric }: { metric: MetricType }) {
   const isImproved = metric.change < 0;
   const colorMap = {
-    emerald: {
-      bg: "bg-emerald-900/30",
-      border: "border-emerald-500/40",
-      text: "text-emerald-400",
+    fuchsia: {
+      bg: "bg-fuchsia-900/30",
+      border: "border-fuchsia-500/40",
+      text: "text-fuchsia-400",
     },
     amber: {
       bg: "bg-amber-900/30",
@@ -86,7 +86,7 @@ function MetricCard({ metric }: { metric: MetricType }) {
         </div>
         <div
           className={`flex items-center gap-1 text-xs ${
-            isImproved ? "text-emerald-400" : "text-red-400"
+            isImproved ? "text-fuchsia-400" : "text-red-400"
           }`}
         >
           {isImproved ? (
@@ -110,8 +110,8 @@ function MetricCard({ metric }: { metric: MetricType }) {
       <div className="h-1 bg-neutral-700 rounded-full overflow-hidden">
         <div
           className={`h-full transition-all duration-500 ${
-            metric.color === "emerald"
-              ? "bg-emerald-500"
+            metric.color === "fuchsia"
+              ? "bg-fuchsia-500"
               : metric.color === "amber"
               ? "bg-amber-500"
               : "bg-red-500"
@@ -168,7 +168,7 @@ export function WebVitals() {
                   fill="none"
                   strokeDasharray={`${2 * Math.PI * 36}`}
                   strokeDashoffset={`${2 * Math.PI * 36 * (1 - 0.82)}`}
-                  className="text-emerald-500 transition-all duration-1000"
+                  className="text-fuchsia-500 transition-all duration-1000"
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
@@ -176,7 +176,7 @@ export function WebVitals() {
               </div>
             </div>
             <div>
-              <div className="text-sm font-medium text-emerald-400">Good</div>
+              <div className="text-sm font-medium text-fuchsia-400">Good</div>
               <div className="text-xs text-neutral-400">
                 Above 90 is excellent
               </div>

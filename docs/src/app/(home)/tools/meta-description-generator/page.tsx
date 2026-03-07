@@ -221,7 +221,7 @@ const faqs = [
       <>
         Track your organic click-through rates in Google Search Console and compare pages with different meta
         descriptions. Use{" "}
-        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to see which pages convert best after visitors arrive from search and identify optimization opportunities.

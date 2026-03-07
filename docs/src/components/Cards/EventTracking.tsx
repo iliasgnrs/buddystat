@@ -9,8 +9,8 @@ export function EventTracking() {
       
       <div className="mt-4 bg-neutral-900 p-4 rounded-md">
         <div className="flex items-center mb-3">
-          <div className="w-3 h-3 bg-emerald-400 rounded-full mr-2"></div>
-          <span className="font-semibold text-emerald-400">button_click</span>
+          <div className="w-3 h-3 bg-fuchsia-400 rounded-full mr-2"></div>
+          <span className="font-semibold text-fuchsia-400">button_click</span>
           <span className="text-xs text-neutral-400 ml-auto">2023-11-15 14:32:07</span>
         </div>
         <div className="space-y-2">

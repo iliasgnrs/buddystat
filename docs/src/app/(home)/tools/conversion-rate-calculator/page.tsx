@@ -104,7 +104,7 @@ const educationalContent = (
     </h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
-        <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+        <div className="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
           Conversion Rate = (Conversions ÷ Visitors) × 100
         </div>
       </div>
@@ -264,7 +264,7 @@ const faqs = [
         outcomes. Calculate your{" "}
         <Link
           href="/tools/ctr-calculator"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline"
+          className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline"
         >
           CTR here
         </Link>
@@ -286,7 +286,7 @@ const faqs = [
         A 1% improvement in conversion rate can significantly reduce your{" "}
         <Link
           href="/tools/cost-per-acquisition-calculator"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline"
+          className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline"
         >
           cost per acquisition
         </Link>

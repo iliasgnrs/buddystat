@@ -69,10 +69,10 @@ export function UserProfiles() {
 
                   // Set color based on activity level
                   let bgColor = "bg-neutral-800";
-                  if (activityLevel === 1) bgColor = "bg-emerald-900";
-                  if (activityLevel === 2) bgColor = "bg-emerald-800";
-                  if (activityLevel === 3) bgColor = "bg-emerald-700";
-                  if (activityLevel === 4) bgColor = "bg-emerald-600";
+                  if (activityLevel === 1) bgColor = "bg-fuchsia-900";
+                  if (activityLevel === 2) bgColor = "bg-fuchsia-800";
+                  if (activityLevel === 3) bgColor = "bg-fuchsia-700";
+                  if (activityLevel === 4) bgColor = "bg-fuchsia-600";
 
                   return (
                     <div key={i} className={cn("w-3 h-3 rounded-sm", bgColor)} title={`${activityLevel} visits`} />

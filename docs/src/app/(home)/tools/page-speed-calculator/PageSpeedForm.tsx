@@ -101,7 +101,7 @@ export function PageSpeedForm() {
                 value={currentLoadTime}
                 onChange={e => setCurrentLoadTime(e.target.value)}
                 placeholder="4.5"
-                className="w-full pl-4 pr-20 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full pl-4 pr-20 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400">
                 seconds
@@ -124,7 +124,7 @@ export function PageSpeedForm() {
                 value={targetLoadTime}
                 onChange={e => setTargetLoadTime(e.target.value)}
                 placeholder="2.0"
-                className="w-full pl-4 pr-20 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full pl-4 pr-20 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400">
                 seconds
@@ -145,7 +145,7 @@ export function PageSpeedForm() {
               value={monthlyVisitors}
               onChange={e => setMonthlyVisitors(e.target.value)}
               placeholder="50000"
-              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             />
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Total monthly visitors</p>
           </div>
@@ -162,7 +162,7 @@ export function PageSpeedForm() {
                 value={conversionRate}
                 onChange={e => setConversionRate(e.target.value)}
                 placeholder="2.5"
-                className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full pl-4 pr-10 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400">
                 %
@@ -184,7 +184,7 @@ export function PageSpeedForm() {
                 value={averageOrderValue}
                 onChange={e => setAverageOrderValue(e.target.value)}
                 placeholder="75.00"
-                className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full pl-8 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               />
             </div>
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Average value per conversion</p>
@@ -200,14 +200,14 @@ export function PageSpeedForm() {
                 <div
                   className={`px-4 py-6 border rounded-lg text-center ${
                     metrics.monthlyImpact >= 0
-                      ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800"
+                      ? "bg-fuchsia-50 dark:bg-fuchsia-950/30 border-fuchsia-300 dark:border-fuchsia-800"
                       : "bg-red-50 dark:bg-red-950/30 border-red-300 dark:border-red-800"
                   }`}
                 >
                   <div
                     className={`text-4xl font-bold ${
                       metrics.monthlyImpact >= 0
-                        ? "text-emerald-600 dark:text-emerald-400"
+                        ? "text-fuchsia-600 dark:text-fuchsia-400"
                         : "text-red-600 dark:text-red-400"
                     }`}
                   >
@@ -226,14 +226,14 @@ export function PageSpeedForm() {
                   <div
                     className={`px-4 py-4 border rounded-lg text-center ${
                       metrics.annualImpact >= 0
-                        ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800"
+                        ? "bg-fuchsia-50 dark:bg-fuchsia-950/30 border-fuchsia-300 dark:border-fuchsia-800"
                         : "bg-red-50 dark:bg-red-950/30 border-red-300 dark:border-red-800"
                     }`}
                   >
                     <div
                       className={`text-2xl font-bold ${
                         metrics.annualImpact >= 0
-                          ? "text-emerald-600 dark:text-emerald-400"
+                          ? "text-fuchsia-600 dark:text-fuchsia-400"
                           : "text-red-600 dark:text-red-400"
                       }`}
                     >
@@ -282,7 +282,7 @@ export function PageSpeedForm() {
               <div
                 className={`p-4 rounded-lg border ${
                   metrics.monthlyImpact >= 0
-                    ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900 text-emerald-900 dark:text-emerald-200"
+                    ? "bg-fuchsia-50 dark:bg-fuchsia-950/30 border-fuchsia-200 dark:border-fuchsia-900 text-fuchsia-900 dark:text-fuchsia-200"
                     : "bg-orange-50 dark:bg-orange-950/30 border-orange-200 dark:border-orange-900 text-orange-900 dark:text-orange-200"
                 }`}
               >
@@ -360,7 +360,7 @@ export function PageSpeedForm() {
                 CSS/JS files, enabling browser caching, using a Content Delivery Network (CDN), reducing server response
                 time, eliminating render-blocking resources, lazy-loading below-the-fold content, and choosing
                 lightweight analytics tools like{" "}
-                <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
                   Rybbit
                 </Link>{" "}
                 which adds minimal overhead (just 3KB).
@@ -395,7 +395,7 @@ export function PageSpeedForm() {
             href="https://app.buddystat.com/signup"
             eventName="signup"
             eventProps={{ location: "page_speed_calculator_cta" }}
-            className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
+            className="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg shadow-fuchsia-900/20 transform hover:-translate-y-0.5 transition-all duration-200"
           >
             Start tracking for free
           </TrackedButton>

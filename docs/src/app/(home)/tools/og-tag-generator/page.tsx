@@ -138,19 +138,19 @@ const educationalContent = (
     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3 mt-6">Required Tags (Minimum)</h3>
     <ul className="space-y-2 text-neutral-700 dark:text-neutral-300 mb-6">
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">og:title</code> - The title of your
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">og:title</code> - The title of your
         page or content (50-60 characters recommended)
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">og:type</code> - The type of content:
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">og:type</code> - The type of content:
         website, article, product, video.movie, music.song, etc.
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">og:image</code> - URL of the image to
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">og:image</code> - URL of the image to
         display (1200x630px recommended)
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">og:url</code> - The canonical URL of
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">og:url</code> - The canonical URL of
         the page being shared
       </li>
     </ul>
@@ -158,21 +158,21 @@ const educationalContent = (
     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3 mt-6">Recommended Tags</h3>
     <ul className="space-y-2 text-neutral-700 dark:text-neutral-300 mb-6">
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">og:description</code> - A brief
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">og:description</code> - A brief
         description of the content (150-160 characters)
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">
           og:image:width & og:image:height
         </code>{" "}
         - Actual dimensions of the og:image
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">og:site_name</code> - Your website or
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">og:site_name</code> - Your website or
         brand name
       </li>
       <li>
-        <code className="text-sm font-mono text-emerald-600 dark:text-emerald-400">twitter:card</code> - Twitter Card
+        <code className="text-sm font-mono text-fuchsia-600 dark:text-fuchsia-400">twitter:card</code> - Twitter Card
         type: summary, summary_large_image, app, or player
       </li>
     </ul>
@@ -223,7 +223,7 @@ const educationalContent = (
         <strong>Track Performance with Analytics:</strong> Use{" "}
         <Link
           href="https://app.buddystat.com"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline font-medium"
+          className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline font-medium"
         >
           Rybbit Analytics
         </Link>{" "}
@@ -261,7 +261,7 @@ const faqs = [
       <>
         Use Facebook's Sharing Debugger, LinkedIn's Post Inspector, or Twitter's Card Validator to test how your OG tags
         appear. Track social referral traffic with{" "}
-        <Link href="https://app.buddystat.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+        <Link href="https://app.buddystat.com" className="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
           Rybbit Analytics
         </Link>{" "}
         to see which OG tags drive the most clicks.

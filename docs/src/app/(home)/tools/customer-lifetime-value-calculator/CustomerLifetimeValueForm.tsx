@@ -83,7 +83,7 @@ export function CustomerLifetimeValueForm() {
           onChange={(e) => setAverageValue(e.target.value)}
           onKeyPress={(e) => e.key === "Enter" && calculateCLV()}
           placeholder="100"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         />
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
           Average amount a customer spends per purchase
@@ -100,7 +100,7 @@ export function CustomerLifetimeValueForm() {
           onChange={(e) => setPurchaseFrequency(e.target.value)}
           onKeyPress={(e) => e.key === "Enter" && calculateCLV()}
           placeholder="12"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         />
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
           Number of purchases per customer per year
@@ -117,7 +117,7 @@ export function CustomerLifetimeValueForm() {
           onChange={(e) => setCustomerLifespan(e.target.value)}
           onKeyPress={(e) => e.key === "Enter" && calculateCLV()}
           placeholder="3"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         />
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
           Average number of years a customer stays with you
@@ -134,7 +134,7 @@ export function CustomerLifetimeValueForm() {
           onChange={(e) => setProfitMargin(e.target.value)}
           onKeyPress={(e) => e.key === "Enter" && calculateCLV()}
           placeholder="20"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         />
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
           Average profit margin percentage
@@ -152,7 +152,7 @@ export function CustomerLifetimeValueForm() {
           onKeyPress={(e) => e.key === "Enter" && calculateCLV()}
           placeholder="85"
           max="100"
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         />
         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
           Percentage of customers retained annually
@@ -167,7 +167,7 @@ export function CustomerLifetimeValueForm() {
         <select
           value={selectedIndustry}
           onChange={(e) => setSelectedIndustry(e.target.value)}
-          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         >
           {Object.keys(industryBenchmarks).map((industry) => (
             <option key={industry} value={industry}>
@@ -182,11 +182,11 @@ export function CustomerLifetimeValueForm() {
 
       {clv !== null && (
         <div className="pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
-          <div className="px-4 py-6 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 rounded-lg text-center">
-            <div className="text-sm text-emerald-700 dark:text-emerald-300 font-medium mb-2">
+          <div className="px-4 py-6 bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-300 dark:border-fuchsia-800 rounded-lg text-center">
+            <div className="text-sm text-fuchsia-700 dark:text-fuchsia-300 font-medium mb-2">
               Customer Lifetime Value
             </div>
-            <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400">
+            <div className="text-4xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
               ${clv.toFixed(2)}
             </div>
           </div>
@@ -195,7 +195,7 @@ export function CustomerLifetimeValueForm() {
             <div
               className={`px-4 py-4 rounded-lg border ${
                 comparison.difference >= 0
-                  ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800"
+                  ? "bg-fuchsia-50 dark:bg-fuchsia-950/30 border-fuchsia-300 dark:border-fuchsia-800"
                   : comparison.difference >= -20
                   ? "bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900"
                   : "bg-orange-50 dark:bg-orange-950/30 border-orange-200 dark:border-orange-900"
@@ -211,7 +211,7 @@ export function CustomerLifetimeValueForm() {
                 {comparison.difference >= 0 ? (
                   <>
                     Your CLV is{" "}
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                    <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">
                       {comparison.difference.toFixed(1)}% above
                     </span>{" "}
                     the industry average
@@ -274,7 +274,7 @@ export function CustomerLifetimeValueForm() {
       <div className="flex gap-4 pt-4">
         <button
           onClick={calculateCLV}
-          className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors"
+          className="flex-1 px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium rounded-lg transition-colors"
         >
           Calculate CLV
         </button>
