@@ -75,9 +75,9 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Script src="https://buddystat.com/api/script.js" data-site-id="21" />
+      <Script src="https://app.buddystat.com/api/script.js" data-site-id="21" />
       <Script
-        src="https://buddystat.com/api/script.js?ns=demo"
+        src="https://app.buddystat.com/api/script.js?ns=demo"
         data-site-id="3b023d1a7895"
         data-namespace="rybbit_demo"
       />
