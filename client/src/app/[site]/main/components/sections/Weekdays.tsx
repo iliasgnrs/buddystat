@@ -89,16 +89,16 @@ export function Weekdays() {
     const ratio = value / maxValue;
 
     // Use slash notation for opacity (Tailwind v4)
-    if (ratio < 0.1) return "bg-emerald-500/10";
-    if (ratio < 0.2) return "bg-emerald-500/20";
-    if (ratio < 0.3) return "bg-emerald-500/30";
-    if (ratio < 0.4) return "bg-emerald-500/40";
-    if (ratio < 0.5) return "bg-emerald-500/50";
-    if (ratio < 0.6) return "bg-emerald-500/60";
-    if (ratio < 0.7) return "bg-emerald-500/70";
-    if (ratio < 0.8) return "bg-emerald-500/80";
-    if (ratio < 0.9) return "bg-emerald-500/90";
-    return "bg-emerald-500";
+    if (ratio < 0.1) return "bg-fuchsia-500/10";
+    if (ratio < 0.2) return "bg-fuchsia-500/20";
+    if (ratio < 0.3) return "bg-fuchsia-500/30";
+    if (ratio < 0.4) return "bg-fuchsia-500/40";
+    if (ratio < 0.5) return "bg-fuchsia-500/50";
+    if (ratio < 0.6) return "bg-fuchsia-500/60";
+    if (ratio < 0.7) return "bg-fuchsia-500/70";
+    if (ratio < 0.8) return "bg-fuchsia-500/80";
+    if (ratio < 0.9) return "bg-fuchsia-500/90";
+    return "bg-fuchsia-500";
   };
 
   // Format the metric value based on its type
@@ -214,7 +214,7 @@ export function Weekdays() {
                           <TooltipTrigger asChild>
                             <div
                               className={cn(
-                                "flex-1 mx-0.5 hover:ring-1 hover:ring-emerald-300 transition-all rounded-sm my-0.5",
+                                "flex-1 mx-0.5 hover:ring-1 hover:ring-fuchsia-300 transition-all rounded-sm my-0.5",
                                 colorClass
                               )}
                             />
