@@ -17,7 +17,7 @@ export function CTASection({
   primaryButtonText = "Get started",
   primaryButtonHref = "https://app.buddystat.com/signup",
   secondaryButtonText = "Live demo",
-  secondaryButtonHref = "https://buddystat.com/81",
+  secondaryButtonHref = "https://app.buddystat.com/6",
   eventLocation = "bottom_cta",
 }: CTASectionProps) {
   return (

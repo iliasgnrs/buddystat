@@ -27,7 +27,7 @@ export function FAQAccordion() {
             <p>
               You can see for yourself by checking out our{" "}
               <Link
-                href="https://buddystat.com/1"
+                href="https://app.buddystat.com/6"
                 className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
               >
                 demo site
@@ -66,20 +66,7 @@ export function FAQAccordion() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-5">
-          <AccordionTrigger className="md:text-lg">Can I self-host BuddyStat?</AccordionTrigger>
-          <AccordionContent>
-            Absolutely! BuddyStat is available as a self-hosted option. You can install it on your own server and
-            have complete control over your data.{" "}
-            <Link
-              href="/docs/self-hosting"
-              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
-            >
-              Learn more here
-            </Link>
-            . We also offer a cloud version if you prefer a managed solution.
-          </AccordionContent>
-        </AccordionItem>
+        {/* Self-host question hidden temporarily */}
 
         <AccordionItem value="item-6">
           <AccordionTrigger className="md:text-lg">How easy is it to set up BuddyStat?</AccordionTrigger>
@@ -113,14 +100,7 @@ export function FAQAccordion() {
         <AccordionItem value="item-8">
           <AccordionTrigger className="md:text-lg">Is BuddyStat open source?</AccordionTrigger>
           <AccordionContent>
-            Yes, BuddyStat is open source under the AGPL v3.0 license. You are free to{" "}
-            <Link
-              href="/docs/self-hosting"
-              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
-            >
-              self-host BuddyStat
-            </Link>{" "}
-            for either personal or business use.
+            Yes, BuddyStat is open source under the AGPL v3.0 license.
           </AccordionContent>
         </AccordionItem>
 
