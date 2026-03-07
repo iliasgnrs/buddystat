@@ -330,6 +330,10 @@ Current plan: `pro20m` (20M events/month, unlimited sites)
 | VPN/ASN/Company tabs empty | `IPAPI_KEY` in `.env` and passed to backend container |
 | Analytics script 404 | Caddyfile must route `/script.js` to `backend:3001`, not client |
 | Backend won't build | Check `shared/tsconfig.tsbuildinfo` excluded via `.dockerignore`, see `INCIDENTS.md` |
+| Client build fails: `@rybbit/shared/dist/filters` not resolved | `shared/package.json` needs `"./dist/*"` wildcard in `exports`; `client/Dockerfile` must use atomic copy — NOT `npm link` |
+| Build: TypeScript error `organizationId` not found | Better Auth uses `activeOrganizationId`, not `organizationId` |
+| Build: prerender crash on `sendAutoEmailReports` | Add `?.` optional chaining — `session.data` is `null` during Next.js prerender |
+| Docs still show green after accent color change | Docs use hardcoded Tailwind classes — bulk `sed -i 's/emerald/fuchsia/g'` across `docs/src/**` required (see Incident 7) |
 | Mobile white screen/loop | `AuthenticationGuard` must use `router.push()` not `redirect()` |
 | GSC connect → 404 on callback | Callback URL must be `app.buddystat.com/api/gsc/callback` not `buddystat.com` |
 | GSC `redirect_uri_mismatch` | `auth.ts` must have `baseURL` and `redirectURI` set explicitly — see Incident 5 |
@@ -348,3 +352,74 @@ Install on customer sites:
 ```
 
 `buddystat.com/api/script.js` returns 404 — always use `app.buddystat.com`.
+
+---
+
+## 11. Color Theming
+
+BuddyStat uses **neon pink `#FF10F0`** (`hsl(304, 100%, 53%)` ≈ Tailwind `fuchsia`) as its accent color.
+
+### Client colors (`client/src/app/globals.css`)
+
+The client uses a Tailwind v4 `@theme` block reading CSS custom properties in HSL format. To change the accent color:
+
+1. Update the `--neonpink-*` color scale (or replace with a different named scale)
+2. Update `--dataviz` and `--dataviz-2` tokens to match the new hue
+3. All semantic aliases (`--accent-*`, `--primary`, `--ring`) reference `var(--neonpink-*)` — update those if renaming the scale
+
+```css
+/* Current accent scale anchor */
+--neonpink-500: 304 100% 53%;  /* #FF10F0 */
+
+/* Dataviz colors (light / dark) */
+--dataviz:   304 100% 75% / 304 100% 70%;
+--dataviz-2: 304 100% 85% / 304 100% 80%;
+```
+
+### Docs colors (`docs/src/app/global.css` + Tailwind classes)
+
+Docs use **two** separate color systems:
+
+1. **`--color-fd-primary`** — drives Fumadocs UI components (nav, links, sidebars). Change in both `:root` and `.dark`:
+   ```css
+   --color-fd-primary: rgb(255 16 240);  /* #FF10F0 */
+   ```
+
+2. **Hardcoded Tailwind classes** — ~60 files use direct `fuchsia-*` class names. When changing the accent:
+   ```bash
+   find docs/src -name '*.tsx' -o -name '*.ts' -o -name '*.css' | \
+     xargs sed -i 's/fuchsia/YOUR_COLOR/g'
+   # Verify no old color remains
+   grep -r 'fuchsia' docs/src/
+   ```
+
+### Heatmap (weekly trends)
+
+`client/src/app/[site]/main/components/sections/Weekdays.tsx` — `getColorIntensity()` has 10 opacity steps:
+```typescript
+// Change fuchsia to your target Tailwind color name
+return 'bg-fuchsia-500/10'  // through bg-fuchsia-500/100
+// Also update hover ring:
+'hover:ring-fuchsia-300'
+```
+
+### After any color change — rebuild and deploy
+
+```bash
+# Client
+docker build --no-cache \
+  --build-arg NEXT_PUBLIC_BACKEND_URL=https://app.buddystat.com \
+  --build-arg NEXT_PUBLIC_CLOUD=true \
+  -f client/Dockerfile -t iliasgnrs/buddystat-client:latest .
+docker save iliasgnrs/buddystat-client:latest | gzip > /tmp/client.tar.gz
+scp /tmp/client.tar.gz root@46.62.223.77:/tmp/
+ssh root@46.62.223.77 'docker load < /tmp/client.tar.gz && cd /opt/buddystat && docker-compose up -d --no-deps client && rm /tmp/client.tar.gz'
+rm /tmp/client.tar.gz
+
+# Docs
+docker build --no-cache -f docs/Dockerfile -t iliasgnrs/buddystat-docs:latest .
+docker save iliasgnrs/buddystat-docs:latest | gzip > /tmp/docs.tar.gz
+scp /tmp/docs.tar.gz root@46.62.223.77:/tmp/
+ssh root@46.62.223.77 'docker load < /tmp/docs.tar.gz && cd /opt/buddystat && docker-compose -f docker-compose.cloud.yml up -d --no-deps docs && rm /tmp/docs.tar.gz'
+rm /tmp/docs.tar.gz
+```

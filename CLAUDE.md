@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## ⚠️ CRITICAL — Read Before Any Action
 
-**Always read [INCIDENTS.md](./INCIDENTS.md) before making production changes.** Six incidents have occurred. Key rules:
+**Always read [INCIDENTS.md](./INCIDENTS.md) before making production changes.** Seven incidents have occurred. Key rules:
 
 - **NEVER** delete organization records from Postgres — kills all user data
 - **NEVER** run `docker-compose down` or restart all services at once
@@ -16,6 +16,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **ALWAYS** use `app.buddystat.com` for API callbacks and tracking scripts — `buddystat.com` routes to docs, not backend
 - VPS uses **both** compose files: `docker-compose.cloud.yml` (redis, clickhouse, postgres, docs) and `docker-compose.yml` (backend, client, caddy). Use the correct one when restarting.
 - After upstream merges, audit the docs homepage for leftover Rybbit branding, broken URLs, and upstream-specific UI components
+- **NEVER** use `npm link` in the client or server Dockerfile — symlinks break across Docker layers; use atomic single-`RUN` copy into `node_modules/@rybbit/shared`
+- **ALWAYS** ensure `shared/package.json` has a `"./dist/*"` wildcard in its `exports` field — required for TypeScript `NodeNext` subpath resolution
+- Accent color is neon pink `#FF10F0` (`hsl(304,100%,53%)`): CSS custom properties in `client/src/app/globals.css`, `--color-fd-primary` + bulk Tailwind classes in `docs/src/`
 
 ## Commands
 

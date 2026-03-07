@@ -12,7 +12,8 @@
 4. [Incident 4 — BSI Security Report: Databases Publicly Exposed (Mar 7, 2026)](#incident-4--bsi-security-report-databases-publicly-exposed-mar-7-2026)
 5. [Incident 5 — Google Search Console OAuth Setup (Mar 7, 2026)](#incident-5--google-search-console-oauth-setup-mar-7-2026)
 6. [Incident 6 — Docs Homepage Cleanup & Rebranding (Mar 7, 2026)](#incident-6--docs-homepage-cleanup--rebranding-mar-7-2026)
-7. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
+7. [Incident 7 — Neon Pink Theming & Client Build Fixes (Mar 2026)](#incident-7--neon-pink-theming--client-build-fixes-mar-2026)
+8. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
 
 ---
 
@@ -518,6 +519,113 @@ After any upstream merge or whitelabel pass, audit the **docs homepage** separat
 
 ---
 
+## Incident 7 — Neon Pink Theming & Client Build Fixes (Mar 2026)
+
+**Status:** ✅ Resolved  
+**Severity:** Low (theming) + Medium (build failures)  
+**Scope:** Full accent color overhaul from emerald/blue to neon pink `#FF10F0`, plus multiple Docker build failures discovered during rebuild
+
+### Part A — Color Theming
+
+Changed all green/blue accents to neon pink `#FF10F0` = `hsl(304, 100%, 53%)` ≈ Tailwind `fuchsia`.
+
+**Client — `client/src/app/globals.css`** (`6325feae`):
+- Replaced entire `emerald` color scale with a custom `neonpink` scale anchored at `hsl(304, 100%, 53%)`
+- Changed `--dataviz` and `--dataviz-2` light/dark tokens to use the neon pink hue (304°)
+- All accent aliases (`--accent-*`, `--ring`, `--primary`) now reference `var(--neonpink-*)`
+
+```css
+--neonpink-500: 304 100% 53%;  /* #FF10F0 — base accent */
+```
+
+**Docs — `docs/src/app/global.css`** (`16165d3b`):
+- `--color-fd-primary` changed from `rgb(16 185 129)` (emerald-500) to `rgb(255 16 240)` in both `:root` and `.dark`
+- Controls all Fumadocs UI primary accents (links, nav highlights, buttons)
+
+**Docs — bulk Tailwind class replace** (`74d36272`):
+- ~60 files had hardcoded `emerald-*` Tailwind classes (CTASection, FAQAccordion, pricing, tools pages, etc.)
+- Bulk replaced with: `find docs/src -name '*.tsx' -o -name '*.ts' -o -name '*.css' | xargs sed -i 's/emerald/fuchsia/g'`
+- Verified: `grep -r 'emerald' docs/src/` → 0 results
+
+**Weekly trends heatmap — `client/src/app/[site]/main/components/sections/Weekdays.tsx`** (`38560657`):
+- `getColorIntensity()`: all 10 opacity steps `bg-emerald-500/{10..100}` → `bg-fuchsia-500/{10..100}`
+- Hover ring: `hover:ring-emerald-300` → `hover:ring-fuchsia-300`
+
+### Part B — Client Build Failures (4 build cycles)
+
+Rebuilding the client to apply theme changes revealed several pre-existing bugs:
+
+**Error 1 — `@rybbit/shared/dist/filters` subpath import not resolving**  
+Root cause: The client Dockerfile used `npm link ../shared`, which creates symlinks. Symlinks don't survive Docker's layer copy mechanism — the target directory vanishes in the next layer.
+
+**Fix** (`client/Dockerfile`, commit `841d3794`): Replaced `npm link` with an atomic copy in a single `RUN`:
+```dockerfile
+# WRONG
+RUN npm link ../shared
+
+# CORRECT — atomic single RUN
+RUN cd /app/shared && rm -f tsconfig.tsbuildinfo && npm install && npm run build && \
+    cd /app/client && \
+    rm -rf node_modules/@rybbit/shared && \
+    mkdir -p node_modules/@rybbit/shared && \
+    cp /app/shared/package.json node_modules/@rybbit/shared/ && \
+    cp -r /app/shared/dist node_modules/@rybbit/shared/
+```
+
+**Error 2 — `@rybbit/shared/dist/filters` still not resolving after fix 1**  
+Root cause: TypeScript's `"moduleResolution": "NodeNext"` requires an explicit `exports` field in `package.json` to resolve deep subpath imports. `shared/package.json` only exported `.` (the root).
+
+**Fix** (`shared/package.json`, commit `841d3794`): Added wildcard subpath exports:
+```json
+"exports": {
+  ".": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "./dist/*": {
+    "require": "./dist/*.js",
+    "import": "./dist/*.js",
+    "types": "./dist/*.d.ts"
+  }
+}
+```
+
+**Error 3 — TypeScript: `organizationId` does not exist on session type**  
+In `client/src/app/settings/account/components/AccountInner.tsx`, the code referenced `session?.session?.organizationId` — but Better Auth's session type uses `activeOrganizationId`.
+
+**Fix** (`841d3794`): `organizationId` → `activeOrganizationId`
+
+**Error 4 — Prerender crash: `sendAutoEmailReports` accessed on undefined**  
+During Next.js static prerender, `session.data` is `null`. Two places in `AccountInner.tsx` accessed `.sendAutoEmailReports` directly without optional chaining.
+
+**Fix** (`841d3794`): Added `?.` optional chaining on both usages.
+
+### Files Modified
+
+| File | Change | Commit |
+|------|--------|--------|
+| `client/src/app/globals.css` | Neonpink scale, dataviz colors, accent aliases | `6325feae` |
+| `docs/src/app/global.css` | `--color-fd-primary` → neon pink | `16165d3b` |
+| `docs/src/**` (~60 files) | Bulk `emerald` → `fuchsia` replacement | `74d36272` |
+| `client/src/app/[site]/main/components/sections/Weekdays.tsx` | Heatmap emerald → fuchsia | `38560657` |
+| `client/Dockerfile` | Atomic shared copy, no npm link | `841d3794` |
+| `shared/package.json` | Added `"./dist/*"` wildcard subpath exports | `841d3794` |
+| `client/src/app/settings/account/components/AccountInner.tsx` | Session type fix + optional chaining | `841d3794` |
+
+### Key Lessons
+
+- **`npm link` in Docker is broken by design.** Symlinks don't survive layer boundaries. Always use atomic copy in a single `RUN`.
+- **TypeScript `NodeNext` resolution requires `exports` field** for any subpath imports (`package/dist/file`). Add a `"./dist/*"` wildcard export to `shared/package.json`.
+- **Better Auth session field is `activeOrganizationId`**, not `organizationId`.
+- **Next.js prerendering runs with `session.data = null`** — always use optional chaining on session-derived values.
+- **Docs Tailwind classes are hardcoded**, not driven by CSS custom properties. A bulk `sed` is required whenever the accent color changes.
+
+### Commits
+`6325feae` · `841d3794` · `16165d3b` · `74d36272` · `38560657`
+
+---
+
 ## 🚨 MASTER PRECAUTIONS — Never Do This Again
 
 ### 🔴 NEVER — Database & Account Safety
@@ -732,12 +840,14 @@ After pulling from upstream (`rybbit-io/rybbit`):
 | ClickHouse password | `frog` |
 | Postgres user/db | `frog` / `analytics` |
 | IPAPI key | `4a266f011dab1bfba66f` |
-| Active git commit | `4a6f51b0` |
+| Active git commit | `38560657` |
 | Backend last built | Mar 7, 2026 |
-| Docs last built | Mar 7, 2026 |
+| Client last built | Mar 2026 (pink theme) |
+| Docs last built | Mar 2026 (pink theme) |
 | Google OAuth | ✅ GSC + Google login both working |
 | GSC | ✅ Users can connect their own properties per-site |
 | Docs homepage | ✅ Fully rebranded — all BuddyStat URLs, GitHub star removed, Rybbit references cleaned |
+| Accent color | ✅ Neon pink `#FF10F0` — client + docs + heatmap all updated |
 
 ```bash
 # Quick health check
