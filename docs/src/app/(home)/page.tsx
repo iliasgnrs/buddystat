@@ -228,7 +228,7 @@ export default function HomePage() {
               Get started
             </TrackedButton>
             <TrackedButton
-              href="https://buddystat.com/81"
+              href="https://app.buddystat.com/6"
               eventName="demo"
               target="_blank"
               rel="noopener noreferrer"
@@ -446,8 +446,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        {/* Testimonial Section */}
-        <section className="py-10 md:py-16 w-full overflow-hidden">
+        {/* Testimonial Section - hidden temporarily */}
+        {false && <section className="py-10 md:py-16 w-full overflow-hidden">
           <div className="max-w-[1200px] mx-auto px-4">
             <div className="text-center mb-10 md:mb-16">
               <SectionBadge className="mb-4">User Testimonials</SectionBadge>
@@ -493,7 +493,7 @@ export default function HomePage() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-100/90 dark:from-neutral-900/90 to-transparent"></div>
             </div>
           </div>
-        </section>
+        </section>}
 
 
         {/* FAQ Section */}

@@ -6,9 +6,9 @@ export function FAQAccordion() {
     <div className="bg-neutral-100/50 dark:bg-neutral-800/20 backdrop-blur-sm border border-neutral-300/50 dark:border-neutral-800/50 rounded-xl overflow-hidden">
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
-          <AccordionTrigger className="md:text-lg">Is Rybbit GDPR and CCPA compliant?</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">Is BuddyStat GDPR and CCPA compliant?</AccordionTrigger>
           <AccordionContent>
-            Yes, Rybbit is fully compliant with GDPR, CCPA, and other privacy regulations. We don&apos;t use
+            Yes, BuddyStat is fully compliant with GDPR, CCPA, and other privacy regulations. We don&apos;t use
             cookies or collect any personal data that could identify your users. We salt user IDs daily to
             ensure users are not fingerprinted. You will not need to display a cookie consent banner to your
             users.
@@ -16,11 +16,11 @@ export function FAQAccordion() {
         </AccordionItem>
 
         <AccordionItem value="item-2">
-          <AccordionTrigger className="md:text-lg">Rybbit vs. Google Analytics</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">BuddyStat vs. Google Analytics</AccordionTrigger>
           <AccordionContent>
             <p>
               Google Analytics is free because Google uses it as a funnel into their ecosystem and to sell ads.
-              Rybbit&apos;s only goal is to provide you with high quality analytics. No more confusing
+              BuddyStat&apos;s only goal is to provide you with high quality analytics. No more confusing
               dashboards pushing random AI features nobody wants.
             </p>
             <br />
@@ -38,10 +38,10 @@ export function FAQAccordion() {
         </AccordionItem>
 
         <AccordionItem value="item-3">
-          <AccordionTrigger className="md:text-lg">Rybbit vs. Plausible/Umami/Fathom</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">BuddyStat vs. Plausible/Umami/Fathom</AccordionTrigger>
           <AccordionContent>
             <p>
-              Rybbit is similar to these simple and privacy-focused analytics platforms, but we are raising the
+              BuddyStat is similar to these simple and privacy-focused analytics platforms, but we are raising the
               bar when it comes to UX and the quality and scope of our feature set.
             </p>
             <br />
@@ -52,10 +52,10 @@ export function FAQAccordion() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-4">
-          <AccordionTrigger className="md:text-lg">Rybbit vs. Posthog/Mixpanel/Amplitude</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">BuddyStat vs. Posthog/Mixpanel/Amplitude</AccordionTrigger>
           <AccordionContent>
             <p>
-              Rybbit has most of the features of enterprise analytics platforms, but packaged in a way that is
+              BuddyStat has most of the features of enterprise analytics platforms, but packaged in a way that is
               usable for small and medium sized teams.
             </p>
             <br />
@@ -67,9 +67,9 @@ export function FAQAccordion() {
         </AccordionItem>
 
         <AccordionItem value="item-5">
-          <AccordionTrigger className="md:text-lg">Can I self-host Rybbit?</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">Can I self-host BuddyStat?</AccordionTrigger>
           <AccordionContent>
-            Absolutely! Rybbit is available as a self-hosted option. You can install it on your own server and
+            Absolutely! BuddyStat is available as a self-hosted option. You can install it on your own server and
             have complete control over your data.{" "}
             <Link
               href="/docs/self-hosting"
@@ -82,26 +82,25 @@ export function FAQAccordion() {
         </AccordionItem>
 
         <AccordionItem value="item-6">
-          <AccordionTrigger className="md:text-lg">How easy is it to set up Rybbit?</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">How easy is it to set up BuddyStat?</AccordionTrigger>
           <AccordionContent>
             <Link
               href="/docs/script"
               className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
             >
-              Setting up Rybbit
+              Setting up BuddyStat
             </Link>{" "}
-            is incredibly simple. Just add a small script to your website or install @rybbit/js from npm, and
+            is incredibly simple. Just add a small script to your website, and
             you&apos;re good to go. Most users are up and running in less than 5 minutes. We also provide
             comprehensive documentation and support if you need any help.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-7">
-          <AccordionTrigger className="md:text-lg">What platforms does Rybbit support?</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">What platforms does BuddyStat support?</AccordionTrigger>
           <AccordionContent>
-            Rybbit works with virtually any website platform. Whether you&apos;re using WordPress, Shopify,
-            Next.js, React, Vue, or any other framework, our simple tracking snippet integrates seamlessly. You
-            can also use @rybbit/js, our web SDK you can install from npm. Check out our{" "}
+            BuddyStat works with virtually any website platform. Whether you&apos;re using WordPress, Shopify,
+            Next.js, React, Vue, or any other framework, our simple tracking snippet integrates seamlessly. Check out our{" "}
             <Link
               href="/docs"
               className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
@@ -112,14 +111,14 @@ export function FAQAccordion() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-8">
-          <AccordionTrigger className="md:text-lg">Is Rybbit open source?</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">Is BuddyStat open source?</AccordionTrigger>
           <AccordionContent>
-            Yes, Rybbit is open source under the AGPL v3.0 license. You are free to{" "}
+            Yes, BuddyStat is open source under the AGPL v3.0 license. You are free to{" "}
             <Link
               href="/docs/self-hosting"
               className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
             >
-              self-host Rybbit
+              self-host BuddyStat
             </Link>{" "}
             for either personal or business use.
           </AccordionContent>
@@ -142,16 +141,16 @@ export function FAQAccordion() {
         </AccordionItem>
 
         <AccordionItem value="item-11">
-          <AccordionTrigger className="md:text-lg">Does Rybbit have an API?</AccordionTrigger>
+          <AccordionTrigger className="md:text-lg">Does BuddyStat have an API?</AccordionTrigger>
           <AccordionContent>
-            Yes, Rybbit provides a comprehensive{" "}
+            Yes, BuddyStat provides a comprehensive{" "}
             <Link
               href="/docs/api/getting-started"
               className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
             >
               API
             </Link>{" "}
-            that allows you to programmatically access your analytics data. You can integrate Rybbit data into
+            that allows you to programmatically access your analytics data. You can integrate BuddyStat data into
             your own applications, dashboards, or workflows.
           </AccordionContent>
         </AccordionItem>

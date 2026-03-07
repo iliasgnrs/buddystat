@@ -17,20 +17,9 @@ export function Footer() {
               Open source, privacy-focused web analytics platform that respects
               user privacy.
             </p> */}
-            <a
-              href="https://www.producthunt.com/products/rybbit?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_source=badge-rybbit&#0045;2"
-              target="_blank"
-            >
-              <img
-                src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=1028220&theme=neutral&period=daily&t=1761001525479"
-                alt="Rybbit - Open&#0032;Source&#0032;Google&#0032;Analytics&#0032;Replacement | Product Hunt"
-                style={{ width: "250px", height: "54px", margin: "20px 0px" }}
-                width="250"
-                height="54"
-              />
-            </a>
-            {/* Social Media Links */}
-            <div className="flex gap-4">
+            {/* Product Hunt badge - hidden temporarily */}
+            {/* Social Media Links - hidden temporarily */}
+            {false && <div className="flex gap-4">
               <a
                 href="https://github.com/rybbit-io/rybbit"
                 target="_blank"
@@ -64,7 +53,7 @@ export function Footer() {
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
-            </div>
+            </div>}
           </div>
 
           {/* Product Links */}
