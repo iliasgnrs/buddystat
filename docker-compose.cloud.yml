@@ -51,8 +51,8 @@ services:
       start_period: 10s
     restart: unless-stopped
     ports:
-      - "8123:8123"
-      - "9000:9000"
+      - "127.0.0.1:8123:8123"
+      - "127.0.0.1:9000:9000"
     mem_limit: 12g
     mem_reservation: 6g
     logging:
@@ -72,13 +72,13 @@ services:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
 
   redis:
     image: redis:7-alpine
     container_name: redis
     ports:
-      - "6379:6379" # Exposed to internet for remote connections
+      - "127.0.0.1:6379:6379"
     volumes:
       - redis-data:/data
     restart: unless-stopped
@@ -143,7 +143,7 @@ services:
         condition: service_started
     restart: unless-stopped
     ports:
-      - "3001:3001"
+      - "127.0.0.1:3001:3001"
 
   client:
     container_name: client
@@ -167,7 +167,7 @@ services:
       - backend
     restart: unless-stopped
     ports:
-      - "3002:3002"
+      - "127.0.0.1:3002:3002"
 
   docs:
     container_name: docs
