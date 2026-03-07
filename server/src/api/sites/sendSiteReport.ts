@@ -29,7 +29,7 @@ export async function sendSiteReport(
 
     // Generate and send the manual report for this specific site
     const result = await weeklyReportService.generateAndSendSiteReport(
-      site.organizationId,
+      site.organizationId ?? '',
       siteId,
       site.name,
       site.domain,

@@ -14,8 +14,8 @@ WORKDIR /app/server
 COPY server/package*.json ./
 RUN npm install --legacy-peer-deps
 
-# Link shared package for type resolution
-RUN npm link ../shared
+# Copy built shared package directly into node_modules (avoids symlink issues in Docker)
+RUN rm -rf node_modules/@rybbit/shared && cp -r /app/shared node_modules/@rybbit/shared
 
 # Copy server source code
 COPY server/ .

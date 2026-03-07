@@ -55,12 +55,16 @@ class PdfReportService {
       start_date: startDate,
       end_date: endDate,
       time_zone: timeZone,
+      past_minutes_start: undefined,
+      past_minutes_end: undefined,
     });
 
     const previousTimeStatement = getTimeStatement({
       start_date: previousStart.toISODate()!,
       end_date: previousEnd.toISODate()!,
       time_zone: timeZone,
+      past_minutes_start: undefined,
+      past_minutes_end: undefined,
     });
 
     const filterStatement = filters ? getFilterStatement(JSON.stringify(filters), siteId) : "";
