@@ -10,7 +10,8 @@
 2. [Incident 2 — Whitelabeling / Deployment Break (Feb 19, 2026)](#incident-2--whitelabeling--deployment-break-feb-19-2026)
 3. [Incident 3 — Account Deletion + Geolocation Failure (Feb–Mar 7, 2026)](#incident-3--account-deletion--geolocation-failure-febmar-7-2026)
 4. [Incident 4 — BSI Security Report: Databases Publicly Exposed (Mar 7, 2026)](#incident-4--bsi-security-report-databases-publicly-exposed-mar-7-2026)
-5. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
+5. [Incident 5 — Google Search Console OAuth Setup (Mar 7, 2026)](#incident-5--google-search-console-oauth-setup-mar-7-2026)
+6. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
 
 ---
 
@@ -321,6 +322,115 @@ Backend remained healthy — inter-container communication uses Docker DNS (`pos
 
 ---
 
+## Incident 5 — Google Search Console OAuth Setup (Mar 7, 2026)
+
+**Status:** ✅ Resolved  
+**Severity:** Medium — GSC feature not working, multiple OAuth errors during setup
+
+### What Broke (in sequence)
+
+| # | Error | Root Cause |
+|---|-------|------------|
+| 1 | Site creation returns 500 | PostgreSQL `sites` sequence reset to 1 after container recreation |
+| 2 | GSC callback returns 404 | Redirect URI pointed to `buddystat.com` (docs site) instead of `app.buddystat.com` |
+| 3 | `redirect_uri_mismatch` on second site connect | Better Auth auto-detected internal Docker hostname for callback URI |
+
+### Issue 1 — PostgreSQL Sequence Out of Sync
+
+After the `docker-compose.cloud.yml` service restarts (Incident 4 fix), the Postgres sequence for `sites.site_id` was reset, while existing rows already had IDs up to 16. New inserts failed with:
+```
+PostgresError: duplicate key value violates unique constraint "sites_pkey"
+detail: Key (site_id)=(1) already exists.
+```
+
+**Fix:**
+```bash
+docker exec postgres psql -U frog -d analytics -c \
+  "SELECT setval(pg_get_serial_sequence('sites', 'site_id'), (SELECT MAX(site_id) FROM sites));"
+```
+
+**Key lesson:** After restarting Postgres containers, always verify sequences are in sync if inserts fail with duplicate key errors.
+
+### Issue 2 — GSC Callback 404 (Wrong Domain)
+
+The registered Google redirect URI was `https://buddystat.com/api/gsc/callback`. But the Caddyfile routes all traffic on `buddystat.com` to the **docs service** (port 3003). Only `app.buddystat.com` routes `/api/*` to the backend.
+
+**Fix:** Updated Google Cloud Console redirect URIs to use `app.buddystat.com`. Updated `GOOGLE_REDIRECT_URI` in `.env`:
+```bash
+sed -i 's|GOOGLE_REDIRECT_URI=https://buddystat.com/api/gsc/callback|GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/gsc/callback|' /opt/buddystat/.env
+```
+
+**Correct registered URIs in Google Cloud Console (both required):**
+```
+https://app.buddystat.com/api/gsc/callback          ← GSC connection flow
+https://app.buddystat.com/api/auth/callback/google  ← Sign in with Google login
+```
+
+### Issue 3 — Better Auth `redirect_uri_mismatch`
+
+Better Auth's Google social provider was auto-detecting the base URL from the incoming request. Inside Docker, requests arrive from the internal network, so it built the callback URI as `http://backend:3001/api/auth/callback/google` — which Google rejects as unregistered.
+
+**Fix** (`server/src/lib/auth.ts`):
+```typescript
+// BEFORE
+export const auth = betterAuth({
+  basePath: "/api/auth",
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    },
+  },
+});
+
+// AFTER
+export const auth = betterAuth({
+  basePath: "/api/auth",
+  baseURL: process.env.BASE_URL,          // ← added
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      redirectURI: `${process.env.BASE_URL}/api/auth/callback/google`,  // ← added
+    },
+  },
+});
+```
+
+**Key lesson:** Always set `baseURL` explicitly in Better Auth when running behind a reverse proxy or in Docker. Never rely on auto-detection.
+
+### GSC Architecture
+
+Two separate OAuth flows, one shared Google Cloud OAuth client:
+
+| Flow | Path | Purpose |
+|------|------|---------|
+| GSC connection | `/api/gsc/callback` | Stores GSC tokens in `gsc_connections` table per site |
+| Google login | `/api/auth/callback/google` | Better Auth handles sign-in-with-Google |
+
+Tokens are refreshed automatically via `refreshGSCToken()` in `server/src/api/gsc/utils.ts`. GSC data is fetched per-site via the Search Console API with `webmasters.readonly` scope.
+
+### Google Cloud App Status
+
+- **Testing mode** — up to 100 test user emails can be added under OAuth consent screen
+- **Verification submitted** — once approved, any Google account can connect
+- During testing: only explicitly added test users can complete the OAuth flow
+
+### Required Env Vars
+
+```env
+```env\nGOOGLE_CLIENT_ID=<see VPS .env>
+GOOGLE_CLIENT_SECRET=<see VPS .env>
+GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/gsc/callback
+```
+
+All three must be passed through `docker-compose.yml` backend environment section.
+
+### Commits
+`8ac64a1c` · `e1d2d266`
+
+---
+
 ## 🚨 MASTER PRECAUTIONS — Never Do This Again
 
 ### 🔴 NEVER — Database & Account Safety
@@ -379,6 +489,42 @@ Verify with:
 ss -tlnp | grep -E '5432|8123|9000|6379|3001|3002'
 # All should show 127.0.0.1:PORT, never 0.0.0.0:PORT
 ```
+
+### 🔴 NEVER — Trust Better Auth's Auto-Detected Base URL
+
+When running behind a reverse proxy or Docker, Better Auth auto-detects the base URL from the incoming request. Inside Docker, requests arrive from the internal network and Better Auth picks up `http://backend:3001` as the base URL, causing `redirect_uri_mismatch` errors with Google OAuth.
+
+```
+❌ NEVER omit baseURL from betterAuth() config
+✅ ALWAYS set baseURL: process.env.BASE_URL explicitly
+✅ ALWAYS set redirectURI explicitly in socialProviders.google
+```
+
+```typescript
+// server/src/lib/auth.ts — must always look like this:
+export const auth = betterAuth({
+  basePath: "/api/auth",
+  baseURL: process.env.BASE_URL,          // ← mandatory
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      redirectURI: `${process.env.BASE_URL}/api/auth/callback/google`,  // ← mandatory
+    },
+  },
+});
+```
+
+### 🔴 NEVER — Use buddystat.com for API Callbacks
+
+Caddy routes ALL traffic on `buddystat.com` to the **docs** service (port 3003). Only `app.buddystat.com` routes `/api/*` to the backend.
+
+```
+❌ https://buddystat.com/api/gsc/callback    → 404 (hits docs)
+✅ https://app.buddystat.com/api/gsc/callback → correct
+```
+
+All OAuth redirect URIs, tracking scripts, and API calls must use `app.buddystat.com`.
 
 ### 🔴 NEVER — Client Rebuild
 
@@ -443,6 +589,9 @@ BETTER_AUTH_SECRET=<secret>
 BASE_URL=https://app.buddystat.com
 CORS_ORIGINS=https://buddystat.com,https://app.buddystat.com
 RESEND_API_KEY=<key>                   # email reports
+GOOGLE_CLIENT_ID=<id>                  # Google OAuth (login + GSC)
+GOOGLE_CLIENT_SECRET=<secret>
+GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/gsc/callback
 ```
 
 And verify the backend receives them:
@@ -495,8 +644,10 @@ After pulling from upstream (`rybbit-io/rybbit`):
 | ClickHouse password | `frog` |
 | Postgres user/db | `frog` / `analytics` |
 | IPAPI key | `4a266f011dab1bfba66f` |
-| Active git commit | `8353e2b4` |
+| Active git commit | `e1d2d266` |
 | Backend last built | Mar 7, 2026 |
+| Google OAuth | ✅ GSC + Google login both working |
+| GSC | ✅ Users can connect their own properties per-site |
 
 ```bash
 # Quick health check

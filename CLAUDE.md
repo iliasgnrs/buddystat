@@ -12,6 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **ALWAYS** restart only the specific service: `docker-compose up -d --no-deps backend`
 - **ALWAYS** use `docker-compose build --no-cache backend` for backend rebuilds
 - **ALWAYS** prefix new database/internal port mappings with `127.0.0.1:` — Docker bypasses UFW
+- **ALWAYS** set `baseURL` and `redirectURI` explicitly in `server/src/lib/auth.ts` — Better Auth auto-detects internal Docker hostname otherwise
 - VPS uses **both** compose files: `docker-compose.cloud.yml` (redis, clickhouse, postgres, docs) and `docker-compose.yml` (backend, client, caddy). Use the correct one when restarting.
 
 ## Commands

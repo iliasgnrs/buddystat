@@ -76,7 +76,7 @@ RESEND_API_KEY=re_xxxxxxxxxxxx
 # Optional integrations
 GOOGLE_CLIENT_ID=xxx.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=GOCSPX-xxx
-GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/sites/:siteId/gsc/callback
+GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/gsc/callback
 MAPBOX_TOKEN=your-mapbox-token
 ```
 
@@ -216,16 +216,36 @@ docker exec clickhouse clickhouse-client --password frog -q \
 
 ### Google Search Console
 
-1. Create OAuth credentials at [console.cloud.google.com](https://console.cloud.google.com)
-2. Enable Google Search Console API
-3. Add redirect URI: `https://app.buddystat.com/api/sites/:siteId/gsc/callback`
-4. Add to `.env`:
-   ```env
-   GOOGLE_CLIENT_ID=xxx.apps.googleusercontent.com
-   GOOGLE_CLIENT_SECRET=GOCSPX-xxx
-   GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/sites/:siteId/gsc/callback
-   ```
-5. Restart backend, then connect via Site Settings → Google Search Console
+Users connect their **own** GSC properties per-site via OAuth. The backend stores tokens in the `gsc_connections` Postgres table.
+
+**OAuth app setup (Google Cloud Console):**
+1. Create project, enable **Google Search Console API**
+2. Create OAuth 2.0 client (Web application)
+3. Add **both** Authorized redirect URIs:
+   - `https://app.buddystat.com/api/gsc/callback` ← GSC connection flow
+   - `https://app.buddystat.com/api/auth/callback/google` ← Sign in with Google login
+4. App starts in **Testing** mode — add test user emails under OAuth consent screen (up to 100)
+5. Submit for Google verification to allow any user
+
+**Required `.env` vars:**
+```env
+GOOGLE_CLIENT_ID=xxx.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=GOCSPX-xxx
+GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/gsc/callback
+```
+
+**Required `docker-compose.yml` backend env:**
+```yaml
+- GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+- GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+- GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
+```
+
+Restart backend after adding vars. Users connect via **app.buddystat.com → Site Settings → Google Search Console → Connect**.
+
+⚠️ **Critical:** The callback URL must be `app.buddystat.com`, NOT `buddystat.com` — Caddy only routes `/api/*` to the backend on the `app.` subdomain.
+
+⚠️ **Critical:** Better Auth requires `baseURL` and explicit `redirectURI` for the Google social provider, otherwise it auto-detects the internal Docker hostname (`http://backend:3001`) resulting in `redirect_uri_mismatch` errors.
 
 ### Email Reports (Resend — recommended)
 
@@ -295,6 +315,10 @@ Current plan: `pro20m` (20M events/month, unlimited sites)
 | Analytics script 404 | Caddyfile must route `/script.js` to `backend:3001`, not client |
 | Backend won't build | Check `shared/tsconfig.tsbuildinfo` excluded via `.dockerignore`, see `INCIDENTS.md` |
 | Mobile white screen/loop | `AuthenticationGuard` must use `router.push()` not `redirect()` |
+| GSC connect → 404 on callback | Callback URL must be `app.buddystat.com/api/gsc/callback` not `buddystat.com` |
+| GSC `redirect_uri_mismatch` | `auth.ts` must have `baseURL` and `redirectURI` set explicitly — see Incident 5 |
+| "Sign in with Google" broken | Same fix — `baseURL` + `redirectURI` in `socialProviders.google` in `auth.ts` |
+| Adding new site → 500 error | Check Postgres sequence: `SELECT setval(pg_get_serial_sequence('sites','site_id'), (SELECT MAX(site_id) FROM sites));` |
 
 ---
 
