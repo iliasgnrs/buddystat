@@ -11,7 +11,8 @@
 3. [Incident 3 — Account Deletion + Geolocation Failure (Feb–Mar 7, 2026)](#incident-3--account-deletion--geolocation-failure-febmar-7-2026)
 4. [Incident 4 — BSI Security Report: Databases Publicly Exposed (Mar 7, 2026)](#incident-4--bsi-security-report-databases-publicly-exposed-mar-7-2026)
 5. [Incident 5 — Google Search Console OAuth Setup (Mar 7, 2026)](#incident-5--google-search-console-oauth-setup-mar-7-2026)
-6. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
+6. [Incident 6 — Docs Homepage Cleanup & Rebranding (Mar 7, 2026)](#incident-6--docs-homepage-cleanup--rebranding-mar-7-2026)
+7. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
 
 ---
 
@@ -431,6 +432,92 @@ All three must be passed through `docker-compose.yml` backend environment sectio
 
 ---
 
+## Incident 6 — Docs Homepage Cleanup & Rebranding (Mar 7, 2026)
+
+**Status:** ✅ Resolved  
+**Severity:** Low — broken URLs, leftover Rybbit branding, tracking script 404 on docs homepage
+
+### What Was Wrong
+
+| # | Issue | Root Cause |
+|---|-------|------------|
+| 1 | Analytics iframe showed login page | iframe src pointed to `buddystat.com/81/main` (old Rybbit demo URL) |
+| 2 | Hero and CTA demo buttons linked to `buddystat.com/81` | Never updated during whitelabel migration |
+| 3 | FAQ contained "Rybbit" branding throughout | Text not updated during whitelabel |
+| 4 | "Star us on GitHub" button visible, linking to `rybbit-io/rybbit` | `<GitHubStarButton />` left in from upstream |
+| 5 | Testimonials section rendered tweet embeds causing SVG errors | Tweets from Rybbit users; react-tweet failing silently |
+| 6 | Product Hunt badge and social links in footer | Rybbit-specific, not relevant for BuddyStat |
+| 7 | `script.js` in docs `layout.tsx` 404ing | Both analytics `<script>` tags pointed to `buddystat.com/api/script.js` (docs), not `app.buddystat.com` |
+
+### Fixes Applied (5 commits)
+
+**`403ce61a`** — Iframe src:
+```
+before: buddystat.com/81/main
+after:  app.buddystat.com/6/main
+```
+
+**`550edb70`** — Multiple fixes:
+- Hero demo button: `buddystat.com/81` → `app.buddystat.com/6`
+- Testimonials section: hidden with `{false && <section ...>}`
+- FAQ: all "Rybbit" → "BuddyStat" throughout
+- Footer: Product Hunt badge removed, social links hidden
+
+**`193c43b4`** — More fixes:
+- FAQ demo link: `buddystat.com/1` → `app.buddystat.com/6`
+- "Can I self-host?" FAQ item: hidden temporarily
+- "Is it open source?" answer: trimmed to single relevant sentence
+- Bottom CTA demo button: `buddystat.com/81` → `app.buddystat.com/6`
+
+**`255831f9`** — Component cleanup:
+- `GitHubStarButton.tsx`: removed `Star` lucide icon, removed `useGithubStarCount` hook and star count display
+- `docs/src/app/layout.tsx`: both `<script>` tags fixed to `app.buddystat.com/api/script.js`
+
+**`4a6f51b0`** — Final removal:
+- `<GitHubStarButton />` and its import fully removed from `page.tsx`
+
+### Files Modified
+
+| File | Change |
+|------|--------|
+| `docs/src/app/(home)/page.tsx` | iframe URL, testimonials hidden, `GitHubStarButton` removed |
+| `docs/src/app/layout.tsx` | analytics script tags fixed to `app.buddystat.com` |
+| `docs/src/components/FAQAccordion.tsx` | full rebrand, URLs fixed, self-host item hidden |
+| `docs/src/components/Footer.tsx` | Product Hunt badge removed, social links hidden |
+| `docs/src/components/CTASection.tsx` | demo button URL fixed |
+| `docs/src/components/GitHubStarButton.tsx` | star icon + count removed |
+
+### Docs Deploy Pattern
+
+Docs have baked-in env vars and must be built locally then transferred (same reason as client — OOM risk on VPS):
+
+```bash
+# Build locally
+docker build --no-cache -f docs/Dockerfile -t iliasgnrs/buddystat-docs:latest .
+
+# Transfer and deploy
+docker save iliasgnrs/buddystat-docs:latest | gzip > /tmp/docs.tar.gz
+scp /tmp/docs.tar.gz root@46.62.223.77:/tmp/
+ssh root@46.62.223.77 'docker load < /tmp/docs.tar.gz && \
+  cd /opt/buddystat && \
+  docker-compose -f docker-compose.cloud.yml up -d --no-deps docs && \
+  rm /tmp/docs.tar.gz'
+rm /tmp/docs.tar.gz
+```
+
+### Key Lesson
+
+After any upstream merge or whitelabel pass, audit the **docs homepage** separately:
+- Check every URL on `buddystat.com` — especially iframe src, demo buttons, FAQ links
+- Search for any remaining upstream brand names: `grep -r 'Rybbit\|rybbit' docs/src/`
+- Check `docs/src/app/layout.tsx` analytics script tags point to `app.buddystat.com`
+- Remove or hide any upstream-specific UI (GitHub star, Product Hunt, testimonials)
+
+### Commits
+`403ce61a` · `550edb70` · `193c43b4` · `255831f9` · `4a6f51b0`
+
+---
+
 ## 🚨 MASTER PRECAUTIONS — Never Do This Again
 
 ### 🔴 NEVER — Database & Account Safety
@@ -636,18 +723,21 @@ After pulling from upstream (`rybbit-io/rybbit`):
 |------|-------|
 | VPS IP | 46.62.223.77 |
 | App path | /opt/buddystat |
-| Docker compose file | `docker-compose.yml` (NOT `docker-compose.cloud.yml`) |
-| Backend image | built locally on VPS (`iliasgnrs/buddystat-server:latest`) |
-| Client image | from Docker Hub (`iliasgnrs/buddystat-client:latest`) — do NOT rebuild on VPS |
+| Docker compose file | `docker-compose.yml` (backend/client/caddy) + `docker-compose.cloud.yml` (dbs/docs) |
+| Backend image | built on VPS via `docker-compose build --no-cache backend` |
+| Client image | built locally, transferred via scp — do NOT rebuild on VPS |
+| Docs image | built locally, transferred via scp — do NOT rebuild on VPS |
 | Organization ID | `JU4lbIDL8kNydlzNeAd1yFHMDAoPzAr4` (GNRS.gr) |
 | Plan override | `pro20m` (20M events/month, unlimited sites) |
 | ClickHouse password | `frog` |
 | Postgres user/db | `frog` / `analytics` |
 | IPAPI key | `4a266f011dab1bfba66f` |
-| Active git commit | `e1d2d266` |
+| Active git commit | `4a6f51b0` |
 | Backend last built | Mar 7, 2026 |
+| Docs last built | Mar 7, 2026 |
 | Google OAuth | ✅ GSC + Google login both working |
 | GSC | ✅ Users can connect their own properties per-site |
+| Docs homepage | ✅ Fully rebranded — all BuddyStat URLs, GitHub star removed, Rybbit references cleaned |
 
 ```bash
 # Quick health check

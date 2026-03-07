@@ -123,6 +123,22 @@ ssh root@46.62.223.77 "docker load < /tmp/client.tar.gz && \
   cd /opt/buddystat && docker-compose up -d --no-deps client"
 ```
 
+### Rebuild docs (do this LOCALLY — same OOM risk as client)
+
+```bash
+# Local machine
+docker build --no-cache -f docs/Dockerfile -t iliasgnrs/buddystat-docs:latest .
+
+# Transfer to VPS
+docker save iliasgnrs/buddystat-docs:latest | gzip > /tmp/docs.tar.gz
+scp /tmp/docs.tar.gz root@46.62.223.77:/tmp/
+ssh root@46.62.223.77 "docker load < /tmp/docs.tar.gz && \
+  cd /opt/buddystat && \
+  docker-compose -f docker-compose.cloud.yml up -d --no-deps docs && \
+  rm /tmp/docs.tar.gz"
+rm /tmp/docs.tar.gz
+```
+
 ---
 
 ## 4. Update from Upstream (Rybbit)
@@ -319,6 +335,8 @@ Current plan: `pro20m` (20M events/month, unlimited sites)
 | GSC `redirect_uri_mismatch` | `auth.ts` must have `baseURL` and `redirectURI` set explicitly — see Incident 5 |
 | "Sign in with Google" broken | Same fix — `baseURL` + `redirectURI` in `socialProviders.google` in `auth.ts` |
 | Adding new site → 500 error | Check Postgres sequence: `SELECT setval(pg_get_serial_sequence('sites','site_id'), (SELECT MAX(site_id) FROM sites));` |
+| `buddystat.com/api/script.js` 404 | Change to `app.buddystat.com/api/script.js` — Caddy routes `buddystat.com` to docs, not backend |
+| Docs show old Rybbit branding | Rebuild docs image locally and deploy — docs have baked-in content, see Section 3 |
 
 ---
 
