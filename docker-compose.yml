@@ -92,6 +92,9 @@ services:
       - DISABLE_TELEMETRY=${DISABLE_TELEMETRY}
       - MAPBOX_TOKEN=${MAPBOX_TOKEN}
       - IPAPI_KEY=${IPAPI_KEY}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
     depends_on:
       clickhouse:
         condition: service_healthy
