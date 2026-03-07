@@ -12,10 +12,12 @@ RUN npm install && npm run build
 # Install server dependencies
 WORKDIR /app/server
 COPY server/package*.json ./
-RUN npm install --legacy-peer-deps
-
-# Copy built shared package directly into node_modules (avoids symlink issues in Docker)
-RUN rm -rf node_modules/@rybbit/shared && cp -r /app/shared node_modules/@rybbit/shared
+# Install server dependencies and place shared package explicitly into node_modules
+RUN npm install --legacy-peer-deps && \
+    rm -rf node_modules/@rybbit/shared && \
+    mkdir -p node_modules/@rybbit/shared && \
+    cp /app/shared/package.json node_modules/@rybbit/shared/ && \
+    cp -r /app/shared/dist node_modules/@rybbit/shared/
 
 # Copy server source code
 COPY server/ .
