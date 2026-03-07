@@ -1,328 +1,308 @@
-# BuddyStat - Complete Guide
+# BuddyStat — Operations Guide
 
-Your customized fork of Rybbit with white labeling and deployment automation.
+Your customized fork of [Rybbit](https://github.com/rybbit-io/rybbit) with white-labeling and deployment automation.
 
-## 📚 Quick Links
-
-- [Deploy to VPS](#-deployment-to-hetzner-vps) - Get started in 15 minutes
-- [Update from Upstream](#-updating-from-upstream) - Sync with Rybbit updates
-- [White Label Customization](#-white-label-customization) - Branding & styling
-- [Daily Workflow](#-daily-workflow) - Making changes and deploying
+> **⚠️ Before making changes read [INCIDENTS.md](./INCIDENTS.md)** — it documents every production outage and the exact precautions to avoid repeating them.
 
 ---
 
-## 🚀 Deployment to Hetzner VPS
+## Quick Reference
 
-### Prerequisites
-- Hetzner VPS (2GB RAM minimum)
-- Domain pointed to VPS IP (or use IP temporarily)
-- SSH access
+| Item | Value |
+|------|-------|
+| VPS | `root@46.62.223.77` |
+| App path | `/opt/buddystat` |
+| App URL | `https://app.buddystat.com` |
+| Docker compose | `docker-compose.yml` |
+| Git repo | `github.com/iliasgnrs/buddystat` |
+| Upstream | `github.com/rybbit-io/rybbit` |
 
-### Step 1: Setup VPS (5 min)
+---
 
-SSH into your VPS and run:
+## 1. Initial VPS Setup
+
 ```bash
 ssh root@YOUR_VPS_IP
-curl -fsSL https://raw.githubusercontent.com/iliasgnrs/buddystat/master/setup-vps.sh -o setup-vps.sh
-chmod +x setup-vps.sh
-sudo ./setup-vps.sh
+curl -fsSL https://raw.githubusercontent.com/iliasgnrs/buddystat/master/setup-vps.sh | bash
 ```
 
-### Step 2: Clone & Configure (5 min)
-
+Then:
 ```bash
 cd /opt/buddystat
 git clone https://github.com/iliasgnrs/buddystat.git .
-cp .env.whitelabel.template .env
+cp .env.example .env
 nano .env
 ```
 
-**Essential settings in `.env`:**
+---
+
+## 2. Environment Variables (`/opt/buddystat/.env`)
+
+Minimum required configuration:
+
 ```env
-POSTGRES_PASSWORD=your_strong_password_here
-JWT_SECRET=$(openssl rand -base64 32)  # Generate on VPS
-NEXT_PUBLIC_APP_URL=https://your-domain.com
-NEXT_PUBLIC_BRAND_NAME=BuddyStat
-NEXT_PUBLIC_SUPPORT_EMAIL=support@your-domain.com
+# Cloud mode — REQUIRED for site creation, subscriptions, all features
+CLOUD=true
+NEXT_PUBLIC_CLOUD=true
+
+# Domain
+DOMAIN_NAME=buddystat.com
+APP_DOMAIN=app.buddystat.com
+BASE_URL=https://app.buddystat.com
+NEXT_PUBLIC_APP_URL=https://app.buddystat.com
+CORS_ORIGINS=https://buddystat.com,https://app.buddystat.com
+
+# Auth
+BETTER_AUTH_SECRET=<generate: openssl rand -base64 32>
+DISABLE_SIGNUP=false
+
+# Databases
+CLICKHOUSE_DB=analytics
+CLICKHOUSE_PASSWORD=your-secure-password
+POSTGRES_DB=analytics
+POSTGRES_USER=your-user
+POSTGRES_PASSWORD=your-secure-password
+
+# IPAPI — enables VPN, ASN, Company, Crawler, Datacenter tabs
+IPAPI_KEY=4a266f011dab1bfba66f
+
+# Email (choose one)
+RESEND_API_KEY=re_xxxxxxxxxxxx
+# SMTP_HOST=smtp.gmail.com
+# SMTP_PORT=587
+# SMTP_USER=your@gmail.com
+# SMTP_PASS=your-app-password
+
+# Optional integrations
+GOOGLE_CLIENT_ID=xxx.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=GOCSPX-xxx
+GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/sites/:siteId/gsc/callback
+MAPBOX_TOKEN=your-mapbox-token
 ```
 
-### Step 3: Configure Domain (2 min)
+### Environment Variable Rules
 
-Edit Caddyfile:
-```bash
-nano Caddyfile
-```
-
-```
-your-domain.com {
-    reverse_proxy client:3000
-}
-```
-
-### Step 4: Start Application (5 min)
-
-```bash
-docker-compose -f docker-compose.cloud.yml up -d --build
-docker-compose -f docker-compose.cloud.yml logs -f
-```
-
-Visit `https://your-domain.com` and create your admin account!
+1. **`CLOUD=true`** — enables subscriptions, site limits, all paid features
+2. **`NEXT_PUBLIC_*` prefix** — required for any variable accessed by the Next.js client
+3. **Client variables are baked at build time** — changing them requires rebuilding the client image (do this locally, not on VPS)
+4. **All backend vars must be listed explicitly** in the `environment:` section of `docker-compose.yml` — just having them in `.env` is not enough
 
 ---
 
-## 🔄 Updating from Upstream
+## 3. Daily Workflow
 
-When the original Rybbit repo has updates:
-
-### Merge upstream changes:
-```bash
-./update-from-upstream.sh
-```
-
-This script will:
-1. Fetch changes from `github.com/rybbit-io/rybbit`
-2. Create a merge branch
-3. Preserve your custom settings (via `.gitattributes`)
-4. Alert you to any conflicts
-
-### Test locally:
-```bash
-docker-compose up --build
-```
-
-### Deploy to production:
-```bash
-./deploy-to-hetzner.sh
-```
-
-### Protected files (never overwritten):
-- `.env*` - Your configuration
-- `client/public/logo.*` - Your logos
-- `client/public/favicon.*` - Your favicons
-- Custom deployment scripts
-
----
-
-## 🎨 White Label Customization
-
-### Your Current Branding
-- **Brand:** BuddyStat
-- **Logo:** Orange text logo
-- **Icon:** Triangle icon
-- **Colors:** Orange theme
-
-### Update Branding
-
-**1. Environment Variables** (`.env`):
-```env
-NEXT_PUBLIC_BRAND_NAME=YourBrand
-NEXT_PUBLIC_BRAND_TAGLINE=Your tagline
-NEXT_PUBLIC_PRIMARY_COLOR=blue
-NEXT_PUBLIC_SUPPORT_EMAIL=support@domain.com
-```
-
-**2. Logo Files** (`client/public/`):
-- `logo.png` - Main logo
-- `favicon.png` - Browser favicon
-- `buddystat-text.png` - Text logo
-- `buddystat-icon.png` - Icon
-
-**3. Theme Colors** (`client/tailwind.config.ts`):
-```typescript
-colors: {
-  brand: {
-    primary: '#your-color',
-  }
-}
-```
-
-**4. Global Styles** (`client/src/app/globals.css`):
-```css
-:root {
-  --brand-primary: #your-color;
-}
-```
-
----
-
-## 💼 Daily Workflow
-
-### Make Changes Locally
+### Make and deploy a backend change
 
 ```bash
-# Edit files
-# Test locally
-docker-compose up --build
-
-# Commit changes
+# Local — make changes and push
 git add .
 git commit -m "feat: description"
 git push origin master
+
+# VPS — pull and rebuild backend only
+ssh root@46.62.223.77 "cd /opt/buddystat && \
+  git pull origin master && \
+  docker-compose build --no-cache backend && \
+  docker-compose up -d --no-deps backend"
 ```
 
-### Deploy to Production
+### Rebuild client (do this LOCALLY — VPS has insufficient RAM)
 
 ```bash
-# One command deployment
-./deploy-to-hetzner.sh
-```
+# Local machine
+docker build --no-cache \
+  --build-arg NEXT_PUBLIC_BACKEND_URL=https://app.buddystat.com \
+  --build-arg NEXT_PUBLIC_CLOUD=true \
+  -f client/Dockerfile \
+  -t iliasgnrs/buddystat-client:latest .
 
-### Check Production Status
-
-```bash
-# SSH to VPS
-ssh root@YOUR_VPS_IP
-
-# View logs
-cd /opt/buddystat
-docker-compose -f docker-compose.cloud.yml logs -f
-
-# Restart services
-docker-compose -f docker-compose.cloud.yml restart
-```
-
----
-
-## 🛠️ Maintenance Commands
-
-### On VPS:
-
-```bash
-# View all logs
-docker-compose -f docker-compose.cloud.yml logs -f
-
-# View specific service
-docker-compose -f docker-compose.cloud.yml logs -f server
-
-# Restart services
-docker-compose -f docker-compose.cloud.yml restart
-
-# Rebuild after changes
-docker-compose -f docker-compose.cloud.yml up -d --build
-
-# Check container status
-docker-compose -f docker-compose.cloud.yml ps
-
-# Backup database
-docker-compose -f docker-compose.cloud.yml exec postgres \
-  pg_dump -U buddystat_user buddystat > backup-$(date +%Y%m%d).sql
-```
-
-### Clean Up:
-
-```bash
-# Remove old Docker images
-docker image prune -a -f
-
-# Check disk space
-df -h
-docker system df
+# Transfer to VPS
+docker save iliasgnrs/buddystat-client:latest | gzip > /tmp/client.tar.gz
+scp /tmp/client.tar.gz root@46.62.223.77:/tmp/
+ssh root@46.62.223.77 "docker load < /tmp/client.tar.gz && \
+  cd /opt/buddystat && docker-compose up -d --no-deps client"
 ```
 
 ---
 
-## 🔒 Security Checklist
-
-- [ ] Changed database password from default
-- [ ] Set strong JWT_SECRET (32+ characters)
-- [ ] Firewall enabled (ports 22, 80, 443)
-- [ ] SSL certificate working (https)
-- [ ] Admin account with strong password
-- [ ] Regular backups configured
-- [ ] Automatic updates enabled
-
----
-
-## 🆘 Troubleshooting
-
-### Containers won't start:
-```bash
-docker-compose -f docker-compose.cloud.yml logs
-sudo systemctl restart docker
-```
-
-### Can't access website:
-```bash
-# Check firewall
-sudo ufw status
-
-# Check Caddy
-docker-compose -f docker-compose.cloud.yml logs caddy
-
-# Verify DNS points to VPS IP
-dig your-domain.com
-```
-
-### Database errors:
-```bash
-# Check database is running
-docker-compose -f docker-compose.cloud.yml ps postgres
-
-# Connect to database
-docker-compose -f docker-compose.cloud.yml exec postgres \
-  psql -U buddystat_user -d buddystat
-```
-
-### Out of memory:
-```bash
-free -h
-docker stats
-# Consider upgrading VPS plan
-```
-
----
-
-## 📊 Repository Structure
-
-- **Origin:** `github.com/iliasgnrs/buddystat` (your fork)
-- **Upstream:** `github.com/rybbit-io/rybbit` (original)
-
-### Key Files:
-- `.env.whitelabel.template` - Configuration template
-- `.gitattributes` - Merge strategies
-- `deploy-to-hetzner.sh` - Deploy to production
-- `update-from-upstream.sh` - Sync with upstream
-- `setup-vps.sh` - Initial VPS setup
-
----
-
-## 🎯 Quick Commands
+## 4. Update from Upstream (Rybbit)
 
 ```bash
-# Update from upstream
+# Pull changes from upstream
 ./update-from-upstream.sh
 
-# Deploy to production
-./deploy-to-hetzner.sh
+# Test locally
+docker-compose up --build
 
-# View production logs
-ssh root@vps "cd /opt/buddystat && docker-compose -f docker-compose.cloud.yml logs -f"
+# After merging, ALWAYS verify these haven't been reverted:
+# 1. Caddyfile routes /script.js to backend (not client)
+# 2. docker-compose.yml has CLOUD, IPAPI_KEY, CORS_ORIGINS in backend env
+# 3. server/src/db/geolocation/geolocation.ts has getLocationFromLocal() fallback
 
-# Restart production
-ssh root@vps "cd /opt/buddystat && docker-compose -f docker-compose.cloud.yml restart"
+# Deploy
+git push origin master
+ssh root@46.62.223.77 "cd /opt/buddystat && git pull && \
+  docker-compose build --no-cache backend && \
+  docker-compose up -d --no-deps backend"
+```
+
+### What `.gitattributes` protects (always your version):
+- All `.env*` files
+- `deploy-to-hetzner.sh`, `update-from-upstream.sh`
+- `client/public/logo.*`, `client/public/favicon.*`
+
+---
+
+## 5. Production Management
+
+### Check all services
+
+```bash
+ssh root@46.62.223.77 "cd /opt/buddystat && docker-compose ps"
+```
+
+### View logs
+
+```bash
+ssh root@46.62.223.77 "docker-compose -f /opt/buddystat/docker-compose.yml logs --tail=50 backend"
+ssh root@46.62.223.77 "docker-compose -f /opt/buddystat/docker-compose.yml logs --tail=50 client"
+```
+
+### Restart a single service (NEVER restart all at once)
+
+```bash
+ssh root@46.62.223.77 "cd /opt/buddystat && docker-compose up -d --no-deps backend"
+```
+
+### Verify environment inside container
+
+```bash
+ssh root@46.62.223.77 "docker exec backend printenv | grep -E 'CLOUD|IPAPI|CORS|BASE_URL'"
+```
+
+### Database backup (do before any risky operation)
+
+```bash
+ssh root@46.62.223.77 "docker exec postgres pg_dump -U frog analytics > /tmp/backup-$(date +%Y%m%d-%H%M).sql"
+```
+
+### Check organization plan
+
+```bash
+ssh root@46.62.223.77 "docker exec postgres psql -U frog -d analytics \
+  -c \"SELECT id, name, \\\"planOverride\\\" FROM organization;\""
 ```
 
 ---
 
-## 📈 Cost Estimate
+## 6. Feature Configuration
 
-**Hetzner VPS:**
-- CPX11 (2 vCPU, 2GB): €4/month
-- CPX21 (3 vCPU, 4GB): €8/month *(recommended)*
+### IPAPI — VPN / ASN / Company / Crawler Tracking
 
-**Domain:** ~$10-15/year
+Without `IPAPI_KEY`, only country/city/region/timezone tabs work (via GeoLite2). With it, all tabs work.
 
-**Total:** ~€5-10/month (~$6-12/month)
+Add to `.env` then restart backend:
+```bash
+echo "IPAPI_KEY=4a266f011dab1bfba66f" >> /opt/buddystat/.env
+docker-compose up -d --no-deps backend
+```
+
+Verify it is working (wait 2–3 min for new events):
+```bash
+docker exec clickhouse clickhouse-client --password frog -q \
+  "SELECT count() total, countIf(country!='') geo, countIf(asn_org!='') asn
+   FROM analytics.events WHERE timestamp >= now() - INTERVAL 5 MINUTE"
+```
+
+### Google Search Console
+
+1. Create OAuth credentials at [console.cloud.google.com](https://console.cloud.google.com)
+2. Enable Google Search Console API
+3. Add redirect URI: `https://app.buddystat.com/api/sites/:siteId/gsc/callback`
+4. Add to `.env`:
+   ```env
+   GOOGLE_CLIENT_ID=xxx.apps.googleusercontent.com
+   GOOGLE_CLIENT_SECRET=GOCSPX-xxx
+   GOOGLE_REDIRECT_URI=https://app.buddystat.com/api/sites/:siteId/gsc/callback
+   ```
+5. Restart backend, then connect via Site Settings → Google Search Console
+
+### Email Reports (Resend — recommended)
+
+```env
+RESEND_API_KEY=re_xxxxxxxxxxxx
+```
+
+Reports send every Monday at midnight UTC. Enable per site in Site Settings.
+
+### Mapbox (for map visualization)
+
+```env
+MAPBOX_TOKEN=your-token-from-mapbox.com
+```
 
 ---
 
-## 🔗 Additional Resources
+## 7. SSL Certificates
 
-- Original Rybbit: https://github.com/rybbit-io/rybbit
-- BuddyStat Docs: https://buddystat.com/docs
-- Docker Docs: https://docs.docker.com
-- Caddy Docs: https://caddyserver.com/docs
+BuddyStat uses **Cloudflare Origin Certificates** (valid 15 years, issued Feb 13, 2026, expires Feb 9, 2041).
+
+Files on VPS (NOT in git):
+```
+/opt/buddystat/buddystat.crt
+/opt/buddystat/buddystat.key
+```
+
+These cover: `buddystat.com`, `*.buddystat.com`, `app.buddystat.com`
+
+### Renewal (2041)
+1. Cloudflare Dashboard → SSL/TLS → Origin Server → Create Certificate
+2. Select hostnames, 15-year validity
+3. Replace files on VPS, restart Caddy:
+```bash
+docker-compose up -d --no-deps caddy
+curl -I https://buddystat.com
+```
+
+**Never commit cert files to git.**
 
 ---
 
-**🎉 You're all set! Happy tracking with BuddyStat!**
+## 8. Plan Overrides
+
+Valid plan names for `UPDATE organization SET "planOverride" = '...'`:
+
+```
+pro100k  pro250k  pro500k  pro1m  pro2m  pro5m  pro10m  pro20m
+standard100k  standard250k  standard500k  standard1m  standard2m  standard5m  standard10m
+appsumo-1  through  appsumo-6
+```
+
+Current plan: `pro20m` (20M events/month, unlimited sites)
+
+---
+
+## 9. Troubleshooting
+
+| Symptom | Check |
+|---------|-------|
+| Login button inactive | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` prefix in docker-compose build args |
+| 401/403 on all API calls | `CORS_ORIGINS` and `BASE_URL` in backend container env |
+| Dashboard shows "Free plan" | `NEXT_PUBLIC_CLOUD=true` baked into client image? Client needs rebuild |
+| New sites can't be added | `CLOUD=true` in backend env — `docker exec backend printenv | grep CLOUD` |
+| Country/city tabs empty | Backend on latest code? Run `docker-compose build --no-cache backend` |
+| VPN/ASN/Company tabs empty | `IPAPI_KEY` in `.env` and passed to backend container |
+| Analytics script 404 | Caddyfile must route `/script.js` to `backend:3001`, not client |
+| Backend won't build | Check `shared/tsconfig.tsbuildinfo` excluded via `.dockerignore`, see `INCIDENTS.md` |
+| Mobile white screen/loop | `AuthenticationGuard` must use `router.push()` not `redirect()` |
+
+---
+
+## 10. Tracking Script
+
+Install on customer sites:
+```html
+<script src="https://app.buddystat.com/api/script.js" data-site-id="YOUR_SITE_ID" defer></script>
+```
+
+`buddystat.com/api/script.js` returns 404 — always use `app.buddystat.com`.

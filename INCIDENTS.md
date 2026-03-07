@@ -1,0 +1,399 @@
+# BuddyStat — Incident Archive & Precautions
+
+> **Read this before every major change.** Every incident in this file was real, cost hours to debug, and is documented so it never repeats.
+
+---
+
+## Table of Contents
+
+1. [Incident 1 — Authentication & Login (Feb 14–15, 2026)](#incident-1--authentication--login-feb-1415-2026)
+2. [Incident 2 — Whitelabeling / Deployment Break (Feb 19, 2026)](#incident-2--whitelabeling--deployment-break-feb-19-2026)
+3. [Incident 3 — Account Deletion + Geolocation Failure (Feb–Mar 7, 2026)](#incident-3--account-deletion--geolocation-failure-febmar-7-2026)
+4. [🚨 MASTER PRECAUTIONS — Never Do This Again](#-master-precautions--never-do-this-again)
+
+---
+
+## Incident 1 — Authentication & Login (Feb 14–15, 2026)
+
+**Status:** ✅ Resolved  
+**Severity:** Critical — users could not log in at all
+
+### What Broke
+
+| # | Symptom | Root Cause |
+|---|---------|------------|
+| 1 | Login button completely inactive | `TURNSTILE_SITE_KEY` missing `NEXT_PUBLIC_` prefix in docker-compose |
+| 2 | Console flooded with Turnstile errors | Component was `console.error`-ing when key missing |
+| 3 | Dashboard blank, 401/403 on every API call | `CORS_ORIGINS` and `NEXT_PUBLIC_APP_URL` not passed to backend container |
+| 4 | Mobile white screen + infinite refresh loop | `redirect()` from `next/navigation` used inside a client component `useEffect` |
+
+### Fixes Applied
+
+**Fix 1 — Turnstile env var prefix** (`docker-compose.cloud.yml`):
+```yaml
+# WRONG
+args:
+  - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
+
+# CORRECT
+args:
+  - NEXT_PUBLIC_TURNSTILE_SITE_KEY=${NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+```
+
+**Fix 2 — Suppress Turnstile errors** (`client/src/components/auth/Turnstile.tsx`):
+- Removed `console.error` / `console.warn` — silent `return null` when key missing
+- Created `TURNSTILE_ENABLED` flag in `client/src/lib/const.ts`
+
+**Fix 3 — CORS origins for backend** (`docker-compose.cloud.yml`):
+```yaml
+backend:
+  environment:
+    - CORS_ORIGINS=${CORS_ORIGINS}           # ← was missing
+    - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}  # ← was missing
+```
+
+**Fix 4 — Mobile redirect loop** (`client/src/components/AuthenticationGuard.tsx`):
+```typescript
+// WRONG — causes hard reload on mobile
+import { redirect } from "next/navigation";
+redirect("/login");
+
+// CORRECT — client-side navigation with loop guard
+const router = useRouter();
+const hasRedirectedRef = useRef(false);
+router.push("/login");
+```
+
+### Commits
+`9a5c9871` · `cf57c04a` · `8df9a117` · `d312e05b`
+
+---
+
+## Incident 2 — Whitelabeling / Deployment Break (Feb 19, 2026)
+
+**Status:** ✅ Resolved  
+**Severity:** Critical — data collection stopped, site creation blocked, all branding reverted
+
+### What Broke
+
+| # | Symptom | Root Cause |
+|---|---------|------------|
+| 1 | All "BuddyStat" text reverted to "Rybbit" (1,000+ references) | Upstream merge overwrote whitelabeling |
+| 2 | Zero events after Feb 15 16:08 UTC | Caddyfile routing `/script.js` to client (404) instead of backend |
+| 3 | Cannot add new sites — route returns 404 | `CLOUD` env var not passed to backend container |
+| 4 | Dashboard shows "Free plan", "Add Site" grayed out | `NEXT_PUBLIC_CLOUD=true` not baked into client image at build time |
+| 5 | Plan override `'pro'` not working | Invalid plan name — correct names follow `pro10m`, `standard5m` pattern |
+
+### Fixes Applied
+
+**Fix 1 — Whitelabeling:** 13 commits across client (191 files), docs (117 files), server (email templates).  
+Preserved runtime identifiers: `RybbitAPI`, `RybbitEvent`, `window.rybbit` (used by tracking script).
+
+**Fix 2 — Caddyfile routing** (`Caddyfile`, commit `e4f48a65`):
+```caddy
+handle /script.js      { reverse_proxy backend:3001 }
+handle /script-full.js { reverse_proxy backend:3001 }
+handle /web-vitals.iife.js { reverse_proxy backend:3001 }
+handle /rrweb.min.js   { reverse_proxy backend:3001 }
+```
+
+**Fix 3 — CLOUD env var** (`docker-compose.yml`, commit `1deb31fb`):
+```yaml
+backend:
+  environment:
+    - CLOUD=${CLOUD}
+```
+
+**Fix 4 — Client rebuild with correct build args:**
+```bash
+docker build --no-cache \
+  -f client/Dockerfile \
+  --build-arg NEXT_PUBLIC_BACKEND_URL=https://app.buddystat.com \
+  --build-arg NEXT_PUBLIC_CLOUD=true \
+  -t iliasgnrs/buddystat-client:latest .
+# Transfer to VPS via scp — do NOT rebuild on VPS (OOM risk)
+```
+
+**Fix 5 — Plan override:**
+```sql
+UPDATE organization SET "planOverride" = 'pro20m' WHERE id = 'JU4lbIDL8kNydlzNeAd1yFHMDAoPzAr4';
+```
+
+### Valid Plan Names
+```
+pro100k  pro250k  pro500k  pro1m  pro2m  pro5m  pro10m  pro20m
+standard100k  standard250k  standard500k  standard1m  standard2m  standard5m  standard10m
+appsumo-1  appsumo-2  appsumo-3  appsumo-4  appsumo-5  appsumo-6
+```
+
+### Script URL
+The tracking script URL is always:
+```
+https://app.buddystat.com/api/script.js   ✅
+https://buddystat.com/api/script.js        ❌  (404)
+```
+
+---
+
+## Incident 3 — Account Deletion + Geolocation Failure (Feb–Mar 7, 2026)
+
+**Status:** ✅ Resolved  
+**Severity:** Critical — all analytics tabs showing empty data for entire month of March
+
+### Timeline
+
+| Date | Event |
+|------|-------|
+| Feb 19, 2026 | Backend deployed at commit `89d0d9e8` |
+| Feb 20, 2026 | Commit `fc3fbb06` added GeoLite2 fallback when `IPAPI_KEY` not set — **never deployed to VPS** |
+| ~Feb 2026 | AI session accidentally deleted the main GNRS.gr organization account from the DB |
+| ~Feb 2026 | Account recreated by hand — new org ID `JU4lbIDL8kNydlzNeAd1yFHMDAoPzAr4`, `planOverride='pro20m'` |
+| Mar 1–7, 2026 | All 6,208 March events had zero country/timezone/region/city data |
+| Mar 7, 2026 | Root cause identified and fixed |
+
+### What Broke
+
+**Primary:** VPS backend was running 17-day-old code missing the geolocation fallback. Without `IPAPI_KEY` set AND without the fallback, every event recorded as empty strings for all location fields.
+
+**Secondary:** After pulling the fix, `docker-compose build --no-cache backend` failed with 3 TypeScript errors.
+
+### Root Cause 1: Missing Geolocation Fallback
+
+`server/src/db/geolocation/geolocation.ts` — the function `getLocationFromIPAPI()` returned `{}` when `IPAPI_KEY` was falsy instead of calling `getLocationFromLocal()`:
+
+```typescript
+// BEFORE (broken — deployed since Feb 19)
+async function getLocationFromIPAPI(ips) {
+  if (!apiKey) {
+    logger.warn("IPAPI_KEY not configured...");
+    return {};  // ← dropped all location data
+  }
+  ...
+}
+
+// AFTER (fixed — commit fc3fbb06, Feb 20)
+async function getLocationFromIPAPI(ips) {
+  if (!apiKey) {
+    logger.warn("IPAPI_KEY not configured, falling back to local GeoLite2");
+    return getLocationFromLocal(ips);  // ← use local DB
+  }
+  ...
+}
+```
+
+### Root Cause 2: Docker Build Failures
+
+Three separate issues prevented the backend from rebuilding:
+
+**Error A — `tsconfig.tsbuildinfo` stale cache:**  
+The `shared/` directory had a `tsconfig.tsbuildinfo` file committed. When copied into Docker, TypeScript's incremental build (`composite: true`) saw it and **skipped output entirely** — producing no `dist/` folder.
+```
+cp: can't stat '/app/shared/dist': No such file or directory
+```
+Fix: Added `**/*.tsbuildinfo` to `.dockerignore` and `rm -f tsconfig.tsbuildinfo` in Dockerfile RUN step.
+
+**Error B — `npm link ../shared` broken in Docker:**  
+The Dockerfile used `npm link` to resolve `@rybbit/shared` but npm link creates a symlink in the global npm directory, which doesn't persist across Docker layers correctly. Replaced with explicit copy:
+```dockerfile
+# WRONG
+RUN npm link ../shared
+
+# CORRECT — atomic single RUN
+RUN cd /app/shared && rm -f tsconfig.tsbuildinfo && npm install && npm run build && \
+    cd /app/server && npm install --legacy-peer-deps && \
+    rm -rf node_modules/@rybbit/shared && \
+    mkdir -p node_modules/@rybbit/shared && \
+    cp /app/shared/package.json node_modules/@rybbit/shared/ && \
+    cp -r /app/shared/dist node_modules/@rybbit/shared/
+```
+
+**Error C — Missing `exports` field in `shared/package.json`:**  
+TypeScript's `"moduleResolution": "NodeNext"` requires an `exports` field to resolve the package. Added:
+```json
+"exports": {
+  ".": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  }
+}
+```
+
+**Error D — TypeScript errors in new files:**
+- `sendSiteReport.ts`: `site.organizationId` is `string | null` — fixed with `?? ''`
+- `pdfReportService.ts`: `getTimeStatement()` missing `past_minutes_start/end` fields — added `undefined` values
+
+### Fix 4: IPAPI_KEY Added to VPS
+
+Added `IPAPI_KEY=4a266f011dab1bfba66f` to `/opt/buddystat/.env` on VPS. After backend restart, all VPN/Crawler/Datacenter/Company/ASN tabs immediately started populating.
+
+### Verification
+
+```bash
+# After fix — new events have 100% geolocation coverage
+docker exec clickhouse clickhouse-client --password frog -q \
+  "SELECT count() total, countIf(country!='') country, countIf(asn_org!='') asn
+   FROM analytics.events WHERE site_id=6 AND timestamp >= '2026-03-07 10:35:00'"
+# Result: 4   4   3  ✅
+```
+
+### Commits
+`f6f759c5` · `187f3fb0` · `42c40d13` · `8353e2b4`
+
+---
+
+## 🚨 MASTER PRECAUTIONS — Never Do This Again
+
+### 🔴 NEVER — Database & Account Safety
+
+```
+❌ NEVER run DELETE, DROP, or TRUNCATE on any production table without a backup
+❌ NEVER delete organization records from Postgres — this kills ALL associated data
+❌ NEVER run docker-compose down without stopping individual services
+❌ NEVER touch postgres/clickhouse volumes — treat them as sacred
+❌ NEVER rebuild the CLIENT container on VPS (OOM risk — VPS only has 2GB RAM)
+❌ NEVER run database migrations manually (use only: npm run db:push)
+```
+
+If you must delete something from the DB, first:
+```bash
+# Always backup before ANY destructive operation
+docker exec postgres pg_dump -U frog analytics > /tmp/backup-$(date +%Y%m%d-%H%M).sql
+```
+
+### 🔴 NEVER — Service Restarts
+
+```
+❌ NEVER docker-compose restart / docker-compose down for multi-service restarts
+   This restarts postgres, clickhouse, and all services — risking data corruption
+```
+
+Always restart ONLY the specific service:
+```bash
+docker-compose up -d --no-deps backend   ✅
+docker-compose up -d --no-deps client    ✅
+```
+
+### 🔴 NEVER — Client Rebuild
+
+The client image has `NEXT_PUBLIC_*` env vars **baked in at build time**. Once built correctly, don't rebuild it.
+
+If rebuild is required, do it **locally** and transfer:
+```bash
+# Local machine
+docker build --no-cache \
+  --build-arg NEXT_PUBLIC_BACKEND_URL=https://app.buddystat.com \
+  --build-arg NEXT_PUBLIC_CLOUD=true \
+  -f client/Dockerfile -t iliasgnrs/buddystat-client:latest .
+docker save iliasgnrs/buddystat-client:latest | gzip > /tmp/client.tar.gz
+scp /tmp/client.tar.gz root@46.62.223.77:/tmp/
+ssh root@46.62.223.77 "docker load < /tmp/client.tar.gz && cd /opt/buddystat && docker-compose up -d --no-deps client"
+```
+
+### 🟡 ALWAYS — After Git Pull on VPS
+
+```bash
+# Check what commits you pulled BEFORE rebuilding
+git log --oneline -10
+
+# Verify no TypeScript errors locally before pushing
+cd server && tsc --noEmit
+```
+
+### 🟡 ALWAYS — After Any Backend Change
+
+```bash
+# Rebuild with no cache (stale layers break builds)
+docker-compose build --no-cache backend
+docker-compose up -d --no-deps backend
+sleep 5
+docker-compose logs --tail=30 backend
+```
+
+Check the logs for:
+- `GeoIP database loaded successfully` ✅
+- `Server is listening on http://0.0.0.0:3001` ✅
+- NO `IPAPI_KEY not configured` warning (means IPAPI_KEY is set correctly)
+
+### 🟡 ALWAYS — Verify Geolocation After Backend Update
+
+```bash
+# Wait a few minutes for new events, then check
+docker exec clickhouse clickhouse-client --password frog -q \
+  "SELECT count() total, countIf(country!='') geo, countIf(asn_org!='') asn
+   FROM analytics.events WHERE timestamp >= now() - INTERVAL 10 MINUTE"
+# All 3 numbers should be equal (or close)
+```
+
+### 🟡 ALWAYS — Environment Variable Checklist
+
+Before any deployment verify `/opt/buddystat/.env` has:
+
+```env
+CLOUD=true
+NEXT_PUBLIC_CLOUD=true
+IPAPI_KEY=4a266f011dab1bfba66f          # ipapi.is — VPN/ASN/Company/Crawler
+BETTER_AUTH_SECRET=<secret>
+BASE_URL=https://app.buddystat.com
+CORS_ORIGINS=https://buddystat.com,https://app.buddystat.com
+RESEND_API_KEY=<key>                   # email reports
+```
+
+And verify the backend receives them:
+```bash
+docker exec backend printenv | grep -E 'CLOUD|IPAPI|CORS|BASE_URL'
+```
+
+### 🟡 ALWAYS — Organization Safety Check
+
+The main organization (GNRS.gr) must always have:
+```
+ID:           JU4lbIDL8kNydlzNeAd1yFHMDAoPzAr4
+planOverride: pro20m
+```
+
+Verify after any auth or DB work:
+```bash
+docker exec postgres psql -U frog -d analytics \
+  -c "SELECT id, name, \"planOverride\" FROM organization LIMIT 5;"
+```
+
+### 🟡 ALWAYS — Docker Build Precautions
+
+The `shared/` package uses TypeScript's `composite: true` which generates a `tsconfig.tsbuildinfo` file. **This file must never enter the Docker build context.** It's now excluded via `.dockerignore` (`**/*.tsbuildinfo`).
+
+If the build ever fails with `can't stat '/app/shared/dist'`:
+1. Check `.dockerignore` includes `**/*.tsbuildinfo`
+2. The Dockerfile's RUN step must `rm -f tsconfig.tsbuildinfo` before `npm run build`
+3. Build + copy of shared MUST be in a single `RUN` command (no layer gap)
+
+### 🟡 ALWAYS — Upstream Merges
+
+After pulling from upstream (`rybbit-io/rybbit`):
+1. Verify the Caddyfile still routes analytics scripts to backend (not client)
+2. Verify `docker-compose.yml` still has `CLOUD`, `IPAPI_KEY`, `CORS_ORIGINS` in backend environment
+3. Check `server/src/db/geolocation/geolocation.ts` still has the GeoLite2 fallback
+4. Do a full `docker-compose build --no-cache backend` and watch for TypeScript errors
+
+### 🔵 CURRENT PRODUCTION STATE (Mar 7, 2026)
+
+| Item | Value |
+|------|-------|
+| VPS IP | 46.62.223.77 |
+| App path | /opt/buddystat |
+| Docker compose file | `docker-compose.yml` (NOT `docker-compose.cloud.yml`) |
+| Backend image | built locally on VPS (`iliasgnrs/buddystat-server:latest`) |
+| Client image | from Docker Hub (`iliasgnrs/buddystat-client:latest`) — do NOT rebuild on VPS |
+| Organization ID | `JU4lbIDL8kNydlzNeAd1yFHMDAoPzAr4` (GNRS.gr) |
+| Plan override | `pro20m` (20M events/month, unlimited sites) |
+| ClickHouse password | `frog` |
+| Postgres user/db | `frog` / `analytics` |
+| IPAPI key | `4a266f011dab1bfba66f` |
+| Active git commit | `8353e2b4` |
+| Backend last built | Mar 7, 2026 |
+
+```bash
+# Quick health check
+ssh root@46.62.223.77 "cd /opt/buddystat && docker-compose ps"
+# All containers should show: Up / healthy
+```

@@ -29,8 +29,8 @@ This is a customized fork of [Rybbit](https://github.com/rybbit-io/rybbit) with 
 ```
 
 **📖 Important Documentation:**
-- 🔄 [UPSTREAM_UPDATE_GUIDE.md](./UPSTREAM_UPDATE_GUIDE.md) - How to safely sync with Rybbit updates
-- 🔐 [AUTHENTICATION_MILESTONE.md](./AUTHENTICATION_MILESTONE.md) - Critical auth issues resolved & prevention
+- � [BUDDYSTAT.md](./BUDDYSTAT.md) - Full operations guide (deployment, config, SSL, maintenance)
+- 🚨 [INCIDENTS.md](./INCIDENTS.md) - Incident archive & critical precautions (read before every change)
 
 **�📦 Repository Structure:**
 - **Origin**: `github.com/iliasgnrs/buddystat` (this fork)

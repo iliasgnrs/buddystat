@@ -2,6 +2,17 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## ⚠️ CRITICAL — Read Before Any Action
+
+**Always read [INCIDENTS.md](./INCIDENTS.md) before making production changes.** Three major outages have occurred. Key rules:
+
+- **NEVER** delete organization records from Postgres — kills all user data
+- **NEVER** run `docker-compose down` or restart all services at once
+- **NEVER** rebuild the client container on the VPS (OOM risk) — build locally and `scp`
+- **ALWAYS** restart only the specific service: `docker-compose up -d --no-deps backend`
+- **ALWAYS** use `docker-compose build --no-cache backend` for backend rebuilds
+- VPS docker compose file is `docker-compose.yml` (NOT `docker-compose.cloud.yml`)
+
 ## Commands
 
 - Client: `cd client && npm run dev` (NextJS with Turbopack on port 3002)
