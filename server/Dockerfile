@@ -10,7 +10,7 @@ COPY shared ./shared
 WORKDIR /app/server
 COPY server/package*.json ./
 # Build shared package and install server deps in one atomic step
-RUN cd /app/shared && npm install && npm run build && \
+RUN cd /app/shared && rm -f tsconfig.tsbuildinfo && npm install && npm run build && \
     cd /app/server && npm install --legacy-peer-deps && \
     rm -rf node_modules/@rybbit/shared && \
     mkdir -p node_modules/@rybbit/shared && \
