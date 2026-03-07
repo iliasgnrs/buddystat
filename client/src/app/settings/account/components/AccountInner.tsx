@@ -109,7 +109,7 @@ export function AccountInner() {
   const handleSendManualReport = async () => {
     try {
       setIsSendingReport(true);
-      const organizationId = session.data?.session?.organizationId;
+      const organizationId = session.data?.session?.activeOrganizationId;
       
       if (!organizationId) {
         toast.error("No organization found");
@@ -156,7 +156,7 @@ export function AccountInner() {
                 </div>
                 <div className="flex space-x-2">
                   <Switch
-                    checked={(session.data?.user as any).sendAutoEmailReports}
+                    checked={(session.data?.user as any)?.sendAutoEmailReports}
                     onCheckedChange={handleEmailReportsToggle}
                     disabled={updateAccountSettings.isPending}
                   />
@@ -205,7 +205,7 @@ export function AccountInner() {
               </div>
               <div className="flex space-x-2">
                 <Switch
-                  checked={(session.data?.user as any).sendAutoEmailReports}
+                  checked={(session.data?.user as any)?.sendAutoEmailReports}
                   onCheckedChange={handleEmailReportsToggle}
                   disabled={updateAccountSettings.isPending}
                 />
