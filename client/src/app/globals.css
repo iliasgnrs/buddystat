@@ -149,20 +149,20 @@
     --ring: 0 0% 10%;
     --radius: 0.3rem;
 
-    --dataviz: 230 100% 80%;
-    --dataviz-2: 230 100% 87%;
+    --dataviz: 304 100% 75%;
+    --dataviz-2: 304 100% 85%;
 
-    --accent-50: var(--emerald-50);
-    --accent-100: var(--emerald-100);
-    --accent-200: var(--emerald-200);
-    --accent-300: var(--emerald-300);
-    --accent-400: var(--emerald-400);
-    --accent-500: var(--emerald-500);
-    --accent-600: var(--emerald-600);
-    --accent-700: var(--emerald-700);
-    --accent-800: var(--emerald-800);
-    --accent-900: var(--emerald-900);
-    --accent-950: var(--emerald-950);
+    --accent-50: var(--neonpink-50);
+    --accent-100: var(--neonpink-100);
+    --accent-200: var(--neonpink-200);
+    --accent-300: var(--neonpink-300);
+    --accent-400: var(--neonpink-400);
+    --accent-500: var(--neonpink-500);
+    --accent-600: var(--neonpink-600);
+    --accent-700: var(--neonpink-700);
+    --accent-800: var(--neonpink-800);
+    --accent-900: var(--neonpink-900);
+    --accent-950: var(--neonpink-950);
 
     /* Slate */
     --slate-50: 210 40% 98%;
@@ -317,7 +317,20 @@
     --green-900: 143.8 61.2% 20.2%;
     --green-950: 144.9 80.4% 10%;
 
-    /* Emerald */
+    /* Neon Pink — #FF10F0 = hsl(304, 100%, 53%) */
+    --neonpink-50:  304 100% 97.5%;
+    --neonpink-100: 304 100% 94.5%;
+    --neonpink-200: 304 96%  88.5%;
+    --neonpink-300: 304 93%  80%;
+    --neonpink-400: 304 96%  68%;
+    --neonpink-500: 304 100% 53%;
+    --neonpink-600: 304 100% 42%;
+    --neonpink-700: 304 96%  33%;
+    --neonpink-800: 304 90%  25%;
+    --neonpink-900: 304 80%  18%;
+    --neonpink-950: 304 85%  10%;
+
+    /* Emerald (kept for reference, no longer used as accent) */
     --emerald-50: 151.8 81% 95.9%;
     --emerald-100: 149.3 80.4% 90%;
     --emerald-200: 152.4 76% 80.4%;
@@ -482,8 +495,8 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
 
-    --dataviz: 230 100% 85%;
-    --dataviz-2: 230 100% 92%;
+    --dataviz: 304 100% 70%;
+    --dataviz-2: 304 100% 80%;
   }
 
   /* Light mode scrollbar styles */
